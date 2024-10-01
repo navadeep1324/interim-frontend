@@ -1,0 +1,1008 @@
+/* Import Bootstrap */
+@import 'bootstrap/dist/css/bootstrap.min.css'; 
+
+/* Tailwind imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+.heading-font h1, 
+.heading-font h2, 
+.heading-font h3, 
+.heading-font h4, 
+.heading-font h5, 
+.heading-font h6 {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+}
+a:hover {
+  color: #D81C3F !important; /* Hover color */
+  /* text-decoration: underline !important;  */
+}
+:root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom css */
+.caregivertextcity {
+  color: #3d3d3d;
+  font-size: 18px;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+  line-height: 1.6;
+}
+.caregiverbg{
+  border-top: 2px solid #2b759b;
+    border-bottom: 2px solid #2b759b;
+}
+.corprightsmainf {
+  background: #004b66;
+}
+.callbtn {
+  background: #ffff;
+  border: none;
+  padding: 12px 20px;
+  color: #333;
+  font-size: 20px;
+  font-weight: 700;
+}
+.Footersec{
+  background-color: #d81c3f;
+}
+.Awardsec{
+  background-color: #e6f2f8;
+}
+.text2city{
+  color: #ffffff;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+  font-size: 16px;
+  font-weight: 600;
+}
+.smalltextcity{
+  color: #ffffff;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+  font-size: 17px;
+  font-weight: 600;
+}
+.homecitiesp{
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  text-align: center;
+}
+.HomecitiesBg{
+  width: 100%;
+
+  background-image: url('/images/section2Bg.png');
+  background-size: cover;
+  background-position: center;
+  background-color: #ffffff;
+}
+.homeh2{
+  font-weight: 600;
+  font-size: 34px;
+  color: #FFFFFF !important;
+  text-align: center;
+  font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif;
+}
+.homepagebtn {
+  color: #FFFFFF !important;
+  border-width: 0px !important;
+  border-radius: 10px;
+  font-size: 18px;
+  background-color: #d81c3f;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+  font-weight: 500;
+  padding: 10px 20px !important;
+}
+.homep{
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+  font-size: 18px;
+  font-weight: 400;
+}
+.homeh1{
+  font-weight: 500;
+    font-size: 3vw;
+    color: #d81c3f !important;
+    line-height: 1.3em;
+    text-align: left;
+    /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+}
+.servicecoloumcity{
+  background-color: #FFFFFF;
+    border-radius: 24px 24px 0 0;
+    padding-bottom: 13px;
+    box-shadow: 0px 2px 5px 0px rgba(0, 0, 0, 0.3);
+    margin-left: 35px;
+}
+.head5evergreen{
+  border-bottom-width: 2px;
+  border-bottom-color: #d81c3f;
+  font-weight: 600;
+  font-size: 25px;
+  color: #333333 !important;
+ padding-bottom: 16px;
+  /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+}
+.heading5subcity{
+  border-bottom-width: 2px;
+  border-bottom-color: #d81c3f;
+  font-weight: 600;
+  font-size: 25px;
+  color: #333333 !important;
+  line-height: 2.5em;
+  /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+}
+.section4subcity {
+  background: #ffff;
+  border-top-left-radius: 8%;
+}
+.section3subcity {
+  background: #2b7495;
+}
+.section1subcity {
+  background: #fef8f3;
+  padding-bottom: 8% !important;
+  padding-top: 8% !important;
+}
+.subcityheading {
+  font-size: 40px;
+  color: #d81c3f !important;
+  line-height: 1.3em;
+  /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+}
+.citypagebtn {
+  color: #d81c3f !important;
+  border-width: 0px !important;
+  font-size: 18px;
+  padding-right: 2em;
+  padding-left: 0.7em;
+  background-color: rgba(255, 255, 255, 0.82);
+  margin-top: -23%;
+  width: 100%;
+}
+.allservice{
+  display: flex;
+  justify-content: center;
+
+}
+.allservicesbtn{
+  color: #FFFFFF !important;
+    border-radius: 10px;
+    font-size: 18px;
+    padding-left: 0.7em;
+    font-weight: 500;
+    background-color: #d81c3f;
+    border: none;
+}
+.section7city {
+  background: #f9f9f9;
+}
+.iconcity {
+  color: #ff7552;
+  font-size: 19px;
+}
+.subcitysec {
+  background: #ffff;
+    border-top-width: 6px;
+    border-top-color: #58a1b9;
+    border-bottom-right-radius: 65px;
+}
+.section6city{
+  background-color: #015979;
+}
+.heading2citysub{
+  font-weight: 500;
+  font-size: 34px;
+  /* line-height: 1.3em;
+  font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+  color: #FFFFFF;
+  text-align: center;
+}
+.section5city {
+  background: #ffecd9;
+}
+.heading2city.py-3 {
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1.3em;
+  /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+  color: #004b66;
+  text-align: center;
+}
+.section4city {
+  background: #fef8f3;
+}
+.section3city {
+  background: #fef8f3;
+}
+.section2city {
+  padding: 2em 0em;
+}
+body{
+  background-color: #ffffff;
+}
+.coloum1txt{
+  display: flex;
+  align-items: center;
+}
+.caregivercitybtn{
+  background-color: #FFFFFF;
+  border: 0px;
+  font-weight: 500;
+  font-size:18px;
+  color: #d81c3f;
+  width:40%;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+}
+.caregiversubcitybtn{
+  background-color: #FFFFFF;
+  border: 0px;
+  font-weight: 600;
+  font-size:14px;
+  color: #fff;
+  background-color: #d81c3f;
+  width:50%;
+  padding: 10px 10px !important;
+}
+h3.caregivertext {
+  font-size: 28px;
+  color: #FFFFFF !important;
+  /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+}
+
+
+.sectioncaregiverscity {
+  background: #015979;
+}
+h4.titleservice {
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+  color: #d81c3f !important;
+  text-align: center;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 1.5em;
+}
+.formcoloumcity{
+  background-color: rgba(255, 255, 255, 0.91);
+    border-radius: 10px 10px 10px 10px;
+    overflow: hidden;
+    border-color: #d81c3f;
+    padding-top: 2.5%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
+    box-shadow: 5px 8px 15px -11px #d81c3f;
+}
+.section1banner {
+  background: #fef8f3;
+  padding-bottom: 7%;
+}
+.citynames {
+  font-size: 17px;
+  color: #d81c3f;
+  font-weight: 500;
+  line-height: 1.6em;
+}
+.icontext {
+  float: left;
+  font-size: 18px;
+  color: #2b7495;
+}
+.iconhome {
+  font-size: 25px;
+  color: #d81c3f;
+  font-weight: 400 !important;
+}
+
+.dropdown-menu.show {
+  line-height: 2.2;
+}
+h3.respitecareh3 {
+  /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+  color: #003c52;
+  font-size: 22px;
+}
+.btngetcare {
+  background: #d81c3f;
+  width: 100%;
+}
+.btngetcare:hover{
+  background: #d81c3f;
+  width: 100%;
+}
+.corprights{
+  background-color: #d81c3f !important;
+  color: #FFFFFF;
+}
+.Footer1{
+  background-color: #fef8f3;
+}
+.btngetcare {
+  font-size: 18px;
+  /* font-family: 'Lato'; */
+  border: 0px;
+  letter-spacing: 2px;
+  border-radius: 10px;
+  padding: 10px 30px;
+  color: #ffff;
+  font-weight: 600;
+}
+.formcol {
+  margin-top: 15px;
+}
+p.formsmalltext {
+  font-size: 13px;
+  line-height: 1.6em !important;
+  /* font-weight: 600 !important; */
+}
+.formcoloum{
+  background-color: #FFFFFF;
+  box-shadow: 0px 12px 18px -6px rgba(0,0,0,0.3);
+  border-radius: 10px;
+  margin-top: -18%;
+}
+.footersection1{
+  background-color: #FFFFFF;
+}
+.footersec{
+  background-color: #FFFFFF;
+}
+.footerh2{
+  font-weight: 600;
+    font-size: 34px;
+    text-align: center;
+    /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+    color: #003c52;
+}
+.servicefooterh2{
+  font-weight: 600;
+  font-size: 34px;
+  text-align: left;
+  /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+  color: #003c52;
+}
+p{
+  font-size: 18px;
+    color: #3d3d3d;
+    line-height: 1.6em;
+    font-weight: 400;
+}
+p.footerp{
+  color: #3d3d3d;
+  font-size: 16px;
+    font-weight: 500;
+}
+.Contactbtn{
+  background-color: #d81c3f;
+  color: #FFFFFF;
+  border: 0px;
+  font-weight: 600;
+  font-size:18px;
+  width:40%;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+}
+.section4{
+  background-color: #e6f2f8;
+  padding: 5%;
+}
+html,body{
+  width:100%;
+  height:100%;
+}
+.navLinkTitles{
+  color:#004b66;
+  font-weight: 500;
+  font-size:16px;
+}
+#navbarScrollingDropdown{
+  color:#004b66;
+}
+.heading1{
+  font-weight: 600;
+    font-size: 48px;
+    color: #d81c3f !important;
+    line-height: 1.3em;
+}
+h1{
+  /* font-family: 'Merriweather', Georgia, "Times New Roman", serif !important; */
+  font-size: 38px;
+    color: #004b66 !important;
+    line-height: 1.3em;
+    font-weight: 500;
+}
+.paragram{
+  font-weight: 600;
+  font-size:16px;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+}
+.sectionbg{
+  background-color: #fef8f3;  padding-top: 4%;
+  padding-bottom: 4%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.head2{
+  font-size: 28px;
+  color: #FFFFFF !important;
+  line-height: 1.3em;
+  /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+}
+.sectioncaregiversbg{
+  background-color: #d81c3f;
+}
+.caregiverbtn{
+  background-color: #FFFFFF;
+  border: 0px;
+  font-weight: 600;
+  font-size:18px;
+  color:#d81c3f!important;
+  width:50%;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+}
+.caregiverbtn:hover{
+  background-color: #FFFFFF;
+  border: 0px;
+  font-weight: 600;
+  font-size:18px;
+  color:#d81c3f!important;
+  width:50%;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+}
+.numbercol{
+  display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.section3bg{
+  background: linear-gradient(to bottom, #004B66 70%, #ffffff 30%);
+  display: flex;
+  align-items: center; /* To vertically center the content */
+  padding: 5% 0; /* Adds top and bottom padding */
+  /* min-height: 100vh; Adjust this as per requirement */
+  padding-top: 4.5rem;
+  padding-bottom: 4.5rem;
+}
+.row3bg{
+  background-color: #FFFFFF;
+  border-top-right-radius: 60px 60px;
+  padding: 50px;
+}
+.heading2{
+  font-weight: 600;
+    font-size: 34px;
+    line-height: 1.3em;
+    /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+    color: #004b66;
+}
+.section3{
+  background-color: #FFFFFF;
+}
+.contactsecbg {
+  width: 100%;
+  height: 500px;
+  background-image: url('/images/contactbgimg.png');
+  background-size: cover;
+  background-position: center;
+  background-color: #ffffff;
+}
+
+
+/* Ensure all cards have equal height */
+.card-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* Add spacing below each card */
+.card-spacing {
+  margin-bottom: 20px; /* Adjust the margin value as needed */
+}
+
+/* Ensure card bodies take up available space */
+.card-body {
+  flex: 1;
+}
+
+/* Optional: Add this for responsiveness */
+@media (max-width: 767px) {
+  .card-spacing {
+    margin-bottom: 15px; /* Adjust the margin for smaller screens */
+  }
+}
+
+.card-text {
+  font-size: 16px; /* Adjust the font size */
+  line-height: 1.6; /* Add line-height for better readability */
+  color: #333; /* Choose a color for the text */
+  margin-top: 10px; /* Add some space from the title */
+  font-weight: 600;
+}
+.card-title{
+  /* font-family: 'Merriweather', Georgia, 'Times New Roman', serif; */
+   color: #d60000;
+   font-weight: 600;
+   font-size:28px;
+}
+.cardstyle{
+  box-shadow: 0px 12px 18px -6px rgba(216, 28, 63, 0.2) !important;
+   border-radius: 10px !important;
+}
+.divider-line{
+    width: 30%;
+    height: 1px;
+    background-color: #d60000;
+     margin: 10px 0;
+}
+
+.page_headerbg__HU8C4 {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
+  /* box-shadow: 5px 8px 15px -11px #d81c3f; */
+}
+.section1banner {
+  padding-top: 5%;}
+  .contactusbg{
+    width: 100%;
+    /* height: 300px; */
+    background-image: url('../public/images/contactus-bg.webp');
+    background-size: cover;
+    background-position: center;
+    background-color: #ffffff;
+    padding: 10% 0%;
+    
+  }
+  .contactush2{
+    font-family: 'Merriweather', Georgia, "Times New Roman", serif;
+    font-weight: 700;
+    font-size: 38px;
+    color:#333333;
+    ;
+  }
+  .maincontact{
+    padding: 20px;
+      background-color: #ffff;
+      box-shadow: 0px 12px 18px -6px rgba(0, 0, 0, 0.3);
+      border-radius: 26px;
+  }
+  .searchtextbox{
+    border: 1px solid #333;
+  }
+  .btn:hover {
+    background-color: #004b66;
+    border-color: #004b66;
+  }
+  .thankpagesec1{
+    background-color: rgb(216, 28, 66);
+    height: 200px;
+    /* vertical-align: middle; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-top: 10%;
+  padding-bottom: 10%;
+  }
+  /* Apply to all input placeholders */
+input::placeholder {
+  font-size: 13px; /* Adjust the size as needed */
+}
+/* For the textarea placeholder */
+#validationcustom05::placeholder {
+  font-size: 13px;
+}
+
+/* Style the first option (as a placeholder) in the select */
+#validationcustom04 {
+  font-size: 13px !important;
+  color: #656363;
+
+}
+
+.phone-link {
+  color: #d81c3f;
+  text-decoration: none; /* Optional: remove underline */
+}
+
+/* Optional: Change the color on hover */
+.phone-link:hover {
+  color: #b00e2f;
+}
+.fixed-width-image {
+  width: 300px !important; /* Force fixed width */
+  height: auto !important; /* Maintain aspect ratio */
+  max-width: 300px !important; /* Ensure max-width stays fixed */
+}
+.citynames a {
+  text-decoration: none;
+  color: inherit; /* This will inherit the default color */
+}
+
+.citynames a:hover {
+  color: #004b66; /* Hover color */
+}
+.city-link {
+  color: #004b66;
+  text-decoration: none;
+}
+
+.city-link:hover {
+  color: #D81C3F;
+}
+.sanjose-banner{
+  padding-right: 10%;
+  padding-left: 5%;
+}
+.Footer1 {
+  background-color: #f8f9fa;
+  padding: 40px 0;
+}
+
+/* .Contactbtn {
+  background-color: #d9534f;
+  border: none;
+  width: 100%;
+  margin-bottom: 15px;
+} */
+
+.Contactbtn:hover {
+  background-color: #c9302c;
+}
+
+
+
+.corprights {
+  background-color: #d9534f;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+}
+
+
+.Contactbtn-footer {
+  width: 40%;
+  background-color: #d81c3f;
+  padding: 10px !important;
+  display: flex;
+  justify-content: center;
+  font-size: 16px;
+  font-weight: 500;
+}
+.footer-services{
+font-weight: bold;
+color: #015979;
+font-size: 20px;
+}
+
+.footer-list-services{
+  text-decoration: none;
+  color: rgb(51, 51, 51);
+  line-height: 1.8em;
+  font-size: 18px;
+}
+  
+.social-icons {
+  display: flex;
+  gap: 15px;
+  margin-top: 15px;
+}
+
+.social-icons a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 40px; /* Set the width */
+  height: 40px; /* Set the height */
+  border-radius: 50%; /* Make the icons circular */
+  background-color: #C8E0EA;
+  color: #004B66;
+  transition: background-color 0.3s, color 0.3s; /* Add hover transition */
+}
+
+.social-icons a:hover {
+  background-color: #0056b3; /* Blue background on hover */
+  color: #fff; /* White icon color on hover */
+}
+.footer-services {
+    position: relative;
+    font-weight: bold;
+    color: #003c52;
+    margin-bottom: 1rem;
+    padding-bottom: 0.5rem;
+}
+
+.footer-services:after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 50px;
+  height: 3px;
+  background-color: #d81c3f; /* Orange separator */
+}
+
+.footer-list-services:hover {
+  color: #004B66; /* Hover color */
+  text-decoration: underline; /* Optional: Add underline on hover */
+}
+
+/* Search container */
+.search-container {
+  padding: 20px;
+  background-color: #D81C3F;
+  border-radius: 5px;
+}
+
+/* Form and Label */
+.search-form {
+  position: relative;
+}
+
+.search-label {
+  color: #fff;
+  font-size: 20px;
+  display: block;
+  margin-bottom: 10px;
+}
+
+/* Wrapper to prevent input and button from shifting */
+.input-button-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+/* Input field */
+.search-input {
+  padding: 10px;
+  width: 300px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.search-input:focus {
+  border-color: #d81c3f;
+  box-shadow: 0px 0px 5px rgba(216, 28, 63, 0.5);
+}
+
+/* Button */
+.search-button {
+  padding: 10px 20px;
+  margin-left: -2px;
+  border-radius: 5px;
+  background-color: #000;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.search-button:active {
+  background-color: #555;
+}
+
+/* Suggestions list */
+.suggestions-list {
+  position: absolute;
+  width: 300px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+/* Suggestion item */
+.suggestion-item {
+  padding: 10px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.suggestion-item:hover,
+.suggestion-item.active {
+  background-color: #f0f0f0;
+}
+
+/* Error message */
+.error-message {
+  /* margin-top: 10px; */
+  color: #fff;
+  font-size: 14px;
+  line-height: 1.5;
+  font-style: italic;
+}
+
+/* Phone number in error message */
+.error-phone {
+  text-decoration: underline;
+  color: #fff;
+}
+
+/* service areas page code */
+/* Section padding */
+.section-padding-top {
+  padding-top: 5%;
+}
+
+/* Search column styling */
+.search-col {
+  background-color: #d81c3f;
+  border-radius: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* View All Services text */
+.view-all-services p {
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Service Area Col */
+.service-area-col {
+  background-color: #2a7e9a;
+  color: white;
+  text-align: center;
+}
+
+/* Service Description Col */
+.service-description-col {
+  background-color: #fff7f0;
+  padding: 30px 50px;
+}
+
+/* Service Item */
+.service-item {
+  padding: 5px;
+}
+
+/* Row padding bottom */
+.row-padding-bottom {
+  padding-bottom: 30px;
+}
+
+/* White section background */
+.section-white {
+  background-color: #fff;
+  padding: 40px 0;
+}
+.service-item a {
+  color: inherit; /* Keeps the original color */
+  text-decoration: none;
+}
+
+.service-item a:hover {
+  color: #D81C3F; /* Hover color */
+  text-decoration: none; /* Prevent underline on hover */
+}
+
+@media only screen and (max-width:767px) {
+  .formcoloumcity{
+    width: 95%;
+    margin-left: 10px;
+    padding: 20px;
+  }
+  .form-control{
+    margin: 5px 0;
+  }
+  .formcol {
+    margin-top: 15px;
+    margin-bottom: 0px !important;
+  }
+  p.formsmalltext{
+    padding: 15px 0;
+    font-size: 11px;
+  }
+  .btngetcare{
+    font-weight: 500;
+    font-size: 15px;
+  }
+  .imagemaincity {
+    width: 100%;
+  }
+.servicecoloumcity  {
+  margin-bottom: 30px;
+}
+.caregivercitybtn{
+  font-size: 16px;
+  padding: 10px 10px !important;
+
+}
+h3.caregivertext{
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.heading2 {
+  font-weight: 500;
+  font-size: 30px;
+  margin-top: 30px;
+}
+.section3city .col-md-6 img {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.section3city .col-md-4 img {
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.section4city .col-md-6 img{
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+.footer-services{
+  margin-top: 20px;
+}
+.footerh2{
+  font-weight: 500;
+  font-size: 30px;
+}
+.head2{
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+.caregiverbtn{
+font-size: 16px;
+padding: 10px 10px !important;
+font-weight: 500;
+}
+
+.formcoloum{
+  margin-top: 6%;
+  width: 95%;
+  margin-left: 10px;
+}
+.heading1 {
+  font-weight: 500;
+  font-size: 38px;
+  color: #d81c3f !important;
+  line-height: 1.3em;
+  margin-top: 30px;
+}
+.Contactbtn{
+  font-weight: 500;
+  font-size: 18px;
+  width: 70%;
+  padding: 10px 10px !important;
+}
+}
+ul {
+  list-style-type: disc; 
+}
+li {
+font-size: 18px;
+}
+p {
+  white-space: pre-wrap;
+}

@@ -1,0 +1,39 @@
+
+  p.navhome {
+    color: #004b66;
+}
+
+.buttonhome{
+    background-color: #D81C3F !important;
+    border: 0px;
+    font-weight: 600;
+    font-size:16px;
+}
+.headerbg{
+    background: #fef7f2 ;
+}
+/* For hover effect to show the dropdown */
+.navDropdownHover:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    visibility: visible;
+  }
+  
+  .navDropdownHover .dropdown-menu {
+    display: none;
+    opacity: 0;
+    visibility: hidden;
+    transition: visibility 0s, opacity 0.2s linear;
+  }
+  
+  .navLinkTitles {
+    color: #000;
+    text-decoration: none;
+  }
+  
+  .navLinkTitles:hover {
+    color: #007bff; /* Change color on hover */
+    text-decoration: none;
+  }
+  
+  
