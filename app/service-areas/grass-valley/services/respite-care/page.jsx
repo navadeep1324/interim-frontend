@@ -19,7 +19,7 @@ export default function RespiteCareComponent() {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://127.0.0.1:1337/api/grass-valley-respite-cares?populate[maincontent][populate]=*"
+          "https://api.interimhc.com/api/grass-valley-respite-cares?populate[maincontent][populate]=*"
         );
         const result = await response.json();
 
@@ -54,12 +54,12 @@ export default function RespiteCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `http://127.0.0.1:1337${imageData.url}`;
+    return `https://api.interimhc.com${imageData.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {
     if (imageData && imageData.url) {
-      const imageUrl = `http://127.0.0.1:1337${imageData.url}`;
+      const imageUrl = `https://api.interimhc.com${imageData.url}`;
       return (
         <Image
           src={imageUrl}

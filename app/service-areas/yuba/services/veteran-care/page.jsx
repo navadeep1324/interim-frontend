@@ -17,7 +17,7 @@ export default function VeteranCareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:1337/api/yuba-veteran-cares?populate[maincontent][populate]=*')
+    fetch('https://api.interimhc.com/api/yuba-veteran-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(data => {
         if (data && data.data && data.data[0] && data.data[0].attributes) {
@@ -43,7 +43,7 @@ export default function VeteranCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `http://127.0.0.1:1337${imageData.url}`;
+    return `https://api.interimhc.com${imageData.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {

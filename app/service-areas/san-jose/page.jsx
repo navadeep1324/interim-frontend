@@ -15,7 +15,7 @@ import SanjoseNavbarComponent from "../../sanjosenavcomponent";
 
 export default function SanJoseComponent() {
   const [data, setData] = useState(null);
-  const API_URL = "http://127.0.0.1:1337";
+  const API_URL = "https://api.interimhc.com";
 
   useEffect(() => {
     const fetchData = async () => {

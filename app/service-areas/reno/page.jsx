@@ -23,7 +23,7 @@ export default function RenoComponent() {
     async function fetchData() {
       try {
         const response = await fetch(
-          'http://127.0.0.1:1337/api/renos?populate[maincontent][populate]=*'
+          'https://api.interimhc.com/api/renos?populate[maincontent][populate]=*'
         );
         const data = await response.json();
         setMainContent(data.data[0].attributes.maincontent);
@@ -160,7 +160,7 @@ export default function RenoComponent() {
         {/* Fetch and display the image dynamically */}
         {mainContent[4]?.img?.data?.attributes?.url ? (
           <Image
-            src={`http://127.0.0.1:1337${mainContent[4].img.data.attributes.url}`}
+            src={`https://api.interimhc.com${mainContent[4].img.data.attributes.url}`}
             alt="Dynamic Image"
             width={500}
             height={300}

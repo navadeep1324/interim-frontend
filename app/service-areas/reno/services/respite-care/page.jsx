@@ -19,7 +19,7 @@ export default function RespiteCareComponent() {
     async function fetchData() {
       try {
         const response = await fetch(
-          "http://127.0.0.1:1337/api/reno-respite-cares?populate[maincontent][populate]=*"
+          "https://api.interimhc.com/api/reno-respite-cares?populate[maincontent][populate]=*"
         );
         const result = await response.json();
         
@@ -50,7 +50,7 @@ export default function RespiteCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return imageData ? `http://127.0.0.1:1337${imageData.url}` : '';
+    return imageData ? `https://api.interimhc.com${imageData.url}` : '';
   };
 
   const renderImage = (imageData, alt, width, height) => {

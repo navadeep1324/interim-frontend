@@ -17,7 +17,7 @@ export default function SanJoseCupertinoComponent() {
     useEffect(() => {
         const fetchSantaClaraData = async () => {
             try {
-                const response = await fetch('http://127.0.0.1:1337/api/santa-clara-cas?populate[maincontent][populate]=*');
+                const response = await fetch('https://api.interimhc.com/api/santa-clara-cas?populate[maincontent][populate]=*');
                 const data = await response.json();
                 setSantaClaraData(data.data[0].attributes);
             } catch (error) {
@@ -103,7 +103,7 @@ export default function SanJoseCupertinoComponent() {
                     <Col md={6} style={{ paddingRight: '25px' }} className="px-0">
                         {leftImgRightContent[0]?.image?.data ? (
                             <Image
-                                src={`http://127.0.0.1:1337${leftImgRightContent[0].image.data.attributes.url}`}
+                                src={`https://api.interimhc.com${leftImgRightContent[0].image.data.attributes.url}`}
                                 alt={leftImgRightContent[0].image.data.attributes.alternativeText || ""}
                                 width={leftImgRightContent[0].image.data.attributes.width}
                                 height={leftImgRightContent[0].image.data.attributes.height}
@@ -155,7 +155,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={6} className="px-0">
                             {middleHedDecLeftImgRightContent.img?.data ? (
                                 <Image
-                                    src={`http://127.0.0.1:1337${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
+                                    src={`https://api.interimhc.com${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
                                     alt={middleHedDecLeftImgRightContent.img.data.attributes.alternativeText || ""}
                                     width={middleHedDecLeftImgRightContent.img.data.attributes.width}
                                     height={middleHedDecLeftImgRightContent.img.data.attributes.height}
@@ -175,7 +175,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={6} style={{ paddingRight: '25px' }}>
                             {leftImgRightContent[1]?.image?.data ? (
                                 <Image
-                                    src={`http://127.0.0.1:1337${leftImgRightContent[1].image.data.attributes.url}`}
+                                    src={`https://api.interimhc.com${leftImgRightContent[1].image.data.attributes.url}`}
                                     alt={leftImgRightContent[1].image.data.attributes.alternativeText || ""}
                                     width={leftImgRightContent[1].image.data.attributes.width}
                                     height={leftImgRightContent[1].image.data.attributes.height}

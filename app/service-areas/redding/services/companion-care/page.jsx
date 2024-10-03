@@ -13,7 +13,7 @@ export default function CompanionCareComponent() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:1337/api/companion-care-service?populate[maincontent][populate]=*')
+    fetch('https://api.interimhc.com/api/companion-care-service?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(data => {
         console.log("API Response:", data);
@@ -27,7 +27,7 @@ export default function CompanionCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    const url = `http://127.0.0.1:1337${imageData.url}`;
+    const url = `https://api.interimhc.com${imageData.url}`;
     console.log('Image URL:', url); // Log the URL for debugging
     return url;
   };

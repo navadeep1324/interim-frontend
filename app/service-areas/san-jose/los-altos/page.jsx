@@ -18,7 +18,7 @@ export default function LosAltosComponent() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("http://127.0.0.1:1337/api/los-altos-californias?populate[maincontent][populate]=*");
+                const response = await fetch("https://api.interimhc.com/api/los-altos-californias?populate[maincontent][populate]=*");
                 const result = await response.json();
                 setData(result.data);
             } catch (error) {
@@ -38,7 +38,7 @@ export default function LosAltosComponent() {
 
     const getImageUrl = (imageData) => {
         if (!imageData || !imageData.data) return null;
-        return `http://127.0.0.1:1337${imageData.data.attributes.url}`;
+        return `https://api.interimhc.com${imageData.data.attributes.url}`;
     };
 
     const renderTextContent = (content) => {

@@ -20,7 +20,7 @@ export default function PersonalCareComponent() {
     async function fetchData() {
       try {
         const res = await fetch(
-          "http://127.0.0.1:1337/api/carson-personal-cares?populate[maincontent][populate]=*"
+          "https://api.interimhc.com/api/carson-personal-cares?populate[maincontent][populate]=*"
         );
         const result = await res.json();
 
@@ -56,7 +56,7 @@ export default function PersonalCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `http://127.0.0.1:1337${imageData.url}`;
+    return `https://api.interimhc.com${imageData.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {

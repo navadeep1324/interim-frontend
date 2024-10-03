@@ -17,7 +17,7 @@ export default function SanJoseCupertinoComponent() {
 
     useEffect(() => {
         const fetchCityData = async () => {
-            const response = await fetch('http://127.0.0.1:1337/api/sunnyvale-californias?populate[maincontent][populate]=*');
+            const response = await fetch('https://api.interimhc.com/api/sunnyvale-californias?populate[maincontent][populate]=*');
             const data = await response.json();
             setCityData(data.data ? data.data[0].attributes : null);
         };
@@ -90,7 +90,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={6} className="px-0">
                             {cityData.maincontent[1].image?.data && (
                                 <Image
-                                    src={`http://127.0.0.1:1337${cityData.maincontent[1].image.data.attributes.url}`}
+                                    src={`https://api.interimhc.com${cityData.maincontent[1].image.data.attributes.url}`}
                                     alt={cityData.maincontent[1].image.data.attributes.alternativeText || cityData.maincontent[1].image.data.attributes.name}
                                     width={cityData.maincontent[1].image.data.attributes.width}
                                     height={cityData.maincontent[1].image.data.attributes.height}
@@ -130,7 +130,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={6} className="px-0">
                             {cityData.maincontent[2].img?.data && (
                                 <Image
-                                    src={`http://127.0.0.1:1337${cityData.maincontent[2].img.data.attributes.url}`}
+                                    src={`https://api.interimhc.com${cityData.maincontent[2].img.data.attributes.url}`}
                                     alt={cityData.maincontent[2].img.data.attributes.alternativeText || cityData.maincontent[2].img.data.attributes.name}
                                     width={cityData.maincontent[2].img.data.attributes.width}
                                     height={cityData.maincontent[2].img.data.attributes.height}
@@ -146,7 +146,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={6} style={{ paddingRight: '25px' }}>
                             {cityData.maincontent[3].image?.data && (
                                 <Image
-                                    src={`http://127.0.0.1:1337${cityData.maincontent[3].image.data.attributes.url}`}
+                                    src={`https://api.interimhc.com${cityData.maincontent[3].image.data.attributes.url}`}
                                     alt={cityData.maincontent[3].image.data.attributes.alternativeText || cityData.maincontent[3].image.data.attributes.name}
                                     width={cityData.maincontent[3].image.data.attributes.width}
                                     height={cityData.maincontent[3].image.data.attributes.height}
