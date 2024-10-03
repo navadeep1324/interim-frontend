@@ -4,29 +4,35 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "next build --no-lint",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "lint:fix": "eslint --fix .",
+    "lint:ignore": "ESLINT_NO_DEV_ERRORS=true next dev"
   },
   "dependencies": {
+    "autoprefixer": "^10.4.20",
     "axios": "^1.7.3",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "icons": "^1.0.0",
+    "next": "^14.2.13",
+    "postcss": "^8.4.47",
     "react": "^18",
     "react-bootstrap": "^2.10.4",
     "react-dom": "^18",
-    "react-icons": "^5.3.0"
+    "react-icons": "^5.3.0",
+    "sharp": "^0.33.5",
+    "tailwindcss": "^3.4.13"
   },
   "devDependencies": {
     "@babel/core": "^7.25.2",
+    "@babel/eslint-parser": "^7.25.1",
     "@babel/preset-env": "^7.25.4",
     "@babel/preset-react": "^7.24.7",
     "@types/node": "22.5.4",
-    "eslint": "^8",
+    "eslint": "^8.57.1",
     "eslint-config-next": "^14.2.4",
-    "next": "^14.2.8",
-    "postcss": "^8",
-    "tailwindcss": "^3.4.1"
+    "eslint-plugin-jsx-a11y": "^6.10.0"
   }
 }

@@ -20,7 +20,7 @@ export default function ChicoComponent() {
     const [error, setError] = useState(null); // Error state
 
     useEffect(() => {
-        fetch("http://127.0.0.1:1337/api/chicos?populate[maincontent][populate]=*")
+        fetch("https://api.interimhc.com/api/chicos?populate[maincontent][populate]=*")
             .then((response) => response.json())
             .then((responseData) => {
                 if (responseData?.data?.[0]?.attributes?.maincontent) {
@@ -47,7 +47,7 @@ export default function ChicoComponent() {
 
     // Helper function to get image URL (if images are available)
     const getImageUrl = (imageData) => {
-        return imageData ? `http://127.0.0.1:1337${imageData.url}` : "";
+        return imageData ? `https://api.interimhc.com${imageData.url}` : "";
     };
 
     // Helper function to render paragraph content

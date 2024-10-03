@@ -25,7 +25,7 @@ export default function MedfordComponent() {
         const [error, setError] = useState(null); // Error state
       
         useEffect(() => {
-          fetch("http://127.0.0.1:1337/api/medfords?populate[maincontent][populate]=*")
+          fetch("https://api.interimhc.com/api/medfords?populate[maincontent][populate]=*")
             .then((response) => response.json())
             .then((responseData) => {
               if (responseData?.data?.[0]?.attributes?.maincontent) {
@@ -52,7 +52,7 @@ export default function MedfordComponent() {
       
         // Helper function to get image URL (if images are available)
         const getImageUrl = (imageData) => {
-          return imageData ? `http://127.0.0.1:1337${imageData.url}` : "";
+          return imageData ? `https://api.interimhc.com${imageData.url}` : "";
         };
         const renderListItems = (list) => {
             return list.map((listItem, index) => (

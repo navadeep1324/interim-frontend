@@ -23,7 +23,7 @@ export default function GrantspassComponent() {
         const fetchData = async () => {
             try {
                 const response = await axios.get(
-                    "http://127.0.0.1:1337/api/grant-passes?populate[maincontent][populate]=*"
+                    "https://api.interimhc.com/api/grant-passes?populate[maincontent][populate]=*"
                 );
                 setData(response.data.data[0].attributes.maincontent);
             } catch (error) {
@@ -96,7 +96,7 @@ export default function GrantspassComponent() {
                                     <Col md={6} className="px-5">
                                         {section.image?.data ? (
                                             <Image
-                                                src={`http://127.0.0.1:1337${section.image.data.attributes.url}`}
+                                                src={`https://api.interimhc.com${section.image.data.attributes.url}`}
                                                 alt={section.image.data.attributes.alternativeText || "Section Image"}
                                                 width={section.image.data.attributes.width}
                                                 height={section.image.data.attributes.height}
@@ -129,7 +129,7 @@ export default function GrantspassComponent() {
                                     <Col md={6} >
                                         {section.image?.data ? (
                                             <Image
-                                                src={`http://127.0.0.1:1337${section.image.data.attributes.url}`}
+                                                src={`https://api.interimhc.com${section.image.data.attributes.url}`}
                                                 alt={section.image.data.attributes.alternativeText || "Section Image"}
                                                 width={section.image.data.attributes.width}
                                                 height={section.image.data.attributes.height}
@@ -161,7 +161,7 @@ export default function GrantspassComponent() {
                                     <Col md={6} >
                                         {section.img?.data ? (
                                             <Image
-                                                src={`http://127.0.0.1:1337${section.img.data.attributes.url}`}
+                                                src={`https://api.interimhc.com${section.img.data.attributes.url}`}
                                                 alt={section.img.data.attributes.alternativeText || "Section Image"}
                                                 width={section.img.data.attributes.width}
                                                 height={section.img.data.attributes.height}

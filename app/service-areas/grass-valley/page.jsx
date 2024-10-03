@@ -18,7 +18,7 @@ export default function GrassValleyComponent() {
     const [error, setError] = useState(null); // Error state
 
     useEffect(() => {
-        fetch("http://127.0.0.1:1337/api/grass-valleys?populate[maincontent][populate]=*")
+        fetch("https://api.interimhc.com/api/grass-valleys?populate[maincontent][populate]=*")
             .then((response) => response.json())
             .then((responseData) => {
                 if (responseData?.data?.[0]?.attributes?.maincontent) {
@@ -51,7 +51,7 @@ console.log("Data[4] object: ", data[4]);
 // Modify the getImageUrl function to provide a fallback message
 const getImageUrl = (imageData) => {
     if (imageData && imageData.url) {
-        return `http://127.0.0.1:1337${imageData.url}`; // Ensure this matches your Strapi instance URL
+        return `https://api.interimhc.com${imageData.url}`; // Ensure this matches your Strapi instance URL
     }
     return ""; // Return an empty string if there's no image
 };

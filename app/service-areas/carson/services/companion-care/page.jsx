@@ -15,7 +15,7 @@ export default function CompanionCareComponent() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:1337/api/carson-companion-cares?populate[maincontent][populate]=*')
+    fetch('https://api.interimhc.com/api/carson-companion-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(responseData => {
         if (responseData.data && responseData.data.length > 0) {
@@ -34,7 +34,7 @@ export default function CompanionCareComponent() {
   }, []);
 
   const getImageUrl = (imageData) => {
-    return imageData?.url ? `http://127.0.0.1:1337${imageData.url}` : '';
+    return imageData?.url ? `https://api.interimhc.com${imageData.url}` : '';
   };
 
   const renderImage = (imageData, alt, width, height) => {

@@ -15,7 +15,7 @@ export default function VeteranCareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:1337/api/veteran-home-care?populate[maincontent][populate]=*')
+    fetch('https://api.interimhc.com/api/veteran-home-care?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(data => {
         setData(data.data.attributes);
@@ -37,7 +37,7 @@ export default function VeteranCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `http://127.0.0.1:1337${imageData.url}`;
+    return `https://api.interimhc.com${imageData.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {

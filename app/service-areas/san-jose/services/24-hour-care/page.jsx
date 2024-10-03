@@ -19,7 +19,7 @@ export default function HourcareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://127.0.0.1:1337/api/sanjose-24-hour-cares?populate[maincontent][populate]=*')
+    fetch('https://api.interimhc.com/api/sanjose-24-hour-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(responseData => {
         if (responseData && responseData.data && responseData.data[0]) {
@@ -47,7 +47,7 @@ export default function HourcareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `http://127.0.0.1:1337${imageData.url}`;
+    return `https://api.interimhc.com${imageData.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {
