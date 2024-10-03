@@ -4,6 +4,7 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Image from "next/image";
+import Button from 'react-bootstrap/Button';
 import SanjoseNavbarComponent from "../../../sanjosenavcomponent";
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
@@ -38,54 +39,60 @@ export default function SanJoseCupertinoComponent() {
     const middleHedDecLeftImgRightContent = saratogaData.maincontent.find(content => content.__component === "components.middle-heddec-left-img-right-content");
     const middleHedDec = saratogaData.maincontent.find(content => content.__component === "components.middle-hed-dec");
 
-    // Function to render rich text content
-    const renderTextContent = (description) => {
-        if (!Array.isArray(description)) return null;
-
-        return description.map((desc, index) => {
-            switch (desc.type) {
-                case 'text':
-                    return <span key={index}>{desc.text}</span>;
-
-                case 'link':
-                    return (
-                        <a key={index} href={desc.url} target="_blank" className="phone-link" rel="noopener noreferrer">
-                            {desc.children[0].text}
-                        </a>
-                    );
-
-                case 'paragraph':
-                    return <p key={index}>{renderTextContent(desc.children)}</p>;
-
-                case 'list':
-                    return (
-                        <ul key={index} style={{ listStyleType: desc.format === 'unordered' ? 'disc' : 'decimal', paddingLeft: '20px' }}>
-                            {desc.children.map((listItem, idx) => (
-                                <li key={idx}>{renderTextContent(listItem.children)}</li>
-                            ))}
-                        </ul>
-                    );
-
-                case 'list-item':
-                    return <li key={index}>{renderTextContent(desc.children)}</li>;
-
-                default:
-                    return null;
-            }
-        });
-    };
+    // Function to render unique content
     const renderUniqueContent = (description) => {
-        const renderedTexts = new Set();
-        return description.map((desc, index) => {
-            const text = desc.children[0].text;
-            if (!renderedTexts.has(text)) {
-                renderedTexts.add(text);
-                return <p key={index}>{text}</p>;
-            }
-            return null;
-        });
+        if (!Array.isArray(description)) return null;
+        return description.map((desc, idx) => (
+            desc.children.map((child, childIdx) => (
+                child.text ? (
+                    <p key={`${idx}-${childIdx}`} className="py-3">
+                        {child.text}
+                    </p>
+                ) : null
+            ))
+        ));
     };
-    
+    const renderRichText = (content) => {
+        if (!Array.isArray(content)) {
+          return null;
+        }
+      
+        return content.map((item, idx) => {
+          switch (item.type) {
+            case 'link':
+              return (
+                <a
+                  key={idx}
+                  href={item.url}
+                  className="phone-link"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  {item.children[0]?.text}
+                </a>
+              );
+            case 'text':
+              return item.text ? <span key={idx}>{item.text}</span> : null;
+            case 'paragraph':
+              return (
+                <p key={idx} className="py-3">
+                  {renderRichText(item.children)}
+                </p>
+              );
+            case 'list':
+              return (
+                <ul key={idx} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                  {item.children?.map((listItem, index) => (
+                    <li key={index}>{renderRichText(listItem.children)}</li>
+                  ))}
+                </ul>
+              );
+            default:
+              return null;
+          }
+        });
+      };
+      
 
     return (
         <div>
@@ -97,7 +104,7 @@ export default function SanJoseCupertinoComponent() {
                             <h2 className="subcityheading">{bannerHero.Heading}</h2>
                             <p className="py-3">{bannerHero.subHeading}</p>
                             <p> Contact us today at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> to schedule a free home assessment, and we will help you decide the right care plan your seniors need! 
-                            </p>
+              </p>
                             <SubcityCaregiversComponent />
                         </Col>
                         <Col md={4} className="formcoloumcity">
@@ -126,9 +133,10 @@ export default function SanJoseCupertinoComponent() {
                         )}
                     </Col>
                     <Col md={6} style={{ paddingLeft: '25px' }}>
-                        <h2 className="heading2">{leftImgRightContent[0].Heading}</h2>
-                        {renderTextContent(leftImgRightContent[0].description)}
-                    </Col>
+  <h2 className="heading2">{leftImgRightContent[0].Heading}</h2>
+  {renderRichText(leftImgRightContent[0].description)}
+</Col>
+
                 </Row>
             </Container>
 
@@ -199,7 +207,21 @@ export default function SanJoseCupertinoComponent() {
                         </Col>
                         <Col md={6} style={{ paddingLeft: '25px' }}>
                             <h2 className="heading2">{leftImgRightContent[1].Heading}</h2>
-                            {renderTextContent(leftImgRightContent[1].description)}
+                            <p style={{ paddingTop: '20px' }}>{leftImgRightContent[1].description[0].children[0].text}</p>
+                            <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                                {leftImgRightContent[1].description
+                                    .filter(desc => desc.type === "list")
+                                    .flatMap(desc => desc.children)
+                                    .map((listItem, listIndex) => (
+                                        <li key={listIndex}><p>{listItem.children[0].text}</p></li>
+                                    ))}
+                            </ul>
+                            <br />
+                            <p>{leftImgRightContent[1].description
+                                .filter(desc => desc.type === "paragraph")
+                                .map(paragraph => paragraph.children[0].text)
+                                .join(' ')
+                            }</p>
                         </Col>
                     </Row>
                 </Container>
@@ -221,7 +243,7 @@ export default function SanJoseCupertinoComponent() {
                 </Container>
             </div>
 
-            <SanJoseFooter/>
+            <SanJoseFooter />
         </div>
     );
 }

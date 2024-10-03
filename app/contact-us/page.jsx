@@ -6,7 +6,7 @@ import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import ContactFormComponent from "../contactuspagecomponent";
-import SearchContact from "../searchcomponentcontactus";
+import Search from "../searchComponent";
 import CityNavbarComponent from "../citynavcomponent";
 import NavbarComponent from "../navcomponent";
 import ServiceAreasFooter from "../serviceareasFootercomponent"
@@ -44,7 +44,7 @@ export default function ContactusComponent() {
               </p>
             </Col>
             <Col md={6}>
-              <SearchContact />
+              <Search />
             </Col>
           </Row>
         </Container>
