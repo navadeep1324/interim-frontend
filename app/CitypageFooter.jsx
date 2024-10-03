@@ -13,7 +13,7 @@ export default function CitypageFooter() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('http://localhost:1337/api/subcity-caregivers-section?populate[footerabove][populate]=BeginSeniorsJourney.image');
+                const res = await fetch('https://api.interimhc.com/api/subcity-caregivers-section?populate[footerabove][populate]=BeginSeniorsJourney.image');
                 const json = await res.json();
                 setFooterData(json.data.attributes.footerabove);
                 console.log(json.data.attributes.footerabove); // Check if the data is correctly fetched

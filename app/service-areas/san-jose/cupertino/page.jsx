@@ -19,7 +19,7 @@
     useEffect(() => {
         async function fetchCupertinoData() {
         const response = await fetch(
-            "http://127.0.0.1:1337/api/cupertino-cas?populate[maincontent][populate]=*"
+            "https://api.interimhc.com/api/cupertino-cas?populate[maincontent][populate]=*"
         );
         const data = await response.json();
         console.log(data); // For debugging
@@ -34,7 +34,7 @@
     }
 
     const getFullImageUrl = (relativeUrl) => {
-        return `http://127.0.0.1:1337${relativeUrl}`;
+        return `https://api.interimhc.com${relativeUrl}`;
     };
 
     // Render content with links
