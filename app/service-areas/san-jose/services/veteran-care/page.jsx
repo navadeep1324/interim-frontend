@@ -17,7 +17,7 @@ export default function VeteranCareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://api.interimhc.com/api/sanjose-veteran-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/sanjose-veteran-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(responseData => {
         // Log the API response to debug structure
@@ -52,7 +52,7 @@ export default function VeteranCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `https://api.interimhc.com${imageData?.url || ''}`;
+    return `https://admin.interimhc.com${imageData?.url || ''}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {

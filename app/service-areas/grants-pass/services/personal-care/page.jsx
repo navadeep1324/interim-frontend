@@ -17,7 +17,7 @@ export default function PersonalCareComponent() {
     async function fetchData() {
       try {
         const res = await fetch(
-          "https://api.interimhc.com/api/grant-pass-personal-cares?populate[maincontent][populate]=*"
+          "https://admin.interimhc.com/api/grant-pass-personal-cares?populate[maincontent][populate]=*"
         );
         const result = await res.json();
 
@@ -53,7 +53,7 @@ export default function PersonalCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `https://api.interimhc.com${imageData.url}`;
+    return `https://admin.interimhc.com${imageData.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {

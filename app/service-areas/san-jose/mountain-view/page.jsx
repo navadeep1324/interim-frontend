@@ -17,7 +17,7 @@ export default function MountainViewComponent() {
     useEffect(() => {
         const fetchMountainViewData = async () => {
             try {
-                const response = await fetch('https://api.interimhc.com/api/mountain-view-californias?populate[maincontent][populate]=*');
+                const response = await fetch('https://admin.interimhc.com/api/mountain-view-californias?populate[maincontent][populate]=*');
                 const data = await response.json();
                 setMountainViewData(data.data[0].attributes);
             } catch (error) {
@@ -154,7 +154,7 @@ export default function MountainViewComponent() {
                     <Col md={6} style={{ paddingRight: '25px' }} className="px-0">
                         {leftImgRightContent[0]?.image?.data ? (
                             <Image
-                                src={`https://api.interimhc.com${leftImgRightContent[0].image.data.attributes.url}`}
+                                src={`https://admin.interimhc.com${leftImgRightContent[0].image.data.attributes.url}`}
                                 alt={leftImgRightContent[0].image.data.attributes.alternativeText || ""}
                                 width={leftImgRightContent[0].image.data.attributes.width}
                                 height={leftImgRightContent[0].image.data.attributes.height}
@@ -196,7 +196,7 @@ export default function MountainViewComponent() {
                 )}
 
                 {/* Render the list of items */}
-                {middleHedDecLeftImgRightContent?.description?.some(desc => desc.type === "list") && (
+                {/* {middleHedDecLeftImgRightContent?.description?.some(desc => desc.type === "list") && (
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
                         {middleHedDecLeftImgRightContent?.description
                             ?.filter(desc => desc.type === "list")
@@ -207,11 +207,21 @@ export default function MountainViewComponent() {
                                 </li>
                             ))}
                     </ul>
-                )}
+                )} */}
 
+<ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
+                <li>
+                <p>Delivering Quality Senior Care with Interim  </p></li>
+                <li>
+                <p>Empowering Elders with Our Exceptional Care   </p>
+                </li>
+                <li>
+                <p>Elevating Senior Care with Interim  </p>
+                </li>
+                </ul>
                 {/* Render additional paragraphs if present */}
                 {middleHedDecLeftImgRightContent?.description?.slice(2).map((desc, idx) => (
-                    <p key={idx} className="py-3">
+                    <p key={idx} >
                         {desc.children?.[0]?.text}
                     </p>
                 ))}
@@ -220,7 +230,7 @@ export default function MountainViewComponent() {
             <Col md={6} className="px-0">
                 {middleHedDecLeftImgRightContent?.img?.data ? (
                     <Image
-                        src={`https://api.interimhc.com${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
+                        src={`https://admin.interimhc.com${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
                         alt={middleHedDecLeftImgRightContent.img.data.attributes.alternativeText || ""}
                         width={middleHedDecLeftImgRightContent.img.data.attributes.width}
                         height={middleHedDecLeftImgRightContent.img.data.attributes.height}
@@ -241,7 +251,7 @@ export default function MountainViewComponent() {
                         <Col md={6} style={{ paddingRight: '25px' }}>
                             {leftImgRightContent[1]?.image?.data ? (
                                 <Image
-                                    src={`https://api.interimhc.com${leftImgRightContent[1].image.data.attributes.url}`}
+                                    src={`https://admin.interimhc.com${leftImgRightContent[1].image.data.attributes.url}`}
                                     alt={leftImgRightContent[1].image.data.attributes.alternativeText || ""}
                                     width={leftImgRightContent[1].image.data.attributes.width}
                                     height={leftImgRightContent[1].image.data.attributes.height}
@@ -252,7 +262,16 @@ export default function MountainViewComponent() {
                         </Col>
                         <Col md={6} style={{ paddingLeft: '25px' }}>
                             <h2 className="heading2">{leftImgRightContent[1].Heading}</h2>
-                            {renderTextContent(leftImgRightContent[1].description)}
+                            {/* {renderTextContent(leftImgRightContent[1].description)} */}
+                            <p>We follow a holistic model of HomeLife Enrichment (HLE). This model is designed to elevate the quality of life for both elders and their families. Our focus is on improving the mind, body, spirit, and family components. Here's how each component enriches the lives of those we serve in Cupertino, CA: </p>
+                        <p><b>Mind </b></p>
+                        <p>We recognize that understanding is key to effective care. Through proper education, safety practices, and self-care, we empower your loved ones to overcome barriers and achieve their goals. </p>
+                       <p><b>Body </b></p>
+                       <p>Physical well-being is paramount to overall health. Our approach to body care encompasses a range of services, including exercise, medical care, therapy, and nutrition, for strengthening the body. </p>
+                        <p><b>Spirit </b></p>
+                        <p>Nurturing the spirit is essential for holistic well-being. We incorporate activities that bring joy, alleviate anxiety and depression, to enhance spiritual lives of your seniors. </p>
+                        <p><b>Family </b></p>
+                        <p>We recognize the vital role of family in providing support and understanding. Our care extends to the entire support system, providing instruction to family members on their loved one's condition. </p>
                         </Col>
                     </Row>
                 </Container>
@@ -274,7 +293,7 @@ export default function MountainViewComponent() {
                     Contact us today at 
                     <a href="tel:+14082866888" className="phone-link"> +1 408-286-6888</a> 
                     {" to learn more about our home care services and how we can help your seniors. "}
-                    Visit our <a href="/how-to-pay" className="phone-link">How to Pay</a> page to explore the various payment options available and find the right plan for you.
+                    Visit our How to Pay page to explore the various payment options available and find the right plan for you.
                 </p>
                         </Col>
                     </Row>
