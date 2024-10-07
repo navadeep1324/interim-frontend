@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
+import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
 import SanJoseFooter from "../../../../footersanjose";
 import SanjoseNavbarComponent from "../../../../sanjosenavcomponent";
 import SanJoseserviceFooter from "../../../../footerservicesanjose";
@@ -16,7 +16,7 @@ export default function RespiteCareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:1337/api/sanjose-respite-cares?populate[maincontent][populate]=*")
+    fetch("https://admin.interimhc.com/api/sanjose-respite-cares?populate[maincontent][populate]=*")
       .then((response) => response.json())
       .then((responseData) => {
         // Adjusted the data access based on the JSON structure
@@ -63,13 +63,44 @@ export default function RespiteCareComponent() {
 
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
-    return description.map((desc, index) => (
-      <p key={index} className="py-3">
-        {desc?.children?.[0]?.text || ""}
-      </p>
-    ));
+  
+    return description.map((desc, index) => {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
+        return (
+          <p key={index} className="py-3">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return child.text;
+              }
+              if (child.type === 'link') {
+                return (
+                  <a key={idx} href={child.url} className="phone-link">
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
+      return null;
+    });
   };
-
+  
+  
   return (
     <div>
       <SanjoseNavbarComponent/>
@@ -78,15 +109,17 @@ export default function RespiteCareComponent() {
       <div className="sectionbg">
         <Container>
           <Row className="py-5">
-            <Col md="5">
+            <Col md="6">
               <h1 className="heading1">{data?.[0]?.Heading || ""}</h1>
-              <p className="paragram py-2">{data?.[0]?.subHeading?.split("\n\n")[0] || ""}</p>
+              <p className="paragrambold py-2">{data?.[0]?.subHeading?.split("\n")[0] || ""}</p>
               <p className="py-4">
-                {data?.[0]?.subHeading?.split("\n\n")[1] || ""}
-                <br />Contact us today to learn how we can assist in caring for your seniors.
+                {data?.[0]?.subHeading?.split("\n")[1] || ""}
+                <br></br>
+                Reach us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!
+
               </p>
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(
                 data?.[0]?.bannerimg?.data?.attributes,
                 "Compassionate Respite Care",
@@ -103,7 +136,7 @@ export default function RespiteCareComponent() {
       {/* Section 2 */}
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-4">
+          <Row className="row3bg py-3  g-5">
             <Col md="4">
               {renderImage(
                 data?.[1]?.img?.data?.attributes,
@@ -128,7 +161,7 @@ export default function RespiteCareComponent() {
               <h2 className="heading2">{data?.[2]?.Heading || ""}</h2>
               {renderDescription(data?.[2]?.description)}
               <ul style={{ listStyleType: "disc", paddingLeft: "20px" }} className="py-2">
-                {data?.[2]?.description?.[2]?.children?.map((item, index) => (
+                {data?.[2]?.description?.[1]?.children?.map((item, index) => (
                   <li key={index}>{item?.children?.[0]?.text || ""}</li>
                 ))}
               </ul>
@@ -160,7 +193,7 @@ export default function RespiteCareComponent() {
             <Col md="6">
               <h2 className="heading2">{data?.[3]?.Heading || ""}</h2>
               {renderDescription(data?.[3]?.description)}
-              <ul style={{ listStyleType: "disc", paddingLeft: "20px" }} className="py-2">
+              {/* <ul style={{ listStyleType: "disc", paddingLeft: "20px" }} className="py-2">
                 {data?.[3]?.description?.[1]?.children?.map((item, index) => (
                   <li key={index}>
                     {item?.children?.[0]?.text && (
@@ -171,7 +204,16 @@ export default function RespiteCareComponent() {
                     )}
                   </li>
                 ))}
-              </ul>
+              </ul> */}
+              <ul style={{ listStyleType: "disc", paddingLeft: "20px" }} className="py-2">
+  {data?.[3]?.description?.[1]?.children?.map((item, index) => (
+    // Check if the list item text exists before rendering
+    item?.children?.[0]?.text ? (
+      <li key={index}>{item?.children?.[0]?.text}</li>
+    ) : null // Do not render empty items
+  ))}
+</ul>
+
             </Col>
           </Row>
         </Container>

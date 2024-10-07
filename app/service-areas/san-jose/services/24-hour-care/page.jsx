@@ -66,25 +66,86 @@ export default function HourcareComponent() {
   };
 
   const renderDescription = (description) => {
-    return description?.map((para, index) => {
-      if (para.type === 'list') {
+    if (!description || !Array.isArray(description)) return null;
+  
+    return description.map((desc, index) => {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
         return (
-          <ul key={index} style={{ paddingLeft: '20px' }}>
-            {para.children.map((item, idx) => (
-              <li key={idx} style={{ marginBottom: '10px' }}>
-                {item.children?.[0]?.text || ''}
+          <p key={index} className="py-3">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return child.text;
+              }
+              if (child.type === 'link') {
+                const isExternalLink = child.url.startsWith('http');
+  
+                return (
+                  <a
+                    key={idx}
+                    href={child.url}
+                    className="phone-link"
+                    target={isExternalLink ? "_blank" : "_self"}
+                    rel={isExternalLink ? "noopener noreferrer" : ""}
+                  >
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+  
+      // Handle unordered lists (bullet points)
+      if (desc.type === 'list' && desc.format === 'unordered') {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === 'text') {
+                    return child.text;
+                  }
+                  if (child.type === 'link') {
+                    const isExternalLink = child.url.startsWith('http');
+  
+                    return (
+                      <a
+                        key={idx}
+                        href={child.url}
+                        className="phone-link"
+                        target={isExternalLink ? "_blank" : "_self"}
+                        rel={isExternalLink ? "noopener noreferrer" : ""}
+                      >
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
               </li>
             ))}
           </ul>
         );
       }
-      return (
-        <p key={index}>
-          {para.children?.[0]?.text || ''}
-        </p>
-      );
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`;
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
+      return null;
     });
   };
+  
+  
 
   return (
     <div>
@@ -94,13 +155,13 @@ export default function HourcareComponent() {
       <div className="sectionbg">
         <Container>
           <Row className="align-items-center g-5 py-5">
-            <Col md="5">
+            <Col md="6">
               <h1 className="heading1">{data.maincontent[0]?.Heading || 'Default Heading'}</h1>
               <p className="py-2">{data.maincontent[0]?.subHeading || 'Default Subheading'}</p>
               <p>Contact us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408-286-6888</a> and let us offer compassionate and personalized care.</p>
 
             </Col>
-            <Col md="7" className="d-flex justify-content-center">
+            <Col md="6" className="d-flex justify-content-center">
               {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Pioneers In Personalized 24 Hour Care", 1034, 688)}
             </Col>
           </Row>
@@ -155,7 +216,7 @@ export default function HourcareComponent() {
       </div>
 
       {/* Fifth Section */}
-      <div className="section4">
+      <div className="section4 mt-5">
         <Container>
           <Row className="align-items-center g-5 px-5" style={{ background: '#ffff', borderRadius: '20px', padding: '3%' }}>
             <Col md={6}>

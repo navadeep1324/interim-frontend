@@ -77,17 +77,17 @@ export default function PersonalCareComponent() {
       <SanjoseNavbarComponent/>
       <div className="sectionbg">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
+          <Row className="py-5 middlealign">
+            <Col md="6">
               <h1 className="heading1">{data.maincontent[0].Heading}</h1>
-              <p className="paragram py-2">{data.maincontent[0].subHeading.split("\n\n")[0]}</p>
+              <p className="paragrambold py-2">{data.maincontent[0].subHeading.split("\n\n")[0]}</p>
               <p className="py-4">
                 {data.maincontent[0].subHeading.split("\n\n")[1]}
                 <br />
                 Reach us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!
               </p>
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(
                 data.maincontent[0].bannerimg.data.attributes,
                 "Compassionate Personal Care Services",
