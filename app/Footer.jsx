@@ -15,7 +15,7 @@ export default function Footer() {
     useEffect(() => {
         const fetchFooterData = async () => {
             try {
-                const response = await axios.get("https://api.interimhc.com/api/homes?populate[maincontent][populate]=*");
+                const response = await axios.get("https://admin.interimhc.com/api/homes?populate[maincontent][populate]=*");
                 setFooterData(response.data.data[0].attributes);
             } catch (err) {
                 setError(err);
@@ -45,7 +45,7 @@ export default function Footer() {
                         {footerData?.maincontent?.filter(content => content.__component === "layout.begin-your-senior-s-journey-with-us").map((item, index) => (
                             <Col md="4" key={index}>
                                 <Image
-                                    src={`https://api.interimhc.com${item?.image?.data?.attributes?.url}`}
+                                    src={`https://admin.interimhc.com${item?.image?.data?.attributes?.url}`}
                                     width={item?.image?.data?.attributes?.width || 200}
                                     height={item?.image?.data?.attributes?.height || 100}
                                     alt={item?.image?.data?.attributes?.alternativeText || 'Image'}
@@ -62,9 +62,9 @@ export default function Footer() {
                         {footerData?.maincontent?.filter(content => content.__component === "components.home-page-awards").map((award, index) => (
                             <Col md={4} key={index}>
                                 <Image
-                                    src={`https://api.interimhc.com${award?.Img?.data?.attributes?.url}`}
-                                    width={award?.Img?.data?.attributes?.width || 200} 
-                                    height={award?.Img?.data?.attributes?.height || 100} 
+                                    src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
+                                    width={award?.Img?.data?.attributes?.width || 200}
+                                    height={award?.Img?.data?.attributes?.height || 100}
                                     alt={award?.Img?.data?.attributes?.alternativeText || 'Award Image'}
                                 />
                                 <p className="py-3" style={{ color: '#004b66', fontWeight: '600', textAlign: 'center' }}>
@@ -88,7 +88,7 @@ export default function Footer() {
                                 alt="Company Logo"
                             />
                             <Button className="Contactbtn py-3 my-4 Contactbtn-footer " href="/service-areas" >Find a Location</Button>
-                            <Button className="Contactbtn py-3 my-4 Contactbtn-footer"  target="_blank" href="https://www.interimhealthcare.com/careers">Careers</Button>
+                            <Button className="Contactbtn py-3 my-4 Contactbtn-footer" target="_blank" href="https://www.interimhealthcare.com/careers">Careers</Button>
                         </Col>
 
                         {/* Second Column: Services */}
@@ -96,17 +96,17 @@ export default function Footer() {
                             <h5 className="footer-services"> Services</h5>
                             <ul style={{ listStyleType: 'none', padding: 0 }}>
                                 <li><a className="footer-list-services">Alzheimers Dementia Care</a></li>
-                                <li><a  className="footer-list-services">Companion Care</a></li>
-                                <li><a  className="footer-list-services">Personal Care</a></li>
-                                <li><a  className="footer-list-services">Respite Care</a></li>
-                                <li><a  className="footer-list-services">Veteran Care</a></li>
+                                <li><a className="footer-list-services">Companion Care</a></li>
+                                <li><a className="footer-list-services">Personal Care</a></li>
+                                <li><a className="footer-list-services">Respite Care</a></li>
+                                <li><a className="footer-list-services">Veteran Care</a></li>
                                 <li><a className="footer-list-services">24 Hour Care</a></li>
                             </ul>
                         </Col>
 
                         {/* Third Column: Address and Social Media */}
                         <Col md={4}>
-                        <h5 className="footer-services "> Get In Touch</h5>
+                            <h5 className="footer-services "> Get In Touch</h5>
                             {/* <p className="py-3">901 Campisi Way Suite 360,<br></br>
                             Campbell, CA 95008</p> */}
                             <p className="py-2"><a href="mailto:Support@interimhc.com">Support@interimhc.com</a></p>
@@ -128,7 +128,7 @@ export default function Footer() {
             <div className="corprights py-3">
                 <Container>
                     <Row>
-                        <Col><p style={{color:'#fff', textAlign:'center'}}>Copyright ©2024 | All Rights Reserved</p></Col>
+                        <Col><p style={{ color: '#fff', textAlign: 'center' }}>Copyright ©2024 | All Rights Reserved</p></Col>
                     </Row>
                 </Container>
             </div>
