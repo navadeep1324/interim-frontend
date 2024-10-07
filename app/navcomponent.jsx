@@ -13,15 +13,15 @@ export default function NavbarComponent() {
     <Navbar expand="lg" className={styles.headerbg}>
       <Container>
         <Navbar.Brand href="/">  <Image
-              src={Inlogo}
-              width={161}
-              height={70}
-              alt="Picture of the author"
-            /></Navbar.Brand>
+          src={Inlogo}
+          width={161}
+          height={70}
+          alt="Picture of the author"
+        /></Navbar.Brand>
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="/service-areas/" className="navLinkTitles px-3">Service Areass</Nav.Link>
+            <Nav.Link href="/service-areas/" className="navLinkTitles px-3">Service Areas</Nav.Link>
             {/* <Nav.Link href="#" className="navLinkTitles px-3">About Us</Nav.Link> */}
             {/* <NavDropdown title="Services" id="navbarScrollingDropdown" className='navLinkTitles'>
               <NavDropdown.Item href="/Alzheimers-Dementia-Care" className='navLinkTitles'> Alzheimers Dementia Care</NavDropdown.Item>
@@ -34,7 +34,7 @@ export default function NavbarComponent() {
             <Nav.Link href="https://www.interimhealthcare.com/careers" className="navLinkTitles px-3" target="_blank" >Careers</Nav.Link>
             <Nav.Link href="/contact-us" className="navLinkTitles px-3">Contact Us</Nav.Link>
             <Button className={styles.buttonhome} href="/service-areas">
-            Find Location
+              Find Location
             </Button>
           </Nav>
         </Navbar.Collapse>
