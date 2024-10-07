@@ -47,7 +47,7 @@ export default function PalliativeCareComponent() {
 
   const getImageUrl = (imageData) => {
     if (imageData && imageData.url) {
-      return `https://api.interimhc.com${imageData.url}`;
+      return `https://admin.interimhc.com${imageData.url}`;
     }
     return null;
   };

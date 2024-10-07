@@ -43,7 +43,7 @@ export default function RespiteCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return imageData ? `https://api.interimhc.com${imageData.url}` : '';
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : '';
   };
 
   const renderImage = (imageData, alt, width, height) => {

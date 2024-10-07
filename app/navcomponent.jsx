@@ -21,7 +21,7 @@ export default function NavbarComponent() {
         <Navbar.Toggle aria-controls="basic-navbar-nav" />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
-            <Nav.Link href="/service-areas/" className="navLinkTitles px-3">Service Areas</Nav.Link>
+            <Nav.Link href="/service-areas/" className="navLinkTitles px-3">Service Areass</Nav.Link>
             {/* <Nav.Link href="#" className="navLinkTitles px-3">About Us</Nav.Link> */}
             {/* <NavDropdown title="Services" id="navbarScrollingDropdown" className='navLinkTitles'>
               <NavDropdown.Item href="/Alzheimers-Dementia-Care" className='navLinkTitles'> Alzheimers Dementia Care</NavDropdown.Item>

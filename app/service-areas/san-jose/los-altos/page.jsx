@@ -18,7 +18,7 @@ export default function LosAltosComponent() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://api.interimhc.com/api/los-altos-californias?populate[maincontent][populate]=*");
+                const response = await fetch("https://admin.interimhc.com/api/los-altos-californias?populate[maincontent][populate]=*");
                 const result = await response.json();
                 setData(result.data);
             } catch (error) {
@@ -38,7 +38,7 @@ export default function LosAltosComponent() {
 
     const getImageUrl = (imageData) => {
         if (!imageData || !imageData.data) return null;
-        return `https://api.interimhc.com${imageData.data.attributes.url}`;
+        return `https://admin.interimhc.com${imageData.data.attributes.url}`;
     };
 
     const renderTextContent = (content) => {
@@ -94,7 +94,7 @@ export default function LosAltosComponent() {
             {/* Start of components.left-img-right-content component */}
             <div className="section-left-img-right-content py-5">
                 <Container fluid>
-                    <Row>
+                    <Row >
                         <Col md={6} className="px-0">
                             {getImageUrl(mainContent[1]?.image) && (
                                 <Image 
@@ -173,11 +173,20 @@ export default function LosAltosComponent() {
                         </Col>
                         <Col md={6} style={{ paddingLeft: '25px' }}>
                             <h2 className="heading2">{mainContent[3]?.Heading}</h2>
-                            {mainContent[3]?.description?.map((desc, index) => (
-                                <p key={index}>
+                            {/* {mainContent[3]?.description?.map((desc, index) => (
+                                <p className="py-1" key={index}>
                                     {desc.type === "paragraph" && renderTextContent(desc)}
                                 </p>
-                            ))}
+                            ))} */}
+                            <p>Here's the step-by-step process we conduct to provide tailored senior care services: </p>
+                        <p className="py-2"><b>1. Initial Assessment </b></p>
+                        <p>Our local Interim HealthCare office will conduct a thorough initial assessment, completely free of charge. This assessment helps us understand your seniors’ unique requirements and preferences. </p>
+                      <p className="py-2"><b>2. Customized Care Plan </b></p>
+                      <p>Based on the assessment, our team will work closely with you and your elders to create a tailored care plan. This plan outlines the specific types of In home care services required to support seniors effectively. </p>
+                        <p className="py-2"><b>3. Professional Caregivers </b></p>
+                        <p>Your aging adults will be supported by a team of friendly and highly trained caregivers who will come to your home to deliver the agreed-upon care. Whether they need assistance with daily activities, or specialized medical care, our caregivers meet their needs with compassion and expertise. </p>
+                      
+                      <p>Overall, you can expect compassionate, reliable, and personalized home care services designed to promote the overall well-being of seniors in Los Altos, CA. </p>
                         </Col>
                     </Row>
                 </Container>

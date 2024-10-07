@@ -20,7 +20,7 @@ export default function CompanionCareComponent() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://api.interimhc.com/api/yuba-companion-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/yuba-companion-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(responseData => {
         if (responseData.data && responseData.data.length > 0) {
@@ -39,7 +39,7 @@ export default function CompanionCareComponent() {
   }, []);
 
   const getImageUrl = (imageData) => {
-    return imageData?.url ? `https://api.interimhc.com${imageData.url}` : '';
+    return imageData?.url ? `https://admin.interimhc.com${imageData.url}` : '';
   };
 
   const renderImage = (imageData, alt, width, height) => {

@@ -17,7 +17,7 @@ import YubaFooter from "../../footeryuba";
 
 export default function YubaComponent() {
   const [data, setData] = useState(null);
-  const API_URL = "https://api.interimhc.com";
+  const API_URL = "https://admin.interimhc.com";
 
   useEffect(() => {
     const fetchData = async () => {

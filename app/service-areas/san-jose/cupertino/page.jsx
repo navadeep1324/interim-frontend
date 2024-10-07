@@ -19,7 +19,7 @@
     useEffect(() => {
         async function fetchCupertinoData() {
         const response = await fetch(
-            "http://127.0.0.1:1337/api/cupertino-cas?populate[maincontent][populate]=*"
+            "https://admin.interimhc.com/api/cupertino-cas?populate[maincontent][populate]=*"
         );
         const data = await response.json();
         console.log(data); // For debugging
@@ -34,7 +34,7 @@
     }
 
     const getFullImageUrl = (relativeUrl) => {
-        return `http://127.0.0.1:1337${relativeUrl}`;
+        return `https://admin.interimhc.com${relativeUrl}`;
     };
 
     // Render content with links
@@ -67,7 +67,7 @@
         <div className="section1subcity py-5">
             <Container fluid className="px-5">
             <Row>
-                <Col md={7} className="sanjose-banner">
+                <Col md={8} className="sanjose-banner">
                 <h2 className="subcityheading">{cupertinoData[0]?.Heading}</h2>
                 <p className="py-3">{cupertinoData[0]?.subHeading}</p>
                 <p>
@@ -98,7 +98,7 @@
             <Row className="py-5">
                 <Col md={6} style={{ paddingRight: "25px" }}>
                 <Image
-                    src="/images/Cupertinomain.png"
+                    src={getFullImageUrl(cupertinoData[2].image?.data?.attributes.url)}
                     alt="Cupertino Main Image"
                     width={600}
                     height={400}
@@ -136,7 +136,7 @@
                     {cupertinoData[3]?.description[0]?.children[0]?.text}
                 </h5>
                 {cupertinoData[3]?.description.map((desc, index) => (
-                    <p className="py-3" key={index}>
+                    <p className="py-1" key={index}>
                     {renderTextContent(desc)}
                     </p>
                 ))}
@@ -169,12 +169,20 @@
                 </Col>
                 <Col md={6} style={{ paddingLeft: "25px" }}>
                 <h2 className="heading2">{cupertinoData[4]?.Heading}</h2>
-                {cupertinoData[4]?.description.map((desc, index) => (
+                {/* {cupertinoData[4]?.description.map((desc, index) => (
                     <p className="py-3" key={index}>
                     {renderTextContent(desc)}
                     </p>
-                ))}
-                </Col>
+                ))} */}
+                <p className="">Our mission is to make in home care affordable for all elders living in Cupertino, CA. We believe that everyone deserves access to high-quality home care services, regardless of their financial situations. Our knowledgeable staff is here to assist your aging adults every step of the way with these services:
+</p>
+<ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
+                <li><p>Medicaid assistance</p></li>
+                <li><p>Self-pay options</p></li>
+                <li><p>Long-term Care Insurance plans</p></li>
+                <li><p>Veteran benefits guidance</p></li> </ul>
+                <p>We are committed to bridging the gap between quality home care and affordability in Cupertino, California. Our goal is rooted in the belief that every elder deserves access to exceptional care in their golden years.</p>
+              </Col>
             </Row>
             </Container>
         </div>
