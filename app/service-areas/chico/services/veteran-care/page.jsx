@@ -19,7 +19,7 @@ export default function VeteranCareComponent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await fetch('https://api.interimhc.com/api/chico-veteran-cares?populate[maincontent][populate]=*');
+        const response = await fetch('https://admin.interimhc.com/api/chico-veteran-cares?populate[maincontent][populate]=*');
         const result = await response.json();
         
         // Debug: Log the entire API response
@@ -69,7 +69,7 @@ export default function VeteranCareComponent() {
 
   // Utility function to construct image URLs
   const getImageUrl = (imageData) => {
-    return imageData ? `https://api.interimhc.com${imageData.url}` : null;
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : null;
   };
 
   // Rendering the image

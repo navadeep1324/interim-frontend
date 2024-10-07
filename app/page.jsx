@@ -13,7 +13,7 @@ import Image from "next/image";
 import Card from 'react-bootstrap/Card';
 import Footer from "./Footer";
 
-const BASE_URL = "https://api.interimhc.com";
+const BASE_URL = "https://admin.interimhc.com";
 
 export default function Home() {
   const [homeData, setHomeData] = useState(null);

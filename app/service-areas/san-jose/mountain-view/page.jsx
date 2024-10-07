@@ -17,7 +17,7 @@ export default function MountainViewComponent() {
     useEffect(() => {
         const fetchMountainViewData = async () => {
             try {
-                const response = await fetch('https://api.interimhc.com/api/mountain-view-californias?populate[maincontent][populate]=*');
+                const response = await fetch('https://admin.interimhc.com/api/mountain-view-californias?populate[maincontent][populate]=*');
                 const data = await response.json();
                 setMountainViewData(data.data[0].attributes);
             } catch (error) {
@@ -154,7 +154,7 @@ export default function MountainViewComponent() {
                     <Col md={6} style={{ paddingRight: '25px' }} className="px-0">
                         {leftImgRightContent[0]?.image?.data ? (
                             <Image
-                                src={`https://api.interimhc.com${leftImgRightContent[0].image.data.attributes.url}`}
+                                src={`https://admin.interimhc.com${leftImgRightContent[0].image.data.attributes.url}`}
                                 alt={leftImgRightContent[0].image.data.attributes.alternativeText || ""}
                                 width={leftImgRightContent[0].image.data.attributes.width}
                                 height={leftImgRightContent[0].image.data.attributes.height}
@@ -220,7 +220,7 @@ export default function MountainViewComponent() {
             <Col md={6} className="px-0">
                 {middleHedDecLeftImgRightContent?.img?.data ? (
                     <Image
-                        src={`https://api.interimhc.com${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
+                        src={`https://admin.interimhc.com${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
                         alt={middleHedDecLeftImgRightContent.img.data.attributes.alternativeText || ""}
                         width={middleHedDecLeftImgRightContent.img.data.attributes.width}
                         height={middleHedDecLeftImgRightContent.img.data.attributes.height}
@@ -241,7 +241,7 @@ export default function MountainViewComponent() {
                         <Col md={6} style={{ paddingRight: '25px' }}>
                             {leftImgRightContent[1]?.image?.data ? (
                                 <Image
-                                    src={`https://api.interimhc.com${leftImgRightContent[1].image.data.attributes.url}`}
+                                    src={`https://admin.interimhc.com${leftImgRightContent[1].image.data.attributes.url}`}
                                     alt={leftImgRightContent[1].image.data.attributes.alternativeText || ""}
                                     width={leftImgRightContent[1].image.data.attributes.width}
                                     height={leftImgRightContent[1].image.data.attributes.height}

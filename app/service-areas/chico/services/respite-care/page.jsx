@@ -20,7 +20,7 @@ export default function RespiteCareComponent() {
     async function fetchData() {
       try {
         const response = await fetch(
-          "https://api.interimhc.com/api/chico-respite-cares?populate[maincontent][populate]=*"
+          "https://admin.interimhc.com/api/chico-respite-cares?populate[maincontent][populate]=*"
         );
         const result = await response.json();
 
@@ -55,12 +55,12 @@ export default function RespiteCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `https://api.interimhc.com${imageData.url}`;
+    return `https://admin.interimhc.com${imageData.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {
     if (imageData && imageData.url) {
-      const imageUrl = `https://api.interimhc.com${imageData.url}`;
+      const imageUrl = `https://admin.interimhc.com${imageData.url}`;
       return (
         <Image
           src={imageUrl}

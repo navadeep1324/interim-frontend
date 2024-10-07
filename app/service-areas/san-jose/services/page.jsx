@@ -2,16 +2,12 @@
 import React from "react";
 import SanjoseNavbarComponent from "../../../sanjosenavcomponent"
 import HeaderComponent from "../../../../app/headerpageComponent";
-import CitypageFooter from "../../../CitypageFooter";
+import CitypageFooter from "../../../footersanjose";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button, Card } from "react-bootstrap"; // Combine Button and Card here
 import Image from "next/image";
-
-
-
-
 import bannerservice from "../../../../public/images/sevices-banner-interim.webp";
 import service1 from "../../../../public/images/AlzheimersandDementiaCarecard.webp"; // Replace with actual images
 import service2 from "../../../../public/images/Companion care card.webp";
@@ -27,7 +23,7 @@ export default function ServicesComponent() {
             <HeaderComponent/>
             <div style={{backgroundColor:'#fef9f5'}} className="py-5">
                 <Container>
-                    <Row className="d-flex align-items-center justify-content-center g-5">
+                    <Row className="d-flex align-items-center justify-content-center g-5 py-5">
                         <Col md={6} className="d-flex flex-column align-items-start">
                             <h1 className="homeh1">Services</h1>
                             <p className="homep py-3">
@@ -43,16 +39,16 @@ export default function ServicesComponent() {
                     </Row>
                 </Container>
             </div>
-            <div style={{backgroundColor:'#004B66', padding: '40px 0'}}>
-                <Container>
-                    <Row className="d-flex align-items-left justify-content-between">
-                        <Col md={8}>
+            <div className="servicescaregiver">
+                <Container fluid>
+                    <Row className="middlealign g-1">
+                        <Col md={10}>
                         <h2 style={{ fontFamily: "'Merriweather', Georgia, 'Times New Roman', serif", fontSize: '28px', fontWeight: '500', color: '#ffffff' }}>
                                 Looking for a job opportunity? Apply to join the Assured Home Nursing Caregiver team
                             </h2>
                         </Col>
-                        <Col md={4} className="d-flex justify-content-end">
-                            <Button className="py-2 px-8" style={{backgroundColor: '#ffffff', color: '#d60000', fontWeight:'800'}}>
+                        <Col md={2} className="middlealign">
+                            <Button className="py-3 px-5" style={{backgroundColor: '#ffffff', color: '#d60000', fontWeight:'800'}}>
                                 Click Here
                             </Button>
                         </Col>

@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
+import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
 import ServicepageFooter from "../../../../servicepageFooter";
 import SanJoseFooter from "../../../../footersanjose";
 import SanjoseNavbarComponent from "../../../../sanjosenavcomponent";
@@ -17,7 +17,7 @@ export default function VeteranCareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://api.interimhc.com/api/sanjose-veteran-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/sanjose-veteran-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(responseData => {
         // Log the API response to debug structure
@@ -52,7 +52,7 @@ export default function VeteranCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `https://api.interimhc.com${imageData?.url || ''}`;
+    return `https://admin.interimhc.com${imageData?.url || ''}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {
@@ -72,35 +72,73 @@ export default function VeteranCareComponent() {
 
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
+    
     return description.map((desc, index) => {
-      if (desc.type === "paragraph") {
-        return <p key={index} className="py-3">{desc.children[0]?.text || ""}</p>;
-      } else if (desc.type === "list") {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
         return (
-          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-            {desc.children.map((item, i) => (
-              <li key={i}>{item.children[0]?.text || ""}</li>
+          <p key={index} className="py-3">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return child.text;
+              }
+              if (child.type === 'link') {
+                return (
+                  <a key={idx} href={child.url} className="phone-link">
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+  
+      // Handle unordered lists (bullet points)
+      if (desc.type === 'list' && desc.format === 'unordered') {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.[0]?.text || ""}
+              </li>
             ))}
           </ul>
         );
       }
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
       return null;
     });
   };
-
+  
   return (
     <div>
       <SanjoseNavbarComponent/>
       <div className="sectionbg">
         <Container>
           <Row className="py-5">
-            <Col md="5">
+            <Col md="6">
               <h1 className="heading1">{data?.[0]?.Heading || ""}</h1>
-              <p className="paragram py-2">
-                {data?.[0]?.subHeading?.split('\n').map((str, index) => <span key={index}>{str}<br /></span>)}
+              <p className="paragrambold py-2">{data?.[0]?.subHeading?.split("\n\n")[0] || ""}</p>
+              <p className="py-4">
+                {data?.[0]?.subHeading?.split("\n\n")[1] || ""}
+                <br></br>
+                Reach us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!
+
               </p>
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(data?.[0]?.bannerimg?.data?.attributes, "Veteran Home Care", 1034, 688)}
             </Col>
           </Row>
@@ -109,7 +147,7 @@ export default function VeteranCareComponent() {
       <CaregivertodayComponent />
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-4">
+          <Row className="row3bg py-2 g-5">
             <Col md="4">
               {renderImage(data?.[1]?.img?.data?.attributes, "Veteran Care Service", 595, 780)}
             </Col>
@@ -120,19 +158,22 @@ export default function VeteranCareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="sectionbg" style={{ padding: '50px 0px' }}>
-        <Container>
-          <Row>
-            <Col md="6">
-              <h2 className="heading2">{data?.[2]?.Heading || ""}</h2>
-              {renderDescription(data?.[2]?.description)}
-            </Col>
-            <Col md="6">
-              {renderImage(data?.[2]?.img?.data?.attributes, "Respite Care Service", 626, 525)}
-            </Col>
-          </Row>
-        </Container>
-      </div>
+      {/*section-3 */}
+      {/* Section 3 */} 
+<div className="sectionbg" style={{ padding: '50px 0px' }}>
+  <Container>
+    <Row>
+      <Col md="6">
+        <h2 className="heading2">{data?.[2]?.Heading || ""}</h2>
+        {renderDescription(data?.[2]?.description)} {/* Use updated renderDescription */}
+      </Col>
+      <Col md="6">
+        {renderImage(data?.[2]?.img?.data?.attributes, "Respite Care Service", 626, 525)}
+      </Col>
+    </Row>
+  </Container>
+</div>
+
       <div className="section3" style={{ padding: '50px 0px' }}>
         <Container>
           <Row>

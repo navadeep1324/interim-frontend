@@ -17,7 +17,7 @@ export default function LosGatosPage() {
 
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("https://api.interimhc.com/api/los-gatos-californias?populate[maincontent][populate]=*");
+            const response = await fetch("https://admin.interimhc.com/api/los-gatos-californias?populate[maincontent][populate]=*");
             const data = await response.json();
             setContent(data.data[0].attributes.maincontent);
         };
@@ -115,7 +115,7 @@ export default function LosGatosPage() {
                     <Row className="py-5">
                         <Col md={6} style={{ paddingRight: '25px' }} className="px-0">
                             <Image
-                                src={`https://api.interimhc.com${content[1]?.image?.data?.attributes?.url}`}
+                                src={`https://admin.interimhc.com${content[1]?.image?.data?.attributes?.url}`}
                                 width={626}
                                 height={525}
                                 alt="Los Gatos Image 1"
@@ -150,7 +150,7 @@ export default function LosGatosPage() {
                             </Col>
                             <Col md={6} className="px-0">
                                 <Image
-                                    src={`https://api.interimhc.com${content[2]?.img?.data?.attributes?.url}`}
+                                    src={`https://admin.interimhc.com${content[2]?.img?.data?.attributes?.url}`}
                                     width={626}
                                     height={525}
                                     alt="Los Gatos Image 2"
@@ -165,7 +165,7 @@ export default function LosGatosPage() {
                     <Row>
                         <Col md={6} style={{ paddingRight: '25px' }}>
                             <Image
-                                src={`https://api.interimhc.com${content[3]?.image?.data?.attributes?.url}`}
+                                src={`https://admin.interimhc.com${content[3]?.image?.data?.attributes?.url}`}
                                 width={595}
                                 height={780}
                                 alt="Los Gatos Image 3"

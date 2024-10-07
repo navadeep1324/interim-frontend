@@ -25,7 +25,7 @@ export default function AlzheimerMainComponent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('http://localhost:1337/api/sanjose-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.com/api/sanjose-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
         const result = await res.json();
 
         // Check if the maincontent exists in the response
@@ -59,7 +59,7 @@ export default function AlzheimerMainComponent() {
 
   // Helper function to get image URL safely
   const getImageUrl = (imageData) => {
-    return imageData ? `http://localhost:1337${imageData.url}` : null;
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : null;
   };
 
   // Render descriptions with safety checks
@@ -78,11 +78,13 @@ export default function AlzheimerMainComponent() {
       {/* First Section */}
       <div className="sectionbg">
         <Container>
-          <Row className="py-5">
+          <Row className="py-5 middlealign g-5">
             <Col md="6">
               <h1 className="heading1">{data[0]?.Heading || "Default Heading"}</h1>
-              <p className="paragram py-2">{data[0]?.subHeading?.split('\n')[0]}</p>
+              <p className="paragrambold py-2">{data[0]?.subHeading?.split('\n')[0]}</p>
               <p className="py-4">{data[0]?.subHeading?.split('\n')[1]}</p>
+              <p>Reach us today at <a href="tel:+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!</p>
+
             </Col>
             <Col md="6">
               {data[0]?.bannerimg?.data ? (
@@ -111,7 +113,7 @@ export default function AlzheimerMainComponent() {
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-5 px-5">
+          <Row className="row3bg py-5 middlealign px-5">
             <Col md="4">
               {data[2]?.img?.data ? (
                 <img
@@ -136,10 +138,25 @@ export default function AlzheimerMainComponent() {
       {/* Third Section */}
       <div className="sectionbg" style={{ padding: '50px 0px' }}>
         <Container>
-          <Row className="align-items-center g-5">
+          <Row className="middlealign g-5">
             <Col md="6">
               <h2 className="heading2">{data[3]?.Heading}</h2>
-              {data[3]?.description ? renderDescription(data[3].description) : <p>No description available</p>}
+              {/* {data[3]?.description ? renderDescription(data[3].description) : <p>No description available</p>} */}
+              <p className="py-2">Choosing Memory care services for your loved ones can be challenging, but here are some signs that they may require professional care to manage this condition.
+              <ul className="px-3 py-3">
+              <li>Safety concerns</li>
+<li>Risk of falls</li>
+<li>Noticeable weight loss</li>
+<li>Forgetfulness</li>
+<li>Social isolation</li>
+<li>Depression</li>
+<li>Persistent sadness</li>
+<li>Decline in personal hygiene</li>
+<li>Agitation or aggression</li>
+<li>Confusion about time or place</li>
+              </ul>
+              
+If you notice any of these signs in your beloved elders, then it might be the right time to choose our in home memory care services. Our caregivers provide the best care possible to prevent worsening of the condition.</p>
             </Col>
             <Col md="6">
               {data[3]?.img?.data ? (
@@ -186,7 +203,7 @@ export default function AlzheimerMainComponent() {
       {/* Fifth Section */}
       <div className="section4">
         <Container>
-          <Row className="px-5 align-items-center g-5" style={{ background: '#fff', borderRadius: '20px', paddingBottom: '3%' }}>
+          <Row className="px-5 align-items-center g-5 mt-1" style={{ background: '#fff', borderRadius: '20px', paddingBottom: '3%' }}>
             <Col md={6}>
               <h2 className="heading2">{data[5]?.Heading}</h2>
               {data[5]?.description ? renderDescription(data[5].description) : <p>No description available</p>}

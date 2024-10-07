@@ -16,7 +16,7 @@ export default function HourcareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://api.interimhc.com/api/grant-pass-24-hour-home-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/grant-pass-24-hour-home-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(responseData => {
         if (responseData && responseData.data && responseData.data[0]) {
@@ -44,7 +44,7 @@ export default function HourcareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return imageData ? `https://api.interimhc.com${imageData.url}` : null;
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : null;
   };
 
   const renderImage = (imageData, alt, width, height) => {

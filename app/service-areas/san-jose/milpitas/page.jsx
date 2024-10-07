@@ -18,7 +18,7 @@ export default function MilpitasPage() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://api.interimhc.com/api/milpitas-californias?populate[maincontent][populate]=*");
+                const response = await fetch("https://admin.interimhc.com/api/milpitas-californias?populate[maincontent][populate]=*");
                 const data = await response.json();
                 setContent(data?.data?.[0]?.attributes?.maincontent || []);
             } catch (error) {
@@ -108,7 +108,7 @@ export default function MilpitasPage() {
                     <Row className="py-5">
                         <Col md={6} style={{ paddingRight: '25px' }} className="px-0">
                             {content[1]?.image?.data && (
-                                <Image src={`https://api.interimhc.com${content[1].image.data.attributes.url}`} width={626} height={525} alt="Milpitas Image 1" />
+                                <Image src={`https://admin.interimhc.com${content[1].image.data.attributes.url}`} width={626} height={525} alt="Milpitas Image 1" />
                             )}
                         </Col>
                         <Col md={6} style={{ paddingLeft: '25px' }}>
@@ -138,7 +138,7 @@ export default function MilpitasPage() {
                             </Col>
                             <Col md={6} className="px-0">
                                 {content[2]?.img?.data && (
-                                    <Image src={`https://api.interimhc.com${content[2].img.data.attributes.url}`} width={626} height={525} alt="Milpitas Image 2" />
+                                    <Image src={`https://admin.interimhc.com${content[2].img.data.attributes.url}`} width={626} height={525} alt="Milpitas Image 2" />
                                 )}
                             </Col>
                         </Row>
@@ -150,7 +150,7 @@ export default function MilpitasPage() {
                     <Row>
                         <Col md={6} style={{ paddingRight: '25px' }}>
                             {content[3]?.image?.data && (
-                                <Image src={`https://api.interimhc.com${content[3].image.data.attributes.url}`} width={595} height={780} alt="Milpitas Image 3" />
+                                <Image src={`https://admin.interimhc.com${content[3].image.data.attributes.url}`} width={595} height={780} alt="Milpitas Image 3" />
                             )}
                         </Col>
                         <Col md={6} style={{ paddingLeft: '25px' }}>

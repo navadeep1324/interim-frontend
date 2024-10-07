@@ -16,7 +16,7 @@ export default function EvergreenComponent() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('https://api.interimhc.com/api/evergreen-cas?populate[maincontent][populate]=*');
+                const res = await fetch('https://admin.interimhc.com/api/evergreen-cas?populate[maincontent][populate]=*');
                 const json = await res.json();
                 setData(json.data[0].attributes.maincontent);
             } catch (error) {
@@ -31,9 +31,9 @@ export default function EvergreenComponent() {
 
     const getImageUrl = (imageData) => {
         return imageData?.formats?.large?.url
-            ? `https://api.interimhc.com${imageData.formats.large.url}`
+            ? `https://admin.interimhc.com${imageData.formats.large.url}`
             : imageData?.url
-            ? `https://api.interimhc.com${imageData.url}`
+            ? `https://admin.interimhc.com${imageData.url}`
             : '/fallback-image.jpg'; // Fallback image
     };
 
