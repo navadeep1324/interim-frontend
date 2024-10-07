@@ -15,7 +15,7 @@ export default function Footer() {
     useEffect(() => {
         const fetchFooterData = async () => {
             try {
-                const response = await axios.get("https://api.interimhc.com/api/homes?populate[maincontent][populate]=*");
+                const response = await axios.get("https://admin.interimhc.com/api/homes?populate[maincontent][populate]=*");
                 setFooterData(response.data.data[0].attributes);
             } catch (err) {
                 setError(err);
@@ -45,7 +45,7 @@ export default function Footer() {
                         {footerData?.maincontent?.filter(content => content.__component === "layout.begin-your-senior-s-journey-with-us").map((item, index) => (
                             <Col md="4" key={index}>
                                 <Image
-                                    src={`https://api.interimhc.com${item?.image?.data?.attributes?.url}`}
+                                    src={`https://admin.interimhc.com${item?.image?.data?.attributes?.url}`}
                                     width={item?.image?.data?.attributes?.width || 200}
                                     height={item?.image?.data?.attributes?.height || 100}
                                     alt={item?.image?.data?.attributes?.alternativeText || 'Image'}
@@ -62,7 +62,7 @@ export default function Footer() {
                         {footerData?.maincontent?.filter(content => content.__component === "components.home-page-awards").map((award, index) => (
                             <Col md={4} key={index}>
                                 <Image
-                                    src={`https://api.interimhc.com${award?.Img?.data?.attributes?.url}`}
+                                    src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
                                     width={award?.Img?.data?.attributes?.width || 200} 
                                     height={award?.Img?.data?.attributes?.height || 100} 
                                     alt={award?.Img?.data?.attributes?.alternativeText || 'Award Image'}

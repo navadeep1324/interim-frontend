@@ -13,7 +13,7 @@ export default function CitypageFooter() {
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('https://api.interimhc.com/api/subcity-caregivers-section?populate[footerabove][populate]=BeginSeniorsJourney.image');
+                const res = await fetch('https://admin.interimhc.com/api/subcity-caregivers-section?populate[footerabove][populate]=BeginSeniorsJourney.image');
                 const json = await res.json();
                 setFooterData(json.data.attributes.footerabove);
                 console.log(json.data.attributes.footerabove); // Check if the data is correctly fetched
@@ -44,7 +44,7 @@ export default function CitypageFooter() {
                         {footerData.filter(item => item.__component === "components.subcity-caregivers").map((item, index) => (
                             <Col md="4" key={index}>
                   <Image
-    src={`http://localhost:1337${item.BeginSeniorsJourney.image.data.attributes.url}`}
+    src={`https://admin.interimhc.com${item.BeginSeniorsJourney.image.data.attributes.url}`}
     alt={item.BeginSeniorsJourney.image.data.attributes.alternativeText || "Image"}
     width={300} // Fixed width
     height={220} // Fixed height or dynamically fetched

@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
+import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
 import CarsonFooter from "../../../../footercarson";
 import FooterServiceCarsonComponent from "../../../../footerservicescarson";
 import SanjoseNavbarComponent from "../../../../sanjosenavcomponent";
@@ -19,7 +19,7 @@ export default function CompanionCareComponent() {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    fetch('https://api.interimhc.com/api/sanjose-companion-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/sanjose-companion-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(responseData => {
         if (responseData.data && responseData.data.length > 0) {
@@ -38,7 +38,7 @@ export default function CompanionCareComponent() {
   }, []);
 
   const getImageUrl = (imageData) => {
-    return imageData?.url ? `https://api.interimhc.com${imageData.url}` : '';
+    return imageData?.url ? `https://admin.interimhc.com${imageData.url}` : '';
   };
 
   const renderImage = (imageData, alt, width, height) => {
@@ -69,14 +69,24 @@ export default function CompanionCareComponent() {
       <SanjoseNavbarComponent/>
       <div className="sectionbg">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
+          <Row className="py-5 middlealign">
+            <Col md="6">
               <h1 className="heading1">{data.maincontent[0]?.Heading}</h1>
-              <p className="paragram py-2">{data.maincontent[0]?.subHeading}</p>
+              {data.maincontent[0]?.subHeading && (
+    <>
+      <p className="paragrambold py-2">
+        {data.maincontent[0]?.subHeading.split('\n')[0]}
+      </p>
+      <p className="paragram py-2">
+        {data.maincontent[0]?.subHeading.split('\n')[1]}
+      </p>
+    </>
+  )}
+              
               <p>Reach us today at <a href="tel:+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!</p>
 
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Companion care Services", 1034, 688)}
             </Col>
           </Row>
@@ -87,7 +97,7 @@ export default function CompanionCareComponent() {
 
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-5 px-5">
+          <Row className="row3bg py-5 px-5 middlealign">
             <Col md="4">
               {renderImage(data.maincontent[1]?.img?.data?.attributes, "Exceptional Elderly companion care", 595, 780)}
             </Col>
@@ -103,7 +113,7 @@ export default function CompanionCareComponent() {
 
       <div className="sectionbg" style={{ padding: '50px 0px' }}>
         <Container>
-          <Row>
+          <Row className="middlealign">
             <Col md="6">
               <h2 className="heading2">{data.maincontent[2]?.Heading}</h2>
               {data.maincontent[2]?.description?.map((desc, index) => (
@@ -124,7 +134,7 @@ export default function CompanionCareComponent() {
 
       <div className="section3" style={{ padding: '50px 0px' }}>
         <Container>
-          <Row>
+          <Row className="middlealign">
             <Col md="6">
               {renderImage(data.maincontent[3]?.img?.data?.attributes, "Experience Our Superior companion home care services", 550, 520)}
             </Col>
@@ -145,7 +155,7 @@ export default function CompanionCareComponent() {
 
       <div className="section4" style={{ padding: '50px 0px' }}>
         <Container>
-          <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
+          <Row className="py-5 px-5 " style={{ background: '#ffff', borderRadius: '20px' }}>
             <Col md={6}>
               <h2 className="heading2">{data.maincontent[4]?.Heading}</h2>
               {data.maincontent[4]?.description?.map((desc, index) => (

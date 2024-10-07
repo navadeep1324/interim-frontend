@@ -11,7 +11,7 @@ export default function CaregivertodayComponent() {
   useEffect(() => {
     async function fetchCtaData() {
       try {
-        const res = await fetch('http://localhost:1337/api/alzheimer-s-and-dementia?populate[maincontent][populate]=img');
+        const res = await fetch('https://admin.interimhc.com/api/alzheimer-s-and-dementia?populate[maincontent][populate]=img');
         const result = await res.json();
         const cta = result.data.attributes.maincontent.find(section => section.__component === "components.cargiver-cta");
         setCtaData(cta);

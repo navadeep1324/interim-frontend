@@ -15,7 +15,7 @@ export default function VeteranCareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://api.interimhc.com/api/reno-veteran-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/reno-veteran-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(result => {
         console.log('API Response:', result); // Debug the response structure
@@ -39,7 +39,7 @@ export default function VeteranCareComponent() {
 
   // Helper function to get the image URL
   const getImageUrl = (imageData) => {
-    return imageData ? `https://api.interimhc.com${imageData.url}` : '/default.jpg';
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : '/default.jpg';
   };
 
   // Helper function to render an image using next/image

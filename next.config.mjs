@@ -16,7 +16,7 @@ const nextConfig = {
       },
       {
         protocol: 'https',
-        hostname: 'api.interimhc.com', // Adding the external domain
+        hostname: 'admin.interimhc.com', // Adding the external domain
         pathname: '/uploads/**',      // Allow all uploads from this domain
       },
     ],

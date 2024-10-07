@@ -79,7 +79,7 @@ body {
   color: #ffffff;
   /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .smalltextcity{
   color: #ffffff;
@@ -356,7 +356,7 @@ h3.respitecareh3 {
   margin-top: 15px;
 }
 p.formsmalltext {
-  font-size: 13px;
+  font-size: 11px;
   line-height: 1.6em !important;
   /* font-weight: 600 !important; */
 }
@@ -436,9 +436,12 @@ h1{
     font-weight: 500;
 }
 .paragram{
-  font-weight: 600;
-  font-size:16px;
+  font-size:18px;
   /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+}
+.paragrambold{
+  font-weight: 500;
+
 }
 .sectionbg{
   background-color: #fef8f3;  padding-top: 4%;
@@ -494,7 +497,7 @@ h1{
   padding: 50px;
 }
 .heading2{
-  font-weight: 600;
+  font-weight: 500;
     font-size: 34px;
     line-height: 1.3em;
     /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
@@ -1057,10 +1060,56 @@ body > div > div > div:nth-child(8) > div > div > div:nth-child(2) {
 }
 ul {
   list-style-type: disc; 
+  /* margin-top: -5%; */
 }
 li {
 font-size: 18px;
 }
+@media only screen and (min-width: 768px) {
+  .middlealign{
+    display: flex;
+    align-items: center;
+    
+  }  
+}
+/* Section 4 heading styles */
+.section4-heading {
+  font-size: 1.3rem; /* Adjust based on the level (e.g., 2rem for h2) */
+  font-weight: 500;
+  color: #004b66;
+  margin-bottom: 5px;
+}
+
+.section4-subheading {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #555;
+  margin-bottom: 15px;
+}
+.servicescaregiver{
+  background-color:#004B66;
+  padding: 30px 30px;
+  width: 100%;
+  max-width: 100%;
+}
+
 p {
   white-space: pre-wrap;
+}
+.Contactbtn:hover {
+  background-color: #c9302c;
+  color: #ffff !important;
+ 
+}
+a.page_buttonhome__SB1Lw{
+  color: #ffff !important;
+  font-weight: 500;
+}
+.mainbanner {
+  align-items: center;
+  padding-top: 8%;
+  padding-bottom: 3%;
+}
+.homepagebtn:hover{
+  color: #ffff !important; 
 }

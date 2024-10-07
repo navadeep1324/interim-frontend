@@ -16,7 +16,7 @@ export default function RespiteCareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://api.interimhc.com/api/yuba-respite-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/yuba-respite-cares?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(data => {
         if (data && data.data && data.data[0] && data.data[0].attributes) {
@@ -42,7 +42,7 @@ export default function RespiteCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `https://api.interimhc.com${imageData.url}`;
+    return `https://admin.interimhc.com${imageData.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {

@@ -15,7 +15,7 @@ export default function CaregiverCityComponent() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          "http://localhost:1337/api/caregiver-cta?populate[maincontent][populate]=*"
+          "https://admin.interimhc.com/api/caregiver-cta?populate[maincontent][populate]=*"
         );
         setData(response.data.data.attributes);
       } catch (error) {

@@ -17,7 +17,7 @@ export default function SanJoseCupertinoComponent() {
     useEffect(() => {
         const fetchSantaClaraData = async () => {
             try {
-                const response = await fetch('https://api.interimhc.com/api/santa-clara-cas?populate[maincontent][populate]=*');
+                const response = await fetch('https://admin.interimhc.com/api/santa-clara-cas?populate[maincontent][populate]=*');
                 const data = await response.json();
                 setSantaClaraData(data.data[0].attributes);
             } catch (error) {
@@ -103,7 +103,7 @@ export default function SanJoseCupertinoComponent() {
                     <Col md={6} style={{ paddingRight: '25px' }} className="px-0">
                         {leftImgRightContent[0]?.image?.data ? (
                             <Image
-                                src={`https://api.interimhc.com${leftImgRightContent[0].image.data.attributes.url}`}
+                                src={`https://admin.interimhc.com${leftImgRightContent[0].image.data.attributes.url}`}
                                 alt={leftImgRightContent[0].image.data.attributes.alternativeText || ""}
                                 width={leftImgRightContent[0].image.data.attributes.width}
                                 height={leftImgRightContent[0].image.data.attributes.height}
@@ -155,7 +155,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={6} className="px-0">
                             {middleHedDecLeftImgRightContent.img?.data ? (
                                 <Image
-                                    src={`https://api.interimhc.com${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
+                                    src={`https://admin.interimhc.com${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
                                     alt={middleHedDecLeftImgRightContent.img.data.attributes.alternativeText || ""}
                                     width={middleHedDecLeftImgRightContent.img.data.attributes.width}
                                     height={middleHedDecLeftImgRightContent.img.data.attributes.height}
@@ -175,7 +175,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={6} style={{ paddingRight: '25px' }}>
                             {leftImgRightContent[1]?.image?.data ? (
                                 <Image
-                                    src={`https://api.interimhc.com${leftImgRightContent[1].image.data.attributes.url}`}
+                                    src={`https://admin.interimhc.com${leftImgRightContent[1].image.data.attributes.url}`}
                                     alt={leftImgRightContent[1].image.data.attributes.alternativeText || ""}
                                     width={leftImgRightContent[1].image.data.attributes.width}
                                     height={leftImgRightContent[1].image.data.attributes.height}
@@ -185,8 +185,25 @@ export default function SanJoseCupertinoComponent() {
                             )}
                         </Col>
                         <Col md={6} style={{ paddingLeft: '25px' }}>
-                            <h2 className="heading2">{leftImgRightContent[1].Heading}</h2>
-                            {renderTextContent(leftImgRightContent[1].description)}
+                            <h2 className="heading2 py-3">{leftImgRightContent[1].Heading}</h2>
+                            {/* {renderTextContent(leftImgRightContent[1].description)} */}
+                            <p>Choosing a suitable home care plan for your loved one can be such a critical decision for your family. At Interim Healthcare, we enable you to make the right choices by offering you our competent assistance throughout the decision-making process. Here are the benefits of choosing us for your senior home care needs: </p>
+                            <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
+                <li>
+                <p>A comprehensive and personalized care approach for your loved one. </p></li>
+                <li>
+                <p>A flexible care model that is based on our HomeLife Enrichment Standard of Care.   </p>
+                </li>
+                <li>
+                <p>Assistance from experienced home care and medical care professionals. </p>
+                </li>
+                <li>
+                <p>Support for Medicare insurance application.  </p>
+                </li>
+                <li>
+                <p>Specialized assistance for Veteran Care.   </p>
+                </li>
+                </ul>
                         </Col>
                     </Row>
                 </Container>
@@ -198,11 +215,12 @@ export default function SanJoseCupertinoComponent() {
                     <Row>
                         <Col>
                             <h2 className="heading2city py-3">{middleHedDec.Heading}</h2>
-                            {middleHedDec.description.map((desc, descIndex) => (
+                            {/* {middleHedDec.description.map((desc, descIndex) => (
                                 <p key={descIndex} style={{ textAlign: 'center' }}>
                                     {desc.children[0].text}
                                 </p>
-                            ))}
+                            ))} */}
+                            <p>Being a pioneer of home care services in the nation, we pride ourselves on our long and successful journey in home care.  At Interim Healthcare, every team member resonates the values of care, dedication and integrity. We are willing to go above and beyond to ensure their utmost comfort. Do you have a senior requiring home care in Santa Clara? Contact us immediately at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a>. Your loved ones’ happy aging is just a call away.  </p>
                         </Col>
                     </Row>
                 </Container>
