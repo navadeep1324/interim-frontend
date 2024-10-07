@@ -79,7 +79,7 @@ body {
   color: #ffffff;
   /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
   font-size: 16px;
-  font-weight: 600;
+  font-weight: 500;
 }
 .smalltextcity{
   color: #ffffff;
@@ -356,7 +356,7 @@ h3.respitecareh3 {
   margin-top: 15px;
 }
 p.formsmalltext {
-  font-size: 13px;
+  font-size: 11px;
   line-height: 1.6em !important;
   /* font-weight: 600 !important; */
 }
@@ -497,7 +497,7 @@ h1{
   padding: 50px;
 }
 .heading2{
-  font-weight: 600;
+  font-weight: 500;
     font-size: 34px;
     line-height: 1.3em;
     /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
@@ -1091,6 +1091,25 @@ font-size: 18px;
   padding: 30px 30px;
   width: 100%;
   max-width: 100%;
+}
 
-
+p {
+  white-space: pre-wrap;
+}
+.Contactbtn:hover {
+  background-color: #c9302c;
+  color: #ffff !important;
+ 
+}
+a.page_buttonhome__SB1Lw{
+  color: #ffff !important;
+  font-weight: 500;
+}
+.mainbanner {
+  align-items: center;
+  padding-top: 8%;
+  padding-bottom: 3%;
+}
+.homepagebtn:hover{
+  color: #ffff !important; 
 }

@@ -132,11 +132,25 @@ export default function MilpitasPage() {
                 <div>
                     <Container className="section4subcity py-5">
                         <Row>
-                            <Col md={6} className="px-5">
+                            <Col md={7} className="px-5">
                                 <h5 className="head5evergreen">Here are a few key features of all our Home Healthcare plans for seniors:</h5>
-                                {renderTextContent(content[2]?.description)}
+                                {/* {renderTextContent(content[2]?.description)} */}
+                                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
+                <li>
+                <p>Long-term care support for seniors who face challenges in daily living.  </p></li>
+                <li>
+                <p>Specialized home healthcare assistance for seniors with chronic diseases.    </p>
+                </li>
+                <li>
+                <p>Veteran Care for our nation’s cherished veterans and their surviving spouses.  </p>
+                </li>
+                <li>
+                <p>Assistance with Medicare claims for home care services.  </p>
+                </li>
+                </ul>
+                <p>If you’d like to know in-depth information about our care plans and need help to decide a suitable service for your senior loved one, just give us a call at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a>. </p>
                             </Col>
-                            <Col md={6} className="px-0">
+                            <Col md={5} className="px-0">
                                 {content[2]?.img?.data && (
                                     <Image src={`https://admin.interimhc.com${content[2].img.data.attributes.url}`} width={626} height={525} alt="Milpitas Image 2" />
                                 )}

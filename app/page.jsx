@@ -67,7 +67,7 @@ export default function Home() {
     return (
       <div style={{ backgroundColor: "#fef9f5" }} className="py-5">
         <Container>
-          <Row className="py-5">
+          <Row className="mainbanner">
             <Col md={6}>
               <h1 className="homeh1">{banner.Heading}</h1>
               <p className="homep py-3">{banner.subHeading}</p>
@@ -117,7 +117,7 @@ export default function Home() {
               <Col md={6} lg={4} key={card.id} className="d-flex align-items-stretch px-5"> {/* Responsive grid using md and lg */}
                 <Card className="flex-fill text-center card-container" style={{ border: "none" }}>
                   <Card.Header style={{ backgroundColor: "#d81c3f" }} className="py-3">
-                    <p className="text2city"><b>{card.card_hed}</b></p>
+                    <p className="text2city">{card.card_hed}</p>
                   </Card.Header>
                   <Card.Body className="d-flex flex-column justify-content-between">
                     <div className="d-flex align-items-center justify-content-start">
@@ -147,7 +147,7 @@ export default function Home() {
                     </div>
                   </Card.Body>
                   <Card.Footer className="text-muted" style={{ background: "#cae4f9", borderTop: "0px" }}>
-                    <a href={knowMoreLinks[index] || "#"} style={{ fontWeight: "600", color: "#004b66" }}>
+                    <a href={knowMoreLinks[index] || "#"} style={{ fontWeight: "500", color: "#004b66" }}>
                       {card.button?.text || "Know More"} <span style={{ color: "#d81c3f", fontWeight: "500" }}>
                         <i className="bi bi-chevron-right"></i>
                       </span>

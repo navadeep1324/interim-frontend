@@ -69,7 +69,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={8} className="sanjose-banner">
                             <h2 className="subcityheading">{cityData.maincontent[0].Heading}</h2>
                             <p className="py-3">{cityData.maincontent[0].subHeading}</p>
-                            <p>  To know more about us, call us for a free consultation at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> to schedule a free home assessment, and we will help you decide the right care plan your seniors need! 
+                            <p>To know more about us, call us for a free consultation at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> to schedule a free home assessment, and we will help you decide the right care plan your seniors need! 
               </p>
                             <SubcityCaregiversComponent />
                         </Col>
@@ -99,8 +99,13 @@ export default function SanJoseCupertinoComponent() {
                         </Col>
                         <Col md={6} style={{ paddingLeft: '25px' }}>
                             <h2 className="heading2">{cityData.maincontent[1].Heading}</h2>
-                            <div className="py-3">
-                                {renderDescription(cityData.maincontent[1].description)}
+                            <div>
+                                {/* {renderDescription(cityData.maincontent[1].description)} */}
+                                <p className="py-3">
+                                <a href="https://en.wikipedia.org/wiki/Sunnyvale,_California" className="phone-link" target="_blank">Sunnyvale</a> is a city in the northwest region of Santa Clara County. It is home to a vibrant and diverse community. Senior members are an integral component of this community and deserve utmost care and attention to age safely. <a href="https://data.census.gov/vizwidget?g=160XX00US0677000&infoSection=Disability" className="phone-link" target="_blank">According to a nationwide survey, about 3.7% of residents of Sunnyvale experience cognitive difficulties </a>and 3.9% of residents face ambulatory difficulties. Seniors with such disabilities are at higher risk of falls and out-of-hospital cardiac arrests. These issues exacerbate the demand for reliable in-home care for seniors to manage their chronic health conditions and live safely. Interim Healthcare is
+                                 a leading home care provider in Sunnyvale, which takes care of crucial aspects of living for seniors who wish to age in place. </p>
+               <p>For over 20 years, Interim Healthcare has been offering in-home care services to seniors in Sunnyvale. We improve their lives by ensuring safety and providing companionship with affordable and dependable senior home care services. Don’t wait; contact us at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> to learn how we can become a home health aide for your senior in Sunnyvale, California.  </p>
+               
                             </div>
                         </Col>
                     </Row>
@@ -125,7 +130,13 @@ export default function SanJoseCupertinoComponent() {
                             <h5 className="head5evergreen">
                                 {cityData.maincontent[2].description[0].children[0].text}
                             </h5>
-                            {renderDescription(cityData.maincontent[2].description)}
+                            {/* {renderDescription(cityData.maincontent[2].description)} */}
+                            <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
+                <li><p>Long-Term Home Care </p> </li>
+                <li><p>Personal Care </p> </li>
+                <li><p>Respite Care </p> </li>
+                <li><p>Veteran Care </p> </li> </ul>
+                <p>We help your loved ones age with better physical health and mental well-being. Our team of care experts is ready to go the extra mile to ensure your seniors’ comfort and safety.  Our specialized care plans also include 24-hour home care companion care which help your seniors manage their health conditions and live their lives to the fullest. </p>
                         </Col>
                         <Col md={6} className="px-0">
                             {cityData.maincontent[2].img?.data && (
@@ -156,7 +167,19 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={6} style={{ paddingLeft: '25px' }}>
                             <h2 className="heading2">{cityData.maincontent[3].Heading}</h2>
                             <div style={{ paddingTop: '20px' }}>
-                                {renderDescription(cityData.maincontent[3].description)}
+                                {/* {renderDescription(cityData.maincontent[3].description)} */}
+                                <p>Selecting the right home care plan for your loved one is a significant decision for your family. At Interim Healthcare, we help you make the best choices by providing competent assistance throughout the decision-making process. Here are the benefits of choosing us for your senior home care needs: </p>
+                                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
+                <li>
+                <p>A comprehensive and personalized care approach for your loved one.</p>
+                </li>
+                <li>
+                <p>Coverage and assistance for Medicare insurance holders. </p>
+                </li>
+                <li>
+                <p>Assistance with Veteran Affairs Benefits.  </p>
+                </li></ul>
+                <p>By choosing Interim Healthcare, you ensure that your senior loved ones receive the best possible care, allowing them to enjoy their golden years with dignity and comfort. Contact us today at <a href="tel:408-286-6888 " className="phone-link">+1 408-286-6888 </a> to find out how we can support your family. </p>
                             </div>
                         </Col>
                     </Row>
@@ -168,7 +191,8 @@ export default function SanJoseCupertinoComponent() {
                         <Col>
                             <h2 className="heading2city py-3">{cityData.maincontent[4].Heading}</h2>
                             <p style={{ textAlign: 'center' }}>
-                                {cityData.maincontent[4].description[0].children[0].text}
+                                {/* {cityData.maincontent[4].description[0].children[0].text} */}
+                                As a leader in home care services nationwide, we take pride in our long-standing success. At Interim Healthcare, our team embodies values of care, dedication, and integrity. We are committed to going the extra mile to ensure your loved ones' comfort. Do you have a senior who needs in-home care in Sunnyvale? Reach out to us now at <a href="tel:408-286-6888 " className="phone-link">+1 408-286-6888 </a>. Comfortable lives and wider smiles are just a call away! 
                             </p>
                         </Col>
                     </Row>

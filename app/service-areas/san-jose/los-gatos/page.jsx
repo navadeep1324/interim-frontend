@@ -144,11 +144,12 @@ export default function LosGatosPage() {
                 <div>
                     <Container className="section4subcity py-5">
                         <Row>
-                            <Col md={6} className="px-5">
+                            <Col md={7} className="px-5">
                                 <h5 className="head5evergreen">The Services we offer include:</h5>
                                 {renderTextContent(content[2]?.description || [])}
+                                <p>Interim HealthCare upholds the highest standards of care with support that promotes dignity, and well-being for elders receiving our senior care services in Los Gatos, CA. </p>
                             </Col>
-                            <Col md={6} className="px-0">
+                            <Col md={5} className="px-0">
                                 <Image
                                     src={`https://admin.interimhc.com${content[2]?.img?.data?.attributes?.url}`}
                                     width={626}
@@ -173,7 +174,19 @@ export default function LosGatosPage() {
                         </Col>
                         <Col md={6} style={{ paddingLeft: '25px' }}>
                             <h2 className="heading2">{content[3]?.Heading}</h2>
-                            {renderTextContent(content[3]?.description || [])}
+                            {/* <p className="py-1">{renderTextContent(content[3]?.description || [])}</p> */}
+                            <p className="py-2">At Interim, we offer a range of payment options to ensure that seniors in Los Gatos, CA, can access the care they deserve without undue financial burden.  </p>
+                            <p>We offer: </p>
+                            <p><b>Medicare Coverage Guidance </b></p>
+                            <p>Navigating Medicare coverage can be complex therefore our team helps elders understand their benefits and maximize coverage for essential services. </p>
+                        <p><b>Medicaid Assistance </b></p>
+                        <p>We assist seniors in navigating the application process of Medicaid and ensuring they receive the home care benefits they are entitled to. </p>
+                       <p><b>Private Pay Option </b></p>
+                       <p>We offer flexible private pay options, and our transparent pricing ensures that elders receive the care they require without hidden costs or surprises. </p>
+                       <p><b>Long-Term Care Insurance Support </b></p>
+                       <p>Many elders have long-term care insurance policies that can cover home care services. We help them claim it to maximize the benefits. </p>
+                      <p><b>Veterans Benefits Coordination </b></p>
+                      <p>Veterans and their spouses may be eligible for benefits that cover home care services. We assist them in accessing those VA benefits. </p>
                         </Col>
                     </Row>
                 </Container>
@@ -183,7 +196,8 @@ export default function LosGatosPage() {
                     <Row>
                         <Col>
                             <h2 className="heading2city py-3">{content[4]?.Heading}</h2>
-                            {renderTextContent(content[4]?.description || [])}
+                           {/* <p style={{ textAlign: 'center' }} className="py-0">{renderTextContent(content[4]?.description || [])} </p> */}
+                       <p style={{ textAlign: 'center' }}>Experience the difference with our home care services in Los Gatos, California. From dementia care to diabetes care, we provide a wide range of services to help your loved ones recover from illness and manage chronic conditions effectively. Contact us today at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> to learn more about our range of home care services. Reach out now and let us brighten your seniors lives with warmth and support. </p>
                         </Col>
                     </Row>
                 </Container>
