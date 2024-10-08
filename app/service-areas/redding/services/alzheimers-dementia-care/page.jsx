@@ -20,7 +20,7 @@ export default function AlzheimerMainComponent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('http://api.interimhc.com/api/alzheimer-s-and-dementia?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.com/api/alzheimer-s-and-dementia?populate[maincontent][populate]=*');
         const result = await res.json();
         setData(result.data.attributes.maincontent);
       } catch (error) {
@@ -38,7 +38,7 @@ export default function AlzheimerMainComponent() {
   const caregiverCTA = data.find(section => section.__component === "components.cargiver-cta");
 
   const getImageUrl = (imageData) => {
-    return imageData ? `http://localhost:1337${imageData.url}` : null;
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : null;
   };
 
   return (

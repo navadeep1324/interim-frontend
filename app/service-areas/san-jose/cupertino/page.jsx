@@ -92,29 +92,29 @@ export default function SanJoseCupertinoComponent() {
             </div>
             <CaregiverCityComponent />
 
-            {/* Section rendering description with links */}
-            <div>
-                <Container fluid className="px-3">
-                    <Row className="py-5">
-                        <Col md={6} style={{ paddingRight: "25px" }}>
-                            <Image
-                                src={getFullImageUrl(cupertinoData[2].image?.data?.attributes.url)}
-                                alt="Cupertino Main Image"
-                                width={600}
-                                height={400}
-                            />
-                        </Col>
-                        <Col md={6} style={{ paddingLeft: "25px" }}>
-                            <h2 className="heading2">{cupertinoData[2]?.Heading}</h2>
-                            {cupertinoData[2]?.description.map((desc, index) => (
-                                <p className="py-3" key={index}>
-                                    {renderTextContent(desc)}
-                                </p>
-                            ))}
-                        </Col>
-                    </Row>
-                </Container>
-            </div>
+        {/* Section rendering description with links */}
+        <div>
+            <Container fluid>
+            <Row className="py-5">
+                <Col md={6} className="px-0">
+                <Image
+                    src={getFullImageUrl(cupertinoData[2].image?.data?.attributes.url)}
+                    alt="Cupertino Main Image"
+                    width={600}
+                    height={400}
+                />
+                </Col>
+                <Col md={6} style={{ paddingLeft: "25px" }}>
+                <h2 className="heading2">{cupertinoData[2]?.Heading}</h2>
+                {cupertinoData[2]?.description.map((desc, index) => (
+                    <p className="py-3" key={index}>
+                    {renderTextContent(desc)}
+                    </p>
+                ))}
+                </Col>
+            </Row>
+            </Container>
+        </div>
 
             <div className="section3subcity py-5">
                 <Container>

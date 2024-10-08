@@ -179,7 +179,7 @@ export default function MilpitasPage() {
                     <Row>
                         <Col>
                             <h2 className="heading2city py-3">{content[4]?.Heading || "Default Heading"}</h2>
-                            {renderTextContent(content[4]?.description)}
+                            <p style={{textAlign:'center'}}>{renderTextContent(content[4]?.description)}</p>
                         </Col>
                     </Row>
                 </Container>

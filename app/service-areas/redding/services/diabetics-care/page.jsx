@@ -17,7 +17,7 @@ export default function DiabetesCareComponent() {
 
   // Fetching data from Strapi
   useEffect(() => {
-    fetch("http://localhost:1337/api/diabetics-care?populate[maincontent][populate]=*")
+    fetch("https://admin.interimhc.com/api/diabetics-care?populate[maincontent][populate]=*")
       .then((response) => response.json())
       .then((json) => {
         setDiabetesData(json.data.attributes);
@@ -36,9 +36,9 @@ export default function DiabetesCareComponent() {
   // Function to get image URL or return a fallback if needed
   const getImageUrl = (imageData) => {
     if (imageData?.formats?.large?.url) {
-      return `http://localhost:1337${imageData.formats.large.url}`;
+      return `https://admin.interimhc.com${imageData.formats.large.url}`;
     } else if (imageData?.url) {
-      return `http://localhost:1337${imageData.url}`;
+      return `https://admin.interimhc.com${imageData.url}`;
     }
     return null;
   };

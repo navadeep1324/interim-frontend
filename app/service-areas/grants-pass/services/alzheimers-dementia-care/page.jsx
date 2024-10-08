@@ -17,7 +17,7 @@ export default function AlzheimerMainComponent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('http://localhost:1337/api/grant-pass-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.com/api/grant-pass-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
         const result = await res.json();
         setData(result.data[0].attributes.maincontent);
       } catch (error) {
@@ -32,7 +32,7 @@ export default function AlzheimerMainComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return imageData ? `http://localhost:1337${imageData.url}` : '';
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : '';
   };
 
   const renderDescription = (descriptions) => {
