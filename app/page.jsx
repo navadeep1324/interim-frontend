@@ -75,7 +75,7 @@ export default function Home() {
                 {banner.btn.text}
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="homebannerimgcol">
               {imageUrl && (
                 <Image src={imageUrl} alt="Banner Image" width={800} height={383} />
               )}

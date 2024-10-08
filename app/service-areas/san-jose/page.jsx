@@ -67,9 +67,9 @@ const renderTextContent = (content) => {
       <SanjoseNavbarComponent/>
 
       {/* Section 1 - Banner */}
-      <div className="section1banner">
+      <div className="section1bannersanjose">
         <Container>
-          <Row className="py-3">
+          <Row className="section1row">
             <Col md={7} className="py-5" style={{paddingRight:"4%"}}>
               <h1>{data.maincontent[0]?.Heading}</h1>
               <p className="py-3" >{data.maincontent[0]?.subHeading}</p>
@@ -103,17 +103,14 @@ const renderTextContent = (content) => {
           </Row>
         </Container>
       </div>
-
-      {/* Section 2 - Services */}
+      <SanJoseservicesComponent />
+      {/* Section 2 - Services
       <div style={{ backgroundColor: '#015979', height: '145px' }}></div>
       <div>
-        <SanJoseservicesComponent />
-      </div>
+       
+      </div> */}
 
-      {/* Section 3 - Caregivers */}
-      <div className="sectioncaregiversbg">
         <CaregiverCityComponent />
-      </div>
 
       {/* Section 4 - Growing Need of Home Care */}
       
@@ -142,12 +139,12 @@ const renderTextContent = (content) => {
       {/* Section 5 - Quality Senior Care */}
       <div className="section3city py-5">
         <Container fluid>
-          <Row>
+          <Row className="row-reverse-mobile">
             <Col
               md={6}
               style={{ paddingRight: "3em", paddingLeft: "3em" }}
             >
-              <h2 className="heading2 py-4">
+              <h2 className="heading2">
                 {data.maincontent[2]?.Heading}
               </h2>
               <p>
@@ -196,7 +193,7 @@ const renderTextContent = (content) => {
                 {data.maincontent[3]?.description?.[0]?.children?.[0]?.text}
               </p>
               <ul
-                style={{ listStyleType: "disc", paddingLeft: "20px" }}
+                // style={{ listStyleType: "disc", paddingLeft: "20px" }}
                 className="py-2"
               >
                 {data.maincontent[3]?.description?.[1]?.children?.map(
@@ -258,7 +255,7 @@ of home care in San Jose, California. Here are the key benefits of choosing us:
             </Col>
             <Col md={2}></Col>
         </Row>
-        <Row className="subcitysec py-5 px-5 my-4">
+        <Row className="subcitysec  my-4">
   <Col md={4}>
     <div className="flex py-2">
       <div className="iconcity"><i class="bi bi-chevron-right"></i></div>

@@ -125,9 +125,9 @@ export default function VeteranCareComponent() {
   return (
     <div>
       <SanjoseNavbarComponent/>
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="py-5">
+          <Row className="py-5 middlealign g-5">
             <Col md="6">
               <h1 className="heading1">{data?.[0]?.Heading || ""}</h1>
               <p className="paragrambold py-2">{data?.[0]?.subHeading?.split("\n\n")[0] || ""}</p>
@@ -147,7 +147,7 @@ export default function VeteranCareComponent() {
       <CaregivertodayComponent />
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-2 g-5">
+          <Row className="row3bg py-5 middlealign ">
             <Col md="4">
               {renderImage(data?.[1]?.img?.data?.attributes, "Veteran Care Service", 595, 780)}
             </Col>
@@ -158,11 +158,10 @@ export default function VeteranCareComponent() {
           </Row>
         </Container>
       </div>
-      {/*section-3 */}
       {/* Section 3 */} 
-<div className="sectionbg" style={{ padding: '50px 0px' }}>
+<div className="sectionbg">
   <Container>
-    <Row>
+    <Row className="middlealign g-5 row-reverse-mobile">
       <Col md="6">
         <h2 className="heading2">{data?.[2]?.Heading || ""}</h2>
         {renderDescription(data?.[2]?.description)} {/* Use updated renderDescription */}
@@ -174,9 +173,9 @@ export default function VeteranCareComponent() {
   </Container>
 </div>
 
-      <div className="section3" style={{ padding: '50px 0px' }}>
+      <div className="section3">
         <Container>
-          <Row>
+          <Row className="align-items-center g-5">
             <Col md="6">
               {renderImage(data?.[3].img?.data?.attributes, "Respite Care Service", 595, 780)}
             </Col>
@@ -187,9 +186,9 @@ export default function VeteranCareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="section4" style={{ padding: '50px 0px' }}>
+      <div className="section4">
         <Container>
-          <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
+          <Row className="g-5 section4sub">
             <Col md={6}>
               <h2 className="heading2">{data?.[4]?.Heading || ""}</h2>
               {renderDescription(data?.[4]?.description)}
