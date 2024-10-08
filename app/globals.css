@@ -1021,6 +1021,8 @@ body > div > div > div:nth-child(6) > div > div > div:nth-child(2) {
 body > div > div > div:nth-child(7) {
   padding-top: 0px !important;
   padding-bottom: 20px !important;
+  padding-left: 20px;
+  padding-right: 20px;
 }
 body > div > div > div:nth-child(6) {
   padding-bottom: 20px !important;
@@ -1054,7 +1056,39 @@ body > div > div > div:nth-child(8) > div > div > div:nth-child(2) {
   text-align: center;
   padding: 15px 0px;
 }
+.sanjose-banner {
+  padding-top: 25% !important;
 }
+.subcityheading {
+  font-size: 35px;
+}
+.caregivercitybtn {
+  width: 60%;
+}
+.numbercol {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  margin-top: 15px;
+}
+.heading5subcity {
+  line-height: 1.5em;
+}
+body > div > div > div:nth-child(6) > div > div {
+  padding-bottom: 0px !important;
+}
+body > div > div > div.section1subcity.py-5 > div {
+  padding-left: 20px !important;
+  padding-right: 20px !important;
+}
+.section4subcity {
+  background: #ffff;
+  border-top-left-radius: 50px;
+  padding-left: 0px;
+  padding-right: 0px !important;
+}
+}
+
 ul {
   list-style-type: disc; 
 }

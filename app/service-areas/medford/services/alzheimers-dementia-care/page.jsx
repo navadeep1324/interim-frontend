@@ -19,7 +19,7 @@ export default function AlzheimerMainComponent() {
       try {
         // Fetch the data from the correct endpoint
         const res = await fetch(
-          "http://localhost:1337/api/medford-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*"
+          "https://admin.interimhc.com/api/medford-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*"
         );
         const result = await res.json();
 
@@ -38,7 +38,7 @@ export default function AlzheimerMainComponent() {
 
   // Helper function to build the image URL from Strapi
   const getImageUrl = (imageData) => {
-    return imageData ? `http://localhost:1337${imageData.url}` : "";
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
   };
 
   return (

@@ -120,7 +120,7 @@ const textLinks = {
             <div className="section1banner">
                 <Container>
                     <Row className="py-3 g-4 d-flex align-items-center">
-                        <Col md={7} style={{ paddingRight: '5%' }}>
+                        <Col md={7} className="py-5">
                             <h1>{data[0]?.Heading}</h1>
                             <p className="py-3">{data[0]?.subHeading}</p>
                             <p>
@@ -160,7 +160,7 @@ const textLinks = {
             <div className="section2city">
     <Container fluid>
         <Row className="py-4 g-4">
-            <Col md={6} xs={12} style={{ paddingLeft: '3em' }}>
+            <Col md={6} xs={12} className="px-0">
                 <Image
                     src={getImageUrl(data[1]?.image?.data?.attributes)}
                     alt="City Image"

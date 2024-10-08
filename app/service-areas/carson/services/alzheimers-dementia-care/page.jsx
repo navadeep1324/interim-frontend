@@ -22,7 +22,7 @@ export default function AlzheimerMainComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const API_URL = 'http://localhost:1337';
+  const API_URL = 'https://admin.interimhc.com';
 
   useEffect(() => {
     async function fetchData() {

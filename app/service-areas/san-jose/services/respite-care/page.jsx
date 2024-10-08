@@ -16,7 +16,7 @@ export default function RespiteCareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch("http://localhost:1337/api/sanjose-respite-cares?populate[maincontent][populate]=*")
+    fetch("https://admin.interimhc.com/api/sanjose-respite-cares?populate[maincontent][populate]=*")
       .then((response) => response.json())
       .then((responseData) => {
         // Adjusted the data access based on the JSON structure

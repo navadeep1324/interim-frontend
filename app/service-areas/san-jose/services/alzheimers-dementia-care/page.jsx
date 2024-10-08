@@ -25,7 +25,7 @@ export default function AlzheimerMainComponent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('http://localhost:1337/api/sanjose-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.com/api/sanjose-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
         const result = await res.json();
 
         // Check if the maincontent exists in the response
@@ -59,7 +59,7 @@ export default function AlzheimerMainComponent() {
 
   // Helper function to get image URL safely
   const getImageUrl = (imageData) => {
-    return imageData ? `http://localhost:1337${imageData.url}` : null;
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : null;
   };
 
   // Render descriptions with safety checks

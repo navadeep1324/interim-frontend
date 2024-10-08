@@ -94,9 +94,9 @@
 
         {/* Section rendering description with links */}
         <div>
-            <Container fluid className="px-3">
+            <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{ paddingRight: "25px" }}>
+                <Col md={6} className="px-0">
                 <Image
                     src={getFullImageUrl(cupertinoData[2].image?.data?.attributes.url)}
                     alt="Cupertino Main Image"

@@ -17,7 +17,7 @@ export default function ServicepageFooter() {
   useEffect(() => {
     async function fetchFooterData() {
       try {
-        const res = await fetch('http://localhost:1337/api/alzheimer-s-and-dementia?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.com/api/alzheimer-s-and-dementia?populate[maincontent][populate]=*');
         const result = await res.json();
 
         // Extracting "Begin your Senior’s Journey with us!" section
@@ -59,7 +59,7 @@ export default function ServicepageFooter() {
               <Col md="4" key={index}>
                 {item.image?.data?.attributes && (
                   <img 
-                    src={`http://localhost:1337${item.image.data.attributes.url}`} 
+                    src={`https://admin.interimhc.com${item.image.data.attributes.url}`} 
                     alt={`Journey ${index + 1}`} 
                     width={item.image.data.attributes.width}
                     height={item.image.data.attributes.height}
