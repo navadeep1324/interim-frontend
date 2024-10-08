@@ -34,7 +34,7 @@ export default function Footer() {
         <div>
             <div className="footersection1 py-5">
                 <Container>
-                    <Row>
+                    <Row className="middlealign">
                         <Col>
                             <h2 className="footerh2">
                                 {footerData?.maincontent?.find(content => content.__component === "components.begin-your-senior-s-journey-with-us-heading")?.Heading || "Begin your Senior’s Journey with us!"}
@@ -62,6 +62,7 @@ export default function Footer() {
                         {footerData?.maincontent?.filter(content => content.__component === "components.home-page-awards").map((award, index) => (
                             <Col md={4} key={index}>
                                 <Image
+                                 className="award-image"
                                     src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
                                     width={award?.Img?.data?.attributes?.width || 200} 
                                     height={award?.Img?.data?.attributes?.height || 100} 
@@ -78,7 +79,7 @@ export default function Footer() {
             {/* Footer Section */}
             <div className="Footer1 py-5" style={{ backgroundColor: '#FEF7F2' }}>
                 <Container>
-                    <Row>
+                    <Row >
                         {/* First Column: Logo and Buttons */}
                         <Col md={4}>
                             <Image
