@@ -20,7 +20,7 @@ export default function ContactusComponent() {
       <div className="section1banner">
         <Container>
           <Row className="py-3 d-flex align-items-center">
-            <Col md={6} className="px-5">
+            <Col md={6} className="contactus-maincol">
               <h1 className="contactus">Pioneers in Personalized Home Healthcare</h1>
               <p className="py-3">
                 For over 50 years, Interim HealthCare has been personalizing care to meet the unique health needs of our clients, patients, and partners.
@@ -36,7 +36,7 @@ export default function ContactusComponent() {
       {/* Section 2: Contact Us Background */}
       <div className="contactusbg">
         <Container>
-          <Row className="py-5 d-flex align-items-center g-4"> {/* Added gutter class 'g-4' */}
+          <Row className="py-5 d-flex align-items-center g-4 findlocation"> {/* Added gutter class 'g-4' */}
             <Col md={6}>
               <h2 className="contactush2">Find A Location</h2>
               <p className="py-3">

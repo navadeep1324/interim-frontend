@@ -15,7 +15,7 @@ export default function HospiceCareComponent() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('http://localhost:1337/api/hospice-care?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.comapi/hospice-care?populate[maincontent][populate]=*')
       .then(response => response.json())
       .then(data => {
         console.log("Data fetched: ", data); // Check the full response

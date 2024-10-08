@@ -17,7 +17,7 @@ export default function DiabetesCareComponent() {
 
   // Fetching data from Strapi
   useEffect(() => {
-    fetch("http://localhost:1337/api/diabetics-care?populate[maincontent][populate]=*")
+    fetch("https://admin.interimhc.comapi/diabetics-care?populate[maincontent][populate]=*")
       .then((response) => response.json())
       .then((json) => {
         setDiabetesData(json.data.attributes);

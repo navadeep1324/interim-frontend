@@ -19,7 +19,7 @@ export default function AlzheimerMainComponent() {
       try {
         // Fetch the data from the correct endpoint
         const res = await fetch(
-          "http://localhost:1337/api/medford-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*"
+          "https://admin.interimhc.comapi/medford-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*"
         );
         const result = await res.json();
 

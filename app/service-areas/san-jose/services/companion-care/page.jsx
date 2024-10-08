@@ -67,9 +67,9 @@ export default function CompanionCareComponent() {
   return (
     <div>
       <SanjoseNavbarComponent/>
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="py-5 middlealign">
+          <Row className="py-5 middlealign g-5">
             <Col md="6">
               <h1 className="heading1">{data.maincontent[0]?.Heading}</h1>
               {data.maincontent[0]?.subHeading && (
@@ -97,7 +97,7 @@ export default function CompanionCareComponent() {
 
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-5 px-5 middlealign">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {renderImage(data.maincontent[1]?.img?.data?.attributes, "Exceptional Elderly companion care", 595, 780)}
             </Col>
@@ -111,9 +111,9 @@ export default function CompanionCareComponent() {
         </Container>
       </div>
 
-      <div className="sectionbg" style={{ padding: '50px 0px' }}>
+      <div className="sectionbg" >
         <Container>
-          <Row className="middlealign">
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data.maincontent[2]?.Heading}</h2>
               {data.maincontent[2]?.description?.map((desc, index) => (
@@ -132,7 +132,7 @@ export default function CompanionCareComponent() {
         </Container>
       </div>
 
-      <div className="section3" style={{ padding: '50px 0px' }}>
+      <div className="section3">
         <Container>
           <Row className="middlealign">
             <Col md="6">
@@ -153,9 +153,9 @@ export default function CompanionCareComponent() {
         </Container>
       </div>
 
-      <div className="section4" style={{ padding: '50px 0px' }}>
+      <div className="section4" >
         <Container>
-          <Row className="py-5 px-5 " style={{ background: '#ffff', borderRadius: '20px' }}>
+          <Row className="g-5 section4sub">
             <Col md={6}>
               <h2 className="heading2">{data.maincontent[4]?.Heading}</h2>
               {data.maincontent[4]?.description?.map((desc, index) => (

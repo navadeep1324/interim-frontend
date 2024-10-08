@@ -17,7 +17,7 @@ export default function ServicepageFooter() {
   useEffect(() => {
     async function fetchFooterData() {
       try {
-        const res = await fetch('http://localhost:1337/api/alzheimer-s-and-dementia?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.comapi/alzheimer-s-and-dementia?populate[maincontent][populate]=*');
         const result = await res.json();
 
         // Extracting "Begin your Senior’s Journey with us!" section

@@ -211,9 +211,12 @@ body {
     border-top-width: 6px;
     border-top-color: #58a1b9;
     border-bottom-right-radius: 65px;
+    padding: 5%;
+
 }
 .section6city{
   background-color: #015979;
+  padding: 5%;
 }
 .heading2citysub{
   font-weight: 500;
@@ -242,6 +245,7 @@ body {
 }
 .section2city {
   padding: 2em 0em;
+  background-color: #fff;
 }
 body{
   background-color: #ffffff;
@@ -293,14 +297,14 @@ h4.titleservice {
     overflow: hidden;
     border-color: #d81c3f;
     padding-top: 2.5%;
-    padding-right: 2%;
+    padding-right: 2.5%;
     padding-bottom: 2%;
-    padding-left: 2%;
+    padding-left: 2.5%;
     box-shadow: 5px 8px 15px -11px #d81c3f;
 }
 .section1banner {
   background: #fef8f3;
-  padding-bottom: 7%;
+  padding-bottom: 3%;
 }
 .citynames {
   font-size: 17px;
@@ -490,11 +494,13 @@ h1{
   /* min-height: 100vh; Adjust this as per requirement */
   padding-top: 4.5rem;
   padding-bottom: 4.5rem;
+  padding-left: 5%;
+  padding-right: 5%;
 }
 .row3bg{
   background-color: #FFFFFF;
   border-top-right-radius: 60px 60px;
-  padding: 50px;
+  padding: 5%;
 }
 .heading2{
   font-weight: 500;
@@ -502,9 +508,11 @@ h1{
     line-height: 1.3em;
     /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
     color: #004b66;
+    padding-bottom: 3%;
 }
 .section3{
   background-color: #FFFFFF;
+  padding-bottom: 3%;
 }
 .contactsecbg {
   width: 100%;
@@ -950,10 +958,10 @@ h3.caregivertext{
 .heading2 {
   font-weight: 500;
   font-size: 30px;
-  margin-top: 30px;
+  /* margin-top: 30px; */
 }
 .section3city .col-md-6 img {
-  margin-top: 30px;
+  /* margin-top: 30px; */
   margin-bottom: 30px;
 }
 .section3city .col-md-4 img {
@@ -1022,8 +1030,8 @@ body > div > div > div:nth-child(6) > div > div > div:nth-child(2) {
   margin-bottom: 20px;
 }
 body > div > div > div:nth-child(7) {
-  padding-top: 0px !important;
-  padding-bottom: 20px !important;
+  padding-top: 30px !important;
+  padding-bottom: 30px !important;
 }
 body > div > div > div:nth-child(6) {
   padding-bottom: 20px !important;
@@ -1061,6 +1069,7 @@ body > div > div > div:nth-child(8) > div > div > div:nth-child(2) {
 ul {
   list-style-type: disc; 
   /* margin-top: -5%; */
+  padding: 2%;
 }
 li {
 font-size: 18px;
@@ -1069,7 +1078,7 @@ font-size: 18px;
   .middlealign{
     display: flex;
     align-items: center;
-    
+    justify-content: center;
   }  
 }
 /* Section 4 heading styles */
@@ -1113,3 +1122,99 @@ a.page_buttonhome__SB1Lw{
 .homepagebtn:hover{
   color: #ffff !important; 
 }
+.servicescomponentbg{
+  background: linear-gradient(to top, #004B66 60%, #fef8f3 40%);
+  justify-content: center;
+}
+.section1row{
+  padding: 2% 0%;
+}
+.section1bannersanjose{
+  background-color:#fef8f3 ;
+  padding: 5% 0 0% 0;
+}
+.section4sub{
+  background-color: #fff;
+  border-radius: 20px;
+  padding-bottom: 3%;
+}
+@media only screen and (max-width: 768px) {
+.homebannerimgcol{
+  padding-top:8% ;
+}
+img {
+  width: 100% !important;  /* Force full width on mobile */
+  height: auto !important; /* Maintain aspect ratio */
+  /* padding-top: 8%; */
+}
+.Awardsec{
+  padding: 0 20px;
+}
+/* .award-image{
+  padding:20px 0;
+} */
+ .Footer1{
+  padding: 0 20px;
+ }
+ /* Default color for light mode */
+.city-name, .city-link {
+  color: #000; /* Black or dark color for light mode */
+}
+
+/* Dark mode specific styles */
+@media (prefers-color-scheme: dark) {
+  .city-name, .city-link {
+    color: #fff; /* White for dark mode */
+  }
+}
+.search-col{
+  padding: 5% 2%;
+}
+.service-areas-maincol{
+  padding: 15% 8% 20% 8%;
+}
+.section1banner{
+  padding: 20% 0;
+}
+.contactus-maincol{
+  padding: 15% 8% 10% 8%;
+}
+.findlocation{
+  padding: 15% 5% 10% 5%;
+}
+.section1bannersanjose{
+  padding: 10% 0 5% 0;
+}
+.section1banner{
+  padding: 10% 5% 5% 5%;
+
+}
+
+.row-reverse-mobile {
+  flex-direction: column-reverse; /* Reverse the row direction */
+}
+.section6city{
+padding: 5%;
+}
+.section5city{
+  padding: 5%;
+}
+.heading2{
+  padding-top: 5%;
+}
+.sectionbg{
+  margin-top: -15%;
+  padding: 10% 5% 5% 5%;
+}
+.section3{
+  padding: 10% 5% 5% 5%;
+}
+.section4{
+  padding: 5% 10% 5% 10%;
+  
+}
+.section4sub{
+  margin-top: 5%;
+}
+}
+ 

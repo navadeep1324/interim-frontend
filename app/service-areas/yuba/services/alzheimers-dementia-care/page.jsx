@@ -15,7 +15,7 @@ export default function AlzheimerMainComponent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('http://localhost:1337/api/yuba-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.comapi/yuba-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
         const result = await res.json();
         setData(result.data[0].attributes.maincontent);  // Access the maincontent array from the fetched data
       } catch (error) {

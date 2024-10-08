@@ -17,7 +17,7 @@ export default function AlzheimerMainComponent() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('http://localhost:1337/api/grant-pass-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.comapi/grant-pass-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
         const result = await res.json();
         setData(result.data[0].attributes.maincontent);
       } catch (error) {

@@ -32,7 +32,7 @@ function FormComponent() {
     } else {
       console.log("Form data being sent: ", formData);  // Log formData for debugging
       try {
-        const response = await axios.post('http://localhost:1337/api/contact-froms', {
+        const response = await axios.post('https://admin.interimhc.comapi/contact-froms', {
           data: formData
         });
         console.log('Form submitted successfully:', response.data);

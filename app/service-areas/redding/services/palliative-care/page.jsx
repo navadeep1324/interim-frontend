@@ -18,7 +18,7 @@ export default function PalliativeCareComponent() {
     const fetchData = async () => {
       try {
         const response = await fetch(
-          "http://localhost:1337/api/palliative-care?populate[maincontent][populate]=*"
+          "https://admin.interimhc.comapi/palliative-care?populate[maincontent][populate]=*"
         );
         if (!response.ok) {
           throw new Error("Network response was not ok");

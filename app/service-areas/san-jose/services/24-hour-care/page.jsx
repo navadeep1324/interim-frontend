@@ -152,9 +152,9 @@ export default function HourcareComponent() {
       <SanjoseNavbarComponent />
 
       {/* First Section */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="align-items-center g-5 py-5">
+          <Row className="py-5 middlealign g-5">
             <Col md="6">
               <h1 className="heading1">{data.maincontent[0]?.Heading || 'Default Heading'}</h1>
               <p className="py-2">{data.maincontent[0]?.subHeading || 'Default Subheading'}</p>
@@ -173,7 +173,7 @@ export default function HourcareComponent() {
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="align-items-center g-5 row3bg py-4">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {renderImage(data.maincontent[1]?.img?.data?.attributes, "Enriching Lives with Holistic Care", 595, 780)}
             </Col>
@@ -188,7 +188,7 @@ export default function HourcareComponent() {
       {/* Third Section */}
       <div className="sectionbg">
         <Container>
-          <Row className="align-items-center g-5">
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data.maincontent[2]?.Heading || 'Default Heading'}</h2>
               {renderDescription(data.maincontent[2]?.description)}
@@ -216,9 +216,9 @@ export default function HourcareComponent() {
       </div>
 
       {/* Fifth Section */}
-      <div className="section4 mt-5">
+      <div className="section4">
         <Container>
-          <Row className="align-items-center g-5 px-5" style={{ background: '#ffff', borderRadius: '20px', padding: '3%' }}>
+          <Row className="g-5 section4sub">
             <Col md={6}>
               <h2 className="heading2">{data.maincontent[4]?.Heading || 'Default Heading'}</h2>
               {renderDescription(data.maincontent[4]?.description)}

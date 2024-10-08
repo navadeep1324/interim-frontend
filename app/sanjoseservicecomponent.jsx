@@ -16,8 +16,8 @@ export default function SanJoseservicesComponent() {
     <div>
       <Container fluid>
         <Row
-          className="px-3 py-2"
-          style={{ marginTop: "-18%", justifyContent: "center" }}
+          className="px-3 py-2 servicescomponentbg"
+          
         >
           <Col md={2} className="servicecoloumcity mx-1">
             <Link href="/service-areas/san-jose/services/companion-care/" passHref>

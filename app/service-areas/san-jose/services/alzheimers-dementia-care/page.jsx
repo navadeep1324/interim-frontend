@@ -76,7 +76,7 @@ export default function AlzheimerMainComponent() {
       <SanjoseNavbarComponent />
 
       {/* First Section */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
           <Row className="py-5 middlealign g-5">
             <Col md="6">
@@ -112,8 +112,8 @@ export default function AlzheimerMainComponent() {
 
       {/* Second Section */}
       <div className="section3bg">
-        <Container>
-          <Row className="row3bg py-5 middlealign px-5">
+        <Container >
+          <Row className="row3bg py-5 middlealign ">
             <Col md="4">
               {data[2]?.img?.data ? (
                 <img
@@ -136,9 +136,9 @@ export default function AlzheimerMainComponent() {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg" style={{ padding: '50px 0px' }}>
+      <div className="sectionbg">
         <Container>
-          <Row className="middlealign g-5">
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data[3]?.Heading}</h2>
               {/* {data[3]?.description ? renderDescription(data[3].description) : <p>No description available</p>} */}
@@ -176,7 +176,7 @@ If you notice any of these signs in your beloved elders, then it might be the ri
       </div>
 
       {/* Fourth Section */}
-      <div className="section3" style={{ padding: '50px 0px' }}>
+      <div className="section3" >
         <Container>
           <Row className="align-items-center g-5">
             <Col md="6">
@@ -203,7 +203,7 @@ If you notice any of these signs in your beloved elders, then it might be the ri
       {/* Fifth Section */}
       <div className="section4">
         <Container>
-          <Row className="px-5 align-items-center g-5 mt-1" style={{ background: '#fff', borderRadius: '20px', paddingBottom: '3%' }}>
+          <Row className="g-5 section4sub">
             <Col md={6}>
               <h2 className="heading2">{data[5]?.Heading}</h2>
               {data[5]?.description ? renderDescription(data[5].description) : <p>No description available</p>}
