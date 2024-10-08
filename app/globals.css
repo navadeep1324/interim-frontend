@@ -1034,7 +1034,9 @@ body > div > div > div:nth-child(7) {
   padding-bottom: 30px !important;
 }
 body > div > div > div:nth-child(6) {
-  padding-bottom: 20px !important;
+    padding-bottom: 20px !important;
+    padding-left: 20px;
+    padding-right: 20px;
 }
 body > div > div > div:nth-child(7) > div > div > div:nth-child(2) {
   margin-top: 20px;

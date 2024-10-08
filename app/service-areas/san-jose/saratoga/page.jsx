@@ -113,7 +113,6 @@ export default function SanJoseCupertinoComponent() {
                     </Row>
                 </Container>
             </div>
-            <div style={{ backgroundColor: '#015979', height: '145px' }}></div>
             <SanJoseservicesComponent />
             <CaregiverCityComponent />
 

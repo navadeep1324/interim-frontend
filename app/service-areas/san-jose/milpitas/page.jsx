@@ -98,7 +98,6 @@ export default function MilpitasPage() {
                     </Row>
                 </Container>
             </div>
-            <div style={{ backgroundColor: '#015979', height: '145px' }}></div>
             <div>
                 <SanJoseservicesComponent />
             </div>
