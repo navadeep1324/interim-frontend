@@ -12,14 +12,22 @@ const rubik = Rubik({
   subsets: ['latin'],
 });
 
-export const metadata = {
-  title: "Interim HealthCare",
-  description: "Best Senior In Home-Care",
-};
+// export const metadata = {
+//   title: "Interim HealthCare",
+//   description: "Best Senior In Home-Care",
+// };
 
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      {/* <head>
+      <link rel="icon" href="app\faviconinterim.ico" sizes="any" type="image/x-icon" />
+<link rel="icon" href="app\faviconinterim.ico" type="image/png" />
+<link rel="apple-touch-icon" href="app\faviconinterim.ico"/>
+
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+      </head> */}
       <body className={rubik.className}> {/* Rubik for body text */}
         <div className={rubik.className}> {/* Heading font will be controlled here */}
           {children}

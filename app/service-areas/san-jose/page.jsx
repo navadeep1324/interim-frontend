@@ -127,7 +127,7 @@ const renderTextContent = (content) => {
           />
         )}
       </Col>
-      <Col md={6} style={{ paddingLeft: "3em", paddingRight: "3em" }}>
+      <Col md={6} className="sanjose-col">
         <h2 className="heading2 py-4">{data.maincontent[1]?.Heading}</h2>
         <p className="py-2">{renderTextContent(data.maincontent[1]?.description[0])}</p>
       </Col>
@@ -142,9 +142,9 @@ const renderTextContent = (content) => {
           <Row className="row-reverse-mobile">
             <Col
               md={6}
-              style={{ paddingRight: "3em", paddingLeft: "3em" }}
+              className="sanjose-col"
             >
-              <h2 className="heading2">
+              <h2 className="heading2sanjose">
                 {data.maincontent[2]?.Heading}
               </h2>
               <p>
@@ -185,8 +185,8 @@ const renderTextContent = (content) => {
                 />
               )}
             </Col>
-            <Col md={8} style={{ paddingLeft: "3em" }}>
-              <h2 className="heading2">
+            <Col md={8} >
+              <h2 className="heading2sanjose">
                 {data.maincontent[3]?.Heading}
               </h2>
               <p>
@@ -223,7 +223,7 @@ of home care in San Jose, California. Here are the key benefits of choosing us:
             <Col md={6}>
 <Image src={SanJose4} />
             </Col>
-            <Col md={6} style={{ paddingLeft: '3em' }}>
+            <Col md={6}>
             <p><b>Comprehensive Services –</b> Interim Health Care provides a range of services designed to alleviate the financial stress associated with home care.</p>
            <p className="py-2"><b>Insurance Navigation – </b>Navigating insurance coverage from Medicaid and Medicare can be overwhelming, but we are here to assist you every step of the way.</p>
             <p><b>Expert Guidance – </b>Our experienced team simplifies the complexities of insurance claims, and ensures you receive the maximum benefits available.</p>

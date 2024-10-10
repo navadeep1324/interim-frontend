@@ -79,16 +79,16 @@ export default function HourcareComponent() {
   return (
     <div>
             <ReddingNavbarComponent />
-        <div className="sectionbg">
+        <div className="section1banner">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
+          <Row className="py-5 middlealign g-5">
+            <Col md="6">
               <h1 className="heading1">{data.maincontent[0].Heading}</h1><br></br>
               <p className="py-2">{data.maincontent[0].subHeading}</p><br></br>
               <p>Contact us today at <a href="tel:	+1 530-221-1212" className="phone-link">+1 530-221-1212</a> and let us offer compassionate and personalized care.</p>
 
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(data.maincontent[0].bannerimg.data.attributes, "Pioneers In Personalized 24 Hour Care", 1034, 688)}
             </Col>
           </Row>
@@ -97,7 +97,7 @@ export default function HourcareComponent() {
       <CaregivertodayComponent />
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-4">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {renderImage(data.maincontent[1].img.data.attributes, "Enriching Lives with Holistic Care", 595, 780)}
             </Col>
@@ -112,9 +112,9 @@ export default function HourcareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="sectionbg" style={{ padding: '50px 0px' }}>
+      <div className="sectionbg" >
         <Container>
-          <Row>
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data.maincontent[2].Heading}</h2>
               {data.maincontent[2].description.map((desc, index) => (
@@ -127,9 +127,9 @@ export default function HourcareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="section3" style={{ padding: '50px 0px' }}>
+      <div className="section3" >
         <Container>
-          <Row>
+          <Row className="align-items-center g-5">
             <Col md="6">
               {renderImage(data.maincontent[3].img.data.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
             </Col>
@@ -142,9 +142,9 @@ export default function HourcareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="section4" style={{ padding: '50px 0px' }}>
+      <div className="section4">
         <Container>
-          <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
+          <Row className="g-5 section4sub">
             <Col md={6}>
               <h2 className="heading2">{data.maincontent[4].Heading}</h2>
               {data.maincontent[4].description.map((desc, index) => (

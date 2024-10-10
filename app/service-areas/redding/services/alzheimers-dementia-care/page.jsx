@@ -46,9 +46,9 @@ export default function AlzheimerMainComponent() {
       <ReddingNavbarComponent />
 
       {/* First Section */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="align-items-center g-5 py-5">
+          <Row className="py-5 middlealign g-5">
             <Col md="6">
               <h1 className="heading1">{data[0].Heading}</h1>
               <p className="paragram py-2">{data[0].subHeading.split('\n')[0]}</p>
@@ -57,7 +57,7 @@ export default function AlzheimerMainComponent() {
                 +1 408-286-6888
               </Button> */}
             </Col>
-            <Col md="6" className="d-flex justify-content-center">
+            <Col md="6" >
               <Image
                 src={Alzheimersimg}
                 alt="Alzheimer’s and Dementia Home care Services"
@@ -73,7 +73,7 @@ export default function AlzheimerMainComponent() {
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="align-items-center g-5 row3bg py-4">
+          <Row className="row3bg py-5 middlealign ">
             <Col md="4">
               <Image src={Happier} alt="Happier" width={400} height={400} />
             </Col>
@@ -90,9 +90,9 @@ export default function AlzheimerMainComponent() {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg" style={{ padding: '50px 0px' }}>
+      <div className="sectionbg" >
         <Container>
-          <Row className="align-items-center g-5">
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data[3].Heading}</h2>
               {data[3].description.map((para, index) => (
@@ -109,7 +109,7 @@ export default function AlzheimerMainComponent() {
       </div>
 
       {/* Fourth Section */}
-      <div className="section3" style={{ padding: '50px 0px' }}>
+      <div className="section3">
         <Container>
           <Row className="align-items-center g-5">
             <Col md="6">
@@ -130,7 +130,7 @@ export default function AlzheimerMainComponent() {
       {/* Fifth Section */}
       <div className="section4">
         <Container>
-          <Row className="align-items-center g-5 px-5" style={{ background: '#ffff', borderRadius: '20px', padding: '3%' }}>
+          <Row className="g-5 section4sub">
             <Col md={6}>
               <h2 className="heading2">{data[5].Heading}</h2>
               {data[5].description.map((para, index) => (

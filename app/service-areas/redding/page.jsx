@@ -117,9 +117,9 @@ const textLinks = {
         <div>
             <ReddingNavbarComponent />
             {/* Banner Section */}
-            <div className="section1banner">
+            <div className="section1bannersanjose">
                 <Container>
-                    <Row className="py-3 g-4 d-flex align-items-center">
+                    <Row className="section1row">
                         <Col md={7} className="py-5">
                             <h1>{data[0]?.Heading}</h1>
                             <p className="py-3">{data[0]?.subHeading}</p>
@@ -145,8 +145,7 @@ const textLinks = {
                 </Container>
             </div>
 
-            <div style={{ backgroundColor: "#015979", height: "145px" }}></div>
-
+            
             {/* Service Component */}
             <div>
                 <ReddingservicesComponent />
@@ -169,7 +168,7 @@ const textLinks = {
                     className="img-fluid"
                 />
             </Col>
-            <Col md={6} xs={12} style={{ paddingRight: '3em' }}>
+            <Col md={6} className="sanjose-col">
                 <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
                 <p className="py-2">{renderDescription(data[1]?.description)}</p> {/* Render description with links */}
             </Col>
@@ -180,9 +179,9 @@ const textLinks = {
 
             <div className="section3city py-5">
                 <Container fluid>
-                    <Row className="g-4">
-                        <Col md={6} xs={12} style={{ paddingLeft: '3em', paddingRight: '1em' }}>
-                            <h2 className="heading2 py-4">{data[2]?.Heading}</h2>
+                    <Row className="row-reverse-mobile">
+                        <Col md={6} className="sanjose-col">
+                            <h2 className="heading2sanjose py-4">{data[2]?.Heading}</h2>
                             <p>{data[2]?.description?.[0]?.children?.[0]?.text}</p>
                             <h5 className="heading5subcity">Key reasons why Interim Healthcare is the best choice:    </h5>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
