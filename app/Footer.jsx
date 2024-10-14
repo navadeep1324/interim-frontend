@@ -31,8 +31,8 @@ export default function Footer() {
     if (error) return <div>Error loading data</div>;
 
     return (
-        <div>
-            <div className="footersection1 py-5">
+        <div className="mainfootersection">
+            <div className="footersection1">
                 <Container>
                     <Row className="middlealign">
                         <Col>
@@ -56,7 +56,7 @@ export default function Footer() {
                     </Row>
                 </Container>
             </div>
-            <div className="Awardsec py-5">
+            <div className="Awardsec">
                 <Container>
                     <Row>
                         {footerData?.maincontent?.filter(content => content.__component === "components.home-page-awards").map((award, index) => (

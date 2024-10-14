@@ -13,16 +13,22 @@ import Happier from "/public/images/Happier.png";
 import servicesimg from "/public/images/servicesimg.png";
 import Services5img from "/public/images/Services5img.png";
 import ServicepageFooter from "../../../../servicepageFooter";
+import Head from "next/head";
 
 export default function AlzheimerMainComponent() {
   const [data, setData] = useState(null);
+  const [seoData, setSeoData] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('https://admin.interimhc.com/api/alzheimer-s-and-dementia?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.com/api/alzheimer-s-and-dementia?populate[maincontent][populate]=*&populate[seo]=*');
         const result = await res.json();
+        
+        // Fetch main content and SEO data from the response
         setData(result.data.attributes.maincontent);
+        setSeoData(result.data.attributes.seo);
+        
       } catch (error) {
         console.error('Error fetching data:', error);
       }
@@ -30,12 +36,52 @@ export default function AlzheimerMainComponent() {
     fetchData();
   }, []);
 
+  // Dynamically set the meta title and description once the seoData is fetched
+  useEffect(() => {
+    if (seoData) {
+      document.title = seoData.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seoData.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seoData.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+
+      // Set additional meta tags like keywords, robots, etc. if available
+      if (seoData.keywords) {
+        const metaKeywords = document.querySelector('meta[name="keywords"]');
+        if (metaKeywords) {
+          metaKeywords.setAttribute("content", seoData.keywords);
+        } else {
+          const newMetaKeywords = document.createElement("meta");
+          newMetaKeywords.name = "keywords";
+          newMetaKeywords.content = seoData.keywords;
+          document.head.appendChild(newMetaKeywords);
+        }
+      }
+      
+      if (seoData.metaRobots) {
+        const metaRobots = document.querySelector('meta[name="robots"]');
+        if (metaRobots) {
+          metaRobots.setAttribute("content", seoData.metaRobots);
+        } else {
+          const newMetaRobots = document.createElement("meta");
+          newMetaRobots.name = "robots";
+          newMetaRobots.content = seoData.metaRobots;
+          document.head.appendChild(newMetaRobots);
+        }
+      }
+    }
+  }, [seoData]);
+
   if (!data) {
     return <div>Loading...</div>;
   }
-
-  // Extract the correct section for Caregiver CTA
-  const caregiverCTA = data.find(section => section.__component === "components.cargiver-cta");
 
   const getImageUrl = (imageData) => {
     return imageData ? `https://admin.interimhc.com${imageData.url}` : null;
@@ -43,21 +89,26 @@ export default function AlzheimerMainComponent() {
 
   return (
     <div>
+      {/* SEO Meta Tags */}
+      <Head>
+        <title>{seoData?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.metaDescription || "Default Description"} />
+        {seoData?.keywords && <meta name="keywords" content={seoData.keywords} />}
+        {seoData?.metaRobots && <meta name="robots" content={seoData.metaRobots} />}
+      </Head>
+
       <ReddingNavbarComponent />
 
       {/* First Section */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="align-items-center g-5 py-5">
+          <Row className="py-5 middlealign g-5">
             <Col md="6">
               <h1 className="heading1">{data[0].Heading}</h1>
               <p className="paragram py-2">{data[0].subHeading.split('\n')[0]}</p>
               <p className="py-4">{data[0].subHeading.split('\n')[1]}</p>
-              {/* <Button className={styles.buttonhome} href="tel:+1 408-286-6888">
-                +1 408-286-6888
-              </Button> */}
             </Col>
-            <Col md="6" className="d-flex justify-content-center">
+            <Col md="6">
               <Image
                 src={Alzheimersimg}
                 alt="Alzheimer’s and Dementia Home care Services"
@@ -70,10 +121,11 @@ export default function AlzheimerMainComponent() {
       </div>
 
       <CaregiverCityComponent />
+      
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="align-items-center g-5 row3bg py-4">
+          <Row className="row3bg py-5 middlealign ">
             <Col md="4">
               <Image src={Happier} alt="Happier" width={400} height={400} />
             </Col>
@@ -90,9 +142,9 @@ export default function AlzheimerMainComponent() {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg" style={{ padding: '50px 0px' }}>
+      <div className="sectionbg">
         <Container>
-          <Row className="align-items-center g-5">
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data[3].Heading}</h2>
               {data[3].description.map((para, index) => (
@@ -109,7 +161,7 @@ export default function AlzheimerMainComponent() {
       </div>
 
       {/* Fourth Section */}
-      <div className="section3" style={{ padding: '50px 0px' }}>
+      <div className="section3">
         <Container>
           <Row className="align-items-center g-5">
             <Col md="6">
@@ -130,7 +182,7 @@ export default function AlzheimerMainComponent() {
       {/* Fifth Section */}
       <div className="section4">
         <Container>
-          <Row className="align-items-center g-5 px-5" style={{ background: '#ffff', borderRadius: '20px', padding: '3%' }}>
+          <Row className="g-5 section4sub">
             <Col md={6}>
               <h2 className="heading2">{data[5].Heading}</h2>
               {data[5].description.map((para, index) => (

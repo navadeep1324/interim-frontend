@@ -44,6 +44,260 @@ export default function ServiceAreasComponent() {
             </p>
           </div>
 
+          {/* Carson City / Reno Row */}
+          <Row className="align-items-stretch border-bottom row-padding-bottom">
+            <Col
+              md={3}
+              className="d-flex align-items-center justify-content-center service-area-col"
+            >
+              <a href="#">
+                <h5 className="city-name">Carson, Reno</h5>
+              </a>
+            </Col>
+            <Col md={9} className="service-description-col">
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Carson City</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Dayton</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Gardnerville</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Genoa</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Gold Hill</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Minden</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Mound House</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Reno</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Sparks</a>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+
+          {/* Chico Row */}
+          <Row className="align-items-stretch border-bottom row-padding-bottom">
+            <Col
+              md={3}
+              className="d-flex align-items-center justify-content-center service-area-col"
+            >
+              <a href="#">
+                <h5 className="city-name">Chico</h5>
+              </a>
+            </Col>
+            <Col md={9} className="service-description-col">
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Biggs</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Capay</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Chico</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Cohasset</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Corning</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Durham</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Forest Ranch</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Magalia</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Oroville</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Paradise</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Willows</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Orland</a>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+
+          {/* Grass Valley Row */}
+          <Row className="align-items-stretch border-bottom row-padding-bottom">
+            <Col
+              md={3}
+              className="d-flex align-items-center justify-content-center service-area-col"
+            >
+              <a href="#">
+                <h5 className="city-name">Grass Valley</h5>
+              </a>
+            </Col>
+            <Col md={9} className="service-description-col">
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Grass Valley</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Nevada City</a>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+
+          {/* Medford Row */}
+          <Row className="align-items-stretch border-bottom row-padding-bottom">
+            <Col
+              md={3}
+              className="d-flex align-items-center justify-content-center service-area-col"
+            >
+              <a href="#">
+                <h5 className="city-name">Medford</h5>
+              </a>
+            </Col>
+            <Col md={9} className="service-description-col">
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Ashland</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Central Point</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Eagle Point</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Gold Hill</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Grants Pass</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Hugo</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Merlin</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Phoenix</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Rogue River</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="#">Shady Cove</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">Talent</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="#">White City</a>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+
+          {/* Redding Row */}
+          <Row className="align-items-stretch row-padding-bottom">
+            <Col
+              md={3}
+              className="d-flex align-items-center justify-content-center service-area-col"
+            >
+              <a href="/service-areas/redding">
+                <h5 className="city-name">Redding</h5>
+              </a>
+            </Col>
+            <Col md={9} className="service-description-col">
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Redding</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Shasta</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Anderson</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Shasta Lake City</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Anderson</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Cottonwood</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Palo Cedro</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Bella Vista</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Shingletown</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Round Mt</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Montgomery Creek</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Burney</a>
+                </Col>
+              </Row>
+              <Row>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Johnson Park</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Hat Creek</a>
+                </Col>
+                <Col md={4} className="service-item">
+                  <a href="/service-areas/redding">Castle</a>
+                </Col>
+              </Row>
+            </Col>
+          </Row>
+
           {/* San Jose Row */}
           <Row className="align-items-stretch border-bottom row-padding-bottom">
             <Col
@@ -57,7 +311,7 @@ export default function ServiceAreasComponent() {
             <Col md={9} className="service-description-col">
               <Row>
                 <Col md={4} className="service-item">
-                  <a href="/service-areas/san-jose" className="city-link">San Jose</a>
+                  <a href="/service-areas/san-jose/evergreen" className="city-link">Evergreen</a>
                 </Col>
                 <Col md={4} className="service-item">
                   <a href="/service-areas/san-jose/los-gatos" className="city-link">Los Gatos</a>
@@ -88,311 +342,48 @@ export default function ServiceAreasComponent() {
                   <a href="/service-areas/san-jose/milpitas" className="city-link">Milpitas</a>
                 </Col>
               </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/san-jose/evergreen" className="city-link">Evergreen</a>
-                </Col>
-              </Row>
             </Col>
           </Row>
 
           {/* Yuba City Row */}
-          <Row className="align-items-stretch border-bottom row-padding-bottom">
+          <Row className="align-items-stretch row-padding-bottom">
             <Col
               md={3}
               className="d-flex align-items-center justify-content-center service-area-col"
             >
-              <a href="/service-areas/yuba">
+              <a href="#">
                 <h5 className="city-name">Yuba City</h5>
               </a>
             </Col>
             <Col md={9} className="service-description-col">
               <Row>
                 <Col md={4} className="service-item">
-                  <a href="/service-areas/yuba/marysville" className="city-link">Marysville</a>
+                  <a href="#">Colusa</a>
                 </Col>
                 <Col md={4} className="service-item">
-                  <a href="/service-areas/yuba/olivehurst" className="city-link">Olivehurst</a>
+                  <a href="#">Live Oak</a>
                 </Col>
                 <Col md={4} className="service-item">
-                  <a href="/service-areas/yuba/plumas-lake" className="city-link">Plumas Lake</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/yuba/loma-rica" className="city-link">Loma Rica</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/yuba/live-oak" className="city-link">Live Oak</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/yuba/colusa" className="city-link">Colusa</a>
+                  <a href="#">Loma Rica</a>
                 </Col>
               </Row>
               <Row>
                 <Col md={4} className="service-item">
-                  <a href="/service-areas/yuba/williams" className="city-link">Williams</a>
+                  <a href="#">Marysville</a>
                 </Col>
                 <Col md={4} className="service-item">
-                  <a href="/service-areas/yuba/maxwell" className="city-link">Maxwell</a>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-
-          {/* Grass Valley Row */}
-          <Row className="align-items-stretch border-bottom row-padding-bottom">
-            <Col
-              md={3}
-              className="d-flex align-items-center justify-content-center service-area-col"
-            >
-              <a href="/service-areas/grass-valley">
-                <h5 className="city-name">Grass Valley</h5>
-              </a>
-            </Col>
-            <Col md={9} className="service-description-col">
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/grass-valley" className="city-link">Grass Valley</a>
+                  <a href="#">Maxwell</a>
                 </Col>
                 <Col md={4} className="service-item">
-                  <a href="/service-areas/grass-valley/nevada-city" className="city-link">Nevada City</a>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-
-          {/* Medford Row */}
-          <Row className="align-items-stretch border-bottom row-padding-bottom">
-            <Col
-              md={3}
-              className="d-flex align-items-center justify-content-center service-area-col"
-            >
-              <a href="/service-areas/medford">
-                <h5 className="city-name">Medford</h5>
-              </a>
-            </Col>
-            <Col md={9} className="service-description-col">
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/ashland" className="city-link">Ashland</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/talent" className="city-link">Talent</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/phoenix" className="city-link">Phoenix</a>
+                  <a href="#">Olivehurst</a>
                 </Col>
               </Row>
               <Row>
                 <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/central-point" className="city-link">Central Point</a>
+                  <a href="#">Plumas Lake</a>
                 </Col>
                 <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/white-city" className="city-link">White City</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/eagle-point" className="city-link">Eagle Point</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/shady-cove" className="city-link">Shady Cove</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/gold-hill" className="city-link">Gold Hill</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/rogue-river" className="city-link">Rogue River</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/hugo" className="city-link">Hugo</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/medford/merlin" className="city-link">Merlin</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/grants-pass" className="city-link">Grants Pass</a>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-
-          {/* Carson City / Reno Row */}
-          <Row className="align-items-stretch border-bottom row-padding-bottom">
-            <Col
-              md={3}
-              className="d-flex align-items-center justify-content-center service-area-col"
-            >
-              <a href="/service-areas/carson">
-                <h5 className="city-name">Carson, Reno</h5>
-              </a>
-            </Col>
-            <Col md={9} className="service-description-col">
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/reno" className="city-link">Reno</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/carson/sparks" className="city-link">Sparks</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/carson/carson-city" className="city-link">Carson City</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/carson/minden" className="city-link">Minden</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/carson/gardnerville" className="city-link">Gardnerville</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/carson/genoa" className="city-link">Genoa</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/carson/dayton" className="city-link">Dayton</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/carson/gold-hill" className="city-link">Gold Hill</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/carson/mound-house" className="city-link">Mound House</a>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-
-          {/* Chico Row */}
-          <Row className="align-items-stretch border-bottom row-padding-bottom">
-            <Col
-              md={3}
-              className="d-flex align-items-center justify-content-center service-area-col"
-            >
-              <a href="/service-areas/chico">
-                <h5 className="city-name">Chico</h5>
-              </a>
-            </Col>
-            <Col md={9} className="service-description-col">
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico" className="city-link">Chico</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/oroville" className="city-link">Oroville</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/paradise" className="city-link">Paradise</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/magalia" className="city-link">Magalia</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/durham" className="city-link">Durham</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/biggs" className="city-link">Biggs</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/forest-ranch" className="city-link">Forest Ranch</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/cohasset" className="city-link">Cohasset</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/willows" className="city-link">Willows</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/orland" className="city-link">Orland</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/capay" className="city-link">Capay</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/chico/corning" className="city-link">Corning</a>
-                </Col>
-              </Row>
-            </Col>
-          </Row>
-
-          {/* Redding Row */}
-          <Row className="align-items-stretch row-padding-bottom">
-            <Col
-              md={3}
-              className="d-flex align-items-center justify-content-center service-area-col"
-            >
-              <a href="/service-areas/redding">
-                <h5 className="city-name">Redding</h5>
-              </a>
-            </Col>
-            <Col md={9} className="service-description-col">
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding" className="city-link">Redding</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/shasta" className="city-link">Shasta</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/anderson" className="city-link">Anderson</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/shasta-lake-city" className="city-link">
-                    Shasta Lake City
-                  </a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/anderson" className="city-link">Anderson</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/cottonwood" className="city-link">Cottonwood</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/palo-cedro" className="city-link">Palo Cedro</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/bella-vista" className="city-link">Bella Vista</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/shingletown" className="city-link">Shingletown</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/round-mt" className="city-link">Round Mt</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/montgomery-creek" className="city-link">
-                    Montgomery Creek
-                  </a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/burney" className="city-link">Burney</a>
-                </Col>
-              </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/johnson-park" className="city-link">Johnson Park</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/hat-creek" className="city-link">Hat Creek</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="/service-areas/redding/castle" className="city-link">Castle</a>
+                  <a href="#">Williams</a>
                 </Col>
               </Row>
             </Col>

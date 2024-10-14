@@ -11,19 +11,40 @@ import Button from 'react-bootstrap/Button';
 import SanJoseservicesComponent from "../../../sanjoseservicecomponent";
 import SanJoseFooter from "../../../footersanjose";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
-
+import Head from "next/head";
 export default function LosGatosPage() {
     const [content, setContent] = useState(null);
-
+    const [seoData, setSeoData] = useState(null);
     useEffect(() => {
         const fetchData = async () => {
-            const response = await fetch("https://admin.interimhc.com/api/los-gatos-californias?populate[maincontent][populate]=*");
+            const response = await fetch("https://admin.interimhc.com/api/los-gatos-californias?populate[maincontent][populate]=*&populate[seo]=*");
             const data = await response.json();
             setContent(data.data[0].attributes.maincontent);
+            setSeoData(data.data[0]?.attributes?.seo);
         };
         fetchData();
     }, []);
-
+// Dynamically set the meta title and description once the seoData is fetched
+useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
     if (!content) {
         return <p>Loading...</p>;
     }
@@ -93,7 +114,7 @@ export default function LosGatosPage() {
             <div className="section1subcity py-5">
                 <Container fluid className="px-5">
                     <Row>
-                        <Col md={8} className="sanjose-banner">
+                        <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{content[0]?.Heading}</h2>
                             <p className="py-3">{renderWithLineBreaks(content[0]?.subHeading)}</p>
                             <p>Reach us today at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> for detailed information!</p>
@@ -108,7 +129,7 @@ export default function LosGatosPage() {
             <div>
                 <SanJoseservicesComponent />
             </div>
-            <CaregiverCityComponent />
+            {/* <CaregiverCityComponent /> */}
             <div>
                 <Container fluid>
                     <Row className="py-5">
@@ -201,6 +222,10 @@ export default function LosGatosPage() {
                     </Row>
                 </Container>
             </div>
+            <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
             <SanJoseFooter />
         </div>
     );

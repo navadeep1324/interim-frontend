@@ -21,7 +21,7 @@ export default function ServicesComponent() {
         <div>
             <ReddingNavbarComponent />
             <HeaderComponent/>
-            <div style={{backgroundColor:'#fef9f5'}} className="py-5">
+            <div style={{backgroundColor:'#fef9f5'}} className="reddingservicesbanner">
                 <Container>
                     <Row className="d-flex align-items-center justify-content-center g-5">
                         <Col md={6} className="d-flex flex-column align-items-start">

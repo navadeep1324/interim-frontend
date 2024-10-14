@@ -12,28 +12,53 @@ import SanJoseservicesComponent from "../../sanjoseservicecomponent";
 import CaregiverCityComponent from "../../caregiversComponentMainCity";
 import SanJose4 from "/public/images/SanJose4.png";
 import SanjoseNavbarComponent from "../../sanjosenavcomponent";
+import Head from "next/head";
 
 export default function SanJoseComponent() {
   const [data, setData] = useState(null);
+  const [seoData, setSeoData] = useState(null);
   const API_URL = "https://admin.interimhc.com";
 
   useEffect(() => {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${API_URL}/api/san-jose-californias?populate[maincontent][populate]=*`
+          `${API_URL}/api/san-jose-californias?populate[maincontent][populate]=*&populate[seo]=*`
         );
         setData(response.data.data[0].attributes);
+        setSeoData(response.data.data[0].attributes.seo); 
       } catch (error) {
         console.error("Error fetching data from Strapi", error);
       }
     };
     fetchData();
   }, []);
+   // Dynamically set the meta title and description once the seoData is fetched
+   useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
 
   if (!data) {
     return <p>Loading...</p>; // Loading state while data is being fetched
   }
+  
 
  // Helper function to render text content with support for links
 const renderTextContent = (content) => {
@@ -308,6 +333,10 @@ of home care in San Jose, California. Here are the key benefits of choosing us:
 
       {/* Footer */}
       <CitypageFooter />
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
     </div>
   );
 }

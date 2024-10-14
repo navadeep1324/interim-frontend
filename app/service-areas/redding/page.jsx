@@ -11,18 +11,21 @@ import CaregiverCityComponent from "../..//caregiversComponentMainCity";
 import CitypageFooter from "../../CitypageFooter";
 import ReddingNavbarComponent from "../../reddingnavcomponent";
 import ReddingservicesComponent from "../../reddingservicesComponent";
+import Head from "next/head";
 
 export default function ReddingComponent() {
     const [data, setData] = useState(null); // State for API data
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); // Error state
+    const [seoData, setSeoData] = useState(null);
 
     useEffect(() => {
-        fetch("https://admin.interimhc.com/api/reddings?populate[maincontent][populate]=*")
+        fetch("https://admin.interimhc.com/api/reddings?populate[maincontent][populate]=*&populate[seo]=*")
             .then((response) => response.json())
             .then((responseData) => {
                 if (responseData?.data?.[0]?.attributes?.maincontent) {
                     setData(responseData.data[0].attributes.maincontent);
+                    setSeoData(responseData.data?.[0].attributes.seo); 
                 } else {
                     throw new Error("Invalid data structure received");
                 }
@@ -34,7 +37,27 @@ export default function ReddingComponent() {
                 setLoading(false);
             });
     }, []);
-
+// Dynamically set the meta title and description once the seoData is fetched
+useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
     if (loading) {
         return <div>Loading...</div>;
     }
@@ -45,8 +68,16 @@ export default function ReddingComponent() {
 
     // Helper function to get image URL (if images are available)
     const getImageUrl = (imageData) => {
-        return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
+        const imageUrl = imageData?.formats?.small?.url 
+            ? `https://admin.interimhc.com${imageData.formats.small.url}` 
+            : imageData?.url 
+            ? `https://admin.interimhc.com${imageData.url}` 
+            : "";
+        console.log('Image URL:', imageUrl); // Log the URL to check
+        return imageUrl || '/path/to/default-image.png'; // Return a default image if no URL is found
     };
+    
+    
 
     // Helper to render paragraph content
 // Helper to render paragraph content with links, all having the "phone-link" class
@@ -111,15 +142,16 @@ const textLinks = {
         "Shasta County": "#",
         "Siskiyou County": "#",
         "Yreka": "/service-areas/redding/yreka",
+        "Hat creek":"/service-areas/redding/hat-creek"
     };
 
     return (
         <div>
             <ReddingNavbarComponent />
             {/* Banner Section */}
-            <div className="section1banner">
+            <div className="section1bannersanjose">
                 <Container>
-                    <Row className="py-3 g-4 d-flex align-items-center">
+                    <Row className="section1row">
                         <Col md={7} className="py-5">
                             <h1>{data[0]?.Heading}</h1>
                             <p className="py-3">{data[0]?.subHeading}</p>
@@ -145,8 +177,7 @@ const textLinks = {
                 </Container>
             </div>
 
-            <div style={{ backgroundColor: "#015979", height: "145px" }}></div>
-
+            
             {/* Service Component */}
             <div>
                 <ReddingservicesComponent />
@@ -169,7 +200,7 @@ const textLinks = {
                     className="img-fluid"
                 />
             </Col>
-            <Col md={6} xs={12} style={{ paddingRight: '3em' }}>
+            <Col md={6} className="sanjose-col">
                 <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
                 <p className="py-2">{renderDescription(data[1]?.description)}</p> {/* Render description with links */}
             </Col>
@@ -180,9 +211,9 @@ const textLinks = {
 
             <div className="section3city py-5">
                 <Container fluid>
-                    <Row className="g-4">
-                        <Col md={6} xs={12} style={{ paddingLeft: '3em', paddingRight: '1em' }}>
-                            <h2 className="heading2 py-4">{data[2]?.Heading}</h2>
+                    <Row className="row-reverse-mobile">
+                        <Col md={6} className="sanjose-col">
+                            <h2 className="heading2sanjose py-4">{data[2]?.Heading}</h2>
                             <p>{data[2]?.description?.[0]?.children?.[0]?.text}</p>
                             <h5 className="heading5subcity">Key reasons why Interim Healthcare is the best choice:    </h5>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
@@ -210,56 +241,52 @@ const textLinks = {
 
             {/* Section 4 (Why Families Prefer Our Home Care Services) */}
             <div className="section4city py-5">
-                <Container>
-                    <Row className="py-3 g-4">
-                        <Col md={2}></Col>
-                        <Col md={8} xs={12}>
-                            <h2 className="heading2" style={{ textAlign: 'center' }}>
-                                {data[4]?.Heading}
-                            </h2>
-                            <p style={{ textAlign: 'center' }} className="py-2">
-                                {data[4]?.subHeading}
-                            </p>
-                        </Col>
-                        <Col md={2}></Col>
-                    </Row>
-                    <Row className="py-4 g-4">
-                        <Col md={6} xs={12} className="px-3">
-                            <Image
-                                src={getImageUrl(data[4]?.img?.data?.attributes)}
-                                alt="Service Image"
-                                width={data[4]?.img?.data?.attributes?.width}
-                                height={data[4]?.img?.data?.attributes?.height}
-                                className="img-fluid"
-                            />
-                        </Col>
-                        {/* <Col md={6} xs={12} style={{ paddingLeft: '3em', paddingRight: '3em' }}>
-                            {renderDescription(data[4]?.description)}
-                        </Col> */}
-                       <Col md={6} xs={12} style={{ paddingLeft: '3em', paddingRight: '3em' }}>
-                        <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
-                <li><p><b>Comfort and Reassurance: </b></p>  
-                <p>Seniors feel at ease, knowing their care is personalized to meet their unique needs. </p>
-                </li>
-                <li><p><b>Respect and Value: </b></p>  
-                <p>Our approach ensures that seniors are treated with dignity, with their preferences and wishes always respected.</p>
-                </li>
-                <li><p><b>Independence and Confidence:s</b></p>  
-                <p>With the right support, seniors can maintain their independence, boosting their confidence in daily life. s</p>
-                </li>
-                <li><p><b>Sense of Dignity: </b></p>  
-                <p>Our services help seniors retain their dignity, making them feel respected and valued. </p>
-                </li>
-                <li><p><b>Familiarity and Belonging:  </b></p>  
-                <p>We create a safe and healthy atmosphere that fosters a sense of belonging and comfort. </p>
-                </li>
-                
-                
-             </ul>
-                            </Col>
-                    </Row>
-                </Container>
-            </div>
+    <Container>
+        <Row className="py-3 g-4">
+            <Col md={2}></Col>
+            <Col md={8} xs={12}>
+                <h2 className="heading2" style={{ textAlign: 'center' }}>
+                    {data[4]?.Heading}
+                </h2>
+                <p style={{ textAlign: 'center' }} className="py-2">
+                    {data[4]?.subHeading}
+                </p>
+            </Col>
+            <Col md={2}></Col>
+        </Row>
+        <Row className="py-4 g-4">
+            <Col md={6} xs={12} className="px-3">
+                <Image
+                    src={getImageUrl(data[4]?.img?.data?.attributes)} // Corrected key from image to img
+                    alt="Service Image"
+                    width={data[4]?.img?.data?.attributes?.width}
+                    height={data[4]?.img?.data?.attributes?.height}
+                    className="img-fluid"
+                />
+            </Col>
+            <Col md={6} xs={12} style={{ paddingLeft: '3em', paddingRight: '3em' }}>
+                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
+                    <li><p><b>Comfort and Reassurance: </b></p>  
+                    <p>Seniors feel at ease, knowing their care is personalized to meet their unique needs. </p>
+                    </li>
+                    <li><p><b>Respect and Value: </b></p>  
+                    <p>Our approach ensures that seniors are treated with dignity, with their preferences and wishes always respected.</p>
+                    </li>
+                    <li><p><b>Independence and Confidence:</b></p>  
+                    <p>With the right support, seniors can maintain their independence, boosting their confidence in daily life.</p>
+                    </li>
+                    <li><p><b>Sense of Dignity: </b></p>  
+                    <p>Our services help seniors retain their dignity, making them feel respected and valued. </p>
+                    </li>
+                    <li><p><b>Familiarity and Belonging: </b></p>  
+                    <p>We create a safe and healthy atmosphere that fosters a sense of belonging and comfort. </p>
+                    </li>
+                </ul>
+            </Col>
+        </Row>
+    </Container>
+</div>
+
             
 
             {/* Section 5 */}
@@ -318,7 +345,10 @@ const textLinks = {
                     </Row>
                 </Container>
             </div>
-
+            <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
             <CitypageFooter />
         </div>
     );

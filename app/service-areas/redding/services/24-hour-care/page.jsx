@@ -6,20 +6,24 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
+import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
 import ServicepageFooter from "../../../../servicepageFooter";
 import ReddingNavbarComponent from "../../../../reddingnavcomponent";
+import Head from "next/head";
 
 export default function HourcareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [seoData, setSeoData] = useState(null);
+
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/twenty-four-hour-home-care?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/twenty-four-hour-home-care?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
       .then(data => {
         setData(data.data.attributes);
+        setSeoData(data.data?.attributes?.seo);
         setLoading(false);
       })
       .catch(error => {
@@ -28,6 +32,27 @@ export default function HourcareComponent() {
         setLoading(false);
       });
   }, []);
+  // Dynamically set the meta title and description once the seoData is fetched
+  useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -81,7 +106,7 @@ export default function HourcareComponent() {
             <ReddingNavbarComponent />
         <div className="sectionbg">
         <Container>
-          <Row className="py-5">
+          <Row className="services-banner middlealign">
             <Col md="5">
               <h1 className="heading1">{data.maincontent[0].Heading}</h1><br></br>
               <p className="py-2">{data.maincontent[0].subHeading}</p><br></br>
@@ -160,6 +185,10 @@ export default function HourcareComponent() {
           </Row>
         </Container>
       </div>
+      <Head>
+        <title>{seoData?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.metaDescription || "Default Description"} />
+      </Head>
       <ServicepageFooter />
     </div>
   );

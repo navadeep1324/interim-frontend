@@ -20,6 +20,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
+      <head>
+      <link rel="icon" href="/faviconinterim.ico" sizes="any" type="image/x-icon" />
+<link rel="icon" href="/faviconinterim.ico" type="image/png" />
+<link rel="apple-touch-icon" href="/faviconinterim.ico"/>
+
+        <title>{metadata.title}</title>
+        <meta name="description" content={metadata.description} />
+      </head>
       <body className={rubik.className}> {/* Rubik for body text */}
         <div className={rubik.className}> {/* Heading font will be controlled here */}
           {children}

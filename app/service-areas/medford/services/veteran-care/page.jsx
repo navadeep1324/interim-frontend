@@ -11,16 +11,25 @@ import ServicepageFooter from "../../../../servicepageFooter";
 import MedfordFooter from "../../../../footermedford";
 import MedfordNavComponent from "../../../../medfordnavcomponent";
 import MedfordfooterserviceComponent from "../../../../footerservicemedford";
+import Head from "next/head";
+
 export default function VeteranCareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [seoData, setSeoData] = useState(null);
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/veteran-home-care?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/medford-veteran-cares?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
       .then(data => {
-        setData(data.data.attributes);
+        console.log('API Response:', data); // Log the full response to check its structure
+        if (data && data.data && data.data.length > 0 && data.data[0].attributes) {
+          setData(data.data[0].attributes); // Adjust based on actual structure
+          setSeoData(data.data[0].attributes.seo);
+        } else {
+          setError("Data structure not as expected");
+        }
         setLoading(false);
       })
       .catch(error => {
@@ -29,17 +38,41 @@ export default function VeteranCareComponent() {
         setLoading(false);
       });
   }, []);
+  
+
+  // Dynamically set the meta title and description once the seoData is fetched
+  useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    }
+  }, [seoData]);
 
   if (loading) {
     return <div>Loading...</div>;
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>;
+    return <div>Error: {error.message || error}</div>;
+  }
+
+  if (!data) {
+    return <div>No data available.</div>;
   }
 
   const getImageUrl = (imageData) => {
-    return `https://admin.interimhc.com${imageData.url}`;
+    return `https://admin.interimhc.com${imageData?.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {
@@ -81,11 +114,15 @@ export default function VeteranCareComponent() {
         <Container>
           <Row className="py-5">
             <Col md="5">
-              <h1 className="heading1">{data.maincontent[0].Heading}</h1>
-              <p className="paragram py-2">{data.maincontent[0].subHeading.split('\n').map((str, index) => <span key={index}>{str}<br /></span>)}</p>
+              <h1 className="heading1">{data?.maincontent[0]?.Heading}</h1>
+              <p className="paragram py-2">
+                {data?.maincontent[0]?.subHeading.split('\n').map((str, index) => (
+                  <span key={index}>{str}<br /></span>
+                ))}
+              </p>
             </Col>
             <Col md="7">
-              {renderImage(data.maincontent[0].bannerimg.data.attributes, "Veteran Home Care", 1034, 688)}
+              {renderImage(data?.maincontent[0]?.bannerimg?.data?.attributes, "Veteran Home Care", 1034, 688)}
             </Col>
           </Row>
         </Container>
@@ -95,11 +132,11 @@ export default function VeteranCareComponent() {
         <Container>
           <Row className="row3bg py-4">
             <Col md="4">
-              {renderImage(data.maincontent[1].img.data.attributes, "Veteran Care Service", 595, 780)}
+              {renderImage(data?.maincontent[1]?.img?.data?.attributes, "Veteran Care Service", 595, 780)}
             </Col>
             <Col md="8">
-              <h2 className="heading2">{data.maincontent[1].Heading}</h2>
-              {renderDescription(data.maincontent[1].description)}
+              <h2 className="heading2">{data?.maincontent[1]?.Heading}</h2>
+              {renderDescription(data?.maincontent[1]?.description)}
             </Col>
           </Row>
         </Container>
@@ -108,11 +145,11 @@ export default function VeteranCareComponent() {
         <Container>
           <Row>
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[2].Heading}</h2>
-              {renderDescription(data.maincontent[2].description)}
+              <h2 className="heading2">{data?.maincontent[2]?.Heading}</h2>
+              {renderDescription(data?.maincontent[2]?.description)}
             </Col>
             <Col md="6">
-              {renderImage(data.maincontent[2].img.data.attributes, "Respite Care Service", 626, 525)}
+              {renderImage(data?.maincontent[2]?.img?.data?.attributes, "Respite Care Service", 626, 525)}
             </Col>
           </Row>
         </Container>
@@ -121,11 +158,11 @@ export default function VeteranCareComponent() {
         <Container>
           <Row>
             <Col md="6">
-              {renderImage(data.maincontent[3].img.data.attributes, "Respite Care Service", 595, 780)}
+              {renderImage(data?.maincontent[3]?.img?.data?.attributes, "Respite Care Service", 595, 780)}
             </Col>
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[3].Heading}</h2>
-              {renderDescription(data.maincontent[3].description)}
+              <h2 className="heading2">{data?.maincontent[3]?.Heading}</h2>
+              {renderDescription(data?.maincontent[3]?.description)}
             </Col>
           </Row>
         </Container>
@@ -134,18 +171,22 @@ export default function VeteranCareComponent() {
         <Container>
           <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
             <Col md={6}>
-              <h2 className="heading2">{data.maincontent[4].Heading}</h2>
-              {renderDescription(data.maincontent[4].description)}
+              <h2 className="heading2">{data?.maincontent[4]?.Heading}</h2>
+              {renderDescription(data?.maincontent[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
             <Col md={6}>
-              {renderImage(data.maincontent[4].image.data.attributes, "Respite Care Contact", 589, 422)}
+              {renderImage(data?.maincontent[4]?.image?.data?.attributes, "Respite Care Contact", 589, 422)}
             </Col>
           </Row>
         </Container>
       </div>
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
       <MedfordfooterserviceComponent />
     </div>
   );

@@ -9,16 +9,19 @@ import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import SanJoseservicesComponent from "../../../sanjoseservicecomponent";
 import SanJoseFooter from "../../../footersanjose";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
-
+import Head from "next/head";
 export default function EvergreenComponent() {
     const [data, setData] = useState(null);
+    const [seoData, setSeoData] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const res = await fetch('https://admin.interimhc.com/api/evergreen-cas?populate[maincontent][populate]=*');
+                const res = await fetch('https://admin.interimhc.com/api/evergreen-cas?populate[maincontent][populate]=*&populate[seo]=*');
                 const json = await res.json();
                 setData(json.data[0].attributes.maincontent);
+                setSeoData(json.data[0].attributes.seo);
+
             } catch (error) {
                 console.error('Error fetching data:', error);
             }
@@ -26,7 +29,28 @@ export default function EvergreenComponent() {
 
         fetchData();
     }, []);
-
+// Dynamically set the meta title and description once the seoData is fetched
+useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
+  
     if (!data) return <div>Loading...</div>;
 
     const getImageUrl = (imageData) => {
@@ -64,7 +88,7 @@ export default function EvergreenComponent() {
             <div className="section1subcity py-5">
                 <Container fluid className="px-5">
                     <Row>
-                        <Col md={8} className="sanjose-banner">
+                        <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{data[0]?.Heading}</h2>
                             <p className="py-3">{data[0]?.subHeading}</p>
                             <p>For a quick consultation, give us a call at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> and let us help you with the right care plan!</p>
@@ -80,7 +104,7 @@ export default function EvergreenComponent() {
            
             
             <SanJoseservicesComponent />
-            <CaregiverCityComponent />
+            {/* <CaregiverCityComponent /> */}
 
             <div className="section-left-img-right-content py-5">
                 <Container fluid>
@@ -183,7 +207,10 @@ export default function EvergreenComponent() {
                     </Row>
                 </Container>
             </div>
-
+            <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
             <SanJoseFooter />
         </div>
     );

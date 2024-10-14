@@ -9,28 +9,64 @@ import Image from "next/image";
 import CaregivertodayComponent from "../../../../caregiverstodayComponent";
 import RenoFooter from "../../../../footerservicereno";
 import RenoNavbarComponent from "../../../../renonavcomponent";
+import Head from "next/head";
+
 export default function CompanionCareComponent() {
   const [data, setData] = useState(null);
+  const [seoData, setSeoData] = useState(null); // State for SEO
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); // State for error handling
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/reno-companion-cares?populate[maincontent][populate]=*')
-      .then(response => response.json())
-      .then(responseData => {
+    async function fetchData() {
+      try {
+        const response = await fetch(
+          'https://admin.interimhc.com/api/reno-companion-cares?populate[maincontent][populate]=*&populate[seo]=*'
+        );
+        const responseData = await response.json();
+
         if (responseData.data && responseData.data.length > 0) {
           console.log("API Response:", responseData.data[0].attributes);
-          setData(responseData.data[0].attributes); // Ensure you're accessing the correct path
+          setData(responseData.data[0].attributes); // Set content data
+          setSeoData(responseData.data[0]?.attributes?.seo); // Set SEO data
           setLoading(false);
         } else {
           console.error('No data found:', responseData);
-          setLoading(false);  // Stop loading when no data is found.
+          setLoading(false);
         }
-      })
-      .catch(error => {
+      } catch (error) {
         console.error('Error fetching data:', error);
-        setLoading(false);  // Stop loading in case of error.
-      });
+        setError(error.message);
+        setLoading(false);
+      }
+    }
+
+    fetchData();
   }, []);
+
+  // Dynamically set the meta title and description once the seoData is fetched
+  useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the SEO data array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+
+      // Set document title
+      document.title = seo.metaTitle || "Default Title";
+
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received or SEO data is not in the correct format"); // Log if no SEO data is available
+    }
+  }, [seoData]);
 
   const getImageUrl = (imageData) => {
     return imageData?.url ? `https://admin.interimhc.com${imageData.url}` : '';
@@ -55,13 +91,24 @@ export default function CompanionCareComponent() {
     return <div>Loading...</div>;
   }
 
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
   if (!data) {
     return <div>No data available.</div>;
   }
 
   return (
     <div>
-      <RenoNavbarComponent/>
+      <RenoNavbarComponent />
+
+      {/* SEO Meta Tags */}
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
+
       <div className="sectionbg">
         <Container>
           <Row className="py-5">
@@ -69,7 +116,6 @@ export default function CompanionCareComponent() {
               <h1 className="heading1">{data.maincontent[0]?.Heading}</h1>
               <p className="paragram py-2">{data.maincontent[0]?.subHeading}</p>
               <p>Reach us today at <a href="tel:+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!</p>
-
             </Col>
             <Col md="7">
               {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Companion care Services", 1034, 688)}

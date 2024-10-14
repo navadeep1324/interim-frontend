@@ -16,8 +16,7 @@ export default function RenoservicesComponent() {
     <div>
       <Container fluid>
         <Row
-          className="px-3 py-2"
-          style={{ marginTop: "-16%", justifyContent: "center" }}
+          className="px-3 py-2 servicescomponentbg"
         >
           <Col md={2} className="servicecoloumcity mx-1">
             <Link href="/service-areas/reno/services/companion-care/" passHref>

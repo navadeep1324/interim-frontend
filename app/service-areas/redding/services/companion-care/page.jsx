@@ -8,27 +8,54 @@ import { Button } from "react-bootstrap";
 import Image from "next/image";
 import CaregivertodayComponent from "../../../../caregiverstodayComponent";
 import ServicepageFooter from "../../../../servicepageFooter";
+import Head from "next/head";
 
 export default function CompanionCareComponent() {
   const [data, setData] = useState(null);
+  const [seoData, setSeoData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/companion-care-service?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/companion-care-service?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
-      .then(data => {
-        console.log("API Response:", data);
-        setData(data.data.attributes);
+      .then(responseData => {
+        console.log("Full API Response:", responseData); // Log the full API response for debugging
+
+        if (responseData && responseData.data) {
+          // Directly set attributes from single type
+          setData(responseData.data.attributes);
+          
+          // Set the SEO data directly (accessing the first element of the SEO array)
+          setSeoData(responseData.data.attributes.seo[0]);
+        } else {
+          console.log("No data in API response");
+        }
+
+        setLoading(false);
       })
-      .catch(error => console.error('Error fetching data:', error));
+      .catch(error => {
+        console.error('Error fetching data:', error);
+        setError(error);
+        setLoading(false);
+      });
   }, []);
 
-  if (!data) {
+  // If loading, show loading message
+  if (loading) {
     return <div>Loading...</div>;
   }
 
+  // If error, show error message
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+
+  // Helper function to render images
   const getImageUrl = (imageData) => {
+    if (!imageData) return ''; // Ensure imageData is not null
     const url = `https://admin.interimhc.com${imageData.url}`;
-    console.log('Image URL:', url); // Log the URL for debugging
+    console.log('Image URL:', url); // Log image URL for debugging
     return url;
   };
 
@@ -49,73 +76,81 @@ export default function CompanionCareComponent() {
 
   return (
     <div>
-            <ReddingNavbarComponent />
-            <div className="sectionbg">
+      {/* SEO Integration */}
+      <Head>
+        <title>{seoData?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.metaDescription || "Default Description"} />
+      </Head>
+
+      <ReddingNavbarComponent />
+
+      {/* Main Content */}
+      <div className="sectionbg">
         <Container>
           <Row className="py-5">
             <Col md="5">
-              <h1 className="heading1">{data.maincontent[0].Heading}</h1>
-              <p className="paragram py-2">{data.maincontent[0].subHeading}</p>
-              {/* <p className="py-4">
-                In the journey of life, everyone deserves a loyal friend and a helping hand. At Interim Healthcare we not only provide support, but genuine companionship, enriching the lives of seniors with warmth and empathy. From daily assistance to heartfelt conversations, we’re here to ensure your loved ones thrive in the comfort of their own home.
-                <br></br>Reach us today at +1 408-286-6888 to learn how we can assist your aging adults!
-              </p> */}
+              <h1 className="heading1">{data?.maincontent?.[0]?.Heading}</h1>
+              <p className="paragram py-2">{data?.maincontent?.[0]?.subHeading}</p>
             </Col>
             <Col md="7">
-              {renderImage(data.maincontent[0].bannerimg.data.attributes, "Companion care Services", 1034, 688)}
+              {renderImage(data?.maincontent?.[0]?.bannerimg?.data?.attributes, "Companion care Services", 1034, 688)}
             </Col>
           </Row>
         </Container>
       </div>
+
       <CaregivertodayComponent />
+
       <div className="section3bg">
         <Container>
           <Row className="row3bg py-4">
             <Col md="4">
-              {renderImage(data.maincontent[1].img.data.attributes, "Exceptional Elderly companion care", 595, 780)}
+              {renderImage(data?.maincontent?.[1]?.img?.data?.attributes, "Exceptional Elderly companion care", 595, 780)}
             </Col>
             <Col md="8">
-              <h2 className="heading2">{data.maincontent[1].Heading}</h2>
-              {data.maincontent[1].description.map((desc, index) => (
+              <h2 className="heading2">{data?.maincontent?.[1]?.Heading}</h2>
+              {data?.maincontent?.[1]?.description?.map((desc, index) => (
                 <p key={index} className="py-3">{desc.children[0].text}</p>
               ))}
             </Col>
           </Row>
         </Container>
       </div>
+
       <div className="sectionbg" style={{ padding: '50px 0px' }}>
         <Container>
           <Row>
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[2].Heading}</h2>
-              {data.maincontent[2].description.map((desc, index) => (
+              <h2 className="heading2">{data?.maincontent?.[2]?.Heading}</h2>
+              {data?.maincontent?.[2]?.description?.map((desc, index) => (
                 <p key={index} className="py-2">{desc.children[0].text}</p>
               ))}
               <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-                {data.maincontent[2].description[1].children.map((item, index) => (
+                {data?.maincontent?.[2]?.description?.[1]?.children?.map((item, index) => (
                   <li key={index}>{item.children[0].text}</li>
                 ))}
               </ul>
             </Col>
             <Col md="6">
-              {renderImage(data.maincontent[2].img.data.attributes, "Who can benefit from companion home care", 625, 400)}
+              {renderImage(data?.maincontent?.[2]?.img?.data?.attributes, "Who can benefit from companion home care", 625, 400)}
             </Col>
           </Row>
         </Container>
       </div>
+
       <div className="section3" style={{ padding: '50px 0px' }}>
         <Container>
           <Row>
             <Col md="6">
-              {renderImage(data.maincontent[3].img.data.attributes, "Experience Our Superior companion home care services", 550, 520)}
+              {renderImage(data?.maincontent?.[3]?.img?.data?.attributes, "Experience Our Superior companion home care services", 550, 520)}
             </Col>
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[3].Heading}</h2>
-              {data.maincontent[3].description.map((desc, index) => (
+              <h2 className="heading2">{data?.maincontent?.[3]?.Heading}</h2>
+              {data?.maincontent?.[3]?.description?.map((desc, index) => (
                 <p key={index} className="py-2">{desc.children[0].text}</p>
               ))}
               <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-                {data.maincontent[3].description[1].children.map((item, index) => (
+                {data?.maincontent?.[3]?.description?.[1]?.children?.map((item, index) => (
                   <li key={index}>{item.children[0].text}</li>
                 ))}
               </ul>
@@ -123,12 +158,13 @@ export default function CompanionCareComponent() {
           </Row>
         </Container>
       </div>
+
       <div className="section4" style={{ padding: '50px 0px' }}>
         <Container>
           <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
             <Col md={6}>
-              <h2 className="heading2">{data.maincontent[4].Heading}</h2>
-              {data.maincontent[4].description.map((desc, index) => (
+              <h2 className="heading2">{data?.maincontent?.[4]?.Heading}</h2>
+              {data?.maincontent?.[4]?.description?.map((desc, index) => (
                 <p key={index} className="py-3">{desc.children[0].text}</p>
               ))}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
@@ -136,11 +172,12 @@ export default function CompanionCareComponent() {
               </Button>
             </Col>
             <Col md={6}>
-              {renderImage(data.maincontent[4]?.image?.data?.attributes, "Caring for Seniors is an Honor for us", 550, 520)}
+              {renderImage(data?.maincontent?.[4]?.image?.data?.attributes, "Caring for Seniors is an Honor for us", 550, 520)}
             </Col>
           </Row>
         </Container>
       </div>
+
       <ServicepageFooter />
     </div>
   );

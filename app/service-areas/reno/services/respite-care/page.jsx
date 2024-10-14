@@ -9,17 +9,21 @@ import Image from "next/image";
 import CaregiverCityComponent from "../../../../caregiversComponentMainCity";
 import RenoFooter from "../../../../footerreno";
 import RenoFooterServices from "../../../../footerservicereno";
+import Head from "next/head";
+
 
 export default function RespiteCareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [seoData, setSeoData] = useState(null);
+
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch(
-          "https://admin.interimhc.com/api/reno-respite-cares?populate[maincontent][populate]=*"
+          "https://admin.interimhc.com/api/reno-respite-cares?populate[maincontent][populate]=*&populate[seo]=*"
         );
         const result = await response.json();
         
@@ -27,7 +31,8 @@ export default function RespiteCareComponent() {
         
         // Check if the data is available in the API response
         if (result?.data?.[0]?.attributes) {
-          setData(result.data[0].attributes);  // Set the correct path to the data
+          setData(result.data[0].attributes);// Set the correct path to the data
+          setSeoData(result.data[0]?.attributes?.seo);  
         } else {
           throw new Error("No data found in the API response");
         }
@@ -40,6 +45,27 @@ export default function RespiteCareComponent() {
     }
     fetchData();
   }, []);
+   // Dynamically set the meta title and description once the seoData is fetched
+   useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -74,7 +100,7 @@ export default function RespiteCareComponent() {
 <div className="sectionbg">
         <Container>
           <Row className="py-5">
-            <Col md="5">
+            <Col md="6">
               <h1 className="heading1">
                 {data?.maincontent?.[0]?.Heading || "No Heading Available"}
               </h1>
@@ -86,7 +112,7 @@ export default function RespiteCareComponent() {
                 <br /> Contact us today to learn how we can assist in caring for your seniors, ensuring they receive the help they need.
               </p>
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(
                 data?.maincontent?.[0]?.bannerimg?.data?.attributes,
                 "Compassionate Respite Care",
@@ -225,6 +251,10 @@ export default function RespiteCareComponent() {
           </Row>
         </Container>
       </div>
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
 
       <RenoFooterServices  />
     </div>

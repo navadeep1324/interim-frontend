@@ -11,29 +11,33 @@ import ServicepageFooter from "../../../../servicepageFooter";
 import SanJoseFooter from "../../../../footersanjose";
 import SanjoseNavbarComponent from "../../../../sanjosenavcomponent";
 import SanJoseserviceFooter from "../../../../footerservicesanjose";
+import Head from "next/head";
 export default function VeteranCareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [seoData, setSeoData] = useState(null);
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/sanjose-veteran-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/sanjose-veteran-cares?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
       .then(responseData => {
-        // Log the API response to debug structure
         console.log('API Response:', responseData);
-
-        // Adjusting for different possible API structures
-        if (responseData?.data?.attributes?.maincontent) {
-          // For expected structure: data -> attributes -> maincontent
-          setData(responseData.data.attributes.maincontent);
-        } else if (Array.isArray(responseData.data) && responseData.data.length > 0) {
-          // If data is an array, use the first item
-          setData(responseData.data[0].attributes.maincontent);
+  
+        // Check if responseData.data is an array or object
+        const isDataArray = Array.isArray(responseData.data);
+  
+        // Extract the correct data based on whether it's an array or object
+        const mainData = isDataArray ? responseData.data[0]?.attributes?.maincontent : responseData.data?.attributes?.maincontent;
+        const seoData = isDataArray ? responseData.data[0]?.attributes?.seo : responseData.data?.attributes?.seo;
+  
+        if (mainData) {
+          setData(mainData);  // Set main content data
+          setSeoData(seoData); // Set SEO data
         } else {
           throw new Error("Invalid data structure received");
         }
-
+  
         setLoading(false);
       })
       .catch(error => {
@@ -42,7 +46,31 @@ export default function VeteranCareComponent() {
         setLoading(false);
       });
   }, []);
-
+  
+  
+  useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received");
+    }
+  }, [seoData]);
+  
+  
+  
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -202,6 +230,10 @@ export default function VeteranCareComponent() {
           </Row>
         </Container>
       </div>
+      <Head>
+        <title>{seoData?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.metaDescription || "Default Description"} />
+      </Head>
       <SanJoseserviceFooter  />
     </div>
   );

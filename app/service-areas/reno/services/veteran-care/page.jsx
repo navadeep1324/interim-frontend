@@ -9,17 +9,23 @@ import Image from "next/image";
 import CaregiverCityComponent from "../../../../caregiversComponentMainCity";
 import RenoFooter from "../../../../footerreno";
 import RenoFooterServices from "../../../../footerservicereno";
+import Head from "next/head";
+
 export default function VeteranCareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [seoData, setSeoData] = useState(null);
+
+  
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/reno-veteran-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/reno-veteran-cares?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
       .then(result => {
         console.log('API Response:', result); // Debug the response structure
         setData(result.data[0]?.attributes); // Adjusted to access the first item in the array
+        setSeoData(result.data[0]?.attributes?.seo);
         setLoading(false);
       })
       .catch(error => {
@@ -28,6 +34,27 @@ export default function VeteranCareComponent() {
         setLoading(false);
       });
   }, []);
+ // Dynamically set the meta title and description once the seoData is fetched
+ useEffect(() => {
+  if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+    const seo = seoData[0]; // Access the first element of the seoData array
+    console.log("SEO Data received:", seo); // Log seoData for debugging
+    document.title = seo.metaTitle || "Default Title";
+    
+    // Set meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+    } else {
+      const newMetaDescription = document.createElement("meta");
+      newMetaDescription.name = "description";
+      newMetaDescription.content = seo.metaDescription || "Default Description";
+      document.head.appendChild(newMetaDescription);
+    }
+  } else {
+    console.log("No SEO Data received"); // Log if seoData is not available
+  }
+}, [seoData]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -81,8 +108,8 @@ export default function VeteranCareComponent() {
 <RenoNavbarComponent/>
 <div className="sectionbg">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
+          <Row className="py-5 middlealign">
+            <Col md="6">
               <h1 className="heading1">
                 {data?.maincontent?.[0]?.Heading || 'No Heading Available'}
               </h1>
@@ -92,7 +119,7 @@ export default function VeteranCareComponent() {
                 ))}
               </p>
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(data?.maincontent?.[0]?.bannerimg?.data?.attributes, "Veteran Home Care", 1034, 688)}
             </Col>
           </Row>
@@ -154,6 +181,10 @@ export default function VeteranCareComponent() {
           </Row>
         </Container>
       </div>
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
       <RenoFooterServices />
     </div>
   );

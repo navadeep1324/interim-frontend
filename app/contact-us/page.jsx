@@ -43,7 +43,7 @@ export default function ContactusComponent() {
                 If planning to look for senior in home care services for your loved ones in Redding, feel free to reach us. We serve in several cities, listed below are few of them:
               </p>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="contactus-search">
               <Search />
             </Col>
           </Row>

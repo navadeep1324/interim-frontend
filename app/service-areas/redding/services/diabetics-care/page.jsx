@@ -1,5 +1,6 @@
 "use client";
-import React, { useEffect, useState } from "react";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import ReddingNavbarComponent from "../../../../reddingnavcomponent";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
@@ -9,28 +10,69 @@ import Image from "next/image";
 import CaregivertodayComponent from "../../../../caregiverstodayComponent";
 import ServicepageFooter from "../../../../servicepageFooter";
 import CaregiverCityComponent from "../../../../caregiversComponentMainCity";
+import Head from "next/head";
 
+const BASE_URL = "https://admin.interimhc.com";
 
 export default function DiabetesCareComponent() {
   const [diabetesData, setDiabetesData] = useState(null);
+  const [seoData, setSeoData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   // Fetching data from Strapi
   useEffect(() => {
-    fetch("https://admin.interimhc.com/api/diabetics-care?populate[maincontent][populate]=*")
-      .then((response) => response.json())
-      .then((json) => {
-        setDiabetesData(json.data.attributes);
-        setLoading(false);
-        console.log("Fetched Data:", json.data.attributes); // Log the full data for debugging
-      })
-      .catch((error) => {
-        console.error("Error fetching data:", error);
-      });
+    const fetchData = async () => {
+      try {
+        const response = await axios.get(
+          `${BASE_URL}/api/diabetics-care?populate[maincontent][populate]=*&populate[seo]=*`
+        );
+        console.log("Full API Response:", response.data); // Log full API response for debugging
+
+        if (response.data.data && response.data.data.attributes) {
+          setDiabetesData(response.data.data.attributes); // Main data
+          // Ensure you're accessing the first element of the SEO array
+          if (response.data.data.attributes.seo && response.data.data.attributes.seo.length > 0) {
+            setSeoData(response.data.data.attributes.seo[0]); // Access the first element of the SEO array
+          }
+        }
+        setLoading(false); // Stop loading after data is fetched
+      } catch (error) {
+        console.error("Error fetching data from Strapi", error);
+        setError(error); // Capture any errors
+        setLoading(false); // Stop loading in case of error
+      }
+    };
+    fetchData();
   }, []);
+
+  // Dynamically set the meta title and description once the seoData is fetched
+  useEffect(() => {
+    if (seoData) {
+      console.log("SEO Data received:", seoData); // Log seoData for debugging
+      document.title = seoData.metaTitle || "Default Title";
+     
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seoData.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seoData.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
 
   if (loading) {
     return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
   }
 
   // Function to get image URL or return a fallback if needed
@@ -80,12 +122,19 @@ export default function DiabetesCareComponent() {
 
   return (
     <div>
-            <ReddingNavbarComponent />
-            {/* First Section */}
+      {/* SEO Integration */}
+      <Head>
+        <title>{seoData?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.metaDescription || "Default Description"} />
+      </Head>
+
+      <ReddingNavbarComponent />
+
+      {/* First Section */}
       <div className="sectionbg">
         <Container>
           <Row className="py-5">
-            <Col md="5">
+            <Col md="6">
               <h1 className="heading1">{diabetesData?.maincontent[0]?.Heading}</h1>
               <p className="paragram py-2">
                 {diabetesData?.maincontent[0]?.subHeading.split('\n').map((str, index) => (
@@ -93,8 +142,7 @@ export default function DiabetesCareComponent() {
                 ))}
               </p>
             </Col>
-            <Col md="7">
-              {/* Fetch and render the image from id: 84 */}
+            <Col md="6">
               {renderImage(diabetesData?.maincontent[0]?.bannerimg?.data?.attributes, "Diabetes Home Care", 1034, 688)}
             </Col>
           </Row>
@@ -108,7 +156,6 @@ export default function DiabetesCareComponent() {
         <Container>
           <Row className="row3bg py-4">
             <Col md="4">
-              {/* Fetch and render the image from id: 87 */}
               {renderImage(diabetesData?.maincontent[1]?.img?.data?.attributes, "Diabetes Care Service", 595, 780)}
             </Col>
             <Col md="8">
@@ -128,7 +175,6 @@ export default function DiabetesCareComponent() {
               {renderDescription(diabetesData?.maincontent[2]?.description)}
             </Col>
             <Col md="6">
-              {/* Fetch and render the image from id: 86 */}
               {renderImage(diabetesData?.maincontent[2]?.img?.data?.attributes, "Respite Care Service", 626, 525)}
             </Col>
           </Row>
@@ -140,7 +186,6 @@ export default function DiabetesCareComponent() {
         <Container>
           <Row>
             <Col md="6">
-              {/* Fetch and render the image from id: 85 */}
               {renderImage(diabetesData.maincontent[3].image.data.attributes, "Respite Care Service", 595, 780)}
             </Col>
             <Col md="6">
@@ -163,7 +208,6 @@ export default function DiabetesCareComponent() {
               </Button>
             </Col>
             <Col md={6}>
-              {/* Image commented out as per your request */}
               {renderImage(diabetesData?.maincontent[4]?.image?.data?.attributes, "Respite Care Contact", 589, 422)}
             </Col>
           </Row>
@@ -174,6 +218,3 @@ export default function DiabetesCareComponent() {
     </div>
   );
 }
-
-
-// Images need to fetch for this page 

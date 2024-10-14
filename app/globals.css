@@ -74,6 +74,7 @@ body {
 }
 .Awardsec{
   background-color: #e6f2f8;
+  padding: 30px 0;
 }
 .text2city{
   color: #ffffff;
@@ -164,10 +165,14 @@ body {
 .section3subcity {
   background: #2b7495;
 }
+.reddingsection3subcity{
+  background: #2b7495;
+padding: 0 5%;
+}
 .section1subcity {
   background: #fef8f3;
-  padding-bottom: 8% !important;
-  padding-top: 8% !important;
+  padding-bottom: 4% ;
+  padding-top: 5%;
 }
 .subcityheading {
   font-size: 40px;
@@ -260,7 +265,17 @@ body{
   font-weight: 500;
   font-size:18px;
   color: #d81c3f;
-  width:40%;
+  width:85%;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+}
+.crg-btn {
+  background-color: #FFFFFF;
+  border: 0px;
+  font-weight: 500;
+  font-size:18px;
+  color: #d81c3f;
+  width:50%;
+  padding: 10px 0px !important;
   /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
 }
 .caregiversubcitybtn{
@@ -372,6 +387,8 @@ p.formsmalltext {
 }
 .footersection1{
   background-color: #FFFFFF;
+  padding: 30px 0;
+  
 }
 .footersec{
   background-color: #FFFFFF;
@@ -449,7 +466,7 @@ h1{
 }
 .sectionbg{
   background-color: #fef8f3;  padding-top: 4%;
-  padding-bottom: 4%;
+  /* padding-bottom: 3%; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -472,6 +489,8 @@ h1{
   width:50%;
   /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
 }
+
+
 .caregiverbtn:hover{
   background-color: #FFFFFF;
   border: 0px;
@@ -508,11 +527,22 @@ h1{
     line-height: 1.3em;
     /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
     color: #004b66;
-    padding-bottom: 3%;
+    /* padding-bottom: 2%; */
+}
+.heading2sanjose{
+  font-weight: 500;
+    font-size: 34px;
+    line-height: 1.3em;
+    /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
+    color: #004b66;
+  padding-bottom:3%;
 }
 .section3{
   background-color: #FFFFFF;
   padding-bottom: 3%;
+}
+.sanjose-col{
+  padding: 0 3%;
 }
 .contactsecbg {
   width: 100%;
@@ -636,6 +666,9 @@ input::placeholder {
   color: #656363;
 
 }
+textarea.form-control {
+  height: 10px;
+}
 
 .phone-link {
   color: #d81c3f;
@@ -668,9 +701,14 @@ input::placeholder {
   color: #D81C3F;
 }
 .sanjose-banner{
-  padding-right: 10%;
+  padding-right: 5%;
   padding-left: 5%;
 }
+.reddingsubcity-banner{
+  padding-right: 5%;
+  padding-left: 8%;
+}
+
 .Footer1 {
   background-color: #f8f9fa;
   padding: 40px 0;
@@ -918,6 +956,9 @@ font-size: 20px;
   color: #D81C3F; /* Hover color */
   text-decoration: none; /* Prevent underline on hover */
 }
+.reddingservicesbanner{
+  padding: 8% 0 5% 0;
+}
 
 @media only screen and (max-width:767px) {
   .formcoloumcity{
@@ -946,6 +987,9 @@ font-size: 20px;
 .servicecoloumcity  {
   margin-bottom: 30px;
 }
+.reddingsubcity-banner{
+  padding-bottom: 5%;
+}
 .caregivercitybtn{
   font-size: 16px;
   padding: 10px 10px !important;
@@ -968,6 +1012,10 @@ h3.caregivertext{
   margin-top: 30px;
   margin-bottom: 30px;
 }
+body > div > div > div.section3city.py-5{
+  padding-right: 0px !important;
+  padding-left: 0px !important;
+}
 .section4city .col-md-6 img{
   margin-top: 30px;
   margin-bottom: 30px;
@@ -988,7 +1036,9 @@ font-size: 16px;
 padding: 10px 10px !important;
 font-weight: 500;
 }
-
+.sanjose-col{
+  padding: 0 8% !important;
+}
 .formcoloum{
   margin-top: 6%;
   width: 95%;
@@ -1037,6 +1087,11 @@ body > div > div > div:nth-child(6) {
     padding-bottom: 20px !important;
     padding-left: 20px;
     padding-right: 20px;
+}
+body > div > div > div.mainfootersection{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
+  padding-top: 20px;
 }
 body > div > div > div:nth-child(7) > div > div > div:nth-child(2) {
   margin-top: 20px;
@@ -1098,8 +1153,13 @@ body > div > div > div.section1subcity.py-5 > div {
   padding-left: 0px;
   padding-right: 0px !important;
 }
+.section1subcity{
+  padding-top: 20% !important;
 }
-
+}
+.redding-col2{
+  padding: 0 3%;
+}
 ul {
   list-style-type: disc; 
   /* margin-top: -5%; */
@@ -1176,14 +1236,21 @@ a.page_buttonhome__SB1Lw{
 .homebannerimgcol{
   padding-top:8% ;
 }
+.redding-col2{
+  padding: 0 5%;
+}
 img {
   width: 100% !important;  /* Force full width on mobile */
   height: auto !important; /* Maintain aspect ratio */
   /* padding-top: 8%; */
 }
 .Awardsec{
-  padding: 0 20px;
+  padding: 40px 20px;
 }
+body > div > div > div.mainfootersection > div.Awardsec > div > div > div:nth-child(-n+3) > img {
+  padding-top: 30px;
+}
+
 /* .award-image{
   padding:20px 0;
 } */
@@ -1202,7 +1269,7 @@ img {
   }
 }
 .search-col{
-  padding: 5% 2%;
+  padding: 5% 0%;
 }
 .service-areas-maincol{
   padding: 15% 8% 20% 8%;
@@ -1214,7 +1281,7 @@ img {
   padding: 15% 8% 10% 8%;
 }
 .findlocation{
-  padding: 15% 5% 10% 5%;
+  padding: 15% 3% 10% 3%;
 }
 .section1bannersanjose{
   padding: 10% 0 5% 0;
@@ -1237,8 +1304,8 @@ padding: 5%;
   padding-top: 5%;
 }
 .sectionbg{
-  margin-top: -15%;
-  padding: 10% 5% 5% 5%;
+  /* margin-top: -15%; */
+  padding: 10% 3% 5% 3%;
 }
 .section3{
   padding: 10% 5% 5% 5%;
@@ -1250,5 +1317,20 @@ padding: 5%;
 .section4sub{
   margin-top: 5%;
 }
+.contactus-search{
+  padding-left: 0px !important;
+  padding-right: 0px !important;
 }
- 
+}
+@media only screen and (min-width: 992px) {
+  .section1subcity {
+    padding-bottom: 3% ;
+    padding-top: 7% !important;
+}
+body{
+  background-color: white;
+}
+}
+.services-banner{
+  padding: 3% 0 0 0;
+}

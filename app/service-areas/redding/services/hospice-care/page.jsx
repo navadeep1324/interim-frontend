@@ -8,18 +8,36 @@ import { Button } from "react-bootstrap";
 import Image from "next/image";
 import CaregivertodayComponent from "../../../../caregiverstodayComponent";
 import ServicepageFooter from "../../../../servicepageFooter";
+import Head from "next/head";
 
 export default function HospiceCareComponent() {
   const [data, setData] = useState(null);
+  const [seoData, setSeoData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/hospice-care?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/hospice-care?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
-      .then(data => {
-        console.log("Data fetched: ", data); // Check the full response
-        setData(data.data.attributes);
+      .then(responseData => {
+        console.log("Full API Response: ", responseData); // Log full API response for debugging
+
+        if (responseData && responseData.data && responseData.data.attributes) {
+          // Main content data
+          setData(responseData.data.attributes);
+          console.log("Main content:", responseData.data.attributes);
+
+          // Handle SEO data (check if it's an array or direct object)
+          if (responseData.data.attributes.seo && Array.isArray(responseData.data.attributes.seo)) {
+            setSeoData(responseData.data.attributes.seo[0]); // Access the first element
+            console.log("SEO Data:", responseData.data.attributes.seo);
+          } else {
+            console.warn("No SEO data found");
+          }
+        } else {
+          console.error("No valid data returned from API");
+        }
+
         setLoading(false);
       })
       .catch(error => {
@@ -38,33 +56,32 @@ export default function HospiceCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `https://admin.interimhc.com${imageData.url}`;
+    return `https://admin.interimhc.com${imageData?.url || ""}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {
-    if (imageData) {
-      return (
-        <Image
-          src={getImageUrl(imageData)}
-          alt={alt}
-          width={width}
-          height={height}
-          onError={(e) => console.error('Error loading image:', e)}
-        />
-      );
-    }
-    return null;
+    if (!imageData) return null;
+    const imageUrl = getImageUrl(imageData);
+    return (
+      <Image
+        src={imageUrl}
+        alt={alt}
+        width={width}
+        height={height}
+        onError={(e) => console.error('Error loading image:', e)}
+      />
+    );
   };
 
   const renderDescription = (description) => {
-    return description.map((desc, index) => {
+    return description?.map((desc, index) => {
       if (desc.type === "paragraph") {
         return <p key={index} className="py-3">{desc.children[0]?.text}</p>;
       } else if (desc.type === "list") {
         return (
           <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-            {desc.children.map((item, index) => (
-              <li key={index}>{item.children[0]?.text}</li>
+            {desc.children.map((item, idx) => (
+              <li key={idx}>{item.children[0]?.text}</li>
             ))}
           </ul>
         );
@@ -75,22 +92,31 @@ export default function HospiceCareComponent() {
 
   return (
     <div>
-            <ReddingNavbarComponent />
-            {/* First Section */}
+      {/* SEO Integration */}
+      <Head>
+        <title>{seoData?.metaTitle || "Hospice Care Services"}</title>
+        <meta name="description" content={seoData?.metaDescription || "Providing compassionate hospice care services for your loved ones."} />
+        {seoData?.keywords && <meta name="keywords" content={seoData.keywords} />}
+        {seoData?.metaRobots && <meta name="robots" content={seoData.metaRobots} />}
+        {seoData?.canonicalURL && <link rel="canonical" href={seoData.canonicalURL} />}
+      </Head>
+
+      <ReddingNavbarComponent />
+
+      {/* Main Content */}
       <div className="sectionbg">
         <Container>
           <Row className="py-5">
             <Col md="5">
-              <h1 className="heading1">{data.maincontent[0].Heading}</h1>
+              <h1 className="heading1">{data?.maincontent?.[0]?.Heading}</h1>
               <p className="paragram py-2">
-                {data.maincontent[0].subHeading.split('\n').map((str, index) => (
+                {data?.maincontent?.[0]?.subHeading.split('\n').map((str, index) => (
                   <span key={index}>{str}<br /></span>
                 ))}
               </p>
             </Col>
             <Col md="7">
-              {/* Fetch and render the image from id: 80 */}
-              {renderImage(data.maincontent[0].bannerimg?.data?.attributes, "Hospice Home Care", 1034, 688)}
+              {renderImage(data?.maincontent?.[0]?.bannerimg?.data?.attributes, "Hospice Home Care", 1034, 688)}
             </Col>
           </Row>
         </Container>
@@ -103,12 +129,11 @@ export default function HospiceCareComponent() {
         <Container>
           <Row className="row3bg py-4">
             <Col md="4">
-              {/* Fetch and render the image from id: 82 */}
-              {renderImage(data.maincontent[1].img?.data?.attributes, "Hospice Care Service", 595, 780)}
+              {renderImage(data?.maincontent?.[1]?.img?.data?.attributes, "Hospice Care Service", 595, 780)}
             </Col>
             <Col md="8">
-              <h2 className="heading2">{data.maincontent[1].Heading}</h2>
-              {renderDescription(data.maincontent[1].description)}
+              <h2 className="heading2">{data?.maincontent?.[1]?.Heading}</h2>
+              {renderDescription(data?.maincontent?.[1]?.description)}
             </Col>
           </Row>
         </Container>
@@ -119,12 +144,11 @@ export default function HospiceCareComponent() {
         <Container>
           <Row>
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[2].Heading}</h2>
-              {renderDescription(data.maincontent[2].description)}
+              <h2 className="heading2">{data?.maincontent?.[2]?.Heading}</h2>
+              {renderDescription(data?.maincontent?.[2]?.description)}
             </Col>
             <Col md="6">
-              {/* Fetch and render the image from id: 81 */}
-              {renderImage(data.maincontent[2].img?.data?.attributes, "Respite Care Service", 626, 525)}
+              {renderImage(data?.maincontent?.[2]?.img?.data?.attributes, "Respite Care Service", 626, 525)}
             </Col>
           </Row>
         </Container>
@@ -135,15 +159,11 @@ export default function HospiceCareComponent() {
         <Container>
           <Row>
             <Col md="6">
-              {/* Log to check if img exists */}
-              {console.log("maincontent[3]:", data.maincontent[3])}
-              
-              {/* Fetch and render the image from id: 83 */}
-              {renderImage(data.maincontent[3].image.data.attributes, "Respite Care Service", 595, 780)}
+              {renderImage(data?.maincontent?.[3]?.image?.data?.attributes, "Respite Care Service", 595, 780)}
             </Col>
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[3]?.Heading}</h2>
-              {renderDescription(data.maincontent[3]?.description)}
+              <h2 className="heading2">{data?.maincontent?.[3]?.Heading}</h2>
+              {renderDescription(data?.maincontent?.[3]?.description)}
             </Col>
           </Row>
         </Container>
@@ -154,15 +174,14 @@ export default function HospiceCareComponent() {
         <Container>
           <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
             <Col md={6}>
-              <h2 className="heading2">{data.maincontent[4]?.Heading}</h2>
-              {renderDescription(data.maincontent[4]?.description)}
+              <h2 className="heading2">{data?.maincontent?.[4]?.Heading}</h2>
+              {renderDescription(data?.maincontent?.[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 530-221-1212">
                 Contact Us
               </Button>
             </Col>
             <Col md={6}>
-              {/* Fetch and render the image from id: 81 */}
-              {renderImage(data.maincontent[4]?.image?.data?.attributes, "Hospice Care Contact", 589, 422)}
+              {renderImage(data?.maincontent?.[4]?.image?.data?.attributes, "Hospice Care Contact", 589, 422)}
             </Col>
           </Row>
         </Container>
@@ -170,7 +189,5 @@ export default function HospiceCareComponent() {
 
       <ServicepageFooter />
     </div>
-    
   );
-  
 }
