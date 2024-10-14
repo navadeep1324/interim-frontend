@@ -97,7 +97,7 @@ export default function MontgomeryCreekComponent() {
       <div>
         <ReddingservicesComponent />
       </div>
-      <CaregiverCityComponent />
+      {/* <CaregiverCityComponent /> */}
 
       {/* Section 3 - Elder Care */}
       <div>

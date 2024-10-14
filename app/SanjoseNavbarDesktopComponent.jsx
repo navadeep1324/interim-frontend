@@ -1,4 +1,3 @@
-// SanjoseNavbarDesktopComponent.jsx
 "use client";
 import React, { useState } from 'react';
 import Container from 'react-bootstrap/Container';
@@ -22,8 +21,8 @@ export default function SanjoseNavbarDesktopComponent() {
     setShowDropdown(false);
   };
 
-  // Handle click to redirect to services page
-  const handleServiceClick = (e) => {
+  // Handle click to redirect to services page on click of "Services" text
+  const handleServiceTextClick = (e) => {
     e.preventDefault();
     window.location.href = "/service-areas/san-jose/services";
   };
@@ -47,7 +46,6 @@ export default function SanjoseNavbarDesktopComponent() {
               show={showDropdown}
               onMouseEnter={handleMouseEnter} // Hover to open dropdown
               onMouseLeave={handleMouseLeave} // Leave to close dropdown
-              onClick={handleServiceClick} // Redirect to services page on click
             >
               <NavDropdown.Item href="/service-areas/san-jose/services/alzheimers-dementia-care" className='navLinkTitles'>Alzheimers Dementia Care</NavDropdown.Item>
               <NavDropdown.Item href="/service-areas/san-jose/services/companion-care" className='navLinkTitles'>Companion Care</NavDropdown.Item>
@@ -56,6 +54,9 @@ export default function SanjoseNavbarDesktopComponent() {
               <NavDropdown.Item href="/service-areas/san-jose/services/veteran-care" className='navLinkTitles'>Veteran Care</NavDropdown.Item>
               <NavDropdown.Item href="/service-areas/san-jose/services/24-hour-care" className='navLinkTitles'>24 Hour Care</NavDropdown.Item>
             </NavDropdown>
+
+            {/* Separate click handler for "Services" text */}
+            {/* <Nav.Link href="/service-areas/san-jose/services" className="navLinkTitles px-3" onClick={handleServiceTextClick}>Services</Nav.Link> */}
 
             <Nav.Link href="https://www.interimhealthcare.com/careers" className="navLinkTitles px-3" target="_blank">Careers</Nav.Link>
             <Nav.Link href="/contact-us" className="navLinkTitles px-3">Contact Us</Nav.Link>

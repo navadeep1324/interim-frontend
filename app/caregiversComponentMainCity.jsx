@@ -41,7 +41,7 @@ export default function CaregiverCityComponent() {
           </Col>
           <Col md="4" className="numbercol">
             <Button
-              className="caregivercitybtn py-3"
+              className="caregivercitybtn crg-btn py-3"
               href={btn.isExternal ? btn.url : `tel:+1 408-286-6888`} // Adjusted based on whether the link is external
               target={btn.isExternal ? "_blank" : "_self"} // Open in new tab if external
             >

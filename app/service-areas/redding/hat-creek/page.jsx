@@ -99,7 +99,7 @@ export default function HatCreekComponent() {
       <div>
         <ReddingservicesComponent />
       </div>
-      <CaregiverCityComponent />
+      {/* <CaregiverCityComponent /> */}
 
       {/* Section 3 - Senior In-Home Care */}
       <div>

@@ -12,22 +12,45 @@ import CitypageFooter from "../../../CitypageFooter";
 import SanJoseservicesComponent from "../../../sanjoseservicecomponent";
 import SanJoseFooter from "../../../footersanjose";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
-
+import Head from "next/head";
 export default function SanJoseCupertinoComponent() {
     const [cupertinoData, setCupertinoData] = useState(null);
-
+    const [seoData, setSeoData] = useState(null);
     useEffect(() => {
         async function fetchCupertinoData() {
             const response = await fetch(
-                "https://admin.interimhc.com/api/cupertino-cas?populate[maincontent][populate]=*"
+                "https://admin.interimhc.com/api/cupertino-cas?populate[maincontent][populate]=*&populate[seo]=*"
             );
             const data = await response.json();
             console.log(data); // For debugging
             setCupertinoData(data.data[0].attributes.maincontent);
+            setSeoData(data.data[0].attributes.seo);
         }
 
         fetchCupertinoData();
     }, []);
+
+    // Dynamically set the meta title and description once the seoData is fetched
+useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
 
     if (!cupertinoData) {
         return <div>Loading...</div>;
@@ -67,7 +90,7 @@ export default function SanJoseCupertinoComponent() {
             <div className="section1subcity py-5">
                 <Container fluid className="px-5">
                     <Row>
-                        <Col md={8} className="sanjose-banner">
+                        <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{cupertinoData[0]?.Heading}</h2>
                             <p className="py-3">{cupertinoData[0]?.subHeading}</p>
                             <p>
@@ -79,7 +102,7 @@ export default function SanJoseCupertinoComponent() {
                             </p>
                             <SubcityCaregiversComponent />
                         </Col>
-                        <Col md={4} className="formcoloumcity">
+                        <Col md={4} className="formcoloumcity mx-5">
                             <FormComponent />
                         </Col>
                     </Row>
@@ -90,7 +113,7 @@ export default function SanJoseCupertinoComponent() {
             <div>
                 <SanJoseservicesComponent />
             </div>
-            <CaregiverCityComponent />
+            {/* <CaregiverCityComponent /> */}
 
         {/* Section rendering description with links */}
         <div>
@@ -201,7 +224,10 @@ export default function SanJoseCupertinoComponent() {
                     </Row>
                 </Container>
             </div>
-
+<Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
             <SanJoseFooter />
         </div>
     );

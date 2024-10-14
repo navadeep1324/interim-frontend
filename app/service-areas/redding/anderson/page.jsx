@@ -87,7 +87,7 @@ export default function SanJoseCupertinoComponent() {
       <ReddingservicesComponent />
       
       <div>
-        <CaregiverCityComponent />
+        {/* <CaregiverCityComponent /> */}
         <Container fluid>
           <Row className="py-5">
             <Col md={6}>

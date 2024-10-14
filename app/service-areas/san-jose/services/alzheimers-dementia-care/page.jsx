@@ -16,21 +16,23 @@ import ServicepageFooter from "../../../../servicepageFooter";
 import SanjoseNavbarComponent from "../../../../sanjosenavcomponent";
 import SanJoseserviceFooter from "../../../../footerservicesanjose";
 import CaregiverCityComponent from "../../../../caregiversComponentMainCity";
+import Head from "next/head";
 
 export default function AlzheimerMainComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-
+  const [seoData, setSeoData] = useState(null);
   useEffect(() => {
     async function fetchData() {
       try {
-        const res = await fetch('https://admin.interimhc.com/api/sanjose-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*');
+        const res = await fetch('https://admin.interimhc.com/api/sanjose-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*&populate[seo]=*');
         const result = await res.json();
 
         // Check if the maincontent exists in the response
         if (result?.data[0]?.attributes?.maincontent) {
           setData(result.data[0].attributes.maincontent);
+          setSeoData(result.data[0]?.attributes?.seo);
         } else {
           throw new Error("Main content not found");
         }
@@ -44,6 +46,27 @@ export default function AlzheimerMainComponent() {
 
     fetchData();
   }, []);
+// Dynamically set the meta title and description once the seoData is fetched
+useEffect(() => {
+  if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+    const seo = seoData[0]; // Access the first element of the seoData array
+    console.log("SEO Data received:", seo); // Log seoData for debugging
+    document.title = seo.metaTitle || "Default Title";
+    
+    // Set meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+    } else {
+      const newMetaDescription = document.createElement("meta");
+      newMetaDescription.name = "description";
+      newMetaDescription.content = seo.metaDescription || "Default Description";
+      document.head.appendChild(newMetaDescription);
+    }
+  } else {
+    console.log("No SEO Data received"); // Log if seoData is not available
+  }
+}, [seoData]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -83,7 +106,7 @@ export default function AlzheimerMainComponent() {
               <h1 className="heading1">{data[0]?.Heading || "Default Heading"}</h1>
               <p className="paragrambold py-2">{data[0]?.subHeading?.split('\n')[0]}</p>
               <p className="py-4">{data[0]?.subHeading?.split('\n')[1]}</p>
-              <p>Reach us today at <a href="tel:+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!</p>
+              <p>Reach us today at <a href="tel:408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!</p>
 
             </Col>
             <Col md="6">
@@ -227,7 +250,10 @@ If you notice any of these signs in your beloved elders, then it might be the ri
           </Row>
         </Container>
       </div>
-
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
       <SanJoseserviceFooter />
     </div>
   );

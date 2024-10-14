@@ -96,7 +96,7 @@ export default function BellaVistaComponent() {
         <ReddingservicesComponent />
       </div>
 
-      <CaregiverCityComponent />
+      {/* <CaregiverCityComponent /> */}
 
       {/* Section 3 - Growing Demand */}
       <div>

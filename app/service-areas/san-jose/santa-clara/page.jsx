@@ -10,16 +10,17 @@ import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import SanJoseservicesComponent from "../../../sanjoseservicecomponent";
 import SanJoseFooter from "../../../footersanjose";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
-
+import Head from "next/head";
 export default function SanJoseCupertinoComponent() {
     const [santaClaraData, setSantaClaraData] = useState(null);
-
+    const [seoData, setSeoData] = useState(null);
     useEffect(() => {
         const fetchSantaClaraData = async () => {
             try {
-                const response = await fetch('https://admin.interimhc.com/api/santa-clara-cas?populate[maincontent][populate]=*');
+                const response = await fetch('https://admin.interimhc.com/api/santa-clara-cas?populate[maincontent][populate]=*&populate[seo]=*');
                 const data = await response.json();
                 setSantaClaraData(data.data[0].attributes);
+                setSeoData(data.data[0]?.attributes?.seo);
             } catch (error) {
                 console.error('Failed to fetch data:', error);
             }
@@ -27,6 +28,29 @@ export default function SanJoseCupertinoComponent() {
 
         fetchSantaClaraData();
     }, []);
+
+    // Dynamically set the meta title and description once the seoData is fetched
+    useEffect(() => {
+        if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+          const seo = seoData[0]; // Access the first element of the seoData array
+          console.log("SEO Data received:", seo); // Log seoData for debugging
+          document.title = seo.metaTitle || "Default Title";
+          
+          // Set meta description
+          const metaDescription = document.querySelector('meta[name="description"]');
+          if (metaDescription) {
+            metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+          } else {
+            const newMetaDescription = document.createElement("meta");
+            newMetaDescription.name = "description";
+            newMetaDescription.content = seo.metaDescription || "Default Description";
+            document.head.appendChild(newMetaDescription);
+          }
+        } else {
+          console.log("No SEO Data received"); // Log if seoData is not available
+        }
+      }, [seoData]);
+
 
     if (!santaClaraData) {
         return <div>Loading...</div>;
@@ -81,7 +105,7 @@ export default function SanJoseCupertinoComponent() {
             <div className="section1subcity py-5">
                 <Container fluid className="px-5">
                     <Row>
-                        <Col md={8} className="sanjose-banner">
+                        <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{bannerHero.Heading}</h2>
                             <p className="py-3">{bannerHero.subHeading}</p>
                             <p>Call us today at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> for a free consultation for your loved one.</p>
@@ -94,7 +118,7 @@ export default function SanJoseCupertinoComponent() {
                 </Container>
             </div>
             <SanJoseservicesComponent />
-            <CaregiverCityComponent />
+            {/* <CaregiverCityComponent /> */}
 
             {/* First Image and Text Section */}
             <Container fluid>
@@ -224,7 +248,10 @@ export default function SanJoseCupertinoComponent() {
                     </Row>
                 </Container>
             </div>
-
+<Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
             <SanJoseFooter />
         </div>
     );

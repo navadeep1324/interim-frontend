@@ -99,7 +99,7 @@ export default function PaloCedroComponent() {
       <div>
         <ReddingservicesComponent />
       </div>
-      <CaregiverCityComponent />
+      {/* <CaregiverCityComponent /> */}
 
       {/* Section 3 - Senior Care */}
       <div>

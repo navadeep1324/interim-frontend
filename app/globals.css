@@ -268,6 +268,16 @@ body{
   width:85%;
   /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
 }
+.crg-btn {
+  background-color: #FFFFFF;
+  border: 0px;
+  font-weight: 500;
+  font-size:18px;
+  color: #d81c3f;
+  width:50%;
+  padding: 10px 0px !important;
+  /* font-family: 'Rubik', Helvetica, Arial, Lucida, sans-serif; */
+}
 .caregiversubcitybtn{
   background-color: #FFFFFF;
   border: 0px;
@@ -656,6 +666,9 @@ input::placeholder {
   color: #656363;
 
 }
+textarea.form-control {
+  height: 10px;
+}
 
 .phone-link {
   color: #d81c3f;
@@ -688,7 +701,7 @@ input::placeholder {
   color: #D81C3F;
 }
 .sanjose-banner{
-  padding-right: 10%;
+  padding-right: 5%;
   padding-left: 5%;
 }
 .reddingsubcity-banner{

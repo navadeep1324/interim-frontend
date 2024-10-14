@@ -99,7 +99,7 @@ export default function CottonwoodComponent() {
       <div>
         <ReddingservicesComponent />
       </div>
-      <CaregiverCityComponent />
+      {/* <CaregiverCityComponent /> */}
 
       {/* Section 3 - Expanding Need of Home Care */}
       <div>

@@ -21,19 +21,23 @@ import CarsonNavbarComponent from "../../carsonnavcomponent";
 import CaregiverCityComponent from "../../caregiversComponentMainCity";
 import CarsonserviceComponent from "../../carsonservicecomponent";
 import CarsonFooter from "../../footercarson";
+import Head from "next/head";
 
 
 export default function carsonComponent() {
         const [data, setData] = useState(null); // State for API data
         const [loading, setLoading] = useState(true); // Loading state
         const [error, setError] = useState(null); // Error state
+        const [seoData, setSeoData] = useState(null);
+
       
         useEffect(() => {
-          fetch("https://admin.interimhc.com/api/carsons?populate[maincontent][populate]=*")
+          fetch("https://admin.interimhc.com/api/carsons?populate[maincontent][populate]=*&populate[seo]=*")
             .then((response) => response.json())
             .then((responseData) => {
               if (responseData?.data?.[0]?.attributes?.maincontent) {
                 setData(responseData.data[0].attributes.maincontent);
+                setSeoData(responseData.data[0].attributes.seo);
               } else {
                 throw new Error("Invalid data structure received");
               }
@@ -45,6 +49,28 @@ export default function carsonComponent() {
               setLoading(false);
             });
         }, []);
+        // Dynamically set the meta title and description once the seoData is fetched
+   useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
+
       
         if (loading) {
           return <div>Loading...</div>;
@@ -91,13 +117,13 @@ export default function carsonComponent() {
 </Row>
 </Container>
 </div>
-<div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+{/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
 <div>
 <CarsonserviceComponent/>
 </div>
 <div className="sectioncaregiversbg">
-< CaregiverCityComponent/>
+{/* < CaregiverCityComponent/> */}
 </div>
 <div className="section2city">
     <Container fluid>
@@ -236,6 +262,10 @@ export default function carsonComponent() {
         </Row>
     </Container>
 </div>
+<Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
 <CarsonFooter/>
 </div>
     );

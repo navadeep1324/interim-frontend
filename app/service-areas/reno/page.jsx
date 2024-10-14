@@ -15,24 +15,50 @@ import RenoservicesComponent from "../../renoservicecomponent";
 import CaregiverCityComponent from "../../caregiversComponentMainCity";
 import RenoFooter from "../../footerreno";
 import RenoNavbarComponent from "../../renonavcomponent";
+import Head from "next/head";
 
 export default function RenoComponent() {
   const [mainContent, setMainContent] = useState(null);
+  const [seoData, setSeoData] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
         const response = await fetch(
-          'https://admin.interimhc.com/api/renos?populate[maincontent][populate]=*'
+          'https://admin.interimhc.com/api/renos?populate[maincontent][populate]=*&populate[seo]=*'
         );
         const data = await response.json();
-        setMainContent(data.data[0].attributes.maincontent);
+        setMainContent(data.data[0]?.attributes?.maincontent);
+        setSeoData(data.data[0].attributes.seo); 
       } catch (error) {
         console.error('Error fetching Strapi data:', error);
       }
     }
     fetchData();
   }, []);
+
+  // Dynamically set the meta title and description once the seoData is fetched
+  useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
+
 
   if (!mainContent) return <div>Loading...</div>;
   // Safely find the component related to the cities section
@@ -46,25 +72,25 @@ export default function RenoComponent() {
       {/* Section 1 - Banner */}
       <div className="section1banner">
         <Container>
-          <Row className="py-3">
-            <Col md={6}>
+          <Row className="py-3" >
+            <Col md={7} className="py-5" style={{paddingRight:"4%"}}>
               <h1>{mainContent[0]?.Heading || "Senior In Home Care in Reno, Nevada"}</h1>
-              <p className="py-3">{mainContent[0]?.subHeading || "Leaving seniors alone at home is never easy. Choose Interim Healthcare, Reno, to provide the care and companionship they need. With us by their side, they can lead a quality life with uncompromised care."}</p>
-              <p>Call us today at +1 775-335-3155 to learn about our caregiving services.</p>
+              <p className="py-5">{mainContent[0]?.subHeading || "Leaving seniors alone at home is never easy. Choose Interim Healthcare, Reno, to provide the care and companionship they need. With us by their side, they can lead a quality life with uncompromised care."}</p>
+              <p>Call us today at <a href="tel:775-335-3155" className="phone-link">+1 775-335-3155</a> to learn about our caregiving services.</p>
               {/* <div className="flex py-3">
                 <div className="iconhome"><i className="bi bi-geo-alt"></i></div>
                 <div className="icontext px-2"><b>Serving:</b></div>
                 <div className="citynames">Sparks | Minden | Gardnerville | Genoa | Dayton | Mound House</div>
               </div> */}
             </Col>
-            <Col md={6} className="formcoloumcity">
+            <Col md={5} className="formcoloumcity">
               <FormComponent />
             </Col>
           </Row>
         </Container>
       </div>
       
-      <div style={{ backgroundColor: '#015979', height: '145px' }}></div>
+      {/* <div style={{ backgroundColor: '#015979', height: '145px' }}></div> */}
 
       {/* Section 2 - Services */}
       <div>
@@ -73,7 +99,7 @@ export default function RenoComponent() {
 
       {/* Section 3 - Caregivers */}
       <div className="sectioncaregiversbg">
-        <CaregiverCityComponent />
+        {/* <CaregiverCityComponent /> */}
       </div>
 
       {/* Section 4 - Left Image, Right Content */}
@@ -209,7 +235,10 @@ export default function RenoComponent() {
 
       {/* Section 9 - Footer Cities */}
     
-
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
       <RenoFooter/>
     </div>
   );

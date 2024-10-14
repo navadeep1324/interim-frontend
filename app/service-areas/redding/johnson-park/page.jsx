@@ -99,7 +99,7 @@ export default function JohnsonParkComponent() {
       <div>
         <ReddingservicesComponent />
       </div>
-      <CaregiverCityComponent />
+      {/* <CaregiverCityComponent /> */}
 
       {/* Section 3 - Demand for Senior Home Care */}
       <div>

@@ -11,18 +11,21 @@ import GrantpassfooterComponent from "../../../../footerservicegreantspass";
 import GrantpassNavComponent from "../../../../grantspassnavcomponent";
 import GrassValleyNavbarComponent from "../../../../grassvalleynavcomponent";
 import GrassValleyFooter from "../../../../footerservicegrssvalley";
+import Head from "next/head";
 
 export default function HourcareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [seoData, setSeoData] = useState(null);
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/grass-valley-24-hour-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/grass-valley-24-hour-cares?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
       .then(responseData => {
         if (responseData && responseData.data && responseData.data[0]) {
           setData(responseData.data[0].attributes);
+          setSeoData(responseData.data[0]?.attributes?.seo);
         }
         setLoading(false);
       })
@@ -32,7 +35,27 @@ export default function HourcareComponent() {
         setLoading(false);
       });
   }, []);
-
+// Dynamically set the meta title and description once the seoData is fetched
+useEffect(() => {
+  if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+    const seo = seoData[0]; // Access the first element of the seoData array
+    console.log("SEO Data received:", seo); // Log seoData for debugging
+    document.title = seo.metaTitle || "Default Title";
+    
+    // Set meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+    } else {
+      const newMetaDescription = document.createElement("meta");
+      newMetaDescription.name = "description";
+      newMetaDescription.content = seo.metaDescription || "Default Description";
+      document.head.appendChild(newMetaDescription);
+    }
+  } else {
+    console.log("No SEO Data received"); // Log if seoData is not available
+  }
+}, [seoData]);
   if (loading) {
     return <div>Loading...</div>;
   }
@@ -169,7 +192,10 @@ export default function HourcareComponent() {
           </Row>
         </Container>
       </div>
-
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
       <GrassValleyFooter />
     </div>
   );

@@ -10,17 +10,20 @@ import Image from "next/image";
 import SanJoseservicesComponent from "../../../sanjoseservicecomponent";
 import SanJoseFooter from "../../../footersanjose";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
-
+import Head from "next/head";
 export default function LosAltosComponent() {
     const [data, setData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [seoData, setSeoData] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             try {
-                const response = await fetch("https://admin.interimhc.com/api/los-altos-californias?populate[maincontent][populate]=*");
+                const response = await fetch("https://admin.interimhc.com/api/los-altos-californias?populate[maincontent][populate]=*&populate[seo]=*");
                 const result = await response.json();
                 setData(result.data);
+                setSeoData(result.data[0]?.attributes?.seo);
+
             } catch (error) {
                 console.error("Error fetching data:", error);
             } finally {
@@ -30,7 +33,27 @@ export default function LosAltosComponent() {
 
         fetchData();
     }, []);
-
+// Dynamically set the meta title and description once the seoData is fetched
+useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
     if (loading) return <p>Loading...</p>;
     if (!data) return <p>No data available</p>;
 
@@ -74,7 +97,7 @@ export default function LosAltosComponent() {
             <div className="section1subcity py-5">
                 <Container fluid className="px-5">
                     <Row>
-                        <Col md={8} className="sanjose-banner">
+                        <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{mainContent[0]?.Heading}</h2>
                             <p className="py-3">{mainContent[0]?.subHeading}</p>
                             <p>For a quick consultation, give us a call at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> and let us help you with the right care plan!</p>
@@ -88,7 +111,7 @@ export default function LosAltosComponent() {
             </div>
             
             <SanJoseservicesComponent />
-            <CaregiverCityComponent />
+            {/* <CaregiverCityComponent /> */}
 
             {/* Start of components.left-img-right-content component */}
             <div className="section-left-img-right-content py-5">
@@ -205,7 +228,10 @@ export default function LosAltosComponent() {
                     </Row>
                 </Container>
             </div>
-
+            <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
             <SanJoseFooter />
         </div>
     );
