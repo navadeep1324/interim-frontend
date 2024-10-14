@@ -10,7 +10,7 @@ import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import Cupertinomain from "/public/images/Cupertinomain.png";
 import Image from "next/image";
 import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/services5img.png";
+import Cupertino2 from "/public/images/Services5img.png";
 import Button from 'react-bootstrap/Button';
 import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
