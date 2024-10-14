@@ -6,24 +6,24 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
-import GrantpassfooterComponent from "../../../../footerservicegreantspass";
-import MedfordNavbarComponent from "../../../../medfordnavcomponent";
-import MedfordFooter from "../../../../footerservicemedford";
-import RenoNavbarComponent from "../../../../renonavcomponent";
+import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
 import RenoFooter from "../../../../footerservicereno";
+import RenoNavbarComponent from "../../../../renonavcomponent";
+import Head from "next/head"; // Include Head for SEO
 
 export default function HourcareComponent() {
   const [data, setData] = useState(null);
+  const [seoData, setSeoData] = useState(null); // Add state for SEO data
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/reno-24-hour-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/reno-24-hour-cares?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
       .then(responseData => {
         if (responseData && responseData.data && responseData.data[0]) {
           setData(responseData.data[0].attributes);
+          setSeoData(responseData.data[0].attributes?.seo); // Set SEO data
         }
         setLoading(false);
       })
@@ -33,6 +33,24 @@ export default function HourcareComponent() {
         setLoading(false);
       });
   }, []);
+
+  useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the SEO data array
+      document.title = seo.metaTitle || "Default Title"; // Dynamically set the page title
+
+      // Set meta description dynamically
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    }
+  }, [seoData]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -63,7 +81,6 @@ export default function HourcareComponent() {
     ) : null;
   };
 
-  // Render paragraphs and unordered lists
   const renderDescription = (description) => {
     return description?.map((para, index) => {
       if (para.type === 'list') {
@@ -87,19 +104,24 @@ export default function HourcareComponent() {
 
   return (
     <div>
-      <RenoNavbarComponent/>
+      <RenoNavbarComponent />
+
+      {/* Inject the SEO meta tags using Head */}
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
 
       {/* First Section */}
       <div className="sectionbg">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
+          <Row className="py-5 middlealign">
+            <Col md="6">
               <h1 className="heading1">{data.maincontent[0]?.Heading || 'Heading not available'}</h1>
               <p className="py-2">{data.maincontent[0]?.subHeading || 'Subheading not available'}</p>
               <p>Contact us today at <a href="tel:+1 75-335-315" className="phone-link">+1 75-335-315</a> and let us offer compassionate and personalized care.</p>
-
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Pioneers In Personalized 24 Hour Care", 1034, 688)}
             </Col>
           </Row>
@@ -116,7 +138,7 @@ export default function HourcareComponent() {
               {renderImage(data.maincontent[1]?.img?.data?.attributes, "Enriching Lives with Holistic Care", 595, 780)}
             </Col>
             <Col md="8">
-              <h2 className="heading2">{data.maincontent[1]?.Heading || 'Heading not available'}</h2><br></br>
+              <h2 className="heading2">{data.maincontent[1]?.Heading || 'Heading not available'}</h2>
               {renderDescription(data.maincontent[1]?.description)}
             </Col>
           </Row>
@@ -128,7 +150,7 @@ export default function HourcareComponent() {
         <Container>
           <Row className="d-flex align-items-center g-5">
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[2]?.Heading || 'Heading not available'}</h2><br></br>
+              <h2 className="heading2">{data.maincontent[2]?.Heading || 'Heading not available'}</h2>
               {renderDescription(data.maincontent[2]?.description)}
             </Col>
             <Col md="6">
@@ -146,7 +168,7 @@ export default function HourcareComponent() {
               {renderImage(data.maincontent[3]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
             </Col>
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[3]?.Heading || 'Heading not available'}</h2><br></br>
+              <h2 className="heading2">{data.maincontent[3]?.Heading || 'Heading not available'}</h2>
               {renderDescription(data.maincontent[3]?.description)}
             </Col>
           </Row>

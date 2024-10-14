@@ -6,20 +6,24 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
+import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
 import ServicepageFooter from "../../../../servicepageFooter";
 import ReddingNavbarComponent from "../../../../reddingnavcomponent";
+import Head from "next/head";
 
 export default function HourcareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [seoData, setSeoData] = useState(null);
+
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/twenty-four-hour-home-care?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/twenty-four-hour-home-care?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
       .then(data => {
         setData(data.data.attributes);
+        setSeoData(data.data?.attributes?.seo);
         setLoading(false);
       })
       .catch(error => {
@@ -28,6 +32,27 @@ export default function HourcareComponent() {
         setLoading(false);
       });
   }, []);
+  // Dynamically set the meta title and description once the seoData is fetched
+  useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received"); // Log if seoData is not available
+    }
+  }, [seoData]);
 
   if (loading) {
     return <div>Loading...</div>;
@@ -79,16 +104,16 @@ export default function HourcareComponent() {
   return (
     <div>
             <ReddingNavbarComponent />
-        <div className="section1banner">
+        <div className="sectionbg">
         <Container>
-          <Row className="py-5 middlealign g-5">
-            <Col md="6">
+          <Row className="services-banner middlealign">
+            <Col md="5">
               <h1 className="heading1">{data.maincontent[0].Heading}</h1><br></br>
               <p className="py-2">{data.maincontent[0].subHeading}</p><br></br>
               <p>Contact us today at <a href="tel:	+1 530-221-1212" className="phone-link">+1 530-221-1212</a> and let us offer compassionate and personalized care.</p>
 
             </Col>
-            <Col md="6">
+            <Col md="7">
               {renderImage(data.maincontent[0].bannerimg.data.attributes, "Pioneers In Personalized 24 Hour Care", 1034, 688)}
             </Col>
           </Row>
@@ -97,7 +122,7 @@ export default function HourcareComponent() {
       <CaregivertodayComponent />
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-5 middlealign">
+          <Row className="row3bg py-4">
             <Col md="4">
               {renderImage(data.maincontent[1].img.data.attributes, "Enriching Lives with Holistic Care", 595, 780)}
             </Col>
@@ -112,9 +137,9 @@ export default function HourcareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="sectionbg" >
+      <div className="sectionbg" style={{ padding: '50px 0px' }}>
         <Container>
-          <Row className="middlealign g-5 row-reverse-mobile">
+          <Row>
             <Col md="6">
               <h2 className="heading2">{data.maincontent[2].Heading}</h2>
               {data.maincontent[2].description.map((desc, index) => (
@@ -127,9 +152,9 @@ export default function HourcareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="section3" >
+      <div className="section3" style={{ padding: '50px 0px' }}>
         <Container>
-          <Row className="align-items-center g-5">
+          <Row>
             <Col md="6">
               {renderImage(data.maincontent[3].img.data.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
             </Col>
@@ -142,9 +167,9 @@ export default function HourcareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="section4">
+      <div className="section4" style={{ padding: '50px 0px' }}>
         <Container>
-          <Row className="g-5 section4sub">
+          <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
             <Col md={6}>
               <h2 className="heading2">{data.maincontent[4].Heading}</h2>
               {data.maincontent[4].description.map((desc, index) => (
@@ -160,6 +185,10 @@ export default function HourcareComponent() {
           </Row>
         </Container>
       </div>
+      <Head>
+        <title>{seoData?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.metaDescription || "Default Description"} />
+      </Head>
       <ServicepageFooter />
     </div>
   );

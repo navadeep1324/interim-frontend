@@ -466,7 +466,7 @@ h1{
 }
 .sectionbg{
   background-color: #fef8f3;  padding-top: 4%;
-  padding-bottom: 4%;
+  /* padding-bottom: 3%; */
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1330,4 +1330,7 @@ padding: 5%;
 body{
   background-color: white;
 }
+}
+.services-banner{
+  padding: 3% 0 0 0;
 }

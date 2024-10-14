@@ -7,53 +7,104 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Image from "next/image";
 import CaregivertodayComponent from "../../../../caregiverstodayComponent";
-import MedfordfooterserviceComponent from "../../../../footerservicemedford";
-import RenoNavbarComponent from "../../../../renonavcomponent";
 import RenoFooter from "../../../../footerreno";
+import RenoNavbarComponent from "../../../../renonavcomponent";
+import Head from "next/head";  // Add Head for SEO
 
 export default function AlzheimerMainComponent() {
   const [data, setData] = useState(null);
+  const [seoData, setSeoData] = useState(null); // Add SEO state
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     async function fetchData() {
       try {
-        // Fetch the data from the correct endpoint
+        // Fetch the data from the correct endpoint with SEO
         const res = await fetch(
-          "https://admin.interimhc.com/api/reno-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*"
+          "https://admin.interimhc.com/api/reno-alzheimer-s-and-dementia-cares?populate[maincontent][populate]=*&populate[seo]=*"
         );
         const result = await res.json();
 
-        setData(result.data[0].attributes.maincontent);
+        if (result?.data?.[0]?.attributes) {
+          setData(result.data[0].attributes.maincontent);
+          setSeoData(result.data[0].attributes.seo);  // Store SEO data
+        } else {
+          throw new Error("No data found");
+        }
       } catch (error) {
-        console.error("Error fetching data:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     }
     fetchData();
   }, []);
 
-  // If data is not yet available, show a loading state
-  if (!data) {
+  // Dynamically set the meta title and description once the seoData is fetched
+  useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0];  // Access the first element of the SEO data array
+      document.title = seo.metaTitle || "Default Title";
+
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
+    } else {
+      console.log("No SEO Data received");
+    }
+  }, [seoData]);
+
+  if (loading) {
     return <div>Loading...</div>;
   }
 
-  // Helper function to build the image URL from Strapi
+  if (error) {
+    return <div>Error: {error}</div>;
+  }
+
+  if (!data) {
+    return <div>No data found</div>;
+  }
+
+  // Helper function to get image URL safely
   const getImageUrl = (imageData) => {
-    return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : null;
+  };
+
+  // Render descriptions with safety checks
+  const renderDescription = (descriptions) => {
+    return descriptions.map((para, index) => (
+      <p className="py-4" key={index}>
+        {para?.children[0]?.text || ""}
+      </p>
+    ));
   };
 
   return (
     <div>
       <RenoNavbarComponent />
 
+      {/* Inject SEO meta tags using Head */}
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
+
       {/* Section 1: Banner */}
       <div className="sectionbg">
         <Container>
           <Row className="align-items-center g-5 py-5">
             <Col md="6">
-              <h1 className="heading1">{data[0]?.Heading}</h1>
+              <h1 className="heading1">{data[0]?.Heading || "Default Heading"}</h1>
               <p className="paragram py-2">{data[0]?.subHeading?.split("\n")[0]}</p>
               <p className="py-4">{data[0]?.subHeading?.split("\n")[1]}</p>
-              
             </Col>
             <Col md="6" className="d-flex justify-content-center">
               {data[0]?.bannerimg?.data && (
@@ -88,11 +139,7 @@ export default function AlzheimerMainComponent() {
             </Col>
             <Col md="8">
               <h2 className="heading2">{data[1]?.Heading}</h2>
-              {data[1]?.description?.map((para, index) => (
-                <p className="py-4" key={index}>
-                  {para.bold ? <b>{para.children[0].text}</b> : para.children[0].text}
-                </p>
-              ))}
+              {data[1]?.description ? renderDescription(data[1].description) : <p>No description available</p>}
             </Col>
           </Row>
         </Container>
@@ -104,11 +151,7 @@ export default function AlzheimerMainComponent() {
           <Row className="align-items-center g-5">
             <Col md="6">
               <h2 className="heading2">{data[2]?.Heading}</h2>
-              {data[2]?.description?.map((para, index) => (
-                <p className="py-3" key={index}>
-                  {para.children[0].text}
-                </p>
-              ))}
+              {data[2]?.description ? renderDescription(data[2].description) : <p>No description available</p>}
             </Col>
             <Col md="6">
               {data[2]?.img?.data && (
@@ -128,29 +171,19 @@ export default function AlzheimerMainComponent() {
       <div className="section3">
         <Container>
           <Row className="align-items-center g-5">
-          <Col md="6">
-        {data[3]?.img?.data ? (
-          <Image
-            src={getImageUrl(data[3]?.img?.data?.attributes)} // Correctly accessing img data
-            alt={data[3]?.Heading || "No heading available"}
-            width={562}
-            height={802}
-          />
-        ) : (
-          <p>No image available for section 4.</p>
-        )}
-      </Col>
             <Col md="6">
-              <h2 className="heading2">{data[3]?.Heading || "No heading available"}</h2>
-              {data[3]?.description?.length ? (
-                data[3].description.map((para, index) => (
-                  <p className="py-3" key={index}>
-                    {para.children[0].text}
-                  </p>
-                ))
-              ) : (
-                <p>No description available for section 4.</p>
+              {data[3]?.img?.data && (
+                <Image
+                  src={getImageUrl(data[3].img.data.attributes)}
+                  alt="Benefits of Memory Care"
+                  width={562}
+                  height={802}
+                />
               )}
+            </Col>
+            <Col md="6">
+              <h2 className="heading2">{data[3]?.Heading}</h2>
+              {data[3]?.description ? renderDescription(data[3].description) : <p>No description available</p>}
             </Col>
           </Row>
         </Container>
@@ -162,11 +195,7 @@ export default function AlzheimerMainComponent() {
           <Row className="align-items-center g-5 px-5" style={{ background: "#ffff", borderRadius: "20px", padding: "3%" }}>
             <Col md={6}>
               <h2 className="heading2">{data[4]?.Heading}</h2>
-              {data[4]?.description?.map((para, index) => (
-                <p className="py-3" key={index}>
-                  {para.children[0].text}
-                </p>
-              ))}
+              {data[4]?.description ? renderDescription(data[4].description) : <p>No description available</p>}
               <Button className="Contactbtn py-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
