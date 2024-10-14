@@ -15,17 +15,20 @@ import GrantsPassFooter from "../../../../footerservicegreantspass";
 import YubaNavbarComponent from "../../../../yubanavcomponent";
 import GrassValleyFooter from "../../../../footerservicegrssvalley";
 import YubaFooter from "../../../../footerserviceyuba";
+import Head from "next/head";
 export default function CompanionCareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [seoData, setSeoData] = useState(null);
 
   useEffect(() => {
-    fetch('https://admin.interimhc.com/api/yuba-companion-cares?populate[maincontent][populate]=*')
+    fetch('https://admin.interimhc.com/api/yuba-companion-cares?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
       .then(responseData => {
         if (responseData.data && responseData.data.length > 0) {
           console.log("API Response:", responseData.data[0].attributes);
           setData(responseData.data[0].attributes); // Ensure you're accessing the correct path
+          setSeoData(responseData.data[0]?.attributes?.seo);
           setLoading(false);
         } else {
           console.error('No data found:', responseData);
@@ -37,7 +40,27 @@ export default function CompanionCareComponent() {
         setLoading(false);  // Stop loading in case of error.
       });
   }, []);
-
+// Dynamically set the meta title and description once the seoData is fetched
+useEffect(() => {
+  if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+    const seo = seoData[0]; // Access the first element of the seoData array
+    console.log("SEO Data received:", seo); // Log seoData for debugging
+    document.title = seo.metaTitle || "Default Title";
+    
+    // Set meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+    } else {
+      const newMetaDescription = document.createElement("meta");
+      newMetaDescription.name = "description";
+      newMetaDescription.content = seo.metaDescription || "Default Description";
+      document.head.appendChild(newMetaDescription);
+    }
+  } else {
+    console.log("No SEO Data received"); // Log if seoData is not available
+  }
+}, [seoData]);
   const getImageUrl = (imageData) => {
     return imageData?.url ? `https://admin.interimhc.com${imageData.url}` : '';
   };
@@ -162,6 +185,10 @@ export default function CompanionCareComponent() {
           </Row>
         </Container>
       </div>
+      <Head>
+        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
+        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+      </Head>
       <YubaFooter />
     </div>
   );
