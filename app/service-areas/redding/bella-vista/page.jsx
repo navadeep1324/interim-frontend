@@ -12,8 +12,8 @@ import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
-import Cupertinomain from "/public/images/Cupertinomain.png";
-import Cupertino1 from "/public/images/Cupertino1.png";
+import Cupertinomain from "/public/images/HomeCare-in-Bella-Vista.webp";
+import Cupertino1 from "/public/images/Seniors-in-Bella-Vista-CA.webp";
 import Cupertino2 from "/public/images/Cupertino2.png";
 import Head from "next/head";
 
@@ -101,7 +101,7 @@ export default function BellaVistaComponent() {
       {/* Section 3 - Growing Demand */}
       <div>
         <Container fluid>
-          <Row className="py-5">
+          <Row className="py-5 middlealign">
             <Col md={6}>
               <Image src={Cupertinomain} alt="Main Image" />
             </Col>
@@ -133,7 +133,7 @@ export default function BellaVistaComponent() {
         </Container>
 
         <Container className="section4subcity py-5">
-          <Row>
+          <Row className="middlealign">
             <Col md={8} className="px-5">
               <h5 className="heading5subcity">Some of our specialized home healthcare plans include:</h5>
               <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
@@ -142,6 +142,15 @@ export default function BellaVistaComponent() {
                 <li><p><b>Hospice Care</b> for a smooth and less traumatic transition to end-of-life.</p></li>
               </ul>
               <p>For a comprehensive care plan for your loved one, choose our tailor-made services.</p>
+              <h2 className="heading2 py-3">How our Home Healthcare Benefits Seniors in Bella Vista, CA</h2>
+              <p className="py-1">Besides promoting your aging loved ones overall health and well-being, we also offer the following unique benefits:</p>
+              <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+                <li><p>Caregiver support and guidance to manage chronic diseases</p></li>
+                <li><p>Flexible scheduling and personalized support to sync with family routine</p></li>
+                <li><p>Medicaid assistance for home care and home healthcare services</p></li>
+                <li><p>Veteran Benefits assistance for eligible veterans or their surviving spouses</p></li>
+              </ul>
+              <p className="py-1">We understand that caring for seniors requires time, dedication, and resources. We offer flexible payment options that enable comfort and peace of mind for the entire family.</p>
             </Col>
             <Col md={4}>
               <Image src={Cupertino1} alt="Cupertino Image 1" />
@@ -151,7 +160,7 @@ export default function BellaVistaComponent() {
       </div>
 
       {/* Section 5 - Benefits of Home Care */}
-      <div className="py-5">
+      {/* <div className="py-5">
         <Container>
           <Row>
             <Col md={6} style={{ paddingRight: '25px' }}>
@@ -170,24 +179,9 @@ export default function BellaVistaComponent() {
             </Col>
           </Row>
         </Container>
-      </div>
-
-      {/* Section 6 - Golden Years */}
-      <div className="section5city py-5">
-        <Container>
-          <Row>
-            <Col>
-              <h2 className="heading2city py-3">Enhance Your Seniors’ Golden Years with Interim Healthcare</h2>
-              <p style={{ textAlign: 'center' }}>
-                Your seniors are at a pivotal stage of their lives. For them to age with grace and a happy face, they require compassionate assistance during every step of their journey. Let Interim Healthcare guide the way to help overcome your seniors’ daily obstacles. Choose from our range of reliable in-home care services to make life easier for your seniors. Call us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> to begin your journey with us.
-              </p>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-
-      {/* Section 7 - FAQ */}
-      <div className="py-5">
+      </div> */}
+       {/* Section 7 - FAQ */}
+       <div className="py-5">
         <Container>
           <h2 className="heading2" style={{ textAlign: 'center' }}>Frequently Asked Questions</h2>
           <Accordion className="py-3">
@@ -212,6 +206,22 @@ export default function BellaVistaComponent() {
           </Accordion>
         </Container>
       </div>
+
+      {/* Section 6 - Golden Years */}
+      <div className="section5city py-5">
+        <Container>
+          <Row>
+            <Col>
+              <h2 className="heading2city py-3">Enhance Your Seniors’ Golden Years with Interim Healthcare</h2>
+              <p style={{ textAlign: 'center' }}>
+                Your seniors are at a pivotal stage of their lives. For them to age with grace and a happy face, they require compassionate assistance during every step of their journey. Let Interim Healthcare guide the way to help overcome your seniors’ daily obstacles. Choose from our range of reliable in-home care services to make life easier for your seniors. Call us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> to begin your journey with us.
+              </p>
+            </Col>
+          </Row>
+        </Container>
+      </div>
+
+     
 
       {/* Footer */}
       <CitypageFooter />

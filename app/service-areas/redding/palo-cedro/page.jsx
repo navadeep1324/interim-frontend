@@ -11,9 +11,9 @@ import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
 import Accordion from "react-bootstrap/Accordion";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertinomain from "/public/images/Exceptional-Care.webp";
+import Cupertino1 from "/public/images/Senior-In-HomeCare-in-Hat-Creek-ca.webp";
+import Cupertino2 from "/public/images/What-Truly-Sets-Us-Apart.webp";
 import ReddingNavbarComponent from "../../../reddingnavcomponent";
 import Head from "next/head";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
@@ -105,7 +105,7 @@ export default function PaloCedroComponent() {
       <div>
         <Container fluid>
           <Row className="py-5">
-            <Col md={6}>
+            <Col md={6} className="px-5">
               <Image src={Cupertinomain} alt="Main Image" />
             </Col>
             <Col md={6} className="redding-col2">
@@ -153,12 +153,12 @@ export default function PaloCedroComponent() {
 
       {/* Section 5 - The Right Choice */}
       <div className="py-5">
-        <Container>
+        <Container fluid>
           <Row>
-            <Col md={6} style={{ paddingRight: '25px' }}>
+            <Col md={6} className="px-4">
               <Image src={Cupertino2} alt="Cupertino Image 2" />
             </Col>
-            <Col md={6}>
+            <Col md={6} className="px-4">
               <h2 className="heading2">The Right Choice for Palo Cedro Families</h2>
               <p className="py-3">
                 Choosing in-home care services is a deeply personal decision. We travel the extra mile to make elders feel heard and valued. Our commitment to preserving their dignity and providing quality care makes us a trusted partner for families. The home care services we offer include:

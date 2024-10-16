@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Home-Health-Care-Services-in-los-molino.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Eldercare-services-at Los-Molinos.webp";
+import Cupertino2 from "/public/images/Interim-Healthcare-in-Anderson.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In Home Care in Los Molino’s, California  </h2>
 <p className="py-3">
 At Interim Healthcare, we recognize that home is where the heart is. That's why we offer the best in in home care services that allow your aging loved ones to stay comfortable and independent at Los Molino’s. We are here to offer personalized care for their unique needs.   
@@ -39,18 +39,18 @@ At Interim Healthcare, we recognize that home is where the heart is. That's why 
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
-            <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+            <Row className="py-5 middlealign">
+                <Col md={6} className="px-3 ">
                 <Image src={Cupertinomain} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px;'}} >
+                <Col md={6}  className="px-5" >
                 <h2 className="heading2 ">Home Health Care Services in Los Molino’s, California   </h2>
                 <p className="py-3">
                 Los Molino’s is a small town located in Tehama County, California. The natural environment of Los Molinos offers health benefits, such as a cleaner air and opportunities for outdoor activities, which can contribute to a healthier lifestyle for seniors. However, these benefits need to be balanced with adequate home care services which may lack in rural area like Los Molino’s. Interim HealthCare can bridge this gap by providing essential in home care services for seniors living in this city. 

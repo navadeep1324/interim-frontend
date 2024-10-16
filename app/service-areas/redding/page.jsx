@@ -142,7 +142,11 @@ const textLinks = {
         "Shasta County": "#",
         "Siskiyou County": "#",
         "Yreka": "/service-areas/redding/yreka",
-        "Hat creek":"/service-areas/redding/hat-creek"
+        "Hat creek":"/service-areas/redding/hat-creek",
+       "Hornbook":"/service-areas/redding/hornbook",
+       "Los Molino’s ":"/service-areas/redding/los-molino",
+       "Red bluff":"/service-areas/redding/red-bluff",
+      "Shingle town" : "/service-areas/redding/shingle-town"
     };
 
     return (
@@ -195,9 +199,9 @@ const textLinks = {
                 <Image
                     src={getImageUrl(data[1]?.image?.data?.attributes)}
                     alt="City Image"
-                    width={data[1]?.image?.data?.attributes?.width}
+                    width={data[1]?.image?.data?.attributes?.width }
                     height={data[1]?.image?.data?.attributes?.height}
-                    className="img-fluid"
+                    // className="img-fluid"
                 />
             </Col>
             <Col md={6} className="sanjose-col">
@@ -217,7 +221,7 @@ const textLinks = {
                             <p>{data[2]?.description?.[0]?.children?.[0]?.text}</p>
                             <h5 className="heading5subcity">Key reasons why Interim Healthcare is the best choice:    </h5>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
-                <li><p><b>Quality of Living:</b>Enhancing the daily lives of those we care for. </p>  </li>
+                <li><p><b>Quality of Living: </b>Enhancing the daily lives of those we care for. </p>  </li>
                 <li><p><b>Comfort for Families:  </b>Providing peace of mind through reliable care.</p>  </li>
                 <li><p><b>Veterans Support: </b>Dedicated services for our veterans. </p>  </li>
                 <li><p><b>Ease of Payments: </b>Flexible payment options to fit your needs. </p>  </li>

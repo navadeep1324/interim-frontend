@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Senior-Care-in-Hornbook.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Elevate-Senior-Well-Being.webp";
+import Cupertino2 from "/public/images/Exceptional-ome-Care.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In-Home Care in Hornbook, California   </h2>
 <p className="py-3">
 Seniors hold a significant place in any happy family. However, they require care and attention to age healthily. Anticipating this, Interim Healthcare is committed to being a dependable home care provider for the senior community in Hornbook, California.  
@@ -39,15 +39,15 @@ Seniors hold a significant place in any happy family. However, they require care
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+                <Col md={6} style={{paddingRight:'25px;'}} className="px-5 ">
                 <Image src={Cupertinomain} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px;'}} >
@@ -65,8 +65,9 @@ Seniors hold a significant place in any happy family. However, they require care
         <Container>
             <Row>
                 <Col>
-                <h2 className="heading2" style={{color:'#ffff',textAlign:'center'} }>Home Healthcare Services That Elevate Senior Well-Being  </h2>
-                <p className="py-3" style={{color:'#ffff',textAlign:'center'}}>At Interim Healthcare, we believe that having a caring presence can significantly enhance your loved ones' health and well-being. With years of experience in clinical staffing, home healthcare and in-home care, we take a holistic approach to improving the physical and mental health of your loved ones.   </p>
+                <h2 className="heading2 " style={{color:'#ffff',textAlign:'center'} }>Home Healthcare Services That Elevate Senior Well-Being  </h2>
+                {/* <p className="py-3" style={{color:'#ffff',textAlign:'center'}}>At Interim Healthcare, we believe that having a caring presence can significantly enhance your loved ones' health and well-being. With years of experience in clinical staffing, home healthcare and in-home care, we take a holistic approach to improving the physical and mental health of your loved ones.   </p> */}
+                <p className="py-3" ></p>
                 </Col>
             </Row>
         </Container>
@@ -75,6 +76,7 @@ Seniors hold a significant place in any happy family. However, they require care
             <Container className="section4subcity py-5">
                 <Row>
                     <Col md={8} className="px-5">
+                    <p className="py-3" style={{color:'#000'}}>At Interim Healthcare, we believe that having a caring presence can significantly enhance your loved ones' health and well-being. With years of experience in clinical staffing, home healthcare and in-home care, we take a holistic approach to improving the physical and mental health of your loved ones.   </p>
                     <h5 className="heading5subcity">Some of our core home care services include:   </h5>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
                 <li><p>Hospice Care  </p></li>
@@ -95,16 +97,16 @@ Seniors hold a significant place in any happy family. However, they require care
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={5} className="px-5">
 <Image src={Cupertino2} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px'}}>
 <h2 className="heading2">Exceptional Home Care That Truly Makes a Difference  </h2>
-<p className="py-3">Choosing our services for your aging loved ones comes with many exceptional benefits. These enhance our in-home care plans and make them more flexible, user-friendly and easily accessible.: </p>
-<ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
-                <li><p><b>Customized Care Plans:</b> Flexible care schedules tailored to your family's specific needs. </p></li>
-                <li><p><b>Medicaid Support:</b> Expert assistance in navigating Medicaid options for in-home care services.  </p></li>
-                <li><p><b>Veteran Benefits Assistance: </b>Guidance for eligible veterans in securing the benefits they deserve.  </p></li>
+<p className="py-4">Choosing our services for your aging loved ones comes with many exceptional benefits. These enhance our in-home care plans and make them more flexible, user-friendly and easily accessible.: </p>
+<ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-3">
+                <li><p className="py-2"><b>Customized Care Plans:</b> Flexible care schedules tailored to your family's specific needs. </p></li>
+                <li><p className="py-2"><b>Medicaid Support:</b> Expert assistance in navigating Medicaid options for in-home care services.  </p></li>
+                <li><p className="py-2"><b>Veteran Benefits Assistance: </b>Guidance for eligible veterans in securing the benefits they deserve.  </p></li>
                </ul>
                <p>We also offer a variety of payment options, allowing you to focus on your loved ones' health and well-being without any worries at the back of your mind. </p>
                </Col>

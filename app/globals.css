@@ -13,6 +13,28 @@
 .heading-font h6 {
   font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
 }
+
+.view-all-services p {
+  cursor: default !important;
+}
+
+/* Apply Merriweather to all headings */
+/* .heading-font h1, 
+.heading-font h2, 
+.heading-font h3, 
+.heading-font h4, 
+.heading-font h5, 
+.heading-font h6 {
+  font-family: 'Merriweather', serif !important;
+} */
+/* h1, h2, h3, h4, h5, h6 {
+  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+} */
+
+/* Apply Rubik to body text */
+/* body, p, span, div, a {
+  font-family: 'Rubik', Helvetica, Arial, sans-serif;
+} */
 a:hover {
   color: #D81C3F !important; /* Hover color */
   /* text-decoration: underline !important;  */
@@ -29,6 +51,9 @@ a:hover {
     --background-start-rgb: 0, 0, 0;
     --background-end-rgb: 0, 0, 0;
   }
+}
+.heading-font {
+  font-family: 'Merriweather', serif !important;
 }
 
 body {
@@ -610,7 +635,7 @@ h1{
   top: 0;
   width: 100%;
   z-index: 1000;
-  /* box-shadow: 5px 8px 15px -11px #d81c3f; */
+  box-shadow: 5px 8px 15px -11px #f0e6e6;
 }
 .section1banner {
   padding-top: 5%;}
@@ -1268,7 +1293,7 @@ body > div > div > div.mainfootersection > div.Awardsec > div > div > div:nth-ch
  }
  /* Default color for light mode */
 .city-name, .city-link {
-  color: #000; /* Black or dark color for light mode */
+  /* color: #000;  */
 }
 
 /* Dark mode specific styles */
