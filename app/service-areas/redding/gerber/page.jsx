@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/HomeCare-in-Gerber.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/ElderlyCare-Services-in-Gerber.webp";
+import Cupertino2 from "/public/images/HomeCare.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In-Home Care in Gerber, California  </h2>
 <p className="py-3">
 Seniors hold a special place in every family, deserving the utmost care to enjoy their golden years with dignity and joy. As a leading home care provider in the nation, Interim Healthcare is well-equipped to support your elderly loved ones in Gerber, CA. 
@@ -39,18 +39,18 @@ Seniors hold a special place in every family, deserving the utmost care to enjoy
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+                <Col md={6} className="px-5 ">
                 <Image src={Cupertinomain} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px;'}} >
+                <Col md={6} className="px-5 ">
                 <h2 className="heading2 ">The Growing Need for Home Care in Gerber, CA  </h2>
                 <p className="py-3">Nestled in Tehama County, <a href="https://en.wikipedia.org/wiki/Gerber,_California" className="phone-link" target="_blank">Gerber</a> is a close-knit town with <a href="https://data.census.gov/profile/Gerber_CDP,_California?g=160XX00US0629392" target="_blank" className="phone-link">a population of 1,044, where 27.6% of the residents are seniors</a>. Despite its serene atmosphere, <a href="https://data.census.gov/profile/Gerber_CDP,_California?g=160XX00US0629392#families-and-living-arrangements" className="phone-link" target="_blank" >many families—often consisting of no more than three members </a>— face the challenge of balancing work and family responsibilities, making it difficult to provide consistent care for their elderly loved ones. That’s where Interim Healthcare steps in, offering trusted support for seniors in Gerber, CA, and the surrounding areas. 
                 </p>
@@ -92,16 +92,16 @@ Seniors hold a special place in every family, deserving the utmost care to enjoy
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={5} className="px-5" >
 <Image src={Cupertino2} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px'}}>
+                <Col md={6} >
 <h2 className="heading2">Exceptional Senior Home Care by Compassionate Caregivers  </h2>
-<p className="py-3">At Interim Healthcare, our strong vision and mission are deeply instilled in our carefully selected caregivers. Beyond their natural compassion, our skilled care team undergoes extensive training in senior health and safety, ensuring they deliver the highest standard of care. Their top priority is your loved ones' comfort, and they ensure that by providing personalized care that considers the following key elements:  </p>
+<p className="py-4">At Interim Healthcare, our strong vision and mission are deeply instilled in our carefully selected caregivers. Beyond their natural compassion, our skilled care team undergoes extensive training in senior health and safety, ensuring they deliver the highest standard of care. Their top priority is your loved ones' comfort, and they ensure that by providing personalized care that considers the following key elements:  </p>
                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                <li><p><b>Flexible scheduling</b> to fit seamlessly into your family's routine.  </p></li>
-                <li><p><b>Comprehensive care</b> assessments to understand your loved one’s specific needs.    </p></li>
-                <li><p><b>Tailored care solutions </b> are designed to address their unique health and lifestyle requirements.  </p></li>
+                <li><p className="py-2"><b>Flexible scheduling</b> to fit seamlessly into your family's routine.  </p></li>
+                <li><p className="py-2"><b>Comprehensive care</b> assessments to understand your loved one’s specific needs.    </p></li>
+                <li><p className="py-2"><b>Tailored care solutions </b> are designed to address their unique health and lifestyle requirements.  </p></li>
               </ul>
               
                </Col>

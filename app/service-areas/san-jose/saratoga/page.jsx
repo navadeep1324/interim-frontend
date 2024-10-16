@@ -52,7 +52,7 @@ export default function SanJoseCupertinoComponent() {
         }
       }, [seoData]);
     if (!saratogaData) {
-        return <div>Loading...</div>;
+        return //<div>Loading...</div>;
     }
 
     // Extract data for different sections based on component type
@@ -140,8 +140,8 @@ export default function SanJoseCupertinoComponent() {
 
             {/* First Image and Text Section */}
             <Container fluid>
-                <Row className="py-5">
-                    <Col md={6} style={{ paddingRight: '25px' }} className="px-0">
+                <Row className="py-5 middlealign">
+                    <Col md={4} style={{paddingRight: '25px'}} className="px-0">
                         {leftImgRightContent[0]?.image?.data ? (
                             <Image
                                 src={`https://admin.interimhc.com${leftImgRightContent[0].image.data.attributes.url}`}
@@ -153,7 +153,7 @@ export default function SanJoseCupertinoComponent() {
                             <Image src={Saratoga1} alt="Default Image" />
                         )}
                     </Col>
-                    <Col md={6} style={{ paddingLeft: '25px' }}>
+                    <Col md={8} className="sanjose-col2">
   <h2 className="heading2">{leftImgRightContent[0].Heading}</h2>
   {renderRichText(leftImgRightContent[0].description)}
 </Col>
@@ -176,8 +176,8 @@ export default function SanJoseCupertinoComponent() {
                     </Row>
                 </Container>
                 <Container className="section4subcity py-5">
-                    <Row>
-                        <Col md={7} className="px-5">
+                    <Row >
+                        <Col md={8} className="px-5">
                             <h5 className="head5evergreen">{middleHedDecLeftImgRightContent.description[0].children[0].text}</h5>
                             {/* <ul style={{ listStyleType: 'disc', paddingLeft: '20px', paddingTop: '20px' }}>
                                 {middleHedDecLeftImgRightContent.description
@@ -205,7 +205,7 @@ export default function SanJoseCupertinoComponent() {
                             }</p> */}
                             <p><a href="/contact-us" className="phone-link">Contact us</a> today to learn more about our comprehensive senior care services. </p>
                         </Col>
-                        <Col md={5} className="px-0">
+                        <Col md={4} className="px-0">
                             {middleHedDecLeftImgRightContent.img?.data ? (
                                 <Image
                                     src={`https://admin.interimhc.com${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
@@ -224,8 +224,8 @@ export default function SanJoseCupertinoComponent() {
             {/* Another Image and Text Section */}
             <div className="py-5">
                 <Container>
-                    <Row>
-                        <Col md={6} style={{ paddingRight: '25px' }}>
+                    <Row className="middlealign">
+                        <Col md={4} style={{ paddingRight: '25px' }}>
                             {leftImgRightContent[1]?.image?.data ? (
                                 <Image
                                     src={`https://admin.interimhc.com${leftImgRightContent[1].image.data.attributes.url}`}
@@ -237,7 +237,7 @@ export default function SanJoseCupertinoComponent() {
                                 <Image src={Saratoga3} alt="Default Image" />
                             )}
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '25px' }}>
+                        <Col md={8} style={{ paddingLeft: '25px' }}>
                             <h2 className="heading2">{leftImgRightContent[1].Heading}</h2>
                             <p style={{ paddingTop: '20px',paddingBottom:'20px' }}>{leftImgRightContent[1].description[0].children[0].text}</p>
                             <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>

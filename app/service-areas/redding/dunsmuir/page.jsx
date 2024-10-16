@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/In-home-health-care-in-Dunsmuir.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Benefits-of-Choosing-Interim-Healthcare.webp";
+import Cupertino2 from "/public/images/What-Truly-Sets-Us-Apart.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In Home Care in Dunsmuir, California   </h2>
 <p className="py-3">
 At Interim Healthcare, our approach to senior in home care is based on the foundation of respect, dignity, and compassion. Our goal is to bring peace of mind to families and help seniors living in Dunsmuir stay independent and happy. 
@@ -39,18 +39,18 @@ At Interim Healthcare, our approach to senior in home care is based on the found
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
-            <Row className="py-5">
+            <Row className="py-5 px-3">
                 <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
                 <Image src={Cupertinomain} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px;'}} >
+                <Col md={6} className="px-5" >
                 <h2 className="heading2 ">In home health care in Dunsmuir, California   </h2>
                 <p className="py-3">
                 <a href="https://en.wikipedia.org/wiki/Dunsmuir,_California" target="_blank" className="phone-link">Dunsmuir</a> is a small town located in the upper   <a href="https://en.wikipedia.org/wiki/Sacramento_River" target="_blank" className="phone-link">Sacramento River</a>, California. According to the senior care website,   <a href="https://www.seniorcare.com/directory/ca/dunsmuir/#key-senior-statistics" target="_blank" className="phone-link">35%</a> of elders are living alone in this city. Seniors who live alone tend to feel depressed and isolated. They are also at risk of frequent falls which can lead to a decline in overall health. This is where Interim Healthcare extends an extra helping hand. 
@@ -94,12 +94,12 @@ We understand that quality in home care goes beyond basic assistance. Our caregi
         </div>
     </div>
     <div className="py-5">
-        <Container>
-            <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+        <Container fluid>
+            <Row className="px-5">
+                <Col md={6}>
 <Image src={Cupertino2} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px'}}>
+                <Col md={6}>
 <h2 className="heading2">What Truly Sets Us Apart?   </h2>
 <p className="py-3">What truly sets us apart is our commitment to treating everyone like family. We’re not just there to do a job—we’re there to make a difference in your aging loved ones' lives. With our home care services, you can stay rest assured that your seniors are in capable hands.   </p>
               <p className="py-4">Interim Healthcare believes in making every moment count for those we care for. Our caregivers focus on enriching the lives of seniors by offering compassionate and personalized support. We understand that every elderly have their own story, needs, and preferences. That’s why our in home care plans don’t follow the one-size-fits-all approach. We customize our services to ensure that each senior receives the exact support they need while remaining in the comfort of their home. </p>

@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Senior-Home-Care-in-Montague.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Our-Family.webp";
+import Cupertino2 from "/public/images/Home-Care-services.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In Home Care in Montague, California   </h2>
 <p className="py-3">
 At Interim Healthcare, we’re redefining in home care with a focus on comfort, empathy, and excellence. Our goal is to provide support that not only meets but exceeds the needs of those we serve in Montague.    
@@ -39,15 +39,15 @@ At Interim Healthcare, we’re redefining in home care with a focus on comfort, 
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+                <Col md={5} style={{paddingRight:'25px;'}} className="px-5 ">
                 <Image src={Cupertinomain} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px;'}} >
@@ -77,19 +77,19 @@ At Interim Healthcare, we’re redefining in home care with a focus on comfort, 
                     <Col md={8} className="px-5">
                     <h5 className="heading5subcity">Here’s a closer look at what our home care services include:     </h5>
                     <br></br>
-                    <p className="py-2"><b>Personal care: </b> </p>
+                    <p className="py-0"><b>Personal care: </b> </p>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} >
                 <li> Bathing and Grooming </li>
                 <li> Mobility Assistance </li>
                 <li> Toileting Support </li>
                 </ul>
-                <p className="py-2"><b>Companionship: </b> </p>
+                <p className="py-0"><b>Companionship: </b> </p>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} >
                 <li> Engaging Conversations  </li>
                 <li> Activity Participation  </li>
                 <li> Mental Stimulation  </li>
                 </ul>
-                <p className="py-2"><b>24-Hour Care: </b> </p>
+                <p className="py-0"><b>24-Hour Care: </b> </p>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} >
                 <li> Around-the-Clock Assistance  </li>
                 <li> Safety supervision  </li>
@@ -108,7 +108,7 @@ At Interim Healthcare, we’re redefining in home care with a focus on comfort, 
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={5}>
 <Image src={Cupertino2} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px'}}>

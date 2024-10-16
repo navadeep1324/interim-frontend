@@ -6,9 +6,9 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/In-Home-Care-Services-in-Fall-River.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
+import Cupertino1 from "/public/images/Home-HealthCare-in-Fall-River.webp";
 import Cupertino2 from "/public/images/Cupertino2.png";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior Care in Fall River, California  </h2>
 <p className="py-3">
 At Interim Healthcare, we believe that every senior deserves to feel supported, valued, and cared for as they navigate the challenges of aging. Our senior care services are designed with a deep understanding of the unique needs of older adults living in Fall River.   
@@ -39,15 +39,15 @@ At Interim Healthcare, we believe that every senior deserves to feel supported, 
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+                <Col md={5} className="px-5 ">
                 <Image src={Cupertinomain} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px;'}} >
@@ -86,6 +86,9 @@ At Interim Healthcare, we believe that every senior deserves to feel supported, 
                 <li><p><b>Veteran care-:  </b> Honors and recognizes the unique needs and experiences of those who served our nation.  </p> 
                 </li>
                 </ul>
+                <h2 className="heading2">Our Empathetic Senior Care Services   </h2>
+<p className="py-3">Our compassionate caregivers offer personalized assistance with daily activities, personal hygiene, meal preparation, and much more. We understand that each person is different, so we tailor our services to fit their individual preferences and routines.  </p>
+<p className="py-3">But our care goes beyond the basics. We’re here to provide emotional support, to listen, and to be a friend when one is needed most. Our goal is to make sure that your loved ones feel safe, comfortable, and genuinely cared for, all while allowing them to maintain their independence as much as possible.  </p>
                </Col>
                     <Col md={4}>
 <Image src={Cupertino1} alt=""/>
@@ -94,7 +97,7 @@ At Interim Healthcare, we believe that every senior deserves to feel supported, 
             </Container>
         </div>
     </div>
-    <div className="py-5">
+    {/* <div className="py-5">
         <Container>
             <Row>
                 <Col md={6} style={{paddingRight:'25px'}}>
@@ -107,19 +110,8 @@ At Interim Healthcare, we believe that every senior deserves to feel supported, 
                </Col>
             </Row>
         </Container>
-    </div>
-    <div className="section5city py-5">
-    <Container>
-        <Row>
-            <Col>
-            <h2 className="heading2city py-3">Reach Us Today and Give Your Seniors a Better Life  </h2>
-          
-           <p style={{textAlign:'center'}}> With Interim HealthCare, you’re not just getting a service—you’re gaining a dedicated partner in your loved one’s golden journey. Our skilled caregivers provide everything from companion care to respite care, ensuring that your elders receive comprehensive, personalized care without ever leaving their home. Contact us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> for detailed info about our services.</p>
-            </Col>
-        </Row>
-    </Container>
-    </div>
-    <div className="py-5">
+    </div> */}
+     <div className="py-5">
         <Container>
         <h2 className="heading2" style={{textAlign:'center'}}>Frequently Asked Questions</h2>
     <Accordion className="py-3">
@@ -144,6 +136,18 @@ At Interim Healthcare, we believe that every senior deserves to feel supported, 
     </Accordion>
     </Container>
     </div>
+    <div className="section5city py-5">
+    <Container>
+        <Row>
+            <Col>
+            <h2 className="heading2city py-3">Reach Us Today and Give Your Seniors a Better Life  </h2>
+          
+           <p style={{textAlign:'center'}}> With Interim HealthCare, you’re not just getting a service—you’re gaining a dedicated partner in your loved one’s golden journey. Our skilled caregivers provide everything from companion care to respite care, ensuring that your elders receive comprehensive, personalized care without ever leaving their home. Contact us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> for detailed info about our services.</p>
+            </Col>
+        </Row>
+    </Container>
+    </div>
+   
 
 <CitypageFooter/>
 </div>

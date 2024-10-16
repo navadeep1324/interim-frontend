@@ -11,9 +11,9 @@ import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
 import Accordion from "react-bootstrap/Accordion";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertinomain from "/public/images/HomeCare-in-Cottonwood.webp";
+import Cupertino1 from "/public/images/HealthCare-Services-in-Cottonwood.webp";
+import Cupertino2 from "/public/images/Compassionate-Caregivers.webp";
 import ReddingNavbarComponent from "../../../reddingnavcomponent";
 import Head from "next/head";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
@@ -60,7 +60,7 @@ export default function CottonwoodComponent() {
   }, [seoData]);
 
   if (!data) {
-    return <p>Loading...</p>;
+    //     //    // return <p>Loading...</p>;
   }
 
   return (
@@ -105,7 +105,7 @@ export default function CottonwoodComponent() {
       <div>
         <Container fluid>
           <Row className="py-5">
-            <Col md={6}>
+            <Col md={6} className="px-5">
               <Image src={Cupertinomain} alt="Cottonwood Main Image" />
             </Col>
             <Col md={6} className="redding-col2">
@@ -154,11 +154,11 @@ export default function CottonwoodComponent() {
       {/* Section 5 - Compassionate Caregivers */}
       <div className="py-5">
         <Container>
-          <Row>
-            <Col md={6} style={{ paddingRight: '25px' }}>
+          <Row >
+            <Col md={5} className="px-5 ">
               <Image src={Cupertino2} alt="Care Image 2" />
             </Col>
-            <Col md={6}>
+            <Col md={7} className="px-5 py-4">
               <h2 className="heading2">Exceptional Home Care for Seniors by Compassionate Caregivers</h2>
               <p className="py-3">
                 At Interim Healthcare, we have a profound vision and mission which is communicated thoroughly to our carefully vetted caregivers. Besides their inherent compassion, our expert care team is guided by rigorous training in senior health and safety standards of the highest quality. They prioritize your loved ones’ comfort and independence by providing personalized care which incorporates the following factors:

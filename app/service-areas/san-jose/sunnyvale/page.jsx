@@ -106,8 +106,8 @@ export default function SanJoseCupertinoComponent() {
             {/* <CaregiverCityComponent/> */}
             <div>
                 <Container fluid>
-                    <Row className="py-5">
-                        <Col md={6} className="px-0">
+                    <Row className="py-5 middlealign">
+                        <Col md={5} className="px-0">
                             {cityData.maincontent[1].image?.data && (
                                 <Image
                                     src={`https://admin.interimhc.com${cityData.maincontent[1].image.data.attributes.url}`}
@@ -117,7 +117,7 @@ export default function SanJoseCupertinoComponent() {
                                 />
                             )}
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '25px' }}>
+                        <Col md={7} className="sanjose-col">
                             <h2 className="heading2">{cityData.maincontent[1].Heading}</h2>
                             <div>
                                 {/* {renderDescription(cityData.maincontent[1].description)} */}
@@ -146,7 +146,7 @@ export default function SanJoseCupertinoComponent() {
                 </Container>
                 <Container className="section4subcity py-5">
                     <Row>
-                        <Col md={6} className="px-5">
+                        <Col md={8} className="px-5">
                             <h5 className="head5evergreen">
                                 {cityData.maincontent[2].description[0].children[0].text}
                             </h5>
@@ -158,7 +158,7 @@ export default function SanJoseCupertinoComponent() {
                 <li><p>Veteran Care </p> </li> </ul>
                 <p>We help your loved ones age with better physical health and mental well-being. Our team of care experts is ready to go the extra mile to ensure your seniors’ comfort and safety.  Our specialized care plans also include 24-hour home care companion care which help your seniors manage their health conditions and live their lives to the fullest. </p>
                         </Col>
-                        <Col md={6} className="px-0">
+                        <Col md={4} className="px-0">
                             {cityData.maincontent[2].img?.data && (
                                 <Image
                                     src={`https://admin.interimhc.com${cityData.maincontent[2].img.data.attributes.url}`}
@@ -173,8 +173,8 @@ export default function SanJoseCupertinoComponent() {
             </div>
             <div className="py-5">
                 <Container>
-                    <Row>
-                        <Col md={6} style={{ paddingRight: '25px' }}>
+                    <Row className="middlealign">
+                        <Col md={4} >
                             {cityData.maincontent[3].image?.data && (
                                 <Image
                                     src={`https://admin.interimhc.com${cityData.maincontent[3].image.data.attributes.url}`}
@@ -184,7 +184,7 @@ export default function SanJoseCupertinoComponent() {
                                 />
                             )}
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '25px' }}>
+                        <Col md={8} className="sanjose-col">
                             <h2 className="heading2">{cityData.maincontent[3].Heading}</h2>
                             <div style={{ paddingTop: '20px' }}>
                                 {/* {renderDescription(cityData.maincontent[3].description)} */}

@@ -54,8 +54,8 @@ useEffect(() => {
       console.log("No SEO Data received"); // Log if seoData is not available
     }
   }, [seoData]);
-    if (loading) return <p>Loading...</p>;
-    if (!data) return <p>No data available</p>;
+    if (loading)     //    // return <p>Loading...</p>;
+    if (!data) return //<p>No data available</p>;
 
     const mainContent = data[0]?.attributes?.maincontent || [];
 
@@ -96,7 +96,7 @@ useEffect(() => {
             <SanjoseNavbarComponent />
             <div className="section1subcity py-5">
                 <Container fluid className="px-5">
-                    <Row>
+                    <Row >
                         <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{mainContent[0]?.Heading}</h2>
                             <p className="py-3">{mainContent[0]?.subHeading}</p>
@@ -116,18 +116,18 @@ useEffect(() => {
             {/* Start of components.left-img-right-content component */}
             <div className="section-left-img-right-content py-5">
                 <Container fluid>
-                    <Row >
-                        <Col md={6} className="px-0">
+                    <Row className="middlealign">
+                        <Col md={5} className="px-0">
                             {getImageUrl(mainContent[1]?.image) && (
                                 <Image 
                                     src={getImageUrl(mainContent[1].image)} 
                                     alt={mainContent[1]?.image?.data?.attributes?.alternativeText || 'Image'} 
-                                    width={mainContent[1]?.image?.data?.attributes?.width || 600} 
-                                    height={mainContent[1]?.image?.data?.attributes?.height || 400} 
+                                    width={1878} 
+                                    height={1575} 
                                 />
                             )}
                         </Col>
-                        <Col md={6}>
+                        <Col md={7} className="sanjose-col">
                             <h2 className="heading2">{mainContent[1]?.Heading}</h2>
                             <div className="py-3">
                                 {mainContent[1]?.description?.map((desc, index) => (
@@ -154,8 +154,8 @@ useEffect(() => {
                     </Row>
                 </Container>
                 <Container className="section4subcity py-5">
-                    <Row>
-                        <Col md={6} className="px-5">
+                    <Row className="middlealign"> 
+                        <Col md={8} className="px-5">
                             <h5 className="head5evergreen">{mainContent[2]?.description?.[0]?.children[0]?.text}</h5>
                             <ul style={{ listStyleType: 'disc', paddingLeft: '20px', paddingTop: '20px' }}>
                                 {mainContent[2]?.description?.[1]?.children?.map((item, index) => (
@@ -166,13 +166,13 @@ useEffect(() => {
                             </ul>
                             <p className="py-4">{mainContent[2]?.description?.[2]?.children[0]?.text}</p>
                         </Col>
-                        <Col md={6} className="px-0">
+                        <Col md={4} className="px-0">
                             {getImageUrl(mainContent[2]?.img) && (
                                 <Image 
                                     src={getImageUrl(mainContent[2]?.img)} 
                                     alt={mainContent[2]?.img?.data?.attributes?.alternativeText || 'Image'} 
-                                    width={mainContent[2]?.img?.data?.attributes?.width || 600} 
-                                    height={mainContent[2]?.img?.data?.attributes?.height || 400} 
+                                    width={1878} 
+                                    height={1575} 
                                 />
                             )}
                         </Col>
@@ -183,18 +183,18 @@ useEffect(() => {
             <div className="py-5">
                 <Container>
                     <Row>
-                        <Col md={6} style={{ paddingRight: '25px' }}>
+                        <Col md={4} style={{ paddingRight: '25px' }}>
                             {getImageUrl(mainContent[3]?.image) && (
                                 <Image 
                                     src={getImageUrl(mainContent[3]?.image)} 
                                     alt={mainContent[3]?.image?.data?.attributes?.alternativeText || 'Image'} 
-                                    width={mainContent[3]?.image?.data?.attributes?.width || 600} 
-                                    height={mainContent[3]?.image?.data?.attributes?.height || 400} 
+                                    width={1875} 
+                                    height={1575} 
                                 />
                             )}
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '25px' }}>
-                            <h2 className="heading2">{mainContent[3]?.Heading}</h2>
+                        <Col md={8} style={{ paddingLeft: '25px' }}>
+                            <h2 className="heading2">{mainContent[3]?.Heading}</h2><br></br>
                             {/* {mainContent[3]?.description?.map((desc, index) => (
                                 <p className="py-1" key={index}>
                                     {desc.type === "paragraph" && renderTextContent(desc)}

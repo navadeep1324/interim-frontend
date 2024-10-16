@@ -11,9 +11,9 @@ import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
 import Accordion from "react-bootstrap/Accordion";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertinomain from "/public/images/Senior-Care-in-Rancho-Tehama.webp";
+import Cupertino1 from "/public/images/Our-Family.webp";
+import Cupertino2 from "/public/images//Senior-Home-Care-in-Montague.webp";
 import ReddingNavbarComponent from "../../../reddingnavcomponent";
 import Head from "next/head";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
@@ -60,7 +60,7 @@ export default function MontgomeryCreekComponent() {
   }, [seoData]);
 
   if (!data) {
-    return <p>Loading...</p>;
+    //     //    // return <p>Loading...</p>;
   }
 
   return (
@@ -136,11 +136,11 @@ export default function MontgomeryCreekComponent() {
             <Col md={8} className="px-5">
               <h5 className="heading5subcity">The holistic care service we offer includes:</h5>
               <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-3">
-                <li><p><b>Personalized Exercise Plans:</b> Customized fitness routines to improve strength, flexibility, and balance.</p></li>
-                <li><p><b>Mindfulness and Relaxation:</b> Techniques such as yoga, meditation, and deep breathing exercises to reduce stress and enhance mental clarity.</p></li>
-                <li><p><b>Nutritional Guidance:</b> Expert advice on healthy eating habits and meal planning for optimal health.</p></li>
-                <li><p><b>Creative Arts:</b> Opportunities to explore hobbies such as painting, crafts, music, and writing.</p></li>
-                <li><p><b>Cognitive Stimulation:</b> Games and activities designed to stimulate the mind and enhance cognitive function.</p></li>
+                <li><p className="py-2"><b>Personalized Exercise Plans:</b> Customized fitness routines to improve strength, flexibility, and balance.</p></li>
+                <li><p className="py-2"><b>Mindfulness and Relaxation:</b> Techniques such as yoga, meditation, and deep breathing exercises to reduce stress and enhance mental clarity.</p></li>
+                <li><p className="py-2"><b>Nutritional Guidance:</b> Expert advice on healthy eating habits and meal planning for optimal health.</p></li>
+                <li><p className="py-2"><b>Creative Arts:</b> Opportunities to explore hobbies such as painting, crafts, music, and writing.</p></li>
+                <li><p className="py-2"><b>Cognitive Stimulation:</b> Games and activities designed to stimulate the mind and enhance cognitive function.</p></li>
               </ul>
             </Col>
             <Col md={4}>

@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Enhance-Senior-Health.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/SeniorCare-in-Red-Bluff.webp";
+import Cupertino2 from "/public/images/Real-Difference.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In-Home Care in Red Bluff, California  </h2>
 <p className="py-3">
 Seniors have a profound presence in Red Bluff, CA and forecasting the trending city demographics, they will play a significant role in the future as well. To help address the concerns of the senior community, Interim Healthcare operates as a reliable home care partner in the city.  
@@ -39,19 +39,19 @@ Seniors have a profound presence in Red Bluff, CA and forecasting the trending c
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
-            <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+            <Row className="py-5 middlealign">
+                <Col md={6}  className="px-3 ">
                 <Image src={Cupertinomain} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px;'}} >
-                <h2 className="heading2 ">Home Healthcare Services which Enhance Senior Health  </h2>
+                <Col md={6} className="px-5 " >
+                <h2 className="heading2 ">Emerging Need of Senior Care in Red Bluff, CA   </h2>
                 <p className="py-3">
                 <a href="https://en.wikipedia.org/wiki/Red_Bluff,_California" className="phone-link" target="_blank">Red Bluff</a> is a city in the Tahoma County of California, located around 31 miles north of Redding. Around <a href="https://data.census.gov/profile/Red_Bluff_city,_California?g=160XX00US0659892#health" className="phone-link" target="_blank">14,710</a> people live in this small but pleasant town, which has a decent climate and access to all the essential amenities for living. However, the seniors here require timely access to home care services to help them overcome <a href="https://data.census.gov/profile/Red_Bluff_city,_California?g=160XX00US0659892#health" className="phone-link" target="_blank">cognitive, ambulatory and independent living difficulties.</a>  Interim Healthcare steps in to become the leading provider of trustworthy in-home care services in Red Bluff. 
                 </p>
@@ -95,16 +95,16 @@ Seniors have a profound presence in Red Bluff, CA and forecasting the trending c
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={5} style={{paddingRight:'25px'}}>
 <Image src={Cupertino2} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px'}}>
 <h2 className="heading2">Distinguished Home Care which makes a Real Difference  </h2>
 <p className="py-3">Choosing our services for your aging loved ones offers a range of exceptional benefits. We are dedicated to improving their health and well-being while providing these distinctive advantages:  </p>
 <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
-                <li><p><b>Customized Care Plans:</b> Flexible care schedules designed to align perfectly with your family’s needs. </p></li>
-                <li><p><b>Medicaid Support:</b> Expert guidance to help you navigate Medicaid options for in-home care services.  </p></li>
-                <li><p><b>Veteran Benefits Assistance: </b>Support for eligible veterans in obtaining the benefits they deserve.  </p></li>
+                <li><p className="py-2"><b>Customized Care Plans:</b> Flexible care schedules designed to align perfectly with your family’s needs. </p></li>
+                <li><p className="py-2"><b>Medicaid Support:</b> Expert guidance to help you navigate Medicaid options for in-home care services.  </p></li>
+                <li><p className="py-2"><b>Veteran Benefits Assistance: </b>Support for eligible veterans in obtaining the benefits they deserve.  </p></li>
                </ul>
                <p>Additionally, we provide a variety of payment options, allowing you to maintain financial peace of mind while prioritizing your loved ones’ health and well-being.  </p>
                </Col>

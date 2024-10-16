@@ -127,13 +127,13 @@ export default function MilpitasPage() {
             {/* <CaregiverCityComponent/> */}
             <div>
                 <Container fluid>
-                    <Row className="py-5">
-                        <Col md={6} style={{ paddingRight: '25px' }} className="px-0">
+                    <Row className="py-5 middlealign">
+                        <Col md={6}  className="px-0">
                             {content[1]?.image?.data && (
-                                <Image src={`https://admin.interimhc.com${content[1].image.data.attributes.url}`} width={626} height={525} alt="Milpitas Image 1" />
+                                <Image src={`https://admin.interimhc.com${content[1].image.data.attributes.url}`} width={1878} height={1575} alt="Milpitas Image 1"  style={{ transform: "scaleX(-1)" }} />
                             )}
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '25px' }}>
+                        <Col md={6} className="sanjose-col" >
                             <h2 className="heading2">{content[1]?.Heading || "Default Heading"}</h2>
                             {renderTextContent(content[1]?.description)}
                         </Col>
@@ -174,7 +174,7 @@ export default function MilpitasPage() {
                             </Col>
                             <Col md={5} className="px-0">
                                 {content[2]?.img?.data && (
-                                    <Image src={`https://admin.interimhc.com${content[2].img.data.attributes.url}`} width={626} height={525} alt="Milpitas Image 2" />
+                                    <Image src={`https://admin.interimhc.com${content[2].img.data.attributes.url}`} width={1878} height={1575} alt="Milpitas Image 2" />
                                 )}
                             </Col>
                         </Row>
@@ -184,12 +184,12 @@ export default function MilpitasPage() {
             <div className="py-5">
                 <Container>
                     <Row>
-                        <Col md={6} style={{ paddingRight: '25px' }}>
+                        <Col md={5} style={{ paddingRight: '25px' }}>
                             {content[3]?.image?.data && (
-                                <Image src={`https://admin.interimhc.com${content[3].image.data.attributes.url}`} width={595} height={780} alt="Milpitas Image 3" />
+                                <Image src={`https://admin.interimhc.com${content[3].image.data.attributes.url}`} width={1785} height={2340} alt="Milpitas Image 3" />
                             )}
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '25px' }}>
+                        <Col md={7} style={{ paddingLeft: '25px' }}>
                             <h2 className="heading2">{content[3]?.Heading || "Default Heading"}</h2>
                             {renderTextContent(content[3]?.description)}
                         </Col>

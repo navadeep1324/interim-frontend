@@ -7,10 +7,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Healthcare-in-Anderson-ca.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Services5img.png";
+import Cupertino1 from "/public/images/In-Homecare-Services-in-Anderson.webp";
+import Cupertino2 from "/public/images/Interim-Healthcare-in-Anderson.webp";
 import Button from 'react-bootstrap/Button';
 import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
@@ -89,15 +89,16 @@ export default function SanJoseCupertinoComponent() {
       <div>
         {/* <CaregiverCityComponent /> */}
         <Container fluid>
-          <Row className="py-5">
+          <Row className="py-5 middlealign">
             <Col md={6}>
               <Image src={Cupertinomain} />
             </Col>
-            <Col md={6} className="redding-col2">
+            <Col md={6} className="redding-col2 px-5">
               <h2 className="heading2">Need of Interim Healthcare in Anderson, California</h2>
               <p className="py-3">
-                Located in the Shasta County, <a href="https://en.wikipedia.org/wiki/Anderson,_California" className="phone-link" target="_blank">Anderson</a> is a city situated in California. As most of the people in this city are <a href="https://en.wikipedia.org/wiki/Anderson,_California" className="phone-link" target="_blank">working professionals</a>, seniors are often left at home which can lead to concerns about their safety, well-being, and social isolation...
+                Located in the Shasta County, <a href="https://en.wikipedia.org/wiki/Anderson,_California" className="phone-link" target="_blank">Anderson</a> is a city situated in California. As most of the people in this city are <a href="https://en.wikipedia.org/wiki/Anderson,_California" className="phone-link" target="_blank">working professionals</a>, seniors are often left at home which can lead to concerns about their safety, well-being, and social isolation.Interim HealthCare is here to address these challenges and provide comprehensive support for seniors in Anderson. 
               </p>
+              <p className="py-3">We understand the challenges faced by seniors, especially in a community where family members may be occupied with work commitments. Our in home care services are designed to provide peace of mind to families and enhance the quality of life for seniors. By offering a range of senior care services, Interim HealthCare ensures that elders receive the attention and care they deserve. Let us be your partner in ensuring that your loved ones enjoy their golden years with the dignity. </p>
             </Col>
           </Row>
         </Container>
@@ -108,7 +109,7 @@ export default function SanJoseCupertinoComponent() {
           <Row>
             <Col>
               <h2 className="heading2" style={{ color: '#ffff', textAlign: 'center' }}>In Homecare Services in Anderson</h2>
-              <p className="py-3" style={{ color: '#ffff', textAlign: 'center' }}>Interim HealthCare offers comprehensive home health care services in Anderson, CA...</p>
+              <p className="py-3" style={{ color: '#ffff', textAlign: 'center' }}>Interim HealthCare offers comprehensive home health care services in Anderson, CA. Our in home care services include personal care, companion care, respite care, and much more, to support the unique needs of seniors. Our caregivers put in every effort to make them feel their best. </p>
             </Col>
           </Row>
         </Container>
@@ -140,7 +141,8 @@ export default function SanJoseCupertinoComponent() {
             </Col>
             <Col md={6}>
               <h2 className="heading2">Quality Care from Our Expert Team</h2>
-              <p className="py-3">At Interim Healthcare, we pride ourselves on having a team of exceptional caregivers dedicated to providing the best level of in home care for elderly...</p>
+              <p className="py-3">At Interim Healthcare, we pride ourselves on having a team of exceptional caregivers dedicated to providing the best level of in home care for elderly. They are compassionate, experienced, and committed to making a positive difference in the lives of the seniors they serve. Every member of our care team is highly trained and carefully selected for their ability to provide exceptional care. Our mission is to ensure that every senior in our care receives the highest level of attention. </p>
+              <p className="py-3">The caregivers of Interim healthcare are skilled professionals who bring a personal touch to their work. They offer a combination of experience and genuine care, helping seniors navigate their days with comfort, and joy. Their dedication transforms every day into a better experience for your loved ones.  </p>
             </Col>
           </Row>
         </Container>
@@ -151,7 +153,7 @@ export default function SanJoseCupertinoComponent() {
           <Row>
             <Col>
               <h2 className="heading2city py-3">Your Comfort is Our Priority!</h2>
-              <p style={{ textAlign: 'center' }}>Discover the peace of mind that comes with our in-home care services. Our exceptional caregivers are dedicated to helping your loved ones live comfortably and confidently at home...</p>
+              <p style={{ textAlign: 'center' }}>Discover the peace of mind that comes with our in-home care services. Our exceptional caregivers are dedicated to helping your loved ones live comfortably and confidently at home. Whether they require assistance with daily tasks, companionship, or specialized care, we're here to provide constant support throughout their journey. Reach out to us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> to get started. Let us help make your seniors’ home a place where they feel their best every day! </p>
             </Col>
           </Row>
         </Container>

@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Senior-Home-Care-in-Montague.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Senior-In-HomeCare-in-Hat-Creek-ca.webp";
+import Cupertino2 from "/public/images/Home-Care-services.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -23,9 +23,9 @@ export default function SanJoseCupertinoComponent() {
 <div>
 <ReddingNavbarComponent />
     <div className="section1subcity py-5">
-<Container>
+<Container fluid>
 <Row>
-    <Col md={7}>
+    <Col md={7} className="reddingsubcity-banner">
 <h2 className="subcityheading">Senior In-Home Care in Shingle Town, CA</h2>
 <p className="py-3">
 Seniors are a special part of our lives because of their charming persona and their selfless aspirations for us. To repay them for their efforts, choose Interim Healthcare, which has been serving seniors in Single Town compassionately for over two decades. 
@@ -33,24 +33,24 @@ Seniors are a special part of our lives because of their charming persona and th
 <p>Reach out to us at  +1 530-221-1212 for more info!</p>
 <SubcityCaregiversComponent/>
     </Col>
-    <Col md={5} className="formcoloumcity">
+    <Col md={4} className="formcoloumcity">
     <FormComponent/>
     </Col>
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0">
+                <Col md={5} className="px-5">
                 <Image src={Cupertinomain} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px;'}}>
+                <Col md={6} className="px-3">
                 <h2 className="heading2 ">Rising Home Health Care Needs in Shingle Town, CA  </h2>
                 <p className="py-3">
                 Shingle Town is a small, census-designated place in the Shasta County of California. Nestled beneath scenic hills, its small community of 2,442 enjoys a serene living environment. Seniors account for around 44% of its people, mandating the need of trustworthy home care services to help them age peacefully. Most concerning issues with residents here are difficulty with ambulation and independent living.  
@@ -94,19 +94,19 @@ At Interim Healthcare, our home care services in Shingle Town, are designed to h
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={6} className="px-3">
 <Image src={Cupertino2} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px'}}>
+                <Col md={6} className="px-5">
 <h2 className="heading2">Simplifying Health and Comfort for Seniors </h2>
 <p className="py-3">Being pioneers of home healthcare in the nation, we thoroughly understand the various challenges that your seniors may encounter in their daily lives. From basic personal hygiene to timely intake of medications, every task may require assistance to help them age with confidence and dignity. Here are some of the ways our personalized home health care can make a difference to their lives:  </p>
                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                <li><p>Personal care assistance helps with the upkeep of their hygiene and grooming. </p></li>
-                <li><p>Meal planning and preparation nourishes their health with nutritious meals.  </p></li>
-                <li><p>Light housekeeping fosters a safe environment with a reduced risk of falls.  </p></li>
-              <li><p>Medication management ensures better management of chronic diseases.  </p></li>
+                <li><p className="py-2">Personal care assistance helps with the upkeep of their hygiene and grooming. </p></li>
+                <li><p className="py-2">Meal planning and preparation nourishes their health with nutritious meals.  </p></li>
+                <li><p className="py-2">Light housekeeping fosters a safe environment with a reduced risk of falls.  </p></li>
+              <li><p className="py-2"> Medication management ensures better management of chronic diseases.  </p></li>
               </ul>
-              <p className="py-4">There’s nothing amiss with the presence of our astute caregivers whose utmost priority is your senior’s comfort.   </p>
+              <p className="py-2">There’s nothing amiss with the presence of our astute caregivers whose utmost priority is your senior’s comfort.   </p>
                </Col>
             </Row>
         </Container>
@@ -146,33 +146,7 @@ At Interim Healthcare, our home care services in Shingle Town, are designed to h
     </Accordion>
     </Container>
     </div>
-<div className="section7city py-5">
-    <Container>
-        <Row>
-            <Col><h2 className="heading2" style={{textAlign:'center'}}>Services in Redding, CA</h2>
-            <p className="py-3" style={{textAlign:'center'}}>From short-term assistance after a hospital stay to long-term help with everyday tasks, and from highly specialized medical care to daily companionship, we’re here to help provide the individualized care your loved one needs to thrive.</p>
-            </Col>
-        </Row>
-        <Row className="py-4">
-            <Col md={4}>
-            <Image src={Sanjoseservice1}/>
-            <Button className="citypagebtn">Palo Cedro <i class="bi bi-chevron-right"></i></Button>
-            </Col>
-            <Col md={4}>
-            <Image src={Sanjoseservice2}/>
-            <Button className="citypagebtn">Shasta County<i class="bi bi-chevron-right"></i></Button>
-            </Col>
-            <Col md={4}>
-            <Image src={Sanjoseservice3}/>
-            <Button className="citypagebtn">Tehama County<i class="bi bi-chevron-right"></i></Button>
-            </Col>
-        </Row>
-        <Row>
-            <Col className="allservice">
-            <Button className="allservicesbtn">View All Services <i class="bi bi-chevron-right"></i></Button></Col>
-        </Row>
-    </Container>
-</div>
+
 <CitypageFooter/>
 </div>
     );

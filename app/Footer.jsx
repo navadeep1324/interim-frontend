@@ -43,7 +43,7 @@ export default function Footer() {
                     </Row>
                     <Row style={{ paddingTop: '3em' }}>
                         {footerData?.maincontent?.filter(content => content.__component === "layout.begin-your-senior-s-journey-with-us").map((item, index) => (
-                            <Col md="4" key={index}>
+                            <Col md="4" key={index} >
                                 <Image
                                     src={`https://admin.interimhc.com${item?.image?.data?.attributes?.url}`}
                                     width={item?.image?.data?.attributes?.width || 200}

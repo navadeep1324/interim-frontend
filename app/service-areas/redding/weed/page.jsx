@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Senior-Care-in-Rancho-Tehama.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Travelling-the-Extra-Mile-for-Seniors.webp";
+import Cupertino2 from "/public/images/Home-Health-Care-Services.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In Home Care in Weed, California  </h2>
 <p className="py-3">
 Every senior’s journey is unique, and so are the home care services of Interim Healthcare. We don’t believe in a one-size-fits-all approach. We adapt our services to fit your seniors’ lifestyle and needs in Weed, California.  
@@ -39,18 +39,18 @@ Every senior’s journey is unique, and so are the home care services of Interim
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+                <Col md={6} className="px-5 ">
                 <Image src={Cupertinomain} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px;'}} >
+                <Col md={6}  >
                 <h2 className="heading2 ">Home Health Care in Weed, California   </h2>
                 <p className="py-3">
                 Weed is a small city in Siskiyou County, located in California. As a rural area, Weed can present <a href="https://dwellics.com/state/california/proscons-in-weed" className="phone-link" target="_blank">transportation</a> challenges, making it difficult for seniors to travel for medical appointments or other essential services. Moreover, it can impact their ability to receive timely care and maintain their health and well-being. This is where Interim Healthcare can offer essential support to seniors. 
@@ -76,14 +76,14 @@ Every senior’s journey is unique, and so are the home care services of Interim
                 <Row>
                     <Col md={8} className="px-5">
                     <h5 className="heading5subcity">Here's how we can make a difference:  </h5>
-                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
-                <li><p><b>Physical Assistance:  </b>We provide support with mobility, toileting, and incontinence care. </p>
+                    <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4 px-5">
+                <li><p className="py-2"><b>Physical Assistance:  </b>We provide support with mobility, toileting, and incontinence care. </p>
                 </li>
-                <li><p><b>Medication Management:</b> Our caregivers manage meds to ensure proper dosage and timings.  </p>
+                <li><p className="py-2"><b>Medication Management:</b> Our caregivers manage meds to ensure proper dosage and timings.  </p>
                 </li>
-                <li><p><b>Housekeeping and Meal Prep:</b>We take care of everyday needs such as housekeeping and cooking meals.   </p>
+                <li><p className="py-2"><b>Housekeeping and Meal Prep:</b>We take care of everyday needs such as housekeeping and cooking meals.   </p>
                 </li>
-                <li><p><b>Emotional Support:  </b>We offer companionship and counselling to make elders feel valued. </p>
+                <li><p className="py-2"><b>Emotional Support:  </b>We offer companionship and counselling to make elders feel valued. </p>
                 </li>
                 
                </ul>
@@ -99,10 +99,10 @@ Every senior’s journey is unique, and so are the home care services of Interim
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={5} className="px-3">
 <Image src={Cupertino2} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px'}}>
+                <Col md={6} className="px-5">
 <h2 className="heading2">Our Wide Range of Exceptional Services  </h2>
 <p className="py-3">We proudly offer a range of compassionate home care services in Weed, designed to meet the diverse needs of your aging adults. Our mission is to provide empathetic care that makes your elders feel valued and respected. We understand the unique challenges that come with aging, this is why our home care services are designed to provide the support and companionship that makes a real difference.  </p>
 <h5 className="heading5subcity">Here’s a look at what we offer:    </h5>

@@ -11,9 +11,9 @@ import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
 import Accordion from "react-bootstrap/Accordion";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertinomain from "/public/images/Home-Care-in-Johnson-Park.webp";
+import Cupertino1 from "/public/images/Exceptional-Care.webp";
+import Cupertino2 from "/public/images/Healthcare-in-Anderson-ca.webp";
 import ReddingNavbarComponent from "../../../reddingnavcomponent";
 import Head from "next/head";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
@@ -60,7 +60,7 @@ export default function JohnsonParkComponent() {
   }, [seoData]);
 
   if (!data) {
-    return <p>Loading...</p>;
+    //     //    // return <p>Loading...</p>;
   }
 
   return (
@@ -105,7 +105,7 @@ export default function JohnsonParkComponent() {
       <div>
         <Container fluid>
           <Row className="py-5">
-            <Col md={6}>
+            <Col md={5}>
               <Image src={Cupertinomain} alt="Main Image" />
             </Col>
             <Col md={6} className="redding-col2">
@@ -155,10 +155,10 @@ export default function JohnsonParkComponent() {
       <div className="py-5">
         <Container>
           <Row>
-            <Col md={6} style={{ paddingRight: '25px' }}>
+            <Col md={6}>
               <Image src={Cupertino2} alt="Care Image 2" />
             </Col>
-            <Col md={6}>
+            <Col md={6} className="px-5">
               <h2 className="heading2">Making Life Easier for your Loved One</h2>
               <p className="py-3">
                 We aim to enhance aging for your loved ones and restore their confidence and independence. We do so by providing them with reliable and timely assistance from compatible caregivers who are compassionate and dependable.

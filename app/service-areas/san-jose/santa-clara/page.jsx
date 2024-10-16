@@ -53,7 +53,7 @@ export default function SanJoseCupertinoComponent() {
 
 
     if (!santaClaraData) {
-        return <div>Loading...</div>;
+        return //<div>Loading...</div>;
     }
 
     // Extract data for different sections based on component type
@@ -122,20 +122,21 @@ export default function SanJoseCupertinoComponent() {
 
             {/* First Image and Text Section */}
             <Container fluid>
-                <Row className="py-5">
-                    <Col md={6} style={{ paddingRight: '25px' }} className="px-0">
+                <Row className="py-5 middlealign">
+                    <Col md={4}className="px-0">
                         {leftImgRightContent[0]?.image?.data ? (
                             <Image
                                 src={`https://admin.interimhc.com${leftImgRightContent[0].image.data.attributes.url}`}
                                 alt={leftImgRightContent[0].image.data.attributes.alternativeText || ""}
                                 width={leftImgRightContent[0].image.data.attributes.width}
                                 height={leftImgRightContent[0].image.data.attributes.height}
+                                style={{ transform: "scaleX(-1)" }} 
                             />
                         ) : (
                             <Image src={SantaClara1} alt="Default Image" />
                         )}
                     </Col>
-                    <Col md={6} style={{ paddingLeft: '25px' }}>
+                    <Col md={8} className="sanjose-col" >
                         <h2 className="heading2">{leftImgRightContent[0].Heading}</h2>
                         {renderTextContent(leftImgRightContent[0].description)}
                     </Col>
@@ -158,7 +159,7 @@ export default function SanJoseCupertinoComponent() {
                 </Container>
                 <Container className="section4subcity py-5">
                     <Row>
-                        <Col md={6} className="px-5">
+                        <Col md={7} className="px-5">
                             <h5 className="head5evergreen">{middleHedDecLeftImgRightContent.description[0].children[0].text}</h5>
                             <ul style={{ listStyleType: 'disc', paddingLeft: '20px', paddingTop: '20px' }}>
                                 {middleHedDecLeftImgRightContent.description
@@ -175,7 +176,7 @@ export default function SanJoseCupertinoComponent() {
                                 .join(' ')
                             }</p>
                         </Col>
-                        <Col md={6} className="px-0">
+                        <Col md={5} className="px-0">
                             {middleHedDecLeftImgRightContent.img?.data ? (
                                 <Image
                                     src={`https://admin.interimhc.com${middleHedDecLeftImgRightContent.img.data.attributes.url}`}
@@ -195,7 +196,7 @@ export default function SanJoseCupertinoComponent() {
             <div className="py-5">
                 <Container>
                     <Row>
-                        <Col md={6} style={{ paddingRight: '25px' }}>
+                        <Col md={5} >
                             {leftImgRightContent[1]?.image?.data ? (
                                 <Image
                                     src={`https://admin.interimhc.com${leftImgRightContent[1].image.data.attributes.url}`}
@@ -207,7 +208,7 @@ export default function SanJoseCupertinoComponent() {
                                 <Image src={SantaClara3} alt="Default Image" />
                             )}
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '25px' }}>
+                        <Col md={7} className="sanjose-col">
                             <h2 className="heading2 py-3">{leftImgRightContent[1].Heading}</h2>
                             {/* {renderTextContent(leftImgRightContent[1].description)} */}
                             <p>Choosing a suitable home care plan for your loved one can be such a critical decision for your family. At Interim Healthcare, we enable you to make the right choices by offering you our competent assistance throughout the decision-making process. Here are the benefits of choosing us for your senior home care needs: </p>

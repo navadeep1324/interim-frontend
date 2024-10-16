@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/In-Home-Care-Services-in-Fall-River.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Home-HealthCare-in-Fall-River.webp";
+import Cupertino2 from "/public/images/Compassionate-Caregivers.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In Home Care Services in Yreka, California  </h2>
 <p className="py-3">
 Our in home care services in Yreka focus on providing comprehensive in-home care that caters to seniors' physical, emotional, and social needs. At Interim Healthcare, we leave no stone unturned to make your seniors feel their best! 
@@ -39,19 +39,19 @@ Our in home care services in Yreka focus on providing comprehensive in-home care
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+                <Col md={6} className="px-5 ">
                 <Image src={Cupertinomain} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px;'}} >
-                <h2 className="heading2 ">Elder Care in Yreka, California   </h2>
+                <h2 className="heading2 py-3">Elder Care in Yreka, California   </h2>
                 <p className="py-3">
                 Yreka is a city present in Siskiyou County, California. It has a huge old-age dependency ratio of about <a href="https://worldpopulationreview.com/us-cities/california/yreka" target="_blank" className="phone-link">42.5</a>. This ratio indicates a growing demand for senior care services, as a larger portion of the population may require assistance and support with daily living. Interim HealthCare is dedicated to meeting this need by offering a variety of services tailored to elders.  
 <br></br>
@@ -98,10 +98,10 @@ Our in-home care services offer a comprehensive range of support, including <a h
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={5} className="px-5">
 <Image src={Cupertino2} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px'}}>
+                <Col md={6} >
 <h2 className="heading2">The Difference We Make    </h2>
 <p className="py-3">Our approach to senior in home care is rooted in respect, dignity, and understanding. We believe in empowering seniors by offering services that enhance their overall health. Our caregivers are carefully selected and trained to handle the unique needs of the elderly, especially in a community like Yreka where access to certain services may be limited. They are committed to providing care that is not only professional but also deeply personal.   </p>
               <p className="py-4">We prioritize building strong relationships between caregivers and seniors, fostering trust and companionship that goes beyond the basic care tasks. Our team takes the time to listen, understand, and adapt to each senior's lifestyle, ensuring they feel comfortable and valued. </p>
