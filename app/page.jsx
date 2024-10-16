@@ -232,6 +232,7 @@ export default function Home() {
       <Head>
         <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
         <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
+        
       </Head>
       <NavbarComponent />
       <HeaderComponent />

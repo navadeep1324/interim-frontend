@@ -53,7 +53,7 @@ useEffect(() => {
   }, [seoData]);
 
     if (!cupertinoData) {
-        return <div>Loading...</div>;
+        return //<div>Loading...</div>;
     }
 
     const getFullImageUrl = (relativeUrl) => {
@@ -89,7 +89,7 @@ useEffect(() => {
             <SanjoseNavbarComponent />
             <div className="section1subcity py-5">
                 <Container fluid className="px-5">
-                    <Row>
+                    <Row className="middlealign">
                         <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{cupertinoData[0]?.Heading}</h2>
                             <p className="py-3">{cupertinoData[0]?.subHeading}</p>
@@ -123,11 +123,11 @@ useEffect(() => {
                 <Image
                     src={getFullImageUrl(cupertinoData[2].image?.data?.attributes.url)}
                     alt="Cupertino Main Image"
-                    width={600}
-                    height={400}
+                    width={2259}
+                    height={1578}
                 />
                 </Col>
-                <Col md={6} style={{ paddingLeft: "25px" }}>
+                <Col md={6} className="sanjose-col">
                 <h2 className="heading2">{cupertinoData[2]?.Heading}</h2>
                 {cupertinoData[2]?.description.map((desc, index) => (
                     <p className="py-3" key={index}>
@@ -153,18 +153,20 @@ useEffect(() => {
                     </Row>
                 </Container>
                 <Container className="section4subcity py-5">
-                    <Row>
-                        <Col md={8} className="px-5">
+                    <Row className="middlealign">
+                        <Col md={7} className="px-5">
                             <h5 className="heading5subcity">
                                 {cupertinoData[3]?.description[0]?.children[0]?.text}
                             </h5>
-                            {cupertinoData[3]?.description.map((desc, index) => (
-                                <p className="py-1" key={index}>
-                                    {renderTextContent(desc)}
-                                </p>
-                            ))}
+                            {cupertinoData[3]?.description.slice(1).map((desc, index) => (
+  <p className="py-1" key={index}>
+    {renderTextContent(desc)}
+  </p>
+))}
+
+                            
                         </Col>
-                        <Col md={4}>
+                        <Col md={5}>
                             {cupertinoData[3]?.img?.data?.attributes?.url && (
                                 <Image
                                     src={getFullImageUrl(cupertinoData[3].img.data.attributes.url)}
@@ -184,10 +186,10 @@ useEffect(() => {
                     <Row>
                         <Col md={6} style={{ paddingRight: "25px" }}>
                             <Image
-                                src="/images/Cupertino2.png"
+                                src={getFullImageUrl(cupertinoData[4].image.data.attributes.url)}
                                 alt="Cupertino Image 2"
-                                width={500}
-                                height={300}
+                                width={1782}
+                                height={2340}
                             />
                         </Col>
                         <Col md={6} style={{ paddingLeft: "25px" }}>

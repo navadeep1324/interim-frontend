@@ -60,7 +60,7 @@ export default function HatCreekComponent() {
   }, [seoData]);
 
   if (!data) {
-    return <p>Loading...</p>;
+    //     //    // return <p>Loading...</p>;
   }
 
   return (

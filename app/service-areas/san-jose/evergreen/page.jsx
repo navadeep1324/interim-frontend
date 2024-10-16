@@ -51,7 +51,7 @@ useEffect(() => {
     }
   }, [seoData]);
   
-    if (!data) return <div>Loading...</div>;
+    if (!data) return // <div>Loading...</div>;
 
     const getImageUrl = (imageData) => {
         return imageData?.formats?.large?.url
@@ -87,7 +87,7 @@ useEffect(() => {
             <SanjoseNavbarComponent />
             <div className="section1subcity py-5">
                 <Container fluid className="px-5">
-                    <Row>
+                    <Row >
                         <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{data[0]?.Heading}</h2>
                             <p className="py-3">{data[0]?.subHeading}</p>
@@ -108,18 +108,18 @@ useEffect(() => {
 
             <div className="section-left-img-right-content py-5">
                 <Container fluid>
-                    <Row>
+                    <Row className="middlealign">
                         <Col md={6}  className="px-0">
                             {data[1]?.image?.data && (
                                 <img 
                                     src={getImageUrl(data[1].image.data.attributes)} 
                                     alt={data[1]?.Heading || "Default Alt Text"} 
-                                    width="100%" 
-                                    height="auto"
+                                    width={2559} 
+                                    height={1578}
                                 />
                             )}
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '25px' }}>
+                        <Col md={6} className="sanjose-col">
                             <h2 className="heading2">{data[1]?.Heading}</h2>
                             {data[1]?.description.map((desc, index) => (
                                 <p key={index} className="py-3">{renderTextContent(desc)}</p>
@@ -164,8 +164,8 @@ useEffect(() => {
                                 <img 
                                     src={getImageUrl(data[2].img.data.attributes)} 
                                     alt={data[2]?.Heading || "Default Alt Text"} 
-                                    width="100%" 
-                                    height="auto"
+                                    width={1878} 
+                                    height={1575}
                                 />
                             )}
                         </Col>
@@ -175,18 +175,18 @@ useEffect(() => {
 
             <div className="py-5">
                 <Container>
-                    <Row>
-                        <Col md={6} style={{ paddingRight: '25px' }}>
+                    <Row >
+                        <Col md={4} >
                             {data[3]?.image?.data && (
                                 <img 
                                     src={getImageUrl(data[3].image.data.attributes)} 
                                     alt={data[3]?.Heading || "Default Alt Text"} 
-                                    width="100%" 
-                                    height="auto"
+                                    width={595}
+                                    height={780}
                                 />
                             )}
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '25px' }}>
+                        <Col md={8} className="sanjose-col">
                             <h2 className="heading2">{data[3]?.Heading}</h2>
                             {data[3]?.description.map((desc, index) => (
                                 <p key={index} className="py-3">{renderTextContent(desc)}</p>

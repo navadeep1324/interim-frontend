@@ -312,9 +312,9 @@ h4.titleservice {
     overflow: hidden;
     border-color: #d81c3f;
     padding-top: 2.5%;
-    padding-right: 2.5%;
+    padding-right: 2%;
     padding-bottom: 2%;
-    padding-left: 2.5%;
+    padding-left: 2%;
     box-shadow: 5px 8px 15px -11px #d81c3f;
 }
 .section1banner {
@@ -543,6 +543,9 @@ h1{
 }
 .sanjose-col{
   padding: 0 3%;
+}
+.sanjose-col2{
+  padding: 0 7%;
 }
 .contactsecbg {
   width: 100%;
@@ -1039,6 +1042,9 @@ font-weight: 500;
 .sanjose-col{
   padding: 0 8% !important;
 }
+.sanjose-col2{
+  padding: 0 8% !important;
+}
 .formcoloum{
   margin-top: 6%;
   width: 95%;
@@ -1123,7 +1129,7 @@ body > div > div > div:nth-child(8) > div > div > div:nth-child(2) {
   padding: 15px 0px;
 }
 .sanjose-banner {
-  padding-top: 25% !important;
+  padding-top: 5% !important;
 }
 .subcityheading {
   font-size: 35px;
@@ -1167,6 +1173,9 @@ ul {
 }
 li {
 font-size: 18px;
+}
+.spacebelow{
+  padding-bottom: 1%;
 }
 @media only screen and (min-width: 768px) {
   .middlealign{
