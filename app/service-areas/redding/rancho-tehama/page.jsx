@@ -6,9 +6,9 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Senior-Care-in-Rancho-Tehama.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
+import Cupertino1 from "/public/images/Home-Health-Care-Services.webp";
 import Cupertino2 from "/public/images/Cupertino2.png";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner" >
 <h2 className="subcityheading">Senior Home Care in Rancho Tehama, California   </h2>
 <p className="py-3">
 We believe that aging should be a time of dignity, comfort, and cherished moments. The in-home care services of Interim Healthcare are designed to provide seniors with the support they need to continue living independently in Rancho Tehama.     
@@ -39,15 +39,15 @@ We believe that aging should be a time of dignity, comfort, and cherished moment
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+                <Col md={6} className="px-5 ">
                 <Image src={Cupertinomain} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px;'}} >
@@ -82,7 +82,9 @@ We believe that aging should be a time of dignity, comfort, and cherished moment
                 <li><p><a href="/service-areas/redding/services/personal-care"className="phone-link" >Hospice care </a></p>  </li>
                 <li><p><a href="/service-areas/redding/services/personal-care" className="phone-link">Veteran care </a></p>  </li>
                </ul>
-
+               <h2 className="heading2">Our Caregivers Travel the Extra Mile   </h2>
+<p className="py-3">At Interim HealthCare, our caregivers don't just meet expectations—they exceed them. We believe that exceptional care goes beyond just providing services; it’s about making a meaningful impact in the lives of aging adults.   </p>
+<p>Our caregivers are dedicated to offering customized care for every senior, ensuring they receive the right support, assistance, companionship, and specialized attention. They take the time to get to know each elderly and meet their expectations. This level of care fosters trust, comfort, and peace of mind for both the senior and their families.  </p>
                </Col>
                     <Col md={4}>
 <Image src={Cupertino1} alt=""/>
@@ -91,7 +93,7 @@ We believe that aging should be a time of dignity, comfort, and cherished moment
             </Container>
         </div>
     </div>
-    <div className="py-5">
+    {/* <div className="py-5">
         <Container>
             <Row>
                 <Col md={6} style={{paddingRight:'25px'}}>
@@ -104,18 +106,8 @@ We believe that aging should be a time of dignity, comfort, and cherished moment
                </Col>
             </Row>
         </Container>
-    </div>
-    <div className="section5city py-5">
-    <Container>
-        <Row>
-            <Col>
-            <h2 className="heading2city py-3">We Are Proud to Serve Aging Adults  </h2>
-          
-           <p style={{textAlign:'center'}}>Experience compassionate senior care that enhances the quality of life in the comfort of your own home. At Interim HealthCare in Rancho Tehama, we offer personalized in-home services to support your loved one's independence and well-being. From personal care to skilled healthcare, we're here for you. Call us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> to learn more about our comprehensive services and start your journey toward peace of mind.  </p>
-            </Col>
-        </Row>
-    </Container>
-    </div>
+    </div> */}
+   
     <div className="py-5">
         <Container>
         <h2 className="heading2" style={{textAlign:'center'}}>Frequently Asked Questions</h2>
@@ -141,7 +133,17 @@ We believe that aging should be a time of dignity, comfort, and cherished moment
     </Accordion>
     </Container>
     </div>
-
+    <div className="section5city py-5">
+    <Container>
+        <Row>
+            <Col>
+            <h2 className="heading2city py-3">We Are Proud to Serve Aging Adults  </h2>
+          
+           <p style={{textAlign:'center'}}>Experience compassionate senior care that enhances the quality of life in the comfort of your own home. At Interim HealthCare in Rancho Tehama, we offer personalized in-home services to support your loved one's independence and well-being. From personal care to skilled healthcare, we're here for you. Call us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> to learn more about our comprehensive services and start your journey toward peace of mind.  </p>
+            </Col>
+        </Row>
+    </Container>
+    </div>
 <CitypageFooter/>
 </div>
     );

@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Elderly-Care-in-Round-Mt.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Home-Care-Services-round-mt.webp";
+import Cupertino2 from "/public/images/Benefits.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -26,12 +26,12 @@ export default function SanJoseCupertinoComponent() {
     <div className="section1subcity py-5">
 <Container fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Home Care Services in Round Mt, CA </h2>
 <p className="py-3">
 <a href="https://en.wikipedia.org/wiki/Round_Mountain,_California" className="phone-link" target="_blank">Round Mt., CA</a> is one of the areas with a growing senior population in Shasta County, California. With <a href="https://data.census.gov/vizwidget?g=160XX00US0663134&infoSection=Older%20Population" className="phone-link" target="_blank">48% of the population in this city being seniors,</a>  Interim Healthcare in Round Mt., CA takes responsibility for their care with home care and home health services.  
  </p>
-<p>Give your seniors the privilege to age in place by reaching out to <br></br>us today <a href="tel:530-221-1212" className="phone-link"> +1 530-221-1212 </a> !</p>
+<p>Give your seniors the privilege to age in place by reaching out to <br></br>us today! <a href="tel:530-221-1212" className="phone-link"> +1 530-221-1212 </a> </p>
 <SubcityCaregiversComponent/>
     </Col>
     <Col md={4} className="formcoloumcity">
@@ -40,15 +40,15 @@ export default function SanJoseCupertinoComponent() {
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0">
+                <Col md={6} style={{paddingRight:'25px;'}} className="px-3">
                 <Image src={Cupertinomain} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px;'}}>
@@ -76,7 +76,7 @@ With the increasing health concerns among seniors, such as Alzheimer’s, Dement
             <Container className="section4subcity py-5">
                 <Row>
                     <Col md={8} className="px-5">
-                    <h5 className="heading5subcity">Here are some of the leading services offered at Interim Healthcare in Round Mt, CA:</h5>
+                    <h5 className="heading5subcity" style={{lineHeight:'1.8em'}}>Here are some of the leading services offered at Interim Healthcare in Round Mt, CA:</h5>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
                 <li><p><a href="/service-areas/redding/services/personal-care" className="phone-link">Personal Care </a></p></li>
                 <li><p>Alzheimer’s Care  </p></li>
@@ -96,19 +96,19 @@ With the increasing health concerns among seniors, such as Alzheimer’s, Dement
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={5} style={{paddingRight:'25px'}}>
 <Image src={Cupertino2} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px'}}>
 <h2 className="heading2">The Benefit We Bring to your Seniors </h2>
 <p className="py-3">At Interim Healthcare, we understand that entrusting the care of your elderly loved ones to someone else is a significant decision. That's why we strive to bring peace of mind, confidence, and quality care to your family. Here’s how our services benefit your seniors:  </p>
                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                <li><p><b>Peace of Mind:</b>Professional, compassionate care around the clock </p></li>
-                <li><p><b>Confidence:</b>Personalized care plans tailored to each individual  </p></li>
-                <li><p><b>Healthy Living:</b>Comprehensive services promoting healthy lifestyles and effective chronic condition management </p></li>
-              <li><p><b>Quality Care:</b>Exceptional service from highly trained caregivers and healthcare professionals </p></li>
-              <li><p><b>Companionship:</b>Meaningful social interaction and activities to combat loneliness and isolation</p></li>
-              <li><p><b> Medication Management:</b>Ensuring accurate and timely administration of medications</p></li>
+                <li className="py-2"><p><b>Peace of Mind:</b>Professional, compassionate care around the clock </p></li>
+                <li className="py-2"><p><b>Confidence:</b>Personalized care plans tailored to each individual  </p></li>
+                <li className="py-2"><p><b>Healthy Living:</b>Comprehensive services promoting healthy lifestyles and effective chronic condition management </p></li>
+              <li className="py-2"><p><b>Quality Care:</b>Exceptional service from highly trained caregivers and healthcare professionals </p></li>
+              <li className="py-2"><p><b>Companionship:</b>Meaningful social interaction and activities to combat loneliness and isolation</p></li>
+              <li className="py-2"><p><b> Medication Management:</b>Ensuring accurate and timely administration of medications</p></li>
                </ul>
                </Col>
             </Row>

@@ -11,9 +11,9 @@ import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
 import Accordion from "react-bootstrap/Accordion";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertinomain from "/public/images/Senior-In-HomeCare-in-Hat-Creek-ca.webp";
+import Cupertino1 from "/public/images/Travelling-the-Extra-Mile-for-Seniors.webp";
+import Cupertino2 from "/public/images/Exceptional-Care.webp";
 import ReddingNavbarComponent from "../../../reddingnavcomponent";
 import Head from "next/head";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
@@ -105,7 +105,7 @@ export default function HatCreekComponent() {
       <div>
         <Container fluid>
           <Row className="py-5">
-            <Col md={6}>
+            <Col md={5} className="px-5">
               <Image src={Cupertinomain} alt="Hat Creek Main Image" />
             </Col>
             <Col md={6} className="redding-col2">

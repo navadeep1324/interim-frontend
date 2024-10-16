@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Senior-Home-Care-in-Mt-Shasta.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/In-Homecare-Services-in-Anderson.webp";
+import Cupertino2 from "/public/images/In-homeCare-Easier.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In Home Care in Mt. Shasta, California  </h2>
 <p className="py-3">
 Senior care goes beyond basic physical assistance- it encompasses caring for their mental well-being too. At Interim Healthcare in Mt. Shasta, we know what it takes to provide comprehensive comfort for seniors who wish to age in place.  
@@ -39,18 +39,18 @@ Senior care goes beyond basic physical assistance- it encompasses caring for the
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
-            <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+            <Row className="py-5 middlealign" >
+                <Col md={6} className="px-3 ">
                 <Image src={Cupertinomain} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px;'}} >
+                <Col md={6} className="px-3" >
                 <h2 className="heading2 ">Growing Demand for Senior Home Care in Mt. Shasta, CA  </h2>
                 <p className="py-3">Mt. Shasta is a suburban, small city located in the Siskiyou County of California. Over the years, the city has witnessed a growing number of migrants from other cities who wish to revel in its scenic environment, sacred entity and friendly community. Seniors comprise about 32% of its total population, some of them experiencing age-related difficulties with hearing and ambulation. They need a reliable hand to overcome these challenges and age in place. Interim Healthcare plays an important role to uplift senior lives in Mt. Shasta with its genuine in-home care plans. 
                 </p>
@@ -93,18 +93,18 @@ Senior care goes beyond basic physical assistance- it encompasses caring for the
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={5} style={{paddingRight:'25px'}}>
 <Image src={Cupertino2} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px'}}>
 <h2 className="heading2">How does Interim Healthcare make In-home Care Easier?   </h2>
 <p className="py-3">At Interim Healthcare, our strong vision and mission are deeply instilled in our carefully selected caregivers. Beyond their natural compassion, our skilled care team undergoes extensive training in senior health and safety, ensuring they deliver the highest standard of care. Their top priority is your loved ones' comfort, and they ensure that by providing personalized care that considers the following key elements: Choosing the right senior care provider is essential to ensuring your loved ones receive the best possible support. Choosing us not only reduces your burden of finding a reliable care provider but also benefits your senior with access to:  </p>
                <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                <li><p><b>Comprehensive Home Health Care Services </b>  </p></li>
-                <li><p><b>Focus on Comfort and Holistic Well-being </b>  </p></li>
-                <li><p><b>Experienced and Compassionate Caregivers  </b></p></li>
-                <li><p><b>Flexible Scheduling and Support   </b></p></li>
-                <li><p><b>High Quality Care with Emphasis on Safety   </b></p></li>
+                <li><p>Comprehensive Home Health Care Services   </p></li>
+                <li><p>Focus on Comfort and Holistic Well-being  </p></li>
+                <li><p>Experienced and Compassionate Caregivers  </p></li>
+                <li><p>Flexible Scheduling and Support   </p></li>
+                <li><p>High Quality Care with Emphasis on Safety   </p></li>
               </ul>
               <br></br>
               <p>At Interim Healthcare, we blend expertise with genuine compassion, ensuring that every aspect of care is handled with the highest level of professionalism and empathy.  </p>

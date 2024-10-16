@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/Senior-Care-Services-in-Shasta.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Expect-from-Interim-Healthcare.webp";
+import Cupertino2 from "/public/images/The-Journey-of-Interim-Healthcare.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -24,23 +24,23 @@ export default function SanJoseCupertinoComponent() {
 <div>
 <ReddingNavbarComponent />
     <div className="section1subcity py-5">
-<Container>
+<Container fluid>
 <Row>
-    <Col md={7}>
+    <Col md={7} className="reddingsubcity-banner">
 <h2 className="subcityheading">Senior in Home Care in Shasta, California</h2>
 <p className="py-3">
 Every senior deserves to enjoy their golden years with respect and dignity. Interim Healthcare offers personalized care to help your loved ones live their life to the fullest in Shasta city. Because every smile, every memory, and every moment matters!!  </p>
 <p> Contact us today at +1 530-221-1212  to learn how we can assist your beloved elders.</p>
 <SubcityCaregiversComponent/>
     </Col>
-    <Col md={5} className="formcoloumcity">
+    <Col md={4} className="formcoloumcity">
     <FormComponent/>
     </Col>
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
@@ -77,7 +77,7 @@ We offer a wide a range of home care services designed to help seniors maintain 
             <Container className="section4subcity py-5">
                 <Row>
                     <Col md={8} className="px-5">
-                    <h5 className="heading5subcity">Key indicators that it might be the right time to choose our services: </h5>
+                    <h5 className="heading5subcity" style={{lineHeight:'1.8em'}}>Key indicators that it might be the right time to choose our services: </h5>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
                 <li><p>Increased Difficulty with Daily Activities  </p></li>
                 <li><p>Chronic Health Conditions </p></li>
@@ -154,33 +154,7 @@ We offer a wide a range of home care services designed to help seniors maintain 
     </Accordion>
     </Container>
     </div>
-<div className="section7city py-5">
-    <Container>
-        <Row>
-            <Col><h2 className="heading2" style={{textAlign:'center'}}>Services in Redding, CA</h2>
-            <p className="py-3" style={{textAlign:'center'}}>From short-term assistance after a hospital stay to long-term help with everyday tasks, and from highly specialized medical care to daily companionship, we’re here to help provide the individualized care your loved one needs to thrive.</p>
-            </Col>
-        </Row>
-        <Row className="py-4">
-            <Col md={4}>
-            <Image src={Sanjoseservice1}/>
-            <Button className="citypagebtn">Palo Cedro <i class="bi bi-chevron-right"></i></Button>
-            </Col>
-            <Col md={4}>
-            <Image src={Sanjoseservice2}/>
-            <Button className="citypagebtn">Shasta County<i class="bi bi-chevron-right"></i></Button>
-            </Col>
-            <Col md={4}>
-            <Image src={Sanjoseservice3}/>
-            <Button className="citypagebtn">Tehama County<i class="bi bi-chevron-right"></i></Button>
-            </Col>
-        </Row>
-        <Row>
-            <Col className="allservice">
-            <Button className="allservicesbtn">View All Services <i class="bi bi-chevron-right"></i></Button></Col>
-        </Row>
-    </Container>
-</div>
+
 <CitypageFooter/>
 </div>
     );

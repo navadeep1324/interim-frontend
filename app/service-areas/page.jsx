@@ -39,7 +39,7 @@ export default function ServiceAreasComponent() {
         <Container>
           <div className="text-center mb-4 view-all-services">
             <p>
-              <i className="bi bi-geo-alt"></i> View All Service Areas{" "}
+              <i className="bi bi-geo-alt"></i> View All Service Areas
               <i className="bi bi-chevron-down"></i>
             </p>
           </div>
@@ -50,7 +50,7 @@ export default function ServiceAreasComponent() {
               md={3}
               className="d-flex align-items-center justify-content-center service-area-col"
             >
-              <a href="#">
+              <a href="/service-areas/carson/">
                 <h5 className="city-name">Carson, Reno</h5>
               </a>
             </Col>
@@ -97,7 +97,7 @@ export default function ServiceAreasComponent() {
               md={3}
               className="d-flex align-items-center justify-content-center service-area-col"
             >
-              <a href="#">
+              <a href="/service-areas/chico/">
                 <h5 className="city-name">Chico</h5>
               </a>
             </Col>
@@ -155,7 +155,7 @@ export default function ServiceAreasComponent() {
               md={3}
               className="d-flex align-items-center justify-content-center service-area-col"
             >
-              <a href="#">
+              <a href="/service-areas/grass-valley/">
                 <h5 className="city-name">Grass Valley</h5>
               </a>
             </Col>
@@ -177,7 +177,7 @@ export default function ServiceAreasComponent() {
               md={3}
               className="d-flex align-items-center justify-content-center service-area-col"
             >
-              <a href="#">
+              <a href="/service-areas/medford/">
                 <h5 className="city-name">Medford</h5>
               </a>
             </Col>
@@ -351,7 +351,7 @@ export default function ServiceAreasComponent() {
               md={3}
               className="d-flex align-items-center justify-content-center service-area-col"
             >
-              <a href="#">
+              <a href="/service-areas/yuba/">
                 <h5 className="city-name">Yuba City</h5>
               </a>
             </Col>

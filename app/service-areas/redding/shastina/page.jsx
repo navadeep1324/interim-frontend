@@ -6,10 +6,10 @@ import Col from "react-bootstrap/Col";
 import ReddingNavbarComponent from "../../../reddingnavcomponent"
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Cupertinomain.png";
+import Cupertinomain from "/public/images/In-Home-Health-Care-in-Lake-Shastina.webp";
 import Image from "next/image";
-import Cupertino1 from "/public/images/Cupertino1.png";
-import Cupertino2 from "/public/images/Cupertino2.png";
+import Cupertino1 from "/public/images/Interim-Healthcare-at-Lake-Shastina.webp";
+import Cupertino2 from "/public/images/Home-healthcare-services_CA.webp";
 import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
 import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
 import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
@@ -25,7 +25,7 @@ export default function SanJoseCupertinoComponent() {
 <div className="section1subcity py-5">
 <Container  fluid className="px-5">
 <Row>
-    <Col md={8} className="sanjose-banner">
+    <Col md={7} className="sanjose-banner">
 <h2 className="subcityheading">Senior In Home Care in Lake Shastina, California  </h2>
 <p className="py-3">
 As your loved ones age, they may hesitate to ask for extra help and support. At Interim Healthcare, we can perfectly analyse their healthcare needs and create a personalized in home care plan for them. Choose us for your seniors’ peace of mind in Shastina.   
@@ -39,15 +39,15 @@ As your loved ones age, they may hesitate to ask for extra help and support. At 
 </Row>
 </Container>
     </div>
-    <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div>
+    {/* <div style={{backgroundColor:'#015979',height:'145px'}}>
+</div> */}
     <div>
         <ReddingservicesComponent/>
     </div>
     <div>
         <Container fluid>
             <Row className="py-5">
-                <Col md={6} style={{paddingRight:'25px;'}} className="px-0 ">
+                <Col md={5} style={{paddingRight:'25px;'}} className="px-5 ">
                 <Image src={Cupertinomain} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px;'}} >
@@ -105,7 +105,7 @@ As your loved ones age, they may hesitate to ask for extra help and support. At 
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={6} style={{paddingRight:'25px'}}>
+                <Col md={5} style={{paddingRight:'25px'}}>
 <Image src={Cupertino2} />
                 </Col>
                 <Col md={6} style={{paddingLeft:'25px'}}>
@@ -116,7 +116,7 @@ As your loved ones age, they may hesitate to ask for extra help and support. At 
                 <li><p><b>Complimentary Initial Assessment </b> </p>
                 <p>Reach out to Interim Healthcare office at Lake Shastina to schedule a free assessment for your loved one for analysing their needs. </p>
                 </li>
-                <li><p><b>Tailored Care Plan </b>  </p>
+                <li className="py-4"><p><b>Tailored Care Plan </b>  </p>
                 <p>Our team will create a personalized in home care plan designed specifically to address your aging adult’s homecare needs. </p>
                 </li>
                 <li><p><b>In-Home Support from Caring Professionals  </b> </p>
