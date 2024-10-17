@@ -1,32 +1,17 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import CityNavbarComponent from "../../citynavcomponent";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import FormComponent from "../../homeformcomponent";
 import Image from "next/image";
-import SanJose1 from "/public/images/SanJose1.png";
-import SanJose2 from "/public/images/SanJose2.png";
-import SanJose3 from "/public/images/SanJose3.png";
-import SanJose4 from "/public/images/SanJose4.png";
-import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
-import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
-import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
-import Button from 'react-bootstrap/Button';
-import CitypageFooter from "../../CitypageFooter";
-import SanJoseservicesComponent from "../../sanjoseservicecomponent";
 import CarsonNavbarComponent from "../../carsonnavcomponent";
-import CaregiverCityComponent from "../../caregiversComponentMainCity";
 import CarsonserviceComponent from "../../carsonservicecomponent";
 import CarsonFooter from "../../footercarson";
 import Head from "next/head";
-
-
 export default function carsonComponent() {
         const [data, setData] = useState(null); // State for API data
-        const [loading, setLoading] = useState(true); // Loading state
         const [error, setError] = useState(null); // Error state
         const [seoData, setSeoData] = useState(null);
 
@@ -41,12 +26,12 @@ export default function carsonComponent() {
               } else {
                 throw new Error("Invalid data structure received");
               }
-              setLoading(false);
+            
             })
             .catch((error) => {
               console.error("Error fetching data:", error);
               setError(error.message);
-              setLoading(false);
+           
             });
         }, []);
         // Dynamically set the meta title and description once the seoData is fetched
@@ -72,13 +57,13 @@ export default function carsonComponent() {
   }, [seoData]);
 
       
-        if (loading) {
-          return <div>Loading...</div>;
-        }
       
         if (error) {
           return <div>Error: {error}</div>;
         }
+        if (!data) {
+          return null; // Or you could display a loading message here instead of null
+      }
       
         // Helper function to get image URL (if images are available)
         const getImageUrl = (imageData) => {
@@ -128,7 +113,7 @@ export default function carsonComponent() {
 <div className="section2city">
     <Container fluid>
 <Row className="py-4">
-    <Col md={6} className="px-0">
+    <Col md={5} className="px-5">
     <Image
                 src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"
@@ -151,7 +136,7 @@ export default function carsonComponent() {
             <h2 className="heading2 py-4">{data[2]?.Heading }</h2>
             <p>{data[2]?.description[0].children[0].text}</p>
             </Col>
-            <Col md={6}>
+            <Col md={5} className="px-5">
             <Image
                 src={getImageUrl(data[2]?.image?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"

@@ -11,8 +11,10 @@
 .heading-font h4, 
 .heading-font h5, 
 .heading-font h6 {
-  font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+  font-family: 'Merriweather', Georgia, 'Times New Roman' !important;
 }
+
+h1
 
 .view-all-services p {
   cursor: default !important;
