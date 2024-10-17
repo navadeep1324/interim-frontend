@@ -51,7 +51,8 @@ export default function LosGatosPage() {
   }, [seoData]);
 
   if (!content || content.length === 0) {
-    return <p>Loading...</p>; // Show loading state until content is fetched
+      return //<p>Loading...</p>;
+ // Show loading state until content is fetched
   }
 
   const renderWithLineBreaks = (text) => {

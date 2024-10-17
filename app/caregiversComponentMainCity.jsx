@@ -26,7 +26,8 @@ export default function CaregiverCityComponent() {
   }, []);
 
   if (!data) {
-    return <p>Loading...</p>; // Show loading state if data is not yet available
+      return //<p>Loading...</p>;
+ // Show loading state if data is not yet available
   }
 
   // Access the button information from the maincontent

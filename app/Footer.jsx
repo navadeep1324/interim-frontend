@@ -27,23 +27,23 @@ export default function Footer() {
         fetchFooterData();
     }, []);
 
-    if (loading) return <div>Loading...</div>;
+    if (loading) return // <div>Loading...</div>;
     if (error) return <div>Error loading data</div>;
 
     return (
         <div className="mainfootersection">
             <div className="footersection1">
                 <Container>
-                    <Row className="middlealign">
+                    <Row className="middlealign footerrow">
                         <Col>
                             <h2 className="footerh2">
                                 {footerData?.maincontent?.find(content => content.__component === "components.begin-your-senior-s-journey-with-us-heading")?.Heading || "Begin your Senior’s Journey with us!"}
                             </h2>
                         </Col>
                     </Row>
-                    <Row style={{ paddingTop: '3em' }}>
+                    <Row className="footerrow middlealign">
                         {footerData?.maincontent?.filter(content => content.__component === "layout.begin-your-senior-s-journey-with-us").map((item, index) => (
-                            <Col md="4" key={index} >
+                            <Col md="4" key={index} className="footercol" >
                                 <Image
                                     src={`https://admin.interimhc.com${item?.image?.data?.attributes?.url}`}
                                     width={item?.image?.data?.attributes?.width || 200}
@@ -58,9 +58,9 @@ export default function Footer() {
             </div>
             <div className="Awardsec">
                 <Container>
-                    <Row>
+                    <Row className="footerrow middlealign">
                         {footerData?.maincontent?.filter(content => content.__component === "components.home-page-awards").map((award, index) => (
-                            <Col md={4} key={index}>
+                            <Col md={4} key={index}  className="footercol">
                                 <Image
                                  className="award-image"
                                     src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}

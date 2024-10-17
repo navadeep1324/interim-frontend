@@ -52,7 +52,7 @@ export default function SanJoseCupertinoComponent() {
         }
       }, [seoData]);
     if (!saratogaData) {
-        return //<div>Loading...</div>;
+        return //// <div>Loading...</div>;
     }
 
     // Extract data for different sections based on component type

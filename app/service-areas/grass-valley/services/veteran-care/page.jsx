@@ -81,7 +81,7 @@ export default function VeteranCareComponent() {
 
   // Loading state
   if (loading) {
-    return <div>Loading...</div>;
+    return // <div>Loading...</div>;
   }
 
   // Error state

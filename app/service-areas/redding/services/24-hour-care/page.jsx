@@ -55,7 +55,7 @@ export default function HourcareComponent() {
   }, [seoData]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return // <div>Loading...</div>;
   }
 
   if (error) {
@@ -147,7 +147,7 @@ export default function HourcareComponent() {
               ))}
             </Col>
             <Col md="6">
-              {renderImage(data.maincontent[2].img.data.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
+              {renderImage(data.maincontent[2].img.data.attributes, "Access to Top Professionals and Timely Solutions", 1252, 1050)}
             </Col>
           </Row>
         </Container>
@@ -156,7 +156,7 @@ export default function HourcareComponent() {
         <Container>
           <Row className="align-items-center py-5 g-5">
             <Col md="6">
-              {renderImage(data.maincontent[3].img.data.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
+              {renderImage(data.maincontent[3].img.data.attributes, "Access to Top Professionals and Timely Solutions", 1252, 1050)}
             </Col>
             <Col md="6">
               <h2 className="heading2">{data.maincontent[3].Heading}</h2>

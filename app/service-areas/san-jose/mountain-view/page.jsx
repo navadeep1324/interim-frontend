@@ -52,7 +52,7 @@ export default function MountainViewComponent() {
   }, [seoData]);
 
   if (!mountainViewData) {
-    return //<div>Loading...</div>;
+    return //// <div>Loading...</div>;
   }
 
   // Extract data for different sections based on component type

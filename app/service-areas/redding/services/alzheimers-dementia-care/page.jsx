@@ -80,7 +80,7 @@ export default function AlzheimerMainComponent() {
   }, [seoData]);
 
   if (!data) {
-    return <div>Loading...</div>;
+    return // <div>Loading...</div>;
   }
 
   const getImageUrl = (imageData) => {

@@ -57,7 +57,7 @@ export default function HourcareComponent() {
   }, [seoData]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return // <div>Loading...</div>;
   }
 
   if (error) {
@@ -184,7 +184,7 @@ export default function HourcareComponent() {
 
             </Col>
             <Col md="6" className="d-flex justify-content-center">
-              {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Pioneers In Personalized 24 Hour Care", 1034, 688)}
+              {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Pioneers In Personalized 24 Hour Care", 3102, 2064)}
             </Col>
           </Row>
         </Container>
@@ -197,7 +197,7 @@ export default function HourcareComponent() {
         <Container>
           <Row className="row3bg py-5 middlealign">
             <Col md="4">
-              {renderImage(data.maincontent[1]?.img?.data?.attributes, "Enriching Lives with Holistic Care", 595, 780)}
+              {renderImage(data.maincontent[1]?.img?.data?.attributes, "Enriching Lives with Holistic Care", 1785, 2340)}
             </Col>
             <Col md="8">
               <h2 className="heading2">{data.maincontent[1]?.Heading || 'Default Heading'}</h2>
@@ -208,7 +208,7 @@ export default function HourcareComponent() {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg">
+      <div className="servicessectionbg">
         <Container>
           <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
@@ -216,7 +216,7 @@ export default function HourcareComponent() {
               {renderDescription(data.maincontent[2]?.description)}
             </Col>
             <Col md="6">
-              {renderImage(data.maincontent[2]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
+              {renderImage(data.maincontent[2]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 1878, 1575)}
             </Col>
           </Row>
         </Container>
@@ -227,7 +227,7 @@ export default function HourcareComponent() {
         <Container>
           <Row className="align-items-center g-5">
             <Col md="6">
-              {renderImage(data.maincontent[3]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
+              {renderImage(data.maincontent[3]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 1252, 1050)}
             </Col>
             <Col md="6">
               <h2 className="heading2">{data.maincontent[3]?.Heading || 'Default Heading'}</h2>
@@ -240,16 +240,16 @@ export default function HourcareComponent() {
       {/* Fifth Section */}
       <div className="section4">
         <Container>
-          <Row className="g-5 section4sub">
-            <Col md={6}>
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data.maincontent[4]?.Heading || 'Default Heading'}</h2>
               {renderDescription(data.maincontent[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
-              {renderImage(data.maincontent[4]?.image?.data?.attributes, "Contact Us Today", 635, 735)}
+            <Col md={6} className="section4sub-sanjose-col2">
+              {renderImage(data.maincontent[4]?.image?.data?.attributes, "Contact Us Today", 2408, 1784)}
             </Col>
           </Row>
         </Container>
