@@ -195,10 +195,6 @@ const textLinks = {
             <div className="section2city">
     <Container fluid>
         <Row className="py-4 g-4">
-<<<<<<< HEAD
-            <Col md={5} xs={12} className="px-5">
-            <Image
-=======
             <Col md={5} xs={12} className="sanjose-col">
                 {/* <Image
                     src={getImageUrl(data[1]?.image?.data?.attributes)}
@@ -208,19 +204,13 @@ const textLinks = {
                     // className="img-fluid"
                 /> */}
                <Image
->>>>>>> 62ec594e3db567ced20ecc0a2e4811a6e6c40597
     src={`https://admin.interimhc.com${data[1]?.image?.data?.attributes?.url}`}
     alt={data[1]?.image?.data?.attributes?.alternativeText || ""}
     width={data[1]?.image?.data?.attributes?.width}
     height={data[1]?.image?.data?.attributes?.height}
-<<<<<<< HEAD
-    // style={{ transform: "scaleX(-1)" }}
-/>
-=======
-    style={{ transform: "scaleX(-1)" }} 
+    // style={{ transform: "scaleX(-1)" }} 
 />
 
->>>>>>> 62ec594e3db567ced20ecc0a2e4811a6e6c40597
             </Col>
             <Col md={7} className="sanjose-col">
                 <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
