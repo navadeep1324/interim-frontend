@@ -57,10 +57,10 @@ export default function Footer() {
                 </Container>
             </div>
             <div className="Awardsec">
-                <Container>
+                <Container fluid>
                     <Row className="footerrow middlealign">
                         {footerData?.maincontent?.filter(content => content.__component === "components.home-page-awards").map((award, index) => (
-                            <Col md={4} key={index}  className="footercol">
+                            <Col md={4} key={index}  className="footercol footer-award">
                                 <Image
                                  className="award-image"
                                     src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
