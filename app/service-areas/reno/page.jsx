@@ -8,8 +8,8 @@ import FormComponent from "../../homeformcomponent";
 import Image from "next/image";
 import SanJose1 from "/public/images/SanJose1.png";
 import SanJose2 from "/public/images/SanJose2.png";
-import SanJose3 from "/public/images/SanJose3.png";
-import SanJose4 from "/public/images/SanJose4.png";
+import SanJose3 from "/public/images/Travelling-the-Extra-Mile-for-Seniors.webp";
+import SanJose4 from "/public/images/ElderlyCare-Services-in-Gerber.webp";
 import Button from 'react-bootstrap/Button';
 import RenoservicesComponent from "../../renoservicecomponent";
 import CaregiverCityComponent from "../../caregiversComponentMainCity";
@@ -60,7 +60,7 @@ export default function RenoComponent() {
   }, [seoData]);
 
 
-  if (!mainContent) return <div>Loading...</div>;
+  if (!mainContent) return // <div>Loading...</div>;
   // Safely find the component related to the cities section
   const citiesComponent = mainContent?.find(
     (section) => section.__component === "components.middle-hed-dec" && section.id === 41
@@ -148,8 +148,8 @@ export default function RenoComponent() {
               <Image src={SanJose3} alt="SanJose3" />
             </Col>
             <Col md={8} style={{ paddingLeft: '3em' }}>
-              <h2 className="heading2">{mainContent[3]?.Heading || "Our Innovative Care That Enriches Lives"}</h2>
-              {mainContent[3]?.description.map((desc, i) => (
+              <h2 className="heading2 py-3">{mainContent[3]?.Heading || "Our Innovative Care That Enriches Lives"}</h2>
+              {/* {mainContent[3]?.description.map((desc, i) => (
                 <p key={i}>{desc.children[0].text}</p>
               )) || (
                 <>
@@ -159,7 +159,12 @@ export default function RenoComponent() {
                   <p className="py-2"><b>Commitment to Clinical Excellence</b></p>
                   <p>We combine clinical excellence with personalized attention, ensuring that every client receives thoughtful, effective support and the highest standard of care at every stage.</p>
                 </>
-              )}
+              )} */}
+               <p>Our HomeLife Enrichment (HLE) model redefines home care with personalized, holistic support that nurtures emotional, social, and physical health. Our approach ensures exceptional care, bringing comfort and peace of mind to seniors and their families.</p>
+                  <p className="py-2"><b>Comprehensive and Personalized Care</b></p>
+                  <p>The HLE model integrates the mind, body, spirit, and family, providing tailored, high-quality care that adapts to each person's needs and supports their overall well-being.</p>
+                  <p className="py-2"><b>Commitment to Clinical Excellence</b></p>
+                  <p>We combine clinical excellence with personalized attention, ensuring that every client receives thoughtful, effective support and the highest standard of care at every stage.</p>
             </Col>
           </Row>
         </Container>
@@ -188,8 +193,8 @@ export default function RenoComponent() {
           <Image
             src={`https://admin.interimhc.com${mainContent[4].img.data.attributes.url}`}
             alt="Dynamic Image"
-            width={500}
-            height={300}
+            width={1706}
+            height={1052}
           />
         ) : (
           <Image src={SanJose4} alt="SanJose4" width={500} height={300} />

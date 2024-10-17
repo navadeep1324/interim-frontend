@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import FormComponent from "../../homeformcomponent";
 import Image from "next/image";
-import GrassValleyserviceComponent from "../../grantpassservicecomponent";
+import GrassValleyserviceComponent from "../../grassvallyservicecomponent";
 import CaregiverCityComponent from "../../caregiversComponentMainCity";
 import GrassValleyNavComponent from "../../grassvalleynavcomponent";
 import GrassValleyFooterComponent from "../../footergrassvalley";
@@ -61,7 +61,7 @@ export default function GrassValleyComponent() {
   }, [seoData]);
 
     if (loading) {
-        return <div>Loading...</div>;
+        return // <div>Loading...</div>;
     }
 
     if (error) {
@@ -153,7 +153,7 @@ const getImageUrl = (imageData) => {
             <div className="section2city">
                 <Container fluid>
                     <Row className="py-4">
-                        <Col md={6} className="px-0">
+                        <Col md={5} className="px-5">
                             <Image
                                 src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically
                                 alt="City Image"
@@ -221,7 +221,7 @@ const getImageUrl = (imageData) => {
                         <Col md={2}></Col>
                     </Row>
                     <Row className="py-4">
-                    <Col md={6}>
+                    <Col md={6} className="px-5">
     <Image
         src={getImageUrl(data[4]?.img?.data?.attributes)} // Corrected image access path
         alt="Service Image"
@@ -229,9 +229,6 @@ const getImageUrl = (imageData) => {
         height={data[4]?.img?.data?.attributes?.height}
     />
 </Col>
-
-
-
                         <Col md={6} style={{ paddingLeft: '3em' }}>
                             <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
                                 {renderListItems(data[4]?.description?.[0]?.children)}
@@ -255,31 +252,7 @@ const getImageUrl = (imageData) => {
             </div>
 
             {/* Final Section */}
-            <div className="section6city py-5">
-                <Container>
-                    <Row>
-                        <Col md={2}></Col>
-                        <Col md={8}>
-                            <h2 className="heading2citysub">{data[6]?.Heading}</h2>
-                            <p style={{ color: '#ffff', textAlign: 'center' }} className="py-2">
-                                {data[6]?.description?.[0]?.children?.[0]?.text}
-                            </p>
-                        </Col>
-                        <Col md={2}></Col>
-                    </Row>
-                    <Row className="subcitysec py-5 px-5 my-4">
-                        {/* Render City Names */}
-                        {data[6]?.description.slice(2).map((city, index) => (
-                            <Col md={4} key={index}>
-                                <div className="flex py-2">
-                                    <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
-                                    <div><p style={{ color: '#004b66' }}><b>{city.children?.[1]?.text}</b></p></div>
-                                </div>
-                            </Col>
-                        ))}
-                    </Row>
-                </Container>
-            </div>
+         
             <Head>
         <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
         <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />

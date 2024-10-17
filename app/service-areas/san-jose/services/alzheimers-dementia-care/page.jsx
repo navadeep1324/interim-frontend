@@ -69,7 +69,7 @@ useEffect(() => {
 }, [seoData]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return // <div>Loading...</div>;
   }
 
   if (error) {
@@ -88,11 +88,41 @@ useEffect(() => {
   // Render descriptions with safety checks
   const renderDescription = (descriptions) => {
     return descriptions.map((para, index) => (
-      <p className="py-4" key={index}>
-        {para?.children[0]?.text || ""}
+      <p className="footerrow" key={index}>
+        {para?.children?.map((item, idx) => {
+          if (item.type === "link") {
+            const isExternalLink = item.url.startsWith("http");
+            return (
+              <a
+                key={idx}
+                href={item.url}
+                className="phone-link"
+                target={isExternalLink ? "_blank" : "_self"}
+                rel={isExternalLink ? "noopener noreferrer" : undefined}
+              >
+                {item.children[0]?.text}
+              </a>
+            );
+          } else if (item.type === "ul") {
+            return (
+              <ul key={idx} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+                {item.children.map((listItem, listIdx) => (
+                  <li key={listIdx}>{renderDescription([listItem])}</li>
+                ))}
+              </ul>
+            );
+          } else if (item.type === "li") {
+            return <li key={idx}>{renderDescription([item])}</li>;
+          } else if (item.bold) {
+            return <b key={idx}>{item.text}</b>;
+          } else {
+            return <span key={idx}>{item.text}</span>;
+          }
+        })}
       </p>
     ));
   };
+  
 
   return (
     <div>
@@ -114,9 +144,9 @@ useEffect(() => {
                 <img
                   src={getImageUrl(data[0]?.bannerimg?.data?.attributes)}
                   alt="Alzheimer’s and Dementia Home care Services"
-                  width={626}
-                  height={525}
-                  style={{ width: '100%', height: 'auto' }}
+                  width={3102}
+                  height={2064}
+                  // style={{ width: '100%', height: 'auto' }}
                 />
               ) : (
                 <Image
@@ -144,7 +174,7 @@ useEffect(() => {
                   alt="Choose Interim Healthcare for a Happier Tomorrow"
                   width={data[2].img.data.attributes.width}
                   height={data[2].img.data.attributes.height}
-                  style={{ width: '100%', height: 'auto' }}
+                  // style={{ width: '100%', height: 'auto' }}
                 />
               ) : (
                 <Image src={Happier} alt="Happier Image" width={400} height={400} />
@@ -159,7 +189,7 @@ useEffect(() => {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg">
+      <div className="servicessectionbg">
         <Container>
           <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
@@ -188,7 +218,7 @@ If you notice any of these signs in your beloved elders, then it might be the ri
                   alt="When is the right time to choose Memory Care"
                   width={data[3].img.data.attributes.width}
                   height={data[3].img.data.attributes.height}
-                  style={{ width: '100%', height: 'auto' }}
+                  // style={{ width: '100%', height: 'auto' }}
                 />
               ) : (
                 <Image src={servicesimg} alt="Default Service Image" width={500} height={400} />
@@ -209,7 +239,7 @@ If you notice any of these signs in your beloved elders, then it might be the ri
                   alt="Benefits of Memory Care"
                   width={data[4].image.data.attributes.width}
                   height={data[4].image.data.attributes.height}
-                  style={{ width: '100%', height: 'auto' }}
+                  // style={{ width: '100%', height: 'auto' }}
                 />
               ) : (
                 <Image src={Services5img} alt="Services Image" width={500} height={400} />
@@ -226,22 +256,22 @@ If you notice any of these signs in your beloved elders, then it might be the ri
       {/* Fifth Section */}
       <div className="section4">
         <Container>
-          <Row className="g-5 section4sub">
-            <Col md={6}>
+          <Row className="section4sub middlealign">
+            <Col md={6}  className="section4sub-sanjose-col1">
               <h2 className="heading2">{data[5]?.Heading}</h2>
               {data[5]?.description ? renderDescription(data[5].description) : <p>No description available</p>}
               <Button className="Contactbtn py-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="section4sub-sanjose-col2">
               {data[5]?.image?.data ? (
                 <img
                   src={getImageUrl(data[5].image.data.attributes)}
                   alt="Contact Us"
                   width={data[5].image.data.attributes.width}
                   height={data[5].image.data.attributes.height}
-                  style={{ width: '100%', height: 'auto' }}
+                  // style={{ width: '100%', height: 'auto' }}
                 />
               ) : (
                 <Image src={Services5img} alt="Contact Us Image" width={500} height={400} />

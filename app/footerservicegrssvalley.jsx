@@ -1,4 +1,4 @@
-"use client";
+    "use client";
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
@@ -38,7 +38,7 @@ export default function GrassValleyFooter() {
             <div className="contactsecbg"></div>
       <div className="footersec py-5">
         <Container>
-          <Row>
+          <Row className="middlealign">
             <Col md={6}>
               <h2 className="servicefooterh2">Care That’s Focused on What Matters Most
               In Every Step, We're By Your Side</h2>

@@ -43,7 +43,7 @@ export default function CompanionCareComponent() {
 
   // If loading, show loading message
   if (loading) {
-    return <div>Loading...</div>;
+    return // <div>Loading...</div>;
   }
 
   // If error, show error message

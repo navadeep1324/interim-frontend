@@ -47,7 +47,7 @@ export default function SanJoseCupertinoComponent() {
         }
       }, [seoData]);
     if (!cityData) {
-        return <div>Loading...</div>;
+        return // <div>Loading...</div>;
     }
 
     const renderDescription = (description) => {

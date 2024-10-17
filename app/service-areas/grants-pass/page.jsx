@@ -58,7 +58,7 @@ useEffect(() => {
     }
   }, [seoData]);
     if (!data) {
-        return <div>Loading...</div>;
+        return // <div>Loading...</div>;
     }
 
     // Function to render child elements for paragraphs
@@ -176,11 +176,12 @@ useEffect(() => {
                                     <Col md={2}></Col>
                                     <Col md={8}>
                                         <h2 className="heading2" style={{ textAlign: 'center' }}>{section.Heading}</h2>
-                                        <p style={{ textAlign: 'center' }} className="py-2">{section.subHeading}</p>
+                                        {/* <p style={{ textAlign: 'center' }} className="py-2">{section.subHeading}</p> */}
+                                        <p style={{ textAlign: 'center' }} className="py-2">At Interim Healthcare, we aim to enhance the quality of life for seniors managing age-related and chronic health conditions through tailored services, including:</p>
                                     </Col>
                                     <Col md={2}></Col>
                                 </Row>
-                                <Row className="py-4">
+                                <Row className="py-4 middlealign">
                                     <Col md={6} >
                                         {section.img?.data ? (
                                             <Image
