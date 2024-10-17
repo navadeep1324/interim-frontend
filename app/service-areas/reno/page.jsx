@@ -60,7 +60,7 @@ export default function RenoComponent() {
   }, [seoData]);
 
 
-  if (!mainContent) return <div>Loading...</div>;
+  if (!mainContent) return // <div>Loading...</div>;
   // Safely find the component related to the cities section
   const citiesComponent = mainContent?.find(
     (section) => section.__component === "components.middle-hed-dec" && section.id === 41

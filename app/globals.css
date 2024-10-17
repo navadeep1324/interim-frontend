@@ -496,6 +496,13 @@ h1{
   align-items: center;
   justify-content: center;
 }
+.servicessectionbg{
+  background-color: #fef8f3;  padding-top: 5%;
+  padding-bottom: 6%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .head2{
   font-size: 28px;
   color: #FFFFFF !important;
@@ -569,6 +576,12 @@ h1{
 .sanjose-col{
   padding: 0 3%;
 }
+.section4sub-sanjose-col1{
+  padding: 5% 0% 5% 5%;
+}
+.section4sub-sanjose-col2{
+  padding: 5% 5% 5% 5%; 
+}
 .sanjose-col2{
   padding: 0 7%;
 }
@@ -603,6 +616,16 @@ h1{
 @media (max-width: 767px) {
   .card-spacing {
     margin-bottom: 15px; /* Adjust the margin for smaller screens */
+  }
+  .section4sub-sanjose-col1{
+    padding: 5% 8% 5% 8%;
+  }
+  .servicessectionbg{
+    background-color: #fef8f3; 
+    padding: 8% 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
 }
 
@@ -1264,7 +1287,7 @@ a.page_buttonhome__SB1Lw{
 .section4sub{
   background-color: #fff;
   border-radius: 20px;
-  padding-bottom: 3%;
+  /* padding-bottom: 3%; */
 }
 @media only screen and (max-width: 768px) {
 .homebannerimgcol{
@@ -1364,7 +1387,14 @@ padding: 5%;
 body{
   background-color: white;
 }
+
 }
 .services-banner{
   padding: 3% 0 0 0;
+}
+.footerrow{
+  padding: 3% 0;
+}
+.footercol{
+  padding: 0 5%;
 }

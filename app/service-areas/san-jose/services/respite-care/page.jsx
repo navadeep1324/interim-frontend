@@ -58,7 +58,7 @@ useEffect(() => {
   }
 }, [seoData]);
   if (loading) {
-    return <div>Loading...</div>;
+    return // <div>Loading...</div>;
   }
 
   if (error) {
@@ -146,8 +146,8 @@ useEffect(() => {
               {renderImage(
                 data?.[0]?.bannerimg?.data?.attributes,
                 "Compassionate Respite Care",
-                1034,
-                688
+                3102,
+                2064
               )}
             </Col>
           </Row>
@@ -164,8 +164,8 @@ useEffect(() => {
               {renderImage(
                 data?.[1]?.img?.data?.attributes,
                 "Extending your Caregiving Warmth Even During Your Absence",
-                595,
-                780
+                1785,
+                2340
               )}
             </Col>
             <Col md="8">
@@ -177,7 +177,7 @@ useEffect(() => {
       </div>
 
       {/* Section 3 */}
-      <div className="sectionbg">
+      <div className="servicessectionbg">
         <Container>
           <Row  className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
@@ -193,8 +193,8 @@ useEffect(() => {
               {renderImage(
                 data?.[2]?.img?.data?.attributes,
                 "Our Commitments as Your Respite Caregiver",
-                626,
-                525
+                1878,
+                1575
               )}
             </Col>
           </Row>
@@ -205,15 +205,15 @@ useEffect(() => {
       <div className="section3">
         <Container>
           <Row className="align-items-center g-5">
-            <Col md="6">
+            <Col md="5">
               {renderImage(
                 data?.[3]?.img?.data?.attributes,
                 "Benefits of our Respite Caregiving",
-                595,
-                780
+                1785,
+                2340
               )}
             </Col>
-            <Col md="6">
+            <Col md="7">
               <h2 className="heading2">{data?.[3]?.Heading || ""}</h2>
               {renderDescription(data?.[3]?.description)}
               {/* <ul style={{ listStyleType: "disc", paddingLeft: "20px" }} className="py-2">
@@ -245,20 +245,20 @@ useEffect(() => {
       {/* Section 5 */}
       <div className="section4">
         <Container>
-          <Row className="g-5 section4sub">
-            <Col md={6}>
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data?.[4]?.Heading || ""}</h2>
               {renderDescription(data?.[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="section4sub-sanjose-col2">
               {renderImage(
                 data?.[4]?.image?.data?.attributes,
                 "Interim: Providing Help, When You Need It!",
-                595,
-                780
+                2408,
+                1784
               )}
             </Col>
           </Row>

@@ -23,7 +23,7 @@ export default function CaregivertodayComponent() {
   }, []);
 
   if (!ctaData) {
-    return <div>Loading...</div>;
+    return // <div>Loading...</div>;
   }
 
   return (

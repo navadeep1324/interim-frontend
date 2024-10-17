@@ -59,7 +59,7 @@ useEffect(() => {
     }
   }, [seoData]);
     if (loading) {
-        return <div>Loading...</div>;
+        return // <div>Loading...</div>;
     }
 
     if (error) {
@@ -195,16 +195,24 @@ const textLinks = {
             <div className="section2city">
     <Container fluid>
         <Row className="py-4 g-4">
-            <Col md={6} xs={12} className="px-0">
-                <Image
+            <Col md={5} xs={12} className="sanjose-col">
+                {/* <Image
                     src={getImageUrl(data[1]?.image?.data?.attributes)}
                     alt="City Image"
-                    width={data[1]?.image?.data?.attributes?.width }
-                    height={data[1]?.image?.data?.attributes?.height}
+                    width={1878}
+                    height={1575}
                     // className="img-fluid"
-                />
+                /> */}
+               <Image
+    src={`https://admin.interimhc.com${data[1]?.image?.data?.attributes?.url}`}
+    alt={data[1]?.image?.data?.attributes?.alternativeText || ""}
+    width={data[1]?.image?.data?.attributes?.width}
+    height={data[1]?.image?.data?.attributes?.height}
+    style={{ transform: "scaleX(-1)" }} 
+/>
+
             </Col>
-            <Col md={6} className="sanjose-col">
+            <Col md={7} className="sanjose-col">
                 <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
                 <p className="py-2">{renderDescription(data[1]?.description)}</p> {/* Render description with links */}
             </Col>

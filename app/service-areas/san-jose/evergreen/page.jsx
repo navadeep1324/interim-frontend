@@ -51,7 +51,7 @@ useEffect(() => {
     }
   }, [seoData]);
   
-    if (!data) return // <div>Loading...</div>;
+    if (!data) return // // <div>Loading...</div>;
 
     const getImageUrl = (imageData) => {
         return imageData?.formats?.large?.url

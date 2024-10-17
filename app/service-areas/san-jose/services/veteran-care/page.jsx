@@ -72,7 +72,7 @@ export default function VeteranCareComponent() {
   
   
   if (loading) {
-    return <div>Loading...</div>;
+    return // <div>Loading...</div>;
   }
 
   if (error) {
@@ -167,7 +167,7 @@ export default function VeteranCareComponent() {
               </p>
             </Col>
             <Col md="6">
-              {renderImage(data?.[0]?.bannerimg?.data?.attributes, "Veteran Home Care", 1034, 688)}
+              {renderImage(data?.[0]?.bannerimg?.data?.attributes, "Veteran Home Care", 3102, 2064)}
             </Col>
           </Row>
         </Container>
@@ -177,7 +177,7 @@ export default function VeteranCareComponent() {
         <Container>
           <Row className="row3bg py-5 middlealign ">
             <Col md="4">
-              {renderImage(data?.[1]?.img?.data?.attributes, "Veteran Care Service", 595, 780)}
+              {renderImage(data?.[1]?.img?.data?.attributes, "Veteran Care Service", 1785, 2340)}
             </Col>
             <Col md="8">
               <h2 className="heading2">{data?.[1]?.Heading || ""}</h2>
@@ -187,7 +187,7 @@ export default function VeteranCareComponent() {
         </Container>
       </div>
       {/* Section 3 */} 
-<div className="sectionbg">
+<div className="servicessectionbg">
   <Container>
     <Row className="middlealign g-5 row-reverse-mobile">
       <Col md="6">
@@ -195,7 +195,7 @@ export default function VeteranCareComponent() {
         {renderDescription(data?.[2]?.description)} {/* Use updated renderDescription */}
       </Col>
       <Col md="6">
-        {renderImage(data?.[2]?.img?.data?.attributes, "Respite Care Service", 626, 525)}
+        {renderImage(data?.[2]?.img?.data?.attributes, "Respite Care Service", 830, 1000)}
       </Col>
     </Row>
   </Container>
@@ -205,7 +205,7 @@ export default function VeteranCareComponent() {
         <Container>
           <Row className="align-items-center g-5">
             <Col md="6">
-              {renderImage(data?.[3].img?.data?.attributes, "Respite Care Service", 595, 780)}
+              {renderImage(data?.[3].img?.data?.attributes, "Respite Care Service", 1785, 1290)}
             </Col>
             <Col md="6">
               <h2 className="heading2">{data?.[3]?.Heading || ""}</h2>
@@ -216,16 +216,16 @@ export default function VeteranCareComponent() {
       </div>
       <div className="section4">
         <Container>
-          <Row className="g-5 section4sub">
-            <Col md={6}>
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data?.[4]?.Heading || ""}</h2>
               {renderDescription(data?.[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
-              {renderImage(data?.[4]?.image?.data?.attributes, "Respite Care Contact", 589, 422)}
+            <Col md={6} className="section4sub-sanjose-col2">
+              {renderImage(data?.[4]?.image?.data?.attributes, "Respite Care Contact", 2408, 1784)}
             </Col>
           </Row>
         </Container>

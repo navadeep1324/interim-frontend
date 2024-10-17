@@ -59,7 +59,8 @@ export default function YubaComponent() {
   }, [seoData]);
 
   if (!data) {
-    return <p>Loading...</p>; // Loading state while data is being fetched
+      return //<p>Loading...</p>;
+ // Loading state while data is being fetched
   }
 
   // Helper function to render text content

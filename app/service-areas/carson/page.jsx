@@ -26,7 +26,7 @@ import Head from "next/head";
 
 export default function carsonComponent() {
         const [data, setData] = useState(null); // State for API data
-        const [loading, setLoading] = useState(true); // Loading state
+        // const [loading, setLoading] = useState(true); // Loading state
         const [error, setError] = useState(null); // Error state
         const [seoData, setSeoData] = useState(null);
 
@@ -73,7 +73,7 @@ export default function carsonComponent() {
 
       
         if (loading) {
-          return <div>Loading...</div>;
+          return //// <div>Loading...</div>;
         }
       
         if (error) {

@@ -52,7 +52,8 @@ export default function MilpitasPage() {
       }, [seoData]);
 
     if (content.length === 0) {
-        return <p>Loading...</p>;
+          return //<p>Loading...</p>;
+
     }
 
     const renderTextContent = (content) => {

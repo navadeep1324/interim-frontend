@@ -58,7 +58,7 @@ useEffect(() => {
     }
   }, [seoData]);
     if (!data) {
-        return <div>Loading...</div>;
+        return // <div>Loading...</div>;
     }
 
     // Function to render child elements for paragraphs

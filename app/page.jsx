@@ -103,7 +103,7 @@ export default function Home() {
             </Col>
             <Col md={6} className="homebannerimgcol">
               {imageUrl && (
-                <Image src={imageUrl} alt="Banner Image" width={800} height={383} />
+                <Image src={imageUrl} alt="Banner Image" width={3654} height={2796} />
               )}
             </Col>
           </Row>
@@ -211,7 +211,7 @@ export default function Home() {
                     <Image
                       src={serviceImageUrl}
                       alt={service.Heading}
-                      width={380}
+                      width={service.image.data.attributes.width}
                       height={service.image.data.attributes.height}
                     />
                   )}
@@ -232,7 +232,7 @@ export default function Home() {
       <Head>
         <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
         <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
-        
+
       </Head>
       <NavbarComponent />
       <HeaderComponent />
