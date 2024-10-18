@@ -74,7 +74,7 @@ export default function ServicepageFooter() {
       <div className="contactsecbg"></div>
       <div className="footersec py-5">
         <Container>
-          <Row>
+          <Row  className="middlealign">
             <Col md={6}>
               <h2 className="servicefooterh2">{footerAboveFormData.Heading}</h2>
               <p className="py-4">{footerAboveFormData.description}</p>
