@@ -10,7 +10,7 @@ import Image from "next/image";
 import CitypageFooter from "../../CitypageFooter";
 import SanJoseservicesComponent from "../../sanjoseservicecomponent";
 import CaregiverCityComponent from "../../caregiversComponentMainCity";
-import SanJose4 from "/public/images/SanJose4.png";
+import SanJose4 from "/public/images/Enhance-Senior-Health.webp";
 import YubaNavbarComponent from "../../yubanavcomponent";
 import YubaservicesComponent from "../../yubaservicecomponent";
 import YubaFooter from "../../footeryuba";

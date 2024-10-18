@@ -195,6 +195,10 @@ const textLinks = {
             <div className="section2city">
     <Container fluid>
         <Row className="py-4 g-4">
+<<<<<<< HEAD
+            <Col md={5} xs={12} className="px-5">
+            <Image
+=======
             <Col md={5} xs={12} className="sanjose-col">
                 {/* <Image
                     src={getImageUrl(data[1]?.image?.data?.attributes)}
@@ -204,13 +208,19 @@ const textLinks = {
                     // className="img-fluid"
                 /> */}
                <Image
+>>>>>>> 62ec594e3db567ced20ecc0a2e4811a6e6c40597
     src={`https://admin.interimhc.com${data[1]?.image?.data?.attributes?.url}`}
     alt={data[1]?.image?.data?.attributes?.alternativeText || ""}
     width={data[1]?.image?.data?.attributes?.width}
     height={data[1]?.image?.data?.attributes?.height}
+<<<<<<< HEAD
+    // style={{ transform: "scaleX(-1)" }}
+/>
+=======
     style={{ transform: "scaleX(-1)" }} 
 />
 
+>>>>>>> 62ec594e3db567ced20ecc0a2e4811a6e6c40597
             </Col>
             <Col md={7} className="sanjose-col">
                 <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
@@ -238,9 +248,9 @@ const textLinks = {
              </ul>
 
                         </Col>
-                        <Col md={6} xs={12} className="px-3">
+                        <Col md={6} xs={12} className="px-5">
                             <Image
-                                src={getImageUrl(data[2]?.image?.data?.attributes)}
+                                src={`https://admin.interimhc.com${data[2]?.image?.data?.attributes?.url}`}
                                 alt="City Image"
                                 width={data[2]?.image?.data?.attributes?.width}
                                 height={data[2]?.image?.data?.attributes?.height}
@@ -252,7 +262,7 @@ const textLinks = {
             </div>
 
             {/* Section 4 (Why Families Prefer Our Home Care Services) */}
-            <div className="section4city py-5">
+            <div className=" py-5">
     <Container>
         <Row className="py-3 g-4">
             <Col md={2}></Col>
@@ -269,7 +279,7 @@ const textLinks = {
         <Row className="py-4 g-4">
             <Col md={6} xs={12} className="px-3">
                 <Image
-                    src={getImageUrl(data[4]?.img?.data?.attributes)} // Corrected key from image to img
+                    src={`https://admin.interimhc.com${data[4]?.img?.data?.attributes?.url}`}
                     alt="Service Image"
                     width={data[4]?.img?.data?.attributes?.width}
                     height={data[4]?.img?.data?.attributes?.height}

@@ -10,7 +10,6 @@ import Image from "next/image";
 import SanJose1 from "/public/images/SanJose1.png";
 import SanJose2 from "/public/images/SanJose2.png";
 import SanJose3 from "/public/images/SanJose3.png";
-import SanJose4 from "/public/images/SanJose4.png";
 import Button from 'react-bootstrap/Button';
 import CitypageFooter from "../../CitypageFooter";
 import SanJoseservicesComponent from "../../sanjoseservicecomponent";
@@ -19,6 +18,7 @@ import MedfordservicesComponent from "../../medfordservicecomponent";
 import MedfordNavComponent from "../../medfordnavcomponent";
 import MedfordFooterComponent from "../../footermedford";
 import Head from "next/head";
+import SanJose4 from "/public/images/Interim-Healthcare-at-Lake-Shastina.webp";
 export default function MedfordComponent() {
         const [data, setData] = useState(null); // State for API data
         const [loading, setLoading] = useState(true); // Loading state
@@ -171,10 +171,10 @@ export default function MedfordComponent() {
         <Row>
             <Col md={4}>
             <Image
-                src={getImageUrl(data[2]?.image?.data?.attributes)} // Fetch image dynamically from the API
+                src={getImageUrl(data[3]?.img?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"
-                width={data[2]?.image?.data?.attributes?.width} 
-                height={data[2]?.image?.data?.attributes?.height} 
+                width={data[3]?.img?.data?.attributes?.width} 
+                height={data[3]?.img?.data?.attributes?.height} 
               />
             </Col>
             <Col md={8}  style={{ paddingLeft: '3em' }}>
@@ -197,13 +197,8 @@ export default function MedfordComponent() {
 {/* <Col md={2}></Col> */}
         </Row>
         <Row className="py-4"> 
-            <Col md={6}>
-            <Image
-                src={getImageUrl(data[2]?.image?.data?.attributes)} // Fetch image dynamically from the API
-                alt="City Image"
-                width={data[2]?.image?.data?.attributes?.width} 
-                height={data[2]?.image?.data?.attributes?.height} 
-              />
+            <Col md={5}>
+            <Image src={SanJose4} alt="Yuba City"/>
             </Col>
             <Col md={6} style={{ paddingLeft: '3em' }}>
             <p><b>{data[4]?.description?.[2]?.children?.[0]?.text || "Default Heading"}</b> <br></br>

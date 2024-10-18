@@ -57,150 +57,23 @@ export default function Footer() {
                 </Container>
             </div>
             <div className="Awardsec">
-                <Container>
-                    {/* First Award */}
-<Row className="footerrow middlealign">
-  {footerData?.maincontent
-    ?.filter((content) => content.__component === "components.home-page-awards")
-    .slice(0, 1) // Only the first award
-    .map((award, index) => (
-      <Col md={4} key={index} className="footercol">
-        <Image
-          className="award-image"
-          src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
-          width={award?.Img?.data?.attributes?.width || 200}
-          height={award?.Img?.data?.attributes?.height || 100}
-          alt={award?.Img?.data?.attributes?.alternativeText || "Award Image"}
-        />
-        <p
-          className="py-3"
-          style={{ color: "#004b66", fontWeight: "600", textAlign: "center" }}
-        >
-          {award?.Heading || "No heading"}
-        </p>
-      </Col>
-    ))}
-</Row>
-
-{/* Second Award */}
-<Row className="footerrow middlealign">
-  {footerData?.maincontent
-    ?.filter((content) => content.__component === "components.home-page-awards")
-    .slice(1, 2) // Only the second award
-    .map((award, index) => (
-      <Col md={4} key={index} className="footercol">
-        <Image
-          className="award-image"
-          src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
-          width={award?.Img?.data?.attributes?.width || 200}
-          height={award?.Img?.data?.attributes?.height || 100}
-          alt={award?.Img?.data?.attributes?.alternativeText || "Award Image"}
-        />
-        <p
-          className="py-3"
-          style={{ color: "#004b66", fontWeight: "600", textAlign: "center" }}
-        >
-          {award?.Heading || "No heading"}
-        </p>
-      </Col>
-    ))}
-</Row>
-
-{/* Third Award */}
-<Row className="footerrow middlealign">
-  {footerData?.maincontent
-    ?.filter((content) => content.__component === "components.home-page-awards")
-    .slice(2, 3) // Only the third award
-    .map((award, index) => (
-      <Col md={4} key={index} className="footercol">
-        <Image
-          className="award-image"
-          src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
-          width={award?.Img?.data?.attributes?.width || 200}
-          height={award?.Img?.data?.attributes?.height || 100}
-          alt={award?.Img?.data?.attributes?.alternativeText || "Award Image"}
-        />
-        <p
-          className="py-3"
-          style={{ color: "#004b66", fontWeight: "600", textAlign: "center" }}
-        >
-          {award?.Heading || "No heading"}
-        </p>
-      </Col>
-    ))}
-</Row>
-{/* First Award */}
-<Row className="footerrow middlealign">
-  {footerData?.maincontent
-    ?.filter((content) => content.__component === "components.home-page-awards")
-    .slice(0, 1) // Only the first award
-    .map((award, index) => (
-      <Col md={4} key={index} className="footercol">
-        <Image
-          className="award-image"
-          src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
-          width={award?.Img?.data?.attributes?.width || 200}
-          height={award?.Img?.data?.attributes?.height || 100}
-          alt={award?.Img?.data?.attributes?.alternativeText || "Award Image"}
-        />
-        <p
-          className="py-3"
-          style={{ color: "#004b66", fontWeight: "600", textAlign: "center" }}
-        >
-          {award?.Heading || "No heading"}
-        </p>
-      </Col>
-    ))}
-</Row>
-
-{/* Second Award */}
-<Row className="footerrow middlealign">
-  {footerData?.maincontent
-    ?.filter((content) => content.__component === "components.home-page-awards")
-    .slice(1, 2) // Only the second award
-    .map((award, index) => (
-      <Col md={4} key={index} className="footercol">
-        <Image
-          className="award-image"
-          src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
-          width={award?.Img?.data?.attributes?.width || 200}
-          height={award?.Img?.data?.attributes?.height || 100}
-          alt={award?.Img?.data?.attributes?.alternativeText || "Award Image"}
-        />
-        <p
-          className="py-3"
-          style={{ color: "#004b66", fontWeight: "600", textAlign: "center" }}
-        >
-          {award?.Heading || "No heading"}
-        </p>
-      </Col>
-    ))}
-</Row>
-
-{/* Third Award */}
-<Row className="footerrow middlealign">
-  {footerData?.maincontent
-    ?.filter((content) => content.__component === "components.home-page-awards")
-    .slice(2, 3) // Only the third award
-    .map((award, index) => (
-      <Col md={4} key={index} className="footercol">
-        <Image
-          className="award-image"
-          src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
-          width={award?.Img?.data?.attributes?.width || 200}
-          height={award?.Img?.data?.attributes?.height || 100}
-          alt={award?.Img?.data?.attributes?.alternativeText || "Award Image"}
-        />
-        <p
-          className="py-3"
-          style={{ color: "#004b66", fontWeight: "600", textAlign: "center" }}
-        >
-          {award?.Heading || "No heading"}
-        </p>
-      </Col>
-    ))}
-</Row>
-
+                <Container fluid>
+                    <Row className="footerrow middlealign">
+                        {footerData?.maincontent?.filter(content => content.__component === "components.home-page-awards").map((award, index) => (
+                            <Col md={4} key={index}  className="footercol footer-award">
+                                <Image
+                                 className="award-image"
+                                    src={`https://admin.interimhc.com${award?.Img?.data?.attributes?.url}`}
+                                    width={award?.Img?.data?.attributes?.width || 200} 
+                                    height={award?.Img?.data?.attributes?.height || 100} 
+                                    alt={award?.Img?.data?.attributes?.alternativeText || 'Award Image'}
+                                />
+                                <p className="py-3" style={{ color: '#004b66', fontWeight: '600', textAlign: 'center' }}>
+                                    {award?.Heading || "No heading"}
+                                </p>
+                            </Col>
+                        ))}
+                    </Row>
                 </Container>
             </div>
             {/* Footer Section */}

@@ -90,6 +90,7 @@ export default function ChicoComponent() {
             ));
           };
           
+          
 
     return (
         <div>
@@ -132,7 +133,7 @@ export default function ChicoComponent() {
             <div className="section2city">
                 <Container fluid>
                     <Row className="py-4">
-                        <Col md={6} className="px-0">
+                        <Col md={6} className="px-5">
                             <Image
                                 src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically
                                 alt="City Image"
@@ -156,7 +157,7 @@ export default function ChicoComponent() {
                             <h2 className="heading2 py-4">{data[2]?.Heading}</h2>
                             <p>{renderDescription(data[2]?.description)}</p>
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="px-5">
                             <Image
                                 src={getImageUrl(data[2]?.image?.data?.attributes)} // Fetch image dynamically
                                 alt="City Image"
@@ -200,7 +201,7 @@ export default function ChicoComponent() {
                         <Col md={2}></Col>
                     </Row>
                     <Row className="py-4">
-                        <Col md={6}>
+                        <Col md={6} >
                             <Image
                                 src={getImageUrl(data[4]?.img?.data?.attributes)} // Fetch image dynamically
                                 alt="Service Image"

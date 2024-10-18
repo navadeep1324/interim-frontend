@@ -11,6 +11,8 @@
     "lint:ignore": "ESLINT_NO_DEV_ERRORS=true next dev"
   },
   "dependencies": {
+    "@fontsource/merriweather": "^5.1.0",
+    "@fontsource/rubik": "^5.1.0",
     "@strapi/plugin-email": "^4.25.12",
     "autoprefixer": "^10.4.20",
     "axios": "^1.7.3",
