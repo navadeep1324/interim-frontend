@@ -1190,7 +1190,7 @@ body > div > div > div:nth-child(8) > div > div > div:nth-child(2) {
 .numbercol {
   display: flex;
   align-items: center;
-  justify-content: start;
+  justify-content: center;
   margin-top: 15px;
 }
 .heading5subcity {
@@ -1299,7 +1299,7 @@ a.page_buttonhome__SB1Lw{
   padding: 0 5%;
 }
 img {
-  width: 100% !important;  /* Force full width on mobile */
+  /* width: 100% !important;   */
   height: auto !important; /* Maintain aspect ratio */
   /* padding-top: 8%; */
 }
