@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
+import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
 import ServicepageFooter from "../../../../servicepageFooter";
 import Head from "next/head";
 
@@ -20,24 +20,14 @@ export default function HospiceCareComponent() {
     fetch('https://admin.interimhc.com/api/hospice-care?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
       .then(responseData => {
-        console.log("Full API Response: ", responseData); // Log full API response for debugging
-
         if (responseData && responseData.data && responseData.data.attributes) {
-          // Main content data
           setData(responseData.data.attributes);
-          console.log("Main content:", responseData.data.attributes);
-
-          // Handle SEO data (check if it's an array or direct object)
           if (responseData.data.attributes.seo && Array.isArray(responseData.data.attributes.seo)) {
-            setSeoData(responseData.data.attributes.seo[0]); // Access the first element
-            console.log("SEO Data:", responseData.data.attributes.seo);
-          } else {
-            console.warn("No SEO data found");
+            setSeoData(responseData.data.attributes.seo[0]);
           }
         } else {
           console.error("No valid data returned from API");
         }
-
         setLoading(false);
       })
       .catch(error => {
@@ -48,7 +38,7 @@ export default function HospiceCareComponent() {
   }, []);
 
   if (loading) {
-    return // <div>Loading...</div>;
+    return null;
   }
 
   if (error) {
@@ -73,18 +63,44 @@ export default function HospiceCareComponent() {
     );
   };
 
+  // Enhanced function to render content (paragraphs, lists, and headings)
   const renderDescription = (description) => {
     return description?.map((desc, index) => {
       if (desc.type === "paragraph") {
-        return <p key={index} className="py-3">{desc.children[0]?.text}</p>;
+        return (
+          <p key={index} className="py-3">
+            {desc.children.map((child, idx) => {
+              if (child.type === "text") {
+                return child.text;
+              } else if (child.type === "link") {
+                return (
+                  <a key={idx} href={child.url} className="phone-link">
+                    {child.children[0]?.text || "Link"}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
       } else if (desc.type === "list") {
         return (
           <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
             {desc.children.map((item, idx) => (
-              <li key={idx}>{item.children[0]?.text}</li>
+              <li key={idx}>
+                {item.children.map((child, childIdx) => {
+                  if (child.type === "text") {
+                    return child.bold ? <strong key={childIdx}>{child.text}</strong> : child.text;
+                  }
+                  return null;
+                })}
+              </li>
             ))}
           </ul>
         );
+      } else if (desc.type === "heading") {
+        const HeadingTag = `h${desc.level || 2}`;
+        return <HeadingTag key={index} className="heading2">{desc.children[0]?.text}</HeadingTag>;
       }
       return null;
     });
@@ -104,18 +120,21 @@ export default function HospiceCareComponent() {
       <ReddingNavbarComponent />
 
       {/* Main Content */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
+          <Row className="py-5 middlealign g-5">
+            <Col md="6">
               <h1 className="heading1">{data?.maincontent?.[0]?.Heading}</h1>
               <p className="paragram py-2">
                 {data?.maincontent?.[0]?.subHeading.split('\n').map((str, index) => (
                   <span key={index}>{str}<br /></span>
                 ))}
               </p>
+              {/* <Button href={data?.maincontent?.[0]?.btn?.url} className="py-3 my-3">
+                {data?.maincontent?.[0]?.btn?.text || "Contact Us"}
+              </Button> */}
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(data?.maincontent?.[0]?.bannerimg?.data?.attributes, "Hospice Home Care", 1034, 688)}
             </Col>
           </Row>
@@ -127,7 +146,7 @@ export default function HospiceCareComponent() {
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-4">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {renderImage(data?.maincontent?.[1]?.img?.data?.attributes, "Hospice Care Service", 595, 780)}
             </Col>
@@ -140,14 +159,14 @@ export default function HospiceCareComponent() {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg" style={{ padding: '50px 0px' }}>
+      <div className="servicessectionbg">
         <Container>
-          <Row>
-            <Col md="6">
+          <Row className="middlealign g-5 row-reverse-mobile">
+            <Col md="7">
               <h2 className="heading2">{data?.maincontent?.[2]?.Heading}</h2>
               {renderDescription(data?.maincontent?.[2]?.description)}
             </Col>
-            <Col md="6">
+            <Col md="5">
               {renderImage(data?.maincontent?.[2]?.img?.data?.attributes, "Respite Care Service", 626, 525)}
             </Col>
           </Row>
@@ -155,9 +174,9 @@ export default function HospiceCareComponent() {
       </div>
 
       {/* Fourth Section */}
-      <div className="section3" style={{ padding: '50px 0px' }}>
+      <div className="section3">
         <Container>
-          <Row>
+          <Row className="align-items-center g-5">
             <Col md="6">
               {renderImage(data?.maincontent?.[3]?.image?.data?.attributes, "Respite Care Service", 595, 780)}
             </Col>
@@ -170,17 +189,17 @@ export default function HospiceCareComponent() {
       </div>
 
       {/* Final Section with Contact */}
-      <div className="section4" style={{ padding: '50px 0px' }}>
+      <div className="section4">
         <Container>
-          <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
-            <Col md={6}>
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data?.maincontent?.[4]?.Heading}</h2>
               {renderDescription(data?.maincontent?.[4]?.description)}
-              <Button className="Contactbtn py-3 my-3" href="tel:+1 530-221-1212">
-                Contact Us
+              <Button className="Contactbtn py-3 my-3" href={data?.maincontent?.[4]?.btn?.url || "tel:+1 530-221-1212"}>
+                {data?.maincontent?.[4]?.btn?.text || "Contact Us"}
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="section4sub-sanjose-col2">
               {renderImage(data?.maincontent?.[4]?.image?.data?.attributes, "Hospice Care Contact", 589, 422)}
             </Col>
           </Row>

@@ -167,8 +167,6 @@ export default function HourcareComponent() {
     });
   };
   
-  
-
   return (
     <div>
       <SanjoseNavbarComponent />

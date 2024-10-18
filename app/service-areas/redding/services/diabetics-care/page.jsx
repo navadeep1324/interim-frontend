@@ -102,20 +102,54 @@ export default function DiabetesCareComponent() {
     );
   };
 
-  // Function to render description
   const renderDescription = (description) => {
-    return description?.map((desc, index) => {
-      if (desc.type === "paragraph") {
-        return <p key={index} className="py-3">{desc.children[0]?.text}</p>;
-      } else if (desc.type === "list") {
+    if (!description || !Array.isArray(description)) return null;
+    
+    return description.map((desc, index) => {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
         return (
-          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-            {desc.children.map((item, index) => (
-              <li key={index}>{item.children[0]?.text}</li>
+          <p key={index} className="py-1">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return child.text;
+              }
+              if (child.type === 'link') {
+                return (
+                  <a key={idx} href={child.url} className="phone-link">
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+  
+      // Handle unordered lists (bullet points)
+      if (desc.type === 'list' && desc.format === 'unordered') {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.[0]?.text || ""}
+              </li>
             ))}
           </ul>
         );
       }
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
       return null;
     });
   };
@@ -131,15 +165,17 @@ export default function DiabetesCareComponent() {
       <ReddingNavbarComponent />
 
       {/* First Section */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="py-5">
+          <Row className="py-5 middlealign g-5">
             <Col md="6">
               <h1 className="heading1">{diabetesData?.maincontent[0]?.Heading}</h1>
               <p className="paragram py-2">
                 {diabetesData?.maincontent[0]?.subHeading.split('\n').map((str, index) => (
                   <span key={index}>{str}<br /></span>
+                  
                 ))}
+               <br></br> Contact us today at <a href="tel:(530) 221-1212" className="phone-link">(530) 221-1212 </a>to give your loved ones a happier and healthier life! 
               </p>
             </Col>
             <Col md="6">
@@ -154,7 +190,7 @@ export default function DiabetesCareComponent() {
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-4">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {renderImage(diabetesData?.maincontent[1]?.img?.data?.attributes, "Diabetes Care Service", 595, 780)}
             </Col>
@@ -167,14 +203,14 @@ export default function DiabetesCareComponent() {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg" style={{ padding: '50px 0px' }}>
+      <div className="servicessectionbg">
         <Container>
-          <Row>
-            <Col md="6">
+          <Row className="middlealign g-5 row-reverse-mobile">
+            <Col md="7">
               <h2 className="heading2">{diabetesData?.maincontent[2]?.Heading}</h2>
               {renderDescription(diabetesData?.maincontent[2]?.description)}
             </Col>
-            <Col md="6">
+            <Col md="5">
               {renderImage(diabetesData?.maincontent[2]?.img?.data?.attributes, "Respite Care Service", 626, 525)}
             </Col>
           </Row>
@@ -182,13 +218,13 @@ export default function DiabetesCareComponent() {
       </div>
 
       {/* Fourth Section */}
-      <div className="section3" style={{ padding: '50px 0px' }}>
+      <div className="section3">
         <Container>
-          <Row>
-            <Col md="6">
+          <Row className="align-items-center g-5">
+            <Col md="5">
               {renderImage(diabetesData.maincontent[3].image.data.attributes, "Respite Care Service", 595, 780)}
             </Col>
-            <Col md="6">
+            <Col md="7">
               <h2 className="heading2">{diabetesData?.maincontent[3]?.Heading}</h2>
               {renderDescription(diabetesData?.maincontent[3]?.description)}
             </Col>
@@ -197,17 +233,17 @@ export default function DiabetesCareComponent() {
       </div>
 
       {/* Final Section with Contact */}
-      <div className="section4" style={{ padding: '50px 0px' }}>
+      <div className="section4">
         <Container>
-          <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
-            <Col md={6}>
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{diabetesData?.maincontent[4]?.Heading}</h2>
               {renderDescription(diabetesData?.maincontent[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="section4sub-sanjose-col2">
               {renderImage(diabetesData?.maincontent[4]?.image?.data?.attributes, "Respite Care Contact", 589, 422)}
             </Col>
           </Row>

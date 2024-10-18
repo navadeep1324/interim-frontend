@@ -1407,3 +1407,9 @@ body{
 .footer-award {
   padding: 0 10%;
 }
+.heading3{
+  font-weight: 500;
+    font-size: 22px;
+    line-height: 1.3em;
+    color: #004b66;
+}

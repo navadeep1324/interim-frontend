@@ -100,18 +100,17 @@ export default function AlzheimerMainComponent() {
       <CarsonNavbarComponent />
 
       {/* First Section */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="align-items-center g-5 py-5">
-            <Col md="6">
+          <Row className="py-5 middlealign g-5">
+          <Col md="6">
               <h1 className="heading1">{data[0]?.Heading || "Default Heading"}</h1>
-              <p className="paragram py-2">{data[0]?.subHeading?.split("\n")[0]}</p>
-              <p className="py-4">{data[0]?.subHeading?.split("\n")[1]}</p>
-              {/* <Button className={styles.buttonhome} href="tel:+1 530-899-9777">
-                +1 530-899-9777
-              </Button> */}
+              <p className="paragrambold py-2">{data[0]?.subHeading?.split('\n')[0]}</p>
+              <p className="py-4">{data[0]?.subHeading?.split('\n')[1]}</p>
+              <p>Reach us today at <a href="tel:408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!</p>
+
             </Col>
-            <Col md="6" className="d-flex justify-content-center">
+            <Col md="6">
               {data[0]?.bannerimg?.data ? (
                 <Image
                   src={getImageUrl(data[0].bannerimg.data.attributes)}
@@ -136,7 +135,7 @@ export default function AlzheimerMainComponent() {
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="align-items-center g-5 row3bg py-4">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {data[1]?.img?.data ? (
                 <Image
@@ -158,12 +157,28 @@ export default function AlzheimerMainComponent() {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg" style={{ padding: "50px 0px" }}>
+      <div className="servicessectionbg">
         <Container>
-          <Row className="align-items-center g-5">
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data[2]?.Heading}</h2>
-              {data[2]?.description ? renderDescription(data[2].description) : <p>No description available</p>}
+              {/* {data[2]?.description ? renderDescription(data[2].description) : <p>No description available</p>} */}
+              <p className="py-2">Choosing Memory care services for your loved ones can be challenging, but here are some signs that they may require professional care to manage this condition.
+              <ul className="px-3 py-3">
+              <li>Safety concerns</li>
+<li>Risk of falls</li>
+<li>Noticeable weight loss</li>
+<li>Forgetfulness</li>
+<li>Social isolation</li>
+<li>Depression</li>
+<li>Persistent sadness</li>
+<li>Decline in personal hygiene</li>
+<li>Agitation or aggression</li>
+<li>Confusion about time or place</li>
+              </ul>
+              
+If you notice any of these signs in your beloved elders, then it might be the right time to choose our in home memory care services. Our caregivers provide the best care possible to prevent worsening of the condition.</p>
+            
             </Col>
             <Col md="6">
               {data[2]?.img?.data ? (
@@ -182,7 +197,7 @@ export default function AlzheimerMainComponent() {
       </div>
 
       {/* Fourth Section */}
-      <div className="section3" style={{ padding: "50px 0px" }}>
+      <div className="section3">
         <Container>
           <Row className="align-items-center g-5">
             <Col md="6">
@@ -208,15 +223,15 @@ export default function AlzheimerMainComponent() {
       {/* Fifth Section */}
       <div className="section4" >
         <Container>
-          <Row className="align-items-center g-5 px-5" style={{ background: "#ffff", borderRadius: "20px", padding: "3%" }}>
-            <Col md={6}>
+          <Row className="section4sub middlealign">
+            <Col md={6}  className="section4sub-sanjose-col1">
               <h2 className="heading2">{data[4]?.Heading}</h2>
               {data[4]?.description ? renderDescription(data[4].description) : <p>No description available</p>}
               <Button className="Contactbtn py-3" href="tel:+1 530-899-9777">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="section4sub-sanjose-col2">
               {data[4]?.image?.data ? (
                 <Image
                   src={getImageUrl(data[4].image.data.attributes)}
