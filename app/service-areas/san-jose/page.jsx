@@ -260,7 +260,7 @@ export default function SanJoseComponent() {
                 Enhance Your Loved One’s Golden Years with Interim Health Care
               </h2>
               <p style={{ textAlign: "center" }}>
-                Take the first step towards enhancing your loved one’s quality of life with our senior home care services. Call us at (408) 286-6888 to discuss your needs and schedule a consultation with our team. Don’t wait—give your loved ones the quality care they deserve. Contact Interim Health Care in San Jose, California today and let us help you make their golden years truly shine.
+                Take the first step towards enhancing your loved one’s quality of life with our senior home care services. Call us at +1 (408) 286-6888 to discuss your needs and schedule a consultation with our team. Don’t wait—give your loved ones the quality care they deserve. Contact Interim Health Care in San Jose, California today and let us help you make their golden years truly shine.
               </p>
             </Col>
           </Row>

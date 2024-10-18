@@ -17,7 +17,7 @@ export default function GrassValleyFooter() {
         
     return (
 
-        <div>
+        <>
             <div className="footersection1 py-5"> 
                 <Container>
                     <Row>
@@ -74,16 +74,16 @@ export default function GrassValleyFooter() {
                             Grass Valley, CA 95945, USA</p>
                             <p className="py-2"><a href="tel:530-272-0300">+1 530-272-0300</a></p>
                             <div className="social-icons">
-                                <a href="https://www.facebook.com/InterimHealthcaregrass-valleyCityNV/" target="_blank" rel="noopener noreferrer" >
+                                <a href="https://www.facebook.com/Interim-HealthCare-of-Grass-Valley-CA-686922638044707/" target="_blank" rel="noopener noreferrer" >
                                     <FaFacebook size={30} />
                                 </a>
-                                <a href="https://www.instagram.com/interim_grass-valley/" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.instagram.com/interim_grassvalleyca/" target="_blank" rel="noopener noreferrer">
                                     <FaInstagram size={30} />
                                 </a>
-                                <a href="https://x.com/Interimgrass-valleyNV" target="_blank" rel="noopener noreferrer">
+                                <a href="https://x.com/InterimHC_GV" target="_blank" rel="noopener noreferrer">
                                     <FaTwitter size={30} />
                                 </a>
-                                <a href="https://www.linkedin.com/company/interim-health-care-of-grass-valley-city-nv/" target="_blank" rel="noopener noreferrer">
+                                <a href="https://www.linkedin.com/company/interim-health-care-of-grass-valley-ca/about/?viewAsMember=true" target="_blank" rel="noopener noreferrer">
                                     <FaLinkedin size={30} />
                                 </a>
                             </div>
@@ -98,6 +98,6 @@ export default function GrassValleyFooter() {
                     </Row>
                 </Container>
             </div>
-        </div>
+        </
     );
 }
