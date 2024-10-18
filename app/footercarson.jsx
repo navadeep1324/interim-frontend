@@ -7,7 +7,6 @@ import Expect1 from "/public/images/Expect1.png";
 import Expect2 from "/public/images/Expect2.png"
 import Expect3 from "/public/images/Expect3.png";
 import Image from "next/image";
-import contactbgimg from "/public/images/contactbgimg.png";
 import FormComponent from "./homeformcomponent";
 import Inlogo from '../public/images/Inlogo.png';
 import { Button } from 'react-bootstrap';

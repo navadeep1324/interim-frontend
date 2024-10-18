@@ -208,7 +208,7 @@ const textLinks = {
     alt={data[1]?.image?.data?.attributes?.alternativeText || ""}
     width={data[1]?.image?.data?.attributes?.width}
     height={data[1]?.image?.data?.attributes?.height}
-    // style={{ transform: "scaleX(-1)" }} 
+    style={{ transform: "scaleX(-1)" }} 
 />
 
             </Col>
