@@ -12,11 +12,13 @@ import FooterServiceCarsonComponent from "../../../../footerservicescarson";
 import CarsonNavbarComponent from "../../../../carsonnavcomponent";
 import CaregiverCityComponent from "../../../../caregiversComponentMainCity";
 import Head from "next/head";
+
 export default function RespiteCareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [seoData, setSeoData] = useState(null);
+
   useEffect(() => {
     async function fetchData() {
       try {
@@ -24,8 +26,6 @@ export default function RespiteCareComponent() {
           "https://admin.interimhc.com/api/carson-hospice-cares?populate[maincontent][populate]=*&populate[seo]=*"
         );
         const result = await response.json();
-
-        console.log(result); // Log the entire result to inspect it
 
         if (result.data) {
           if (Array.isArray(result.data)) {
@@ -52,7 +52,6 @@ export default function RespiteCareComponent() {
   useEffect(() => {
     if (seoData && Array.isArray(seoData) && seoData.length > 0) {
       const seo = seoData[0]; // Access the first element of the seoData array
-      console.log("SEO Data received:", seo); // Log seoData for debugging
       document.title = seo.metaTitle || "Default Title";
       
       // Set meta description
@@ -65,13 +64,11 @@ export default function RespiteCareComponent() {
         newMetaDescription.content = seo.metaDescription || "Default Description";
         document.head.appendChild(newMetaDescription);
       }
-    } else {
-      console.log("No SEO Data received"); // Log if seoData is not available
     }
   }, [seoData]);
 
   if (loading) {
-    return // <div>Loading...</div>;
+    return null; // <div>Loading...</div>;
   }
 
   if (error) {
@@ -79,54 +76,61 @@ export default function RespiteCareComponent() {
   }
 
   const getImageUrl = (imageData) => {
-    return `https://admin.interimhc.com${imageData.url}`;
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : '';
   };
 
-  const renderImage = (imageData, alt, width, height) => {
-    if (imageData && imageData.url) {
-      const imageUrl = `https://admin.interimhc.com${imageData.url}`;
+  const renderImage = (imageData, alt) => {
+    if (imageData) {
+      const { width, height } = imageData; // Extract original width and height
       return (
         <Image
-          src={imageUrl}
-          alt={alt || "Image"}
-          width={width || 600}
-          height={height || 400}
+          src={getImageUrl(imageData)}
+          alt={alt}
+          width={width} // Original width
+          height={height} // Original height
           onError={(e) => console.error("Error loading image:", e)}
         />
       );
-    } else {
-      console.warn("Image data missing or invalid:", imageData);
-      return <p>No image available</p>;
     }
+    return null;
   };
 
-  const renderDescription = (desc) => {
-    if (desc.type === "list") {
-      return renderList(desc.children);
-    }
+  const renderDescription = (description) => {
+    if (!description || !Array.isArray(description)) return null;
   
-    if (desc.type === "heading") {
-      const HeadingTag = `h${desc.level || 2}`;
-      return <HeadingTag>{desc.children[0]?.text}</HeadingTag>;
-    }
-  
-    return desc.children.map((child, index) => {
-      if (child.bold) {
-        return <b key={index}>{child.text}</b>;
-      } else if (child.type === "link") {
+    return description.map((desc, index) => {
+      if (desc.type === 'paragraph') {
         return (
-          <a key={index} href={child.url} target="_blank" rel="noopener noreferrer">
-            {child.text}
-          </a>
+          <p key={index} className="py-3">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return child.text;
+              }
+              if (child.type === 'link') {
+                return (
+                  <a key={idx} href={child.url} className="phone-link">
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
         );
-      } else {
-        return <span key={index}>{child.text}</span>;
       }
+  
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`; 
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
+      return null;
     });
   };
-  
-  
-  
 
   const renderList = (listItems) => {
     if (listItems && listItems.length > 0) {
@@ -142,143 +146,138 @@ export default function RespiteCareComponent() {
         </ul>
       );
     }
-    return null; // Return null if there are no list items
+    return null;
   };
-  
 
   return (
     <div>
       <CarsonNavbarComponent />
-      <div className="sectionbg">
+
+      {/* Section 1: Banner */}
+      <div className="section1banner">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
-              <h1 className="heading1">{data.maincontent[0]?.Heading}</h1>
-              <p className="paragram py-2">
-                {data.maincontent[0]?.subHeading.split("\n\n")[0]}
-              </p>
+          <Row className="py-5 middlealign g-5">
+            <Col md="6">
+              <h1 className="heading1">{data?.maincontent?.[0]?.Heading || ""}</h1>
+              <p className="paragrambold py-2">{data?.maincontent?.[0]?.subHeading?.split("\n")[0] || ""}</p>
               <p className="py-4">
-                {data.maincontent[0]?.subHeading.split("\n\n")[1]}
-                <br /> Contact us today to learn how we can assist in caring for your seniors.
+                {data?.maincontent?.[0]?.subHeading?.split("\n")[1] || ""}
+                <br></br>
+                Reach us today at <a href="+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!
               </p>
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(
-                data.maincontent[0]?.bannerimg?.data?.attributes,
+                data?.maincontent?.[0]?.bannerimg?.data?.attributes,
                 "Compassionate Respite Care",
-                1034,
-                688
+                3102,
+                2064
               )}
             </Col>
           </Row>
         </Container>
       </div>
 
-      <CaregiverCityComponent/>
+      <CaregiverCityComponent />
 
+      {/* Section 2 */}
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-5 px-5">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {renderImage(
-                data.maincontent[1]?.img?.data?.attributes,
-                "Extending your Caregiving Warmth",
-                595,
-                780
+                data?.maincontent?.[1]?.img?.data?.attributes,
+                "Extending your Caregiving Warmth Even During Your Absence",
+                1785,
+                2340
               )}
             </Col>
             <Col md="8">
-              <h2 className="heading2">{data.maincontent[1]?.Heading}</h2>
-              {data.maincontent[1]?.description.map((desc, index) => (
-                <p key={index} className="py-3">
-                  {renderDescription(desc)}
-                </p>
-              ))}
+              <h2 className="heading2">{data?.maincontent?.[1]?.Heading || ""}</h2>
+              {renderDescription(data?.maincontent?.[1]?.description)}
             </Col>
           </Row>
         </Container>
       </div>
 
-      <div className="sectionbg" style={{ padding: "50px 0px" }}>
+      {/* Section 3 */}
+      <div className="servicessectionbg">
         <Container>
-          <Row>
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[2]?.Heading}</h2>
-              {data.maincontent[2]?.description.map((desc, index) => (
-                <p key={index} className="py-2">
-                  {renderDescription(desc)}
-                </p>
-              ))}
-              {renderList(data.maincontent[2]?.description[2]?.children)}
+              <h2 className="heading2">{data?.maincontent?.[2]?.Heading || ""}</h2>
+              {renderDescription(data?.maincontent?.[2]?.description)}
+              <ul style={{ listStyleType: "disc", paddingLeft: "20px" }} className="py-2">
+                {data?.maincontent?.[2]?.description?.[1]?.children?.map((item, index) => (
+                  <li key={index}>{item?.children?.[0]?.text || ""}</li>
+                ))}
+              </ul>
             </Col>
             <Col md="6">
               {renderImage(
-                data.maincontent[2]?.img?.data?.attributes,
-                "Our Commitments",
-                626,
-                525
+                data?.maincontent?.[2]?.img?.data?.attributes,
+                "Our Commitments as Your Respite Caregiver",
+                1878,
+                1575
               )}
             </Col>
           </Row>
         </Container>
       </div>
 
-      <div className="section3" style={{ padding: "50px 0px" }}>
+      {/* Section 4 */}
+      <div className="section3">
         <Container>
-          <Row>
-            <Col md="6">
-              {renderImage(
-                data.maincontent[3]?.image?.data?.attributes,
-                "Benefits of Respite Care",
-                595,
-                780
-              )}
+          <Row className="align-items-center g-5">
+            <Col md="5">
+            {renderImage(
+   data?.maincontent?.[3]?.image?.data?.attributes,
+   "Interim: Providing Help, When You Need It!"
+)}
             </Col>
-            <Col md="6">
-              <h2 className="heading2">{data.maincontent[3]?.Heading}</h2>
-              {data.maincontent[3]?.description.map((desc, index) => (
-                <p key={index} className="py-2">
-                  {renderDescription(desc)}
-                </p>
-              ))}
-              {renderList(data.maincontent[3]?.description[1]?.children)}
+            <Col md="7">
+              <h2 className="heading2">{data?.maincontent?.[3]?.Heading || ""}</h2>
+              {renderDescription(data?.maincontent?.[3]?.description)}
+              <ul style={{ listStyleType: "disc", paddingLeft: "20px" }} className="py-2">
+                {data?.maincontent?.[3]?.description?.[1]?.children?.map((item, index) => (
+                  item?.children?.[0]?.text ? (
+                    <li key={index}>{item?.children?.[0]?.text}</li>
+                  ) : null
+                ))}
+              </ul>
             </Col>
           </Row>
         </Container>
       </div>
 
-      <div className="section4" style={{ padding: "50px 0px" }}>
+      {/* Section 5 */}
+      <div className="section4">
         <Container>
-          <Row
-            className="py-5 px-5"
-            style={{ background: "#ffff", borderRadius: "20px" }}
-          >
-            <Col md={6}>
-              <h2 className="heading2">{data.maincontent[4]?.Heading}</h2>
-              {data.maincontent[4]?.description.map((desc, index) => (
-                <p key={index} className="py-3">
-                  {renderDescription(desc)}
-                </p>
-              ))}
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
+              <h2 className="heading2">{data?.maincontent?.[4]?.Heading || ""}</h2>
+              {renderDescription(data?.maincontent?.[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="section4sub-sanjose-col2">
               {renderImage(
-                data.maincontent[4]?.image?.data?.attributes,
-                "Providing Help, When You Need It!",
-                595,
-                780
+                data?.maincontent?.[4]?.image?.data?.attributes,
+                "Interim: Providing Help, When You Need It!",
+                2408,
+                1784
               )}
             </Col>
           </Row>
         </Container>
       </div>
-<Head>
+
+      <Head>
         <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
         <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
       </Head>
+
       <FooterServiceCarsonComponent />
     </div>
   );

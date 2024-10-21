@@ -26,7 +26,7 @@ export default function Home() {
     const fetchHomeData = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/homes?populate[maincontent][populate]=*&populate[seo]=*`
+          `${BASE_URL}/api/homes?populate[maincontent][populate]=*&populate[seo][populate]=metaImage,metaSocial.image`
         );
         console.log("Full Response Data:", response.data); // Log the full response for debugging
         setHomeData(response.data.data[0].attributes.maincontent);
@@ -42,27 +42,66 @@ export default function Home() {
     fetchHomeData();
   }, []);
 
-  // Dynamically set the meta title and description once the seoData is fetched
-  useEffect(() => {
-    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
-      const seo = seoData[0]; // Access the first element of the seoData array
-      console.log("SEO Data received:", seo); // Log seoData for debugging
-      document.title = seo.metaTitle || "Default Title";
-      
-      // Set meta description
-      const metaDescription = document.querySelector('meta[name="description"]');
-      if (metaDescription) {
-        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
-      } else {
-        const newMetaDescription = document.createElement("meta");
-        newMetaDescription.name = "description";
-        newMetaDescription.content = seo.metaDescription || "Default Description";
-        document.head.appendChild(newMetaDescription);
-      }
+  // Dynamically set the meta title, description, and images once the seoData is fetched
+useEffect(() => {
+  if (seoData && seoData.length > 0) {
+    const seo = seoData[0]; // Access the first element of the seoData array
+    
+    // Set meta title
+    document.title = seo.metaTitle || "Default Title";
+    
+    // Set meta description
+    const metaDescription = document.querySelector('meta[name="description"]');
+    if (metaDescription) {
+      metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
     } else {
-      console.log("No SEO Data received"); // Log if seoData is not available
+      const newMetaDescription = document.createElement("meta");
+      newMetaDescription.name = "description";
+      newMetaDescription.content = seo.metaDescription || "Default Description";
+      document.head.appendChild(newMetaDescription);
     }
-  }, [seoData]);
+
+    // Set meta image (OpenGraph image)
+    if (seo.metaImage?.data?.attributes?.url) {
+      const metaImageUrl = `${BASE_URL}${seo.metaImage.data.attributes.url}`;
+      const ogImageMeta = document.querySelector('meta[property="og:image"]');
+      if (ogImageMeta) {
+        ogImageMeta.setAttribute("content", metaImageUrl);
+      } else {
+        const newOgImageMeta = document.createElement("meta");
+        newOgImageMeta.setAttribute("property", "og:image");
+        newOgImageMeta.setAttribute("content", metaImageUrl);
+        document.head.appendChild(newOgImageMeta);
+      }
+    }
+
+    // Set meta social (Facebook, Twitter) information
+    seo.metaSocial?.forEach(social => {
+      const socialImageUrl = `${BASE_URL}${social.image.data.attributes.url}`;
+
+      // Facebook meta tags
+      if (social.socialNetwork === "Facebook") {
+        document.head.innerHTML += `
+          <meta property="og:title" content="${social.title}">
+          <meta property="og:description" content="${social.description}">
+          <meta property="og:image" content="${socialImageUrl}">
+        `;
+      }
+
+      // Twitter meta tags
+      if (social.socialNetwork === "Twitter") {
+        document.head.innerHTML += `
+          <meta name="twitter:title" content="${social.title}">
+          <meta name="twitter:description" content="${social.description}">
+          <meta name="twitter:image" content="${socialImageUrl}">
+        `;
+      }
+    });
+  } else {
+    console.log("No SEO Data received");
+  }
+}, [seoData]);
+
 
   if (loading) {
     return (

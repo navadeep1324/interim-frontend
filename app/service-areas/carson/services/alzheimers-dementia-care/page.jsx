@@ -85,6 +85,21 @@ export default function AlzheimerMainComponent() {
   const getImageUrl = (imageData) => {
     return imageData ? `${API_URL}${imageData.url}` : null;
   };
+  const renderImage = (imageData, alt) => {
+    if (imageData) {
+      const { width, height } = imageData; // Extract original width and height
+      return (
+        <Image
+          src={getImageUrl(imageData)}
+          alt={alt}
+          width={width} // Original width
+          height={height} // Original height
+          onError={(e) => console.error("Error loading image:", e)}
+        />
+      );
+    }
+    return null;
+  };
 
   // Render descriptions with safety checks
   const renderDescription = (descriptions) => {

@@ -99,42 +99,62 @@ export default function PersonalCareComponent() {
 
   // Render Description Function (handling links, lists, bold text)
   const renderDescription = (description) => {
-    return description.map((para, index) => (
-      <p className="footerrow" key={index}>
-        {para?.children?.map((item, idx) => {
-          if (item.type === "link") {
-            const isExternalLink = item.url.startsWith("http");
-            return (
-              <a
-                key={idx}
-                href={item.url}
-                className="phone-link"
-                target={isExternalLink ? "_blank" : "_self"}
-                rel={isExternalLink ? "noopener noreferrer" : undefined}
-              >
-                {item.children[0]?.text}
-              </a>
-            );
-          } else if (item.type === "ul") {
-            return (
-              <ul key={idx} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
-                {item.children.map((listItem, listIdx) => (
-                  <li key={listIdx}>{renderDescription([listItem])}</li>
-                ))}
-              </ul>
-            );
-          } else if (item.type === "li") {
-            return <li key={idx}>{renderDescription([item])}</li>;
-          } else if (item.bold) {
-            return <b key={idx}>{item.text}</b>;
-          } else {
-            return <span key={idx}>{item.text}</span>;
-          }
-        })}
-      </p>
-    ));
+    return description.map((block, index) => {
+      if (!block || !block.children || block.children.length === 0) return null; // Skip empty blocks
+  
+      switch (block.type) {
+        case "paragraph":
+          return (
+            <p key={index}>
+              {block.children.map((child, idx) => {
+                if (child.type === "link") {
+                  return (
+                    <a
+                      key={idx}
+                      href={child.url}
+                      className="phone-link"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      {child.children[0]?.text}
+                    </a>
+                  );
+                } else {
+                  return <span key={idx}>{child.text || ""}</span>;
+                }
+              })}
+            </p>
+          );
+  
+        case "list":
+          return block.format === "unordered" ? (
+            <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+              {block.children.map((listItem, listIdx) => (
+                <li key={listIdx}>
+                  {listItem.children.map((child, childIdx) => (
+                    <span key={childIdx}>{child.text || ""}</span>
+                  ))}
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <ol key={index} style={{ listStyleType: "decimal", paddingLeft: "20px" }}>
+              {block.children.map((listItem, listIdx) => (
+                <li key={listIdx}>
+                  {listItem.children.map((child, childIdx) => (
+                    <span key={childIdx}>{child.text || ""}</span>
+                  ))}
+                </li>
+              ))}
+            </ol>
+          );
+  
+        default:
+          return null;
+      }
+    });
   };
-
+ 
   return (
     <div>
       <SanjoseNavbarComponent />
