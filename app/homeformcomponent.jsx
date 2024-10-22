@@ -4,6 +4,7 @@ import Button from 'react-bootstrap/Button';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
+import emailjs from 'emailjs-com';  // Import EmailJS
 
 function FormComponent() {
   const [validated, setValidated] = useState(false);
@@ -32,10 +33,32 @@ function FormComponent() {
     } else {
       console.log("Form data being sent: ", formData);  // Log formData for debugging
       try {
+        // Store form data in Strapi
         const response = await axios.post('https://admin.interimhc.com/api/contact-froms', {
           data: formData
         });
-        console.log('Form submitted successfully:', response.data);
+        console.log('Form submitted successfully to Strapi:', response.data);
+         // Prepare data for EmailJS
+         const emailData = {
+          from_name: formData.name,
+          from_email: formData.email,
+          phone_number: formData.phoneNumber,
+          city: formData.city,
+          service: formData.service,
+          message: formData.howwecanhelpyou
+        };
+
+        // Send email using EmailJS
+        const emailResponse = await emailjs.send(
+          'service_88g0bei',  // Replace with your EmailJS service ID
+          'template_ddbgrit', // Replace with your EmailJS template ID
+          emailData,           // Send form data as variables in email
+          'MTVIo7A9LAR7pDgcx'      // Replace with your EmailJS user ID (optional if using public API key)
+        );
+        console.log('Email sent successfully:', emailResponse.status, emailResponse.text);
+
+        // Redirect to /thank-you after successful submission
+        window.location.href = '/thank-you';
       } catch (error) {
         console.error('Error submitting form:', error.response?.data || error.message);
       }

@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
+import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
 import GrantpassfooterComponent from "../../../../footerservicegreantspass";
 import GrantpassNavComponent from "../../../../grantspassnavcomponent";
 import Head from "next/head";
@@ -70,38 +70,101 @@ export default function HourcareComponent() {
     return imageData ? `https://admin.interimhc.com${imageData.url}` : null;
   };
 
-  const renderImage = (imageData, alt, width, height) => {
-    const imageUrl = getImageUrl(imageData);
-    return imageUrl ? (
-      <Image
-        src={imageUrl}
-        alt={alt}
-        width={width}
-        height={height}
-        onError={(e) => console.error('Error loading image:', e)}
-      />
-    ) : null;
+  const renderImage = (imageData, alt) => {
+    if (imageData) {
+      const { width, height } = imageData; // Extract original width and height
+      return (
+        <Image
+          src={getImageUrl(imageData)}
+          alt={alt}
+          width={width} // Original width
+          height={height} // Original height
+          onError={(e) => console.error("Error loading image:", e)}
+        />
+      );
+    }
+    return null;
   };
+
 
   // Render paragraphs and unordered lists
   const renderDescription = (description) => {
-    return description?.map((para, index) => {
-      if (para.type === 'list') {
+    if (!description || !Array.isArray(description)) return null;
+  
+    return description.map((desc, index) => {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
         return (
-          <ul key={index} style={{ paddingLeft: '20px' }}>
-            {para.children.map((item, idx) => (
-              <li key={idx} style={{ marginBottom: '10px' }}>
-                {item.children?.[0]?.text || ''}
+          <p key={index} className="py-3">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return child.text;
+              }
+              if (child.type === 'link') {
+                const isExternalLink = child.url.startsWith('http');
+  
+                return (
+                  <a
+                    key={idx}
+                    href={child.url}
+                    className="phone-link"
+                    target={isExternalLink ? "_blank" : "_self"}
+                    rel={isExternalLink ? "noopener noreferrer" : ""}
+                  >
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+  
+      // Handle unordered lists (bullet points)
+      if (desc.type === 'list' && desc.format === 'unordered') {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === 'text') {
+                    return child.text;
+                  }
+                  if (child.type === 'link') {
+                    const isExternalLink = child.url.startsWith('http');
+  
+                    return (
+                      <a
+                        key={idx}
+                        href={child.url}
+                        className="phone-link"
+                        target={isExternalLink ? "_blank" : "_self"}
+                        rel={isExternalLink ? "noopener noreferrer" : ""}
+                      >
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
               </li>
             ))}
           </ul>
         );
       }
-      return (
-        <p key={index}>
-          {para.children?.[0]?.text || ''}
-        </p>
-      );
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`;
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
+      return null;
     });
   };
 
@@ -110,16 +173,16 @@ export default function HourcareComponent() {
       <GrantpassNavComponent />
 
       {/* First Section */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
+          <Row className="py-5 middlealign g-5">
+            <Col md="6">
               <h1 className="heading1">{data.maincontent[0]?.Heading || 'Heading not available'}</h1>
               <p className="py-2">{data.maincontent[0]?.subHeading || 'Subheading not available'}</p>
-              <p>Contact us today at <a href="tel:+1 775-883-4455" className="phone-link">+1 775-883-4455</a> and let us offer compassionate and personalized care.</p>
+              <p>Contact us today at <a href="tel:+1 541-787-3140" className="phone-link">+1 541-787-3140</a> and let us offer compassionate and personalized care.</p>
 
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Pioneers In Personalized 24 Hour Care", 1034, 688)}
             </Col>
           </Row>
@@ -131,7 +194,7 @@ export default function HourcareComponent() {
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-4 px-5 g-5">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {renderImage(data.maincontent[1]?.img?.data?.attributes, "Enriching Lives with Holistic Care", 595, 780)}
             </Col>
@@ -144,9 +207,9 @@ export default function HourcareComponent() {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg">
+      <div className="servicessectionbg">
         <Container>
-          <Row className="d-flex align-items-center g-5">
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data.maincontent[2]?.Heading || 'Heading not available'}</h2><br></br>
               {renderDescription(data.maincontent[2]?.description)}
@@ -159,9 +222,9 @@ export default function HourcareComponent() {
       </div>
 
       {/* Fourth Section */}
-      <div className="section3 px-5 py-5">
+      <div className="section3">
         <Container>
-          <Row className="d-flex align-items-center g-5">
+          <Row className="align-items-center g-5">
             <Col md="6">
               {renderImage(data.maincontent[3]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
             </Col>
@@ -176,15 +239,15 @@ export default function HourcareComponent() {
       {/* Fifth Section */}
       <div className="section4">
         <Container>
-          <Row className="py-5 px-5 d-flex align-items-center" style={{ background: '#ffff', borderRadius: '20px' }}>
-            <Col md={6} className="px-5">
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data.maincontent[4]?.Heading || 'Heading not available'}</h2>
               {renderDescription(data.maincontent[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="section4sub-sanjose-col2">
               {renderImage(data.maincontent[4]?.image?.data?.attributes, "Contact Us Today", 635, 735)}
             </Col>
           </Row>

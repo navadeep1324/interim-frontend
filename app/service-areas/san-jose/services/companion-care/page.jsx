@@ -1,6 +1,5 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import NavbarComponent from "../../../../navcomponent";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
@@ -57,14 +56,15 @@ export default function CompanionCareComponent() {
     return imageData?.url ? `https://admin.interimhc.com${imageData.url}` : "";
   };
 
-  const renderImage = (imageData, alt, width, height) => {
+  const renderImage = (imageData, alt) => {
     if (imageData) {
+      const { width, height } = imageData; // Extract original width and height
       return (
         <Image
           src={getImageUrl(imageData)}
           alt={alt}
-          width={width}
-          height={height}
+          width={width} // Original width
+          height={height} // Original height
           onError={(e) => console.error("Error loading image:", e)}
         />
       );

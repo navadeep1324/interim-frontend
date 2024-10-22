@@ -1,18 +1,10 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import NavbarComponent from "../../../../navcomponent";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
-import styles from "../../../../page.module.css";
 import Image from "next/image";
-// import Alzheimersimg from "/public/images/Alzheimersimg.png";
-// import CaregivertodayComponent from "../../../../caregiverstodayComponent";
-// import Happier from "/public/images/Happier.png";
-// import servicesimg from "/public/images/servicesimg.png";
-// import Services5img from "/public/images/Services5img.png";
-import ServicepageFooter from "../../../../servicepageFooter";
 import SanjoseNavbarComponent from "../../../../sanjosenavcomponent";
 import SanJoseserviceFooter from "../../../../footerservicesanjose";
 import CaregiverCityComponent from "../../../../caregiversComponentMainCity";
@@ -136,7 +128,7 @@ useEffect(() => {
               <h1 className="heading1">{data[0]?.Heading || "Default Heading"}</h1>
               <p className="paragrambold py-2">{data[0]?.subHeading?.split('\n')[0]}</p>
               <p className="py-4">{data[0]?.subHeading?.split('\n')[1]}</p>
-              <p>Reach us today at <a href="tel:408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!</p>
+              <p>Reach us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!</p>
 
             </Col>
             <Col md="6">
@@ -166,7 +158,7 @@ useEffect(() => {
       {/* Second Section */}
       <div className="section3bg">
         <Container >
-          <Row className="row3bg py-5 middlealign ">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {data[2]?.img?.data ? (
                 <img

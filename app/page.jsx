@@ -26,8 +26,7 @@ export default function Home() {
     const fetchHomeData = async () => {
       try {
         const response = await axios.get(
-          `${BASE_URL}/api/homes?populate[maincontent][populate]=*&populate[seo][populate]=metaImage,metaSocial.image`
-        );
+          `${BASE_URL}/api/homes?populate[maincontent][populate]=*&populate[seo][populate]=metaImage,metaSocial.image`);
         console.log("Full Response Data:", response.data); // Log the full response for debugging
         setHomeData(response.data.data[0].attributes.maincontent);
         setSeoData(response.data.data[0].attributes.seo); // Assuming seoData is in response.data.data[0].attributes.seo
@@ -43,64 +42,123 @@ export default function Home() {
   }, []);
 
   // Dynamically set the meta title, description, and images once the seoData is fetched
-useEffect(() => {
-  if (seoData && seoData.length > 0) {
-    const seo = seoData[0]; // Access the first element of the seoData array
-    
-    // Set meta title
-    document.title = seo.metaTitle || "Default Title";
-    
-    // Set meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
-    } else {
-      const newMetaDescription = document.createElement("meta");
-      newMetaDescription.name = "description";
-      newMetaDescription.content = seo.metaDescription || "Default Description";
-      document.head.appendChild(newMetaDescription);
-    }
-
-    // Set meta image (OpenGraph image)
-    if (seo.metaImage?.data?.attributes?.url) {
-      const metaImageUrl = `${BASE_URL}${seo.metaImage.data.attributes.url}`;
-      const ogImageMeta = document.querySelector('meta[property="og:image"]');
-      if (ogImageMeta) {
-        ogImageMeta.setAttribute("content", metaImageUrl);
+  useEffect(() => {
+    if (seoData && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      
+      // Set meta title
+      document.title = seo.metaTitle || "Default Title";
+  
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
       } else {
-        const newOgImageMeta = document.createElement("meta");
-        newOgImageMeta.setAttribute("property", "og:image");
-        newOgImageMeta.setAttribute("content", metaImageUrl);
-        document.head.appendChild(newOgImageMeta);
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
       }
+  
+      // Set meta image (OpenGraph image)
+      if (seo.metaImage?.data?.attributes?.url) {
+        const metaImageUrl = `${BASE_URL}${seo.metaImage.data.attributes.url}`;
+        const ogImageMeta = document.querySelector('meta[property="og:image"]');
+        if (ogImageMeta) {
+          ogImageMeta.setAttribute("content", metaImageUrl);
+        } else {
+          const newOgImageMeta = document.createElement("meta");
+          newOgImageMeta.setAttribute("property", "og:image");
+          newOgImageMeta.setAttribute("content", metaImageUrl);
+          document.head.appendChild(newOgImageMeta);
+        }
+      }
+  
+      // Set meta social (Facebook, Twitter) information
+      seo.metaSocial?.forEach(social => {
+        const socialImageUrl = `${BASE_URL}${social.image.data.attributes.url}`;
+  
+        // Facebook meta tags
+        if (social.socialNetwork === "Facebook") {
+          let fbTitle = document.querySelector('meta[property="og:title"]');
+          if (!fbTitle) {
+            fbTitle = document.createElement("meta");
+            fbTitle.setAttribute("property", "og:title");
+            document.head.appendChild(fbTitle);
+          }
+          fbTitle.setAttribute("content", social.title);
+  
+          let fbDesc = document.querySelector('meta[property="og:description"]');
+          if (!fbDesc) {
+            fbDesc = document.createElement("meta");
+            fbDesc.setAttribute("property", "og:description");
+            document.head.appendChild(fbDesc);
+          }
+          fbDesc.setAttribute("content", social.description);
+  
+          let fbImage = document.querySelector('meta[property="og:image"]');
+          if (!fbImage) {
+            fbImage = document.createElement("meta");
+            fbImage.setAttribute("property", "og:image");
+            document.head.appendChild(fbImage);
+          }
+          fbImage.setAttribute("content", socialImageUrl);
+        }
+  
+        // Twitter meta tags
+        if (social.socialNetwork === "Twitter") {
+          let twTitle = document.querySelector('meta[name="twitter:title"]');
+          if (!twTitle) {
+            twTitle = document.createElement("meta");
+            twTitle.setAttribute("name", "twitter:title");
+            document.head.appendChild(twTitle);
+          }
+          twTitle.setAttribute("content", social.title);
+  
+          let twDesc = document.querySelector('meta[name="twitter:description"]');
+          if (!twDesc) {
+            twDesc = document.createElement("meta");
+            twDesc.setAttribute("name", "twitter:description");
+            document.head.appendChild(twDesc);
+          }
+          twDesc.setAttribute("content", social.description);
+  
+          let twImage = document.querySelector('meta[name="twitter:image"]');
+          if (!twImage) {
+            twImage = document.createElement("meta");
+            twImage.setAttribute("name", "twitter:image");
+            document.head.appendChild(twImage);
+          }
+          twImage.setAttribute("content", socialImageUrl);
+        }
+      });
+  
+      return () => {
+        // Clean up meta tags when component unmounts (preventing the removeChild issue)
+        document.title = "Default Title"; // Reset title
+  
+        // Clean up dynamically added meta tags
+        const ogImageMeta = document.querySelector('meta[property="og:image"]');
+        if (ogImageMeta) document.head.removeChild(ogImageMeta);
+  
+        const fbTitle = document.querySelector('meta[property="og:title"]');
+        if (fbTitle) document.head.removeChild(fbTitle);
+  
+        const fbDesc = document.querySelector('meta[property="og:description"]');
+        if (fbDesc) document.head.removeChild(fbDesc);
+  
+        const twTitle = document.querySelector('meta[name="twitter:title"]');
+        if (twTitle) document.head.removeChild(twTitle);
+  
+        const twDesc = document.querySelector('meta[name="twitter:description"]');
+        if (twDesc) document.head.removeChild(twDesc);
+  
+        const twImage = document.querySelector('meta[name="twitter:image"]');
+        if (twImage) document.head.removeChild(twImage);
+      };
     }
-
-    // Set meta social (Facebook, Twitter) information
-    seo.metaSocial?.forEach(social => {
-      const socialImageUrl = `${BASE_URL}${social.image.data.attributes.url}`;
-
-      // Facebook meta tags
-      if (social.socialNetwork === "Facebook") {
-        document.head.innerHTML += `
-          <meta property="og:title" content="${social.title}">
-          <meta property="og:description" content="${social.description}">
-          <meta property="og:image" content="${socialImageUrl}">
-        `;
-      }
-
-      // Twitter meta tags
-      if (social.socialNetwork === "Twitter") {
-        document.head.innerHTML += `
-          <meta name="twitter:title" content="${social.title}">
-          <meta name="twitter:description" content="${social.description}">
-          <meta name="twitter:image" content="${socialImageUrl}">
-        `;
-      }
-    });
-  } else {
-    console.log("No SEO Data received");
-  }
-}, [seoData]);
+  }, [seoData]);
+  
 
 
   if (loading) {
