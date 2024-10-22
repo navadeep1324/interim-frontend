@@ -280,7 +280,7 @@ padding: 0 5%;
   background-color: #fff;
 }
 body{
-  background-color: #ffffff;
+  background-color: #ffffff !important;
 }
 .coloum1txt{
   display: flex;
@@ -1192,6 +1192,7 @@ body > div > div > div:nth-child(8) > div > div > div:nth-child(2) {
   align-items: center;
   justify-content: center;
   margin-top: 15px;
+  
 }
 .heading5subcity {
   line-height: 1.5em;
@@ -1406,10 +1407,4 @@ body{
 
 .footer-award {
   padding: 0 10%;
-}
-.heading3{
-  font-weight: 500;
-    font-size: 22px;
-    line-height: 1.3em;
-    color: #004b66;
 }
