@@ -1,24 +1,19 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import NavbarComponent from "../../../../navcomponent";
 import Row from "react-bootstrap/Row";
+import { Button } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
-import GrantpassfooterComponent from "../../../../footerservicegreantspass";
-import GrantpassNavComponent from "../../../../grantspassnavcomponent";
-import GrassValleyNavbarComponent from "../../../../grassvalleynavcomponent";
-import GrassValleyFooter from "../../../../footerservicegrssvalley";
+import CaregiverCityComponent from "../../../../caregiversComponentMainCity";
+import SanjoseNavbarComponent from "../../../../grassvalleynavcomponent";
+import SanJoseFooter from "../../../../footerservicegrssvalley";
 import Head from "next/head";
-
 export default function HourcareComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [seoData, setSeoData] = useState(null);
-
   useEffect(() => {
     fetch('https://admin.interimhc.com/api/grass-valley-24-hour-cares?populate[maincontent][populate]=*&populate[seo]=*')
       .then(response => response.json())
@@ -35,27 +30,28 @@ export default function HourcareComponent() {
         setLoading(false);
       });
   }, []);
-// Dynamically set the meta title and description once the seoData is fetched
-useEffect(() => {
-  if (seoData && Array.isArray(seoData) && seoData.length > 0) {
-    const seo = seoData[0]; // Access the first element of the seoData array
-    console.log("SEO Data received:", seo); // Log seoData for debugging
-    document.title = seo.metaTitle || "Default Title";
-    
-    // Set meta description
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+  // Dynamically set the meta title and description once the seoData is fetched
+  useEffect(() => {
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+      
+      // Set meta description
+      const metaDescription = document.querySelector('meta[name="description"]');
+      if (metaDescription) {
+        metaDescription.setAttribute("content", seo.metaDescription || "Default Description");
+      } else {
+        const newMetaDescription = document.createElement("meta");
+        newMetaDescription.name = "description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
+        document.head.appendChild(newMetaDescription);
+      }
     } else {
-      const newMetaDescription = document.createElement("meta");
-      newMetaDescription.name = "description";
-      newMetaDescription.content = seo.metaDescription || "Default Description";
-      document.head.appendChild(newMetaDescription);
+      console.log("No SEO Data received"); // Log if seoData is not available
     }
-  } else {
-    console.log("No SEO Data received"); // Log if seoData is not available
-  }
-}, [seoData]);
+  }, [seoData]);
+
   if (loading) {
     return // <div>Loading...</div>;
   }
@@ -65,80 +61,157 @@ useEffect(() => {
   }
 
   if (!data || !data.maincontent) {
-    return <div>No data available</div>;
+    return <div>No content available</div>;
   }
 
   const getImageUrl = (imageData) => {
-    return imageData ? `https://admin.interimhc.com${imageData.url}` : null;
+    return `https://admin.interimhc.com${imageData.url}`;
   };
 
   const renderImage = (imageData, alt, width, height) => {
-    const imageUrl = getImageUrl(imageData);
-    return imageUrl ? (
-      <Image
-        src={imageUrl}
-        alt={alt}
-        width={width}
-        height={height}
-        onError={(e) => console.error('Error loading image:', e)}
-      />
-    ) : null;
+    if (imageData) {
+      return (
+        <Image
+          src={getImageUrl(imageData)}
+          alt={alt}
+          width={width}
+          height={height}
+          onError={(e) => console.error('Error loading image:', e)}
+        />
+      );
+    }
+    return null;
   };
 
-  // Render paragraphs and unordered lists
   const renderDescription = (description) => {
-    return description?.map((para, index) => {
-      if (para.type === 'list') {
+    if (!description || !Array.isArray(description)) return null;
+  
+    return description.map((desc, index) => {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
+        // Check if the paragraph contains at least one valid text or link
+        const hasValidContent = desc?.children?.some((child) => {
+          if (child.type === 'text' && child.text.trim() !== '') {
+            return true;
+          }
+          if (child.type === 'link' && child.url) {
+            return true;
+          }
+          return false;
+        });
+  
+        if (!hasValidContent) {
+          // Skip rendering if the paragraph has no valid content
+          return null;
+        }
+  
         return (
-          <ul key={index} style={{ paddingLeft: '20px' }}>
-            {para.children.map((item, idx) => (
-              <li key={idx} style={{ marginBottom: '10px' }}>
-                {item.children?.[0]?.text || ''}
+          <p key={index} className="py-3">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return child.text;
+              }
+              if (child.type === 'link') {
+                const isExternalLink = child.url.startsWith('http');
+  
+                return (
+                  <a
+                    key={idx}
+                    href={child.url}
+                    className="phone-link"
+                    target={isExternalLink ? "_blank" : "_self"}
+                    rel={isExternalLink ? "noopener noreferrer" : ""}
+                  >
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+  
+      // Handle unordered lists (bullet points)
+      if (desc.type === 'list' && desc.format === 'unordered') {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === 'text') {
+                    return child.text;
+                  }
+                  if (child.type === 'link') {
+                    const isExternalLink = child.url.startsWith('http');
+  
+                    return (
+                      <a
+                        key={idx}
+                        href={child.url}
+                        className="phone-link"
+                        target={isExternalLink ? "_blank" : "_self"}
+                        rel={isExternalLink ? "noopener noreferrer" : ""}
+                      >
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
               </li>
             ))}
           </ul>
         );
       }
-      return (
-        <p key={index}>
-          {para.children?.[0]?.text || ''}
-        </p>
-      );
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`;
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
+      return null;
     });
   };
-
+  
+  
   return (
     <div>
-      <GrassValleyNavbarComponent />
+      <SanjoseNavbarComponent />
 
       {/* First Section */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
-              <h1 className="heading1">{data.maincontent[0]?.Heading || 'Heading not available'}</h1>
-              <p className="py-2">{data.maincontent[0]?.subHeading || 'Subheading not available'}</p>
-              <p>Contact us today at <a href="tel:+1 530-272-03005" className="phone-link">+1 530-272-0300</a> and let us offer compassionate and personalized care.</p>
+          <Row className="py-5 middlealign g-5">
+            <Col md="6">
+              <h1 className="heading1">{data.maincontent[0]?.Heading || 'Default Heading'}</h1>
+              <p className="py-2">{data.maincontent[0]?.subHeading || 'Default Subheading'}</p>
+              <p>Contact us today at <a href="tel:+1 530-272-0300" className="phone-link">+1 530-272-0300</a> and let us offer compassionate and personalized care.</p>
 
             </Col>
-            <Col md="7">
-              {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Pioneers In Personalized 24 Hour Care", 1034, 688)}
+            <Col md="6" className="d-flex justify-content-center">
+              {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Pioneers In Personalized 24 Hour Care", 3102, 2064)}
             </Col>
           </Row>
         </Container>
       </div>
 
-      <CaregivertodayComponent />
+      <CaregiverCityComponent />
 
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-4 px-5 g-5">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
-              {renderImage(data.maincontent[1]?.img?.data?.attributes, "Enriching Lives with Holistic Care", 595, 780)}
+              {renderImage(data.maincontent[1]?.img?.data?.attributes, "Enriching Lives with Holistic Care", 1785, 2340)}
             </Col>
             <Col md="8">
-              <h2 className="heading2">{data.maincontent[1]?.Heading || 'Heading not available'}</h2><br></br>
+              <h2 className="heading2">{data.maincontent[1]?.Heading || 'Default Heading'}</h2>
               {renderDescription(data.maincontent[1]?.description)}
             </Col>
           </Row>
@@ -146,29 +219,29 @@ useEffect(() => {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg">
+      <div className="servicessectionbg">
         <Container>
-          <Row className="d-flex align-items-center g-5">
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[2]?.Heading || 'Heading not available'}</h2><br></br>
+              <h2 className="heading2">{data.maincontent[2]?.Heading || 'Default Heading'}</h2>
               {renderDescription(data.maincontent[2]?.description)}
             </Col>
             <Col md="6">
-              {renderImage(data.maincontent[2]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
+              {renderImage(data.maincontent[2]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 1878, 1575)}
             </Col>
           </Row>
         </Container>
       </div>
 
       {/* Fourth Section */}
-      <div className="section3 px-5 py-5">
+      <div className="section3">
         <Container>
-          <Row className="d-flex align-items-center g-5">
+          <Row className="align-items-center g-5">
             <Col md="6">
-              {renderImage(data.maincontent[3]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
+              {renderImage(data.maincontent[3]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 1252, 1050)}
             </Col>
             <Col md="6">
-              <h2 className="heading2">{data.maincontent[3]?.Heading || 'Heading not available'}</h2><br></br>
+              <h2 className="heading2">{data.maincontent[3]?.Heading || 'Default Heading'}</h2>
               {renderDescription(data.maincontent[3]?.description)}
             </Col>
           </Row>
@@ -178,16 +251,16 @@ useEffect(() => {
       {/* Fifth Section */}
       <div className="section4">
         <Container>
-          <Row className="py-5 px-5 d-flex align-items-center" style={{ background: '#ffff', borderRadius: '20px' }}>
-            <Col md={6} className="px-5">
-              <h2 className="heading2">{data.maincontent[4]?.Heading || 'Heading not available'}</h2>
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
+              <h2 className="heading2">{data.maincontent[4]?.Heading || 'Default Heading'}</h2>
               {renderDescription(data.maincontent[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
-              {renderImage(data.maincontent[4]?.image?.data?.attributes, "Contact Us Today", 635, 735)}
+            <Col md={6} className="section4sub-sanjose-col2">
+              {renderImage(data.maincontent[4]?.image?.data?.attributes, "Contact Us Today", 2408, 1784)}
             </Col>
           </Row>
         </Container>
@@ -196,7 +269,7 @@ useEffect(() => {
         <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
         <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
       </Head>
-      <GrassValleyFooter />
+      <SanJoseFooter/>
     </div>
   );
 }

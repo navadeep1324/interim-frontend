@@ -150,63 +150,6 @@ export default function PersonalCareComponent() {
       }
     });
   };
-  const renderDescriptionWithoutDuplicates = (description) => {
-    return description.map((block, index) => {
-      if (!block || !block.children || block.children.length === 0) return null; // Skip empty blocks
-  
-      // Avoid rendering duplicates
-      switch (block.type) {
-        case "paragraph":
-          return (
-            <p key={index}>
-              {block.children.map((child, idx) => {
-                if (child.type === "link") {
-                  return (
-                    <a
-                      key={idx}
-                      href={child.url}
-                      className="phone-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {child.children[0]?.text}
-                    </a>
-                  );
-                } else {
-                  return <span key={idx}>{child.text || ""}</span>;
-                }
-              })}
-            </p>
-          );
-  
-        case "list":
-          return block.format === "unordered" ? (
-            <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
-              {block.children.map((listItem, listIdx) => (
-                <li key={listIdx}>
-                  {listItem.children.map((child, childIdx) => (
-                    <span key={childIdx}>{child.text || ""}</span>
-                  ))}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <ol key={index} style={{ listStyleType: "decimal", paddingLeft: "20px" }}>
-              {block.children.map((listItem, listIdx) => (
-                <li key={listIdx}>
-                  {listItem.children.map((child, childIdx) => (
-                    <span key={childIdx}>{child.text || ""}</span>
-                  ))}
-                </li>
-              ))}
-            </ol>
-          );
-  
-        default:
-          return null;
-      }
-    });
-  };
  
 
   return (

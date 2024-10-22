@@ -98,55 +98,95 @@ export default function VeteranCareComponent() {
   };
 
   // Rendering the image
-  const renderImage = (imageData, alt, width, height) => {
-    if (imageData && imageData.url) {
+  const renderImage = (imageData, alt) => {
+    if (imageData) {
+      const { width, height } = imageData; // Extract original width and height
       return (
         <Image
           src={getImageUrl(imageData)}
           alt={alt}
-          width={width}
-          height={height}
-          onError={(e) => console.error('Error loading image:', e)}
+          width={width} // Original width
+          height={height} // Original height
+          onError={(e) => console.error("Error loading image:", e)}
         />
       );
     }
-    return <p>No image available</p>;  // Fallback when no image is available
+    return null;
   };
 
   // Rendering the description
   const renderDescription = (description) => {
-    if (!description) return null;
+    if (!description || !Array.isArray(description)) return null;
+    
     return description.map((desc, index) => {
-      if (desc.type === "paragraph") {
-        return <p key={index} className="py-3">{desc.children[0]?.text}</p>;
-      } else if (desc.type === "list") {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
         return (
-          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-            {desc.children.map((item, idx) => (
-              <li key={idx}>{item.children[0]?.text}</li>
+          <p key={index} className="py-2">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return child.text;
+              }
+              if (child.type === 'link') {
+                return (
+                  <a key={idx} href={child.url} className="phone-link">
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+  
+      // Handle unordered lists (bullet points)
+      if (desc.type === 'list' && desc.format === 'unordered') {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.[0]?.text || ""}
+              </li>
             ))}
           </ul>
         );
       }
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
       return null;
     });
   };
+  
 
   return (
     <div>
       <GrantpassNavComponent />
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
+          <Row className="py-5 middlealign g-5">
+            <Col md="6">
               <h1 className="heading1">{data.maincontent[0]?.Heading || "No heading available"}</h1>
-              <p className="paragram py-2">
-                {data.maincontent[0]?.subHeading?.split('\n').map((str, index) => (
-                  <span key={index}>{str}<br /></span>
-                )) || "No subheading available"}
+              <p className="paragrambold py-2">
+                {data?.maincontent?.[0]?.subHeading?.split("\n")[0] || ""}
+              </p>
+              <p className="py-4">
+                {data?.maincontent?.[0]?.subHeading?.split("\n")[1] || ""}
+                <br />
+                Reach us today at <a href="tel:+1 541-787-3140" className="phone-link">+1 541-787-3140</a> to learn how we can assist your aging adults!
+
               </p>
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Veteran Home Care", 1034, 688)}
             </Col>
           </Row>
@@ -155,7 +195,7 @@ export default function VeteranCareComponent() {
       <CaregivertodayComponent />
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-4">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {renderImage(data.maincontent[1]?.img?.data?.attributes, "Veteran Care Service", 595, 780)}
             </Col>
@@ -166,9 +206,9 @@ export default function VeteranCareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="sectionbg" style={{ padding: '50px 0px' }}>
+      <div className="servicessectionbg">
         <Container>
-          <Row>
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data.maincontent[2]?.Heading || "No heading available"}</h2>
               {renderDescription(data.maincontent[2]?.description)}
@@ -179,10 +219,10 @@ export default function VeteranCareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="section3" style={{ padding: '50px 0px' }}>
+      <div className="section3">
         <Container>
           <Row>
-            <Col md="6">
+            <Col md="6" className="align-items-center g-5">
               {renderImage(data.maincontent[3]?.img?.data?.attributes, "Respite Care Service", 595, 780)}
             </Col>
             <Col md="6">
@@ -192,17 +232,17 @@ export default function VeteranCareComponent() {
           </Row>
         </Container>
       </div>
-      <div className="section4" style={{ padding: '50px 0px' }}>
+      <div className="section4" >
         <Container>
-          <Row className="py-5 px-5" style={{ background: '#ffff', borderRadius: '20px' }}>
-            <Col md={6}>
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data.maincontent[4]?.Heading || "No heading available"}</h2>
               {renderDescription(data.maincontent[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6}className="section4sub-sanjose-col2">
               {renderImage(data.maincontent[4]?.image?.data?.attributes, "Respite Care Contact", 589, 422)}
             </Col>
           </Row>

@@ -1,13 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import NavbarComponent from "../../../../navcomponent";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
 import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
-import SanJoseFooter from "../../../../footersanjose";
 import SanjoseNavbarComponent from "../../../../sanjosenavcomponent";
 import SanJoseserviceFooter from "../../../../footerservicesanjose";
 import Head from "next/head";
