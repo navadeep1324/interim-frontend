@@ -159,9 +159,9 @@ export default function MoundHouseComponent() {
       if (desc.type === "heading") {
         const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
         return (
-          <HeadingTag key={index} className="section4-heading">
+          <h2 key={index} className="section4-heading">
             {desc?.children?.[0]?.text || ""}
-          </HeadingTag>
+          </h2>
         );
       }
 
