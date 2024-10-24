@@ -11,11 +11,8 @@ import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
-import CaregiverCityComponent from "../../../caregiversComponentMainCity";
-import Cupertinomain from "/public/images/HomeCare-in-Bella-Vista.webp";
-import Cupertino1 from "/public/images/Seniors-in-Bella-Vista-CA.webp";
-import Cupertino2 from "/public/images/Cupertino2.png";
 import Head from "next/head";
+
 
 const API_URL = "https://admin.interimhc.com";
 
@@ -28,10 +25,15 @@ export default function BellaVistaComponent() {
     const fetchData = async () => {
       try {
         const response = await axios.get(
-          `${API_URL}/api/bella-vistas?populate[maincontent][populate]=*&populate[seo]=*`
+          `${API_URL}/api/bella-vistas?populate[maincontent][populate]=*&populate[seo][populate]=metaImage,metaSocial.image`
         );
-        setData(response.data.data[0].attributes); // Fetch content data
-        setSeoData(response.data.data[0].attributes.seo); // Fetch SEO data
+        console.log("API Response:", response.data); // Log the entire response
+        if (response.data && response.data.data.length > 0) {
+          setData(response.data.data[0]?.attributes || {}); // Fetch content data
+          setSeoData(response.data.data[0]?.attributes?.seo || {}); // Fetch SEO data
+        } else {
+          console.error("No data found in API response");
+        }
       } catch (error) {
         console.error("Error fetching data from Strapi", error);
       }
@@ -57,8 +59,80 @@ export default function BellaVistaComponent() {
   }, [seoData]);
 
   if (!data) {
-    //     //    // return <p>Loading...</p>;
+    return <p>Loading...</p>;
   }
+
+  // Helper function to handle external and internal links
+  const handleLinkTarget = (url) => {
+    return url.startsWith("http") ? "_blank" : "_self";
+  };
+
+  // Helper function to render content based on type
+  // Helper function to render content based on type
+const renderContent = (content) => {
+  return content.map((desc, index) => {
+    if (desc.type === "paragraph") {
+      return (
+        <p key={index}>
+          {desc.children.map((child, childIndex) => {
+            if (child.type === "text") {
+              return <span key={`${index}-${childIndex}`}>{child.text} </span>;
+            } else if (child.type === "link") {
+              return (
+                <a className="phone-link"                     key={`${index}-${childIndex}`}
+                    href={child.url}
+                    target={handleLinkTarget(child.url)}
+                    rel="noopener noreferrer"
+                  >
+                    {child.children.map((linkChild, linkChildIndex) => (
+                      <span key={`${index}-${childIndex}-${linkChildIndex}`}>{linkChild.text}</span>
+                    ))}
+                  </a>
+              );
+            } else if (child.type === "bold") {
+              return <strong key={`${index}-${childIndex}`}>{child.text}</strong>;
+            }
+            return null;
+          })}
+        </p>
+      );
+    } else if (desc.type === "list" && desc.format === "unordered") {
+      return (
+        <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+          {desc.children.map((child, childIndex) => (
+            <li key={`${index}-${childIndex}`}>
+              {child.children.map((listChild, listChildIndex) => (
+                <span key={`${index}-${childIndex}-${listChildIndex}`}>{listChild.text}</span>
+              ))}
+            </li>
+          ))}
+        </ul>
+      );
+    } else if (desc.type === "list" && desc.format === "ordered") {
+      return (
+        <ol key={index} style={{ paddingLeft: '20px' }}>
+          {desc.children.map((child, childIndex) => (
+            <li key={`${index}-${childIndex}`}>
+              {child.children.map((listChild, listChildIndex) => (
+                <span key={`${index}-${childIndex}-${listChildIndex}`}>{listChild.text}</span>
+              ))}
+            </li>
+          ))}
+        </ol>
+      );
+    } else if (desc.type === "heading") {
+      return (
+        <h2 key={index} className="heading2">
+          {desc.children.map((child, childIndex) => (
+            <span key={`${index}-${childIndex}`}>{child.text}</span>
+          ))}
+        </h2>
+      );
+    }
+    return null;
+  });
+};
+
 
   return (
     <div>
@@ -72,13 +146,11 @@ export default function BellaVistaComponent() {
 
       {/* Section 1 - Banner */}
       <div className="section1subcity">
-        <Container fluid className="">
+        <Container fluid>
           <Row>
             <Col md={7} className="reddingsubcity-banner">
-              <h2 className="subcityheading">Senior In-Home Care in Bella Vista, CA</h2>
-              <p className="py-3">
-                Seniors are cherished members of any family, deserving of the best care to ensure they age gracefully and happily. As a leading provider of home care in the country, Interim Healthcare is dedicated to meeting the unique needs of your seniors in Bella Vista, CA.
-              </p>
+              <h2 className="subcityheading">{data?.maincontent?.[0]?.Heading || "Default Banner Title"}</h2>
+              <p className="py-3">{data?.maincontent?.[0]?.subHeading || "Default Banner Description"}</p>
               <p>
                 Contact us at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> to schedule a complimentary assessment for your aging loved ones.
               </p>
@@ -96,26 +168,27 @@ export default function BellaVistaComponent() {
         <ReddingservicesComponent />
       </div>
 
-      {/* <CaregiverCityComponent /> */}
-
       {/* Section 3 - Growing Demand */}
       <div>
         <Container fluid>
           <Row className="py-5 middlealign">
             <Col md={6}>
-              <Image src={Cupertinomain} alt="Main Image" />
+              {data?.maincontent?.[1]?.image?.data?.attributes?.url ? (
+                <Image src={`${API_URL}${data.maincontent[1].image.data.attributes.url}`} alt="Growing Demand Image" width={1706} height={1052} />
+              ) : (
+                <p>Image not available</p>
+              )}
             </Col>
             <Col md={6} className="redding-col2">
-              <h2 className="heading2">Growing Demand for Home Care in Bella Vista, California</h2>
-              <p className="py-3">
-                <a href="https://en.wikipedia.org/wiki/Bella_Vista,_California" className="phone-link" target="_blank">Bella Vista</a> is a small, rural town in the Shasta county of California. Lying 8 miles northeast of Redding, it has a population of 3,641, 20% of which is comprised of seniors. With its mild climate, natural beauty and good healthcare facilities, it has become a retirement abode for seniors. However, older adults in Bella Vista encounter challenges with <a href="https://data.census.gov/profile/Bella_Vista_CDP,_California?g=160XX00US0604926#health" className="phone-link" target="_blank">self-care and ambulation</a>, which necessitate the need for quality in-home care services.
-                <br /><br />
-                Interim Healthcare has been providing exceptional home healthcare in Bella Vista for over the last two decades. Being pioneers of the home care industry across the nation, we deeply understand the various concerns of aging individuals. Our team of experts have crafted our HomeLife Enrichment holistic model of care which sets us apart from the rest in the market. We ensure your senior’s well-being by focusing on mind, body, spirit, and family. Call us at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> for more info on home healthcare plans in Bella Vista.
-              </p>
+              <h2 className="heading2">{data?.maincontent?.[1]?.Heading || "Default Growing Demand Title"}</h2>
+              <div className="py-3">
+                {renderContent(data?.maincontent?.[1]?.description || [])}
+              </div>
             </Col>
           </Row>
         </Container>
       </div>
+
 
       {/* Section 4 - Health Care Plans */}
       <div className="reddingsection3subcity py-5">
@@ -123,10 +196,10 @@ export default function BellaVistaComponent() {
           <Row>
             <Col>
               <h2 className="heading2" style={{ color: '#ffff', textAlign: 'center' }}>
-                Array of Home Health Care Plans for Seniors in Bella Vista, CA
+                {data?.maincontent?.[2]?.Heading || "Default Health Care Plans Title"}
               </h2>
               <p className="py-3" style={{ color: '#ffff', textAlign: 'center' }}>
-                At Interim Healthcare, we provide a range of personalized care plans for your seniors’ unique needs. Whether you require skilled nursing for your seniors with a chronic illness, or compassionate assistance for homemaking, our team is here to help!
+                {data?.maincontent?.[2]?.subHeading || "Default Health Care Plans Description"}
               </p>
             </Col>
           </Row>
@@ -135,53 +208,25 @@ export default function BellaVistaComponent() {
         <Container className="section4subcity py-5">
           <Row className="middlealign">
             <Col md={8} className="px-5">
-              <h5 className="heading5subcity">Some of our specialized home healthcare plans include:</h5>
-              <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
-                <li><p><b>24-Hour Home Care</b> for seniors who require continuous monitoring and help.</p></li>
-                <li><p><b>Palliative Care</b> for pain management of seniors, ensuring quicker recovery.</p></li>
-                <li><p><b>Hospice Care</b> for a smooth and less traumatic transition to end-of-life.</p></li>
-              </ul>
-              <p>For a comprehensive care plan for your loved one, choose our tailor-made services.</p>
-              <h2 className="heading2 py-3">How our Home Healthcare Benefits Seniors in Bella Vista, CA</h2>
-              <p className="py-1">Besides promoting your aging loved ones overall health and well-being, we also offer the following unique benefits:</p>
-              <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                <li><p>Caregiver support and guidance to manage chronic diseases</p></li>
-                <li><p>Flexible scheduling and personalized support to sync with family routine</p></li>
-                <li><p>Medicaid assistance for home care and home healthcare services</p></li>
-                <li><p>Veteran Benefits assistance for eligible veterans or their surviving spouses</p></li>
-              </ul>
-              <p className="py-1">We understand that caring for seniors requires time, dedication, and resources. We offer flexible payment options that enable comfort and peace of mind for the entire family.</p>
+              <h5 className="heading5subcity">{data?.maincontent?.[2]?.Heading || "Default Specialized Plans Title"}</h5>
+              <div className="py-4">
+                {renderContent(data?.maincontent?.[2]?.description || [])}
+               
+              </div>
             </Col>
             <Col md={4}>
-              <Image src={Cupertino1} alt="Cupertino Image 1" />
+              {data?.maincontent?.[2]?.img?.data?.attributes?.url ? (
+                <Image src={`${API_URL}${data.maincontent[2].img.data.attributes.url}`} alt="Plan Image" width={400} height={300} />
+              ) : (
+                <p>Plan image not available</p>
+              )}
             </Col>
           </Row>
         </Container>
       </div>
 
-      {/* Section 5 - Benefits of Home Care */}
-      {/* <div className="py-5">
-        <Container>
-          <Row>
-            <Col md={6} style={{ paddingRight: '25px' }}>
-              <Image src={Cupertino2} alt="Cupertino Image 2" />
-            </Col>
-            <Col md={6}>
-              <h2 className="heading2">How our Home Healthcare Benefits Seniors in Bella Vista, CA</h2>
-              <p className="py-3">Besides promoting your aging loved ones overall health and well-being, we also offer the following unique benefits:</p>
-              <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
-                <li><p>Caregiver support and guidance to manage chronic diseases</p></li>
-                <li><p>Flexible scheduling and personalized support to sync with family routine</p></li>
-                <li><p>Medicaid assistance for home care and home healthcare services</p></li>
-                <li><p>Veteran Benefits assistance for eligible veterans or their surviving spouses</p></li>
-              </ul>
-              <p className="py-4">We understand that caring for seniors requires time, dedication, and resources. We offer flexible payment options that enable comfort and peace of mind for the entire family.</p>
-            </Col>
-          </Row>
-        </Container>
-      </div> */}
-       {/* Section 7 - FAQ */}
-       <div className="py-5">
+      {/* Section 7 - FAQ */}
+      <div className="py-5">
         <Container>
           <h2 className="heading2" style={{ textAlign: 'center' }}>Frequently Asked Questions</h2>
           <Accordion className="py-3">
@@ -212,16 +257,14 @@ export default function BellaVistaComponent() {
         <Container>
           <Row>
             <Col>
-              <h2 className="heading2city py-3">Enhance Your Seniors’ Golden Years with Interim Healthcare</h2>
-              <p style={{ textAlign: 'center' }}>
-                Your seniors are at a pivotal stage of their lives. For them to age with grace and a happy face, they require compassionate assistance during every step of their journey. Let Interim Healthcare guide the way to help overcome your seniors’ daily obstacles. Choose from our range of reliable in-home care services to make life easier for your seniors. Call us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> to begin your journey with us.
-              </p>
+              <h2 className="heading2city py-3">{data?.maincontent?.[3]?.Heading || "Default Golden Years Title"}</h2>
+              <div style={{ textAlign: 'center' }}>
+                {renderContent(data?.maincontent?.[3]?.description || [])}
+              </div>
             </Col>
           </Row>
         </Container>
       </div>
-
-     
 
       {/* Footer */}
       <CitypageFooter />
