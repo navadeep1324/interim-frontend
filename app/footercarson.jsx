@@ -68,7 +68,7 @@ export default function CarsonFooter() {
                         <Col md={4}>
                         <h5 className="footer-services "> Get In Touch</h5>
                             <p className="py-3">1950 College Parkway Suite 101,<br></br>
-                            Carson City, NV 89706</p>
+                            Carson City, NV 89706 USA</p>
                             <p className="py-2"><a href="tel:775-883-4455">+1 775-883-4455</a></p>
                             <div className="social-icons">
                                 <a href="https://www.facebook.com/InterimHealthcareCarsonCityNV/" target="_blank" rel="noopener noreferrer" >

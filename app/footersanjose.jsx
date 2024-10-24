@@ -61,8 +61,8 @@ export default function SanJoseFooter() {
                         <Col md={4}>
                             <h5 className="footer-services"> Services</h5>
                             <ul style={{ listStyleType: 'none', padding: 0 }}>
-                                <li><a href="/service-areas/san-jose/services/alzheimers-dementia-care"  className="footer-list-services">Alzheimers Dementia Care</a></li>
-                                <li><a href="service-areas/san-jose/services/companion-care" className="footer-list-services">Companion Care</a></li>
+                                <li><a href="/service-areas/san-jose/services/alzheimers-dementia-care"  className="footer-list-services">Alzheimers & Dementia Care</a></li>
+                                <li><a href="/service-areas/san-jose/services/companion-care" className="footer-list-services">Companion Care</a></li>
                                 <li><a href="/service-areas/san-jose/services/personal-care" className="footer-list-services">Personal Care</a></li>
                                 <li><a href="/service-areas/san-jose/services/respite-care" className="footer-list-services">Respite Care</a></li>
                                 <li><a href="/service-areas/san-jose/services/veteran-care" className="footer-list-services">Veteran Care</a></li>
@@ -74,7 +74,7 @@ export default function SanJoseFooter() {
                         <Col md={4}>
                         <h5 className="footer-services "> Get In Touch</h5>
                             <p className="py-3">901 Campisi Way Suite 360,<br></br>
-                            Campbell, CA 95008</p>
+                            Campbell, CA 95008 USA</p>
                             <p className="py-2"><a href="tel:408-286-688">+1 408-286-6888</a></p>
                             <div className="social-icons">
                                 <a href="https://www.facebook.com/InterimHealthCareSanJose/" target="_blank" rel="noopener noreferrer" >

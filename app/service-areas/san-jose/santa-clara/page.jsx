@@ -108,7 +108,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{bannerHero.Heading}</h2>
                             <p className="py-3">{bannerHero.subHeading}</p>
-                            <p>Call us today at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> for a free consultation for your loved one.</p>
+                            <p>Call us today at <a href="tel:4082866888" className="phone-link">+1 408 286-6888</a> for a free consultation for your loved one.</p>
                             <SubcityCaregiversComponent />
                         </Col>
                         <Col md={4} className="formcoloumcity">

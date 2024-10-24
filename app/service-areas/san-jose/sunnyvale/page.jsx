@@ -90,7 +90,7 @@ export default function SanJoseCupertinoComponent() {
                         <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{cityData.maincontent[0].Heading}</h2>
                             <p className="py-3">{cityData.maincontent[0].subHeading}</p>
-                            <p>To know more about us, call us for a free consultation at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> to schedule a free home assessment, and we will help you decide the right care plan your seniors need! 
+                            <p>To know more about us, call us for a free consultation at <a href="tel:+1 408 286 6888" className="phone-link">+1 408 286 6888</a> to schedule a free home assessment, and we will help you decide the right care plan your seniors need! 
               </p>
                             <SubcityCaregiversComponent />
                         </Col>

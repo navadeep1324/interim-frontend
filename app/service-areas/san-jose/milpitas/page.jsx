@@ -112,7 +112,7 @@ export default function MilpitasPage() {
                         <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{content[0]?.Heading || "Default Heading"}</h2>
                             <p className="py-3">{content[0]?.subHeading || "Default Subheading"}</p>
-                            <p>Reach out to us at<a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> to find out how we can help. 
+                            <p>Reach out to us at<a href="tel:4082866888" className="phone-link">+1 408 286-6888</a> to find out how we can help. 
               </p>
                             <SubcityCaregiversComponent />
                         </Col>

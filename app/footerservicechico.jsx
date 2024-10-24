@@ -83,7 +83,7 @@ export default function ChicoFooter() {
                         <Col md={4}>
                         <h5 className="footer-services "> Get In Touch</h5>
                             <p className="py-3">2060 Talbert Dr Suite 100,<br></br>
-                            Chico, CA 95928</p>
+                            Chico, CA 95928 USA</p>
                             <p className="py-2"><a href="tel:530-899-9777">+1 530-899-9777</a></p>
                             <div className="social-icons">
                                 <a href="https://www.facebook.com/InterimHealthCare.Chico.CA/" target="_blank" rel="noopener noreferrer" >

@@ -69,8 +69,7 @@ function ContactFormComponent() {
       <option value="6">Medford</option>
       <option value="7">Redding</option>
       <option value="8">Reno</option>
-      <option value="9">San Jose</option>
-      <option value="10">Yuba</option>
+      <option value="9">Yuba</option>
     </Form.Control>
     <Form.Control.Feedback type="invalid">
             Please Select one option.
@@ -81,8 +80,8 @@ function ContactFormComponent() {
         <Form.Group as={Col} md="12" controlId="validationcustom04">
         <Form.Control as={"select"} aria-label="Select the service youre looking for" isInvalid={
           validated && selectedService==""}>
-      <option value="">Select the service youre looking for</option>
-      <option value="1">Alzheimer's & Dementia Cares</option>
+      <option value="">Select the service you're looking for</option>
+      <option value="1">Alzheimer's & Dementia Care</option>
       <option value="2">Companion Care</option>
       <option value="3">Personal Care</option>
       <option value="4">Respite Care</option>
@@ -96,7 +95,7 @@ function ContactFormComponent() {
       </Row>
       <Row className="mb-3">
         <Form.Group as={Col} md="12" controlID="validationcustom05">
-            <Form.Control type="textarea" placeholder="How we can Help you?" required />
+            <Form.Control type="textarea" placeholder="How Can we Help you?" required />
             <Form.Control.Feedback type="invalid">
             Please provide a How we can Help you?.
           </Form.Control.Feedback>

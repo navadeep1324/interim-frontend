@@ -102,7 +102,7 @@ export default function SanJoseComponent() {
               <p>
                 For a quick consultation, give us a call at{" "}
                 <a href="tel:4082866888" className="phone-link">
-                  +1 (408) 286-6888
+                  +1 408 286-6888
                 </a>{" "}
                 and let us help you with the right care plan!
               </p>
