@@ -6,7 +6,7 @@ import Form from 'react-bootstrap/Form';
 import Row from 'react-bootstrap/Row';
 import emailjs from 'emailjs-com';  // Import EmailJS
 
-function FormComponent() {
+function ContactFormComponent() {
   const [validated, setValidated] = useState(false);
   const [formData, setFormData] = useState({
     name: '',
@@ -14,23 +14,24 @@ function FormComponent() {
     phoneNumber: '',
     city: '',
     service: '',
-    howwecanhelpyou: ''
+    howwecanhelpyou: '',
   });
 
   const handleChange = (event) => {
     const { name, value } = event.target;
+
     if (name === 'phoneNumber') {
-      // Only allow numbers and limit length to 12 digits
+      // Allow only numbers and limit length to 10-12 digits
       if (/^\d{0,12}$/.test(value)) {
         setFormData({
           ...formData,
-          [name]: value
+          [name]: value,
         });
       }
     } else {
       setFormData({
         ...formData,
-        [name]: value
+        [name]: value,
       });
     }
   };
@@ -39,36 +40,30 @@ function FormComponent() {
     event.preventDefault();
     const form = event.currentTarget;
 
-    if (form.checkValidity() === false) {
+    if (form.checkValidity() === false || formData.phoneNumber.length < 10) {
       event.stopPropagation();
     } else {
-      // Additional phone number length validation (10 to 12 digits)
-      if (formData.phoneNumber.length < 10 || formData.phoneNumber.length > 12) {
-        alert('Phone number must be between 10 and 12 digits.');
-        return;
-      }
-
-      console.log("Form data being sent: ", formData);  // Log formData for debugging
       try {
         // Store form data in Strapi
-        const response = await axios.post('https://admin.interimhc.com/api/contact-froms', {
-          data: formData
+        await axios.post('https://admin.interimhc.com/api/contactuspage-froms', {
+          data: formData,
         });
-        console.log('Form submitted successfully to Strapi:', response.data);
-         // Prepare data for EmailJS
-         const emailData = {
+        console.log('Form submitted successfully to Strapi');
+
+        // Prepare data for EmailJS
+        const emailData = {
           from_name: formData.name,
           from_email: formData.email,
           phone_number: formData.phoneNumber,
           city: formData.city,
           service: formData.service,
-          message: formData.howwecanhelpyou
+          message: formData.howwecanhelpyou,
         };
 
         // Send email using EmailJS
         const emailResponse = await emailjs.send(
-          'service_88g0bei',  // Replace with your EmailJS service ID
-          'template_ddbgrit', // Replace with your EmailJS template ID
+          'service_czmmewg',  // Replace with your EmailJS service ID
+          'template_zr436rm', // Replace with your EmailJS template ID
           emailData,           // Send form data as variables in email
           'MTVIo7A9LAR7pDgcx'      // Replace with your EmailJS user ID (optional if using public API key)
         );
@@ -80,13 +75,14 @@ function FormComponent() {
         console.error('Error submitting form:', error.response?.data || error.message);
       }
     }
+
     setValidated(true);
   };
 
   return (
     <div>
       <div>
-        <p style={{ textAlign: 'center' }}><b>Help Us Craft Your Perfect Care Plan!</b></p>
+        <p style={{ textAlign: 'center' }}><b>Choose Interim for a better Quality of life</b></p>
       </div>
       <Form noValidate validated={validated} onSubmit={handleSubmit}>
         <Row className="mb-3 formcol">
@@ -111,7 +107,6 @@ function FormComponent() {
               value={formData.email}
               onChange={handleChange}
               required
-              pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
             />
             <Form.Control.Feedback type="invalid">
               Please provide a valid Email.
@@ -120,7 +115,7 @@ function FormComponent() {
           </Form.Group>
         </Row>
         <Row className="mb-3">
-          <Form.Group as={Col} md="6" controlId="validationCustom03">
+          <Form.Group as={Col} md="12" controlId="validationCustom03">
             <Form.Control
               type="tel"
               name="phoneNumber"
@@ -128,28 +123,41 @@ function FormComponent() {
               value={formData.phoneNumber}
               onChange={handleChange}
               required
-              pattern="^\d{10,12}$"
+              pattern="\d{10,12}"
             />
             <Form.Control.Feedback type="invalid">
-              Please provide a valid Phone Number (10 to 12 digits).
-            </Form.Control.Feedback>
-          </Form.Group>
-          <Form.Group as={Col} md="6" controlId="validationCustom04">
-            <Form.Control
-              type="text"
-              name="city"
-              placeholder="City (Where Care is Needed)"
-              value={formData.city}
-              onChange={handleChange}
-              required
-            />
-            <Form.Control.Feedback type="invalid">
-              Please provide a valid City.
+              Please provide a valid Phone Number (10-12 digits).
             </Form.Control.Feedback>
           </Form.Group>
         </Row>
         <Row className="mb-3">
-          <Form.Group as={Col} md="12" controlId="validationcustom-c04">
+          <Form.Group as={Col} md="12" controlId="validationCustom-c06">
+            <Form.Control
+              as="select"
+              name="city"
+              value={formData.city}
+              onChange={handleChange}
+              required
+              aria-label="City (Where Care is Needed)"
+            >
+              <option value="">Select the City</option>
+              <option value="San Jose">San Jose</option>
+              <option value="Carson">Carson</option>
+              <option value="Chico">Chico</option>
+              <option value="Grants Pass">Grants Pass</option>
+              <option value="Grass Valley">Grass Valley</option>
+              <option value="Medford">Medford</option>
+              <option value="Redding">Redding</option>
+              <option value="Reno">Reno</option>
+              <option value="Yuba">Yuba</option>
+            </Form.Control>
+            <Form.Control.Feedback type="invalid">
+              Please select one option.
+            </Form.Control.Feedback>
+          </Form.Group>
+        </Row>
+        <Row className="mb-3">
+          <Form.Group as={Col} md="12" controlId="validationCustom04">
             <Form.Control
               as="select"
               name="service"
@@ -172,11 +180,11 @@ function FormComponent() {
           </Form.Group>
         </Row>
         <Row className="mb-3">
-          <Form.Group as={Col} md="12" controlId="validationcustom05">
+          <Form.Group as={Col} md="12" controlId="validationCustom05">
             <Form.Control
               as="textarea"
               name="howwecanhelpyou"
-              placeholder="How we can Help you?"
+              placeholder="How Can we Help you?"
               value={formData.howwecanhelpyou}
               onChange={handleChange}
               required
@@ -195,4 +203,4 @@ function FormComponent() {
   );
 }
 
-export default FormComponent;
+export default ContactFormComponent;
