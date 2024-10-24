@@ -69,7 +69,7 @@ export default function GrantsPassFooter() {
                         <Col md={4}>
                         <h5 className="footer-services "> Get In Touch</h5>
                             <p className="py-3">831 NE 7th St Suite 101,<br></br>
-                            Grants Pass, OR 97526</p>
+                            Grants Pass, OR 97526 USA</p>
                             <p className="py-2"><a href="tel:541-787-3140">+1 541-787-3140</a></p>
                             <div className="social-icons">
                                 <a href="https://www.facebook.com/IHCofMedfordandGrantsPass/" target="_blank" rel="noopener noreferrer" >

@@ -119,7 +119,7 @@ export default function LosGatosPage() {
               <h2 className="subcityheading">{content[0]?.Heading}</h2>
               <p className="py-3">{renderWithLineBreaks(content[0]?.subHeading)}</p>
               <p>
-                Reach us today at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> for detailed information!
+                Reach us today at <a href="tel:4082866888" className="phone-link">+1 408 286-6888</a> for detailed information!
               </p>
               <SubcityCaregiversComponent />
             </Col>

@@ -80,7 +80,7 @@ useEffect(() => {
   // Render descriptions with safety checks
   const renderDescription = (descriptions) => {
     return descriptions.map((para, index) => (
-      <p className="footerrow" key={index}>
+      <p className="py-3" key={index}>
         {para?.children?.map((item, idx) => {
           if (item.type === "link") {
             const isExternalLink = item.url.startsWith("http");
@@ -252,7 +252,7 @@ If you notice any of these signs in your beloved elders, then it might be the ri
             <Col md={6}  className="section4sub-sanjose-col1">
               <h2 className="heading2">{data[5]?.Heading}</h2>
               {data[5]?.description ? renderDescription(data[5].description) : <p>No description available</p>}
-              <Button className="Contactbtn py-3" href="tel:+1 408-286-6888">
+              <Button className="Contactbtn py-3" href="/contact-us">
                 Contact Us
               </Button>
             </Col>

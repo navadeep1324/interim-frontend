@@ -40,7 +40,7 @@ export default function SanjoseNavbarDesktopComponent() {
             
             {/* NavDropdown for desktop */}
             <NavDropdown
-              title="Services"
+              title={<span onClick={handleServiceTextClick}>Services</span>} // Add onClick to the title
               id="navbarScrollingDropdown"
               className="navLinkTitles"
               show={showDropdown}
@@ -54,9 +54,6 @@ export default function SanjoseNavbarDesktopComponent() {
               <NavDropdown.Item href="/service-areas/san-jose/services/veteran-care" className='navLinkTitles'>Veteran Care</NavDropdown.Item>
               <NavDropdown.Item href="/service-areas/san-jose/services/24-hour-care" className='navLinkTitles'>24 Hour Care</NavDropdown.Item>
             </NavDropdown>
-
-            {/* Separate click handler for "Services" text */}
-            {/* <Nav.Link href="/service-areas/san-jose/services" className="navLinkTitles px-3" onClick={handleServiceTextClick}>Services</Nav.Link> */}
 
             <Nav.Link href="https://www.interimhealthcare.com/careers" className="navLinkTitles px-3" target="_blank">Careers</Nav.Link>
             <Nav.Link href="/contact-us" className="navLinkTitles px-3">Contact Us</Nav.Link>

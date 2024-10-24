@@ -10,6 +10,7 @@ import CarsonNavbarComponent from "../../carsonnavcomponent";
 import CarsonserviceComponent from "../../carsonservicecomponent";
 import CarsonFooter from "../../footercarson";
 import Head from "next/head";
+import CaregiverCityComponent from "../../caregiversComponentMainCity";
 export default function carsonComponent() {
         const [data, setData] = useState(null); // State for API data
         const [error, setError] = useState(null); // Error state
@@ -93,7 +94,7 @@ export default function carsonComponent() {
     <div className="flex py-3" style={{paddingRight:"8%"}}>
         <div className="iconhome"><i className="bi bi-geo-alt"></i></div>
         <div className="icontext px-2"><b>Serving:</b></div>
-        <div className="citynames">Sparks | Minden | Gardnerville | Genoa | Dayton | Mound House </div>
+        <div className="citynames"><a href="/service-areas/carson/sparks">Sparks</a> | <a href="/service-areas/carson/minden">Minden</a> | <a href="/service-areas/carson/gardnerville">Gardnerville</a> | <a href="/service-areas/carson/genoa">Genoa</a> | <a href="/service-areas/carson/dayton">Dayton</a> | <a href="/service-areas/carson/mound-house">Mound House</a> </div>
     </div>
     </Col>
     <Col md={5} className="formcoloumcity">
@@ -102,14 +103,8 @@ export default function carsonComponent() {
 </Row>
 </Container>
 </div>
-{/* <div style={{backgroundColor:'#015979',height:'145px'}}>
-</div> */}
-<div>
 <CarsonserviceComponent/>
-</div>
-<div className="sectioncaregiversbg">
-{/* < CaregiverCityComponent/> */}
-</div>
+<CaregiverCityComponent/>
 <div className="section2city">
     <Container fluid>
 <Row className="py-4">
@@ -121,7 +116,7 @@ export default function carsonComponent() {
                 height={data[1]?.image?.data?.attributes?.height} 
               />
     </Col>
-    <Col md={6} style={{ paddingLeft: '3em', paddingRight: '3em' }}>
+    <Col md={7} style={{ paddingLeft: '3em', paddingRight: '3em' }}>
     <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
     <p className="py-2"> {data[1]?.description[0].children[0].text} </p>
     </Col>
@@ -132,7 +127,7 @@ export default function carsonComponent() {
 <div className="section3city py-5">
     <Container fluid>
         <Row>
-            <Col md={6} style={{ paddingRight: '3em',paddingLeft: '3em' }}>
+            <Col md={7} style={{ paddingRight: '3em',paddingLeft: '3em' }}>
             <h2 className="heading2 py-4">{data[2]?.Heading }</h2>
             <p>{data[2]?.description[0].children[0].text}</p>
             </Col>
@@ -173,7 +168,7 @@ export default function carsonComponent() {
         <Row className="py-3">
             <Col md={2}></Col>
             <Col md={8}><h2 className="heading2" style={{textAlign:'center'}}>{data[4]?.Heading } </h2>
-            <p style={{textAlign:'center'}} className="py-2">{data[4]?.subHeading}</p>
+            {/* <p style={{textAlign:'center'}} className="py-2">{data[4]?.subHeading}</p> */}
 </Col>
 <Col md={2}></Col>
         </Row>
@@ -187,6 +182,7 @@ export default function carsonComponent() {
               />
             </Col>
             <Col md={6} style={{ paddingLeft: '3em' }}>
+            <p className="py-2">{data[4]?.subHeading}</p>
             <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
             {renderListItems(data[4]?.description?.[0]?.children)} </ul>
              </Col>
@@ -217,31 +213,31 @@ export default function carsonComponent() {
 <Col md={4}>
 <div className="flex py-2">
     <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
-    <div><p style={{color:'#004b66'}}><b>Sparks</b></p></div>
+    <div><p style={{color:'#004b66'}}><b><a href="/service-areas/carson/sparks">Sparks</a></b></p></div>
 </div>
 <div className="flex py-2">
     <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
-    <div><p style={{color:'#004b66'}}><b>Minden</b></p></div>
+    <div><p style={{color:'#004b66'}}><b><a href="/service-areas/carson/minden">Minden</a></b></p></div>
 </div>
 </Col>
 <Col md={4}>	
 <div className="flex py-2">
     <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
-    <div><p style={{color:'#004b66'}}><b>Gardnerville</b></p></div>
+    <div><p style={{color:'#004b66'}}><b><a href="/service-areas/carson/gardnerville">Gardnerville</a></b></p></div>
 </div>
 <div className="flex py-2">
     <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
-    <div><p style={{color:'#004b66'}}><b>Genoa</b></p></div>
+    <div><p style={{color:'#004b66'}}><b><a href="/service-areas/carson/genoa">Genoa</a></b></p></div>
 </div>
 </Col>
 <Col md={4}>
 <div className="flex py-2">
     <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
-    <div><p style={{color:'#004b66'}}><b>Dayton</b></p></div>
+    <div><p style={{color:'#004b66'}}><b><a href="/service-areas/carson/dayton">Dayton</a></b></p></div>
 </div>	
 <div className="flex py-2">
     <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
-    <div><p style={{color:'#004b66'}}><b>Mound House</b></p></div>
+    <div><p style={{color:'#004b66'}}><b><a href="/service-areas/carson/mound-house">Mound House</a></b></p></div>
 </div>	
 </Col>
         </Row>

@@ -18,10 +18,21 @@ function FormComponent() {
   });
 
   const handleChange = (event) => {
-    setFormData({
-      ...formData,
-      [event.target.name]: event.target.value
-    });
+    const { name, value } = event.target;
+    if (name === 'phoneNumber') {
+      // Only allow numbers and limit length to 12 digits
+      if (/^\d{0,12}$/.test(value)) {
+        setFormData({
+          ...formData,
+          [name]: value
+        });
+      }
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value
+      });
+    }
   };
 
   const handleSubmit = async (event) => {
@@ -31,6 +42,12 @@ function FormComponent() {
     if (form.checkValidity() === false) {
       event.stopPropagation();
     } else {
+      // Additional phone number length validation (10 to 12 digits)
+      if (formData.phoneNumber.length < 10 || formData.phoneNumber.length > 12) {
+        alert('Phone number must be between 10 and 12 digits.');
+        return;
+      }
+
       console.log("Form data being sent: ", formData);  // Log formData for debugging
       try {
         // Store form data in Strapi
@@ -130,7 +147,7 @@ function FormComponent() {
           </Form.Group>
         </Row>
         <Row className="mb-3">
-          <Form.Group as={Col} md="12" controlId="validationcustom04">
+          <Form.Group as={Col} md="12" controlId="validationcustom-s04">
             <Form.Control
               as="select"
               name="service"

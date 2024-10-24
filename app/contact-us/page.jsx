@@ -40,7 +40,7 @@ export default function ContactusComponent() {
             <Col md={6}>
               <h2 className="contactush2">Find A Location</h2>
               <p className="py-3">
-                If planning to look for senior in home care services for your loved ones in Redding, feel free to reach us. We serve in several cities, listed below are few of them:
+                If planning to look for senior in home care services for your loved ones, feel free to reach us. We serve in several cities, listed below are few of them:
               </p>
             </Col>
             <Col md={6} className="contactus-search">

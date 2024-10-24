@@ -162,7 +162,7 @@ export default function MountainViewComponent() {
                 For detailed information, reach us today at
                 <a href="tel:4082866888" className="phone-link">
                   {" "}
-                  +1 (408) 286-6888
+                  +1 408 286-6888
                 </a>{" "}
                 to find out how we can help.
               </p>

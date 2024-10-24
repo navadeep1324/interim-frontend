@@ -91,7 +91,7 @@ useEffect(() => {
                         <Col md={7} className="sanjose-banner">
                             <h2 className="subcityheading">{data[0]?.Heading}</h2>
                             <p className="py-3">{data[0]?.subHeading}</p>
-                            <p>For a quick consultation, give us a call at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a> and let us help you with the right care plan!</p>
+                            <p>For a quick consultation, give us a call at <a href="tel:4082866888" className="phone-link">+1 408 286-6888</a> and let us help you with the right care plan!</p>
                             <SubcityCaregiversComponent />
                         </Col>
                         <Col md={4} className="formcoloumcity">

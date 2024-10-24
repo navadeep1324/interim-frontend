@@ -560,7 +560,7 @@ h1{
     font-size: 34px;
     line-height: 1.3em;
     /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
-    color: #004b66;
+    letter-spacing:0.2px;
     /* padding-bottom: 2%; */
 }
 .heading2sanjose{
@@ -660,7 +660,7 @@ h1{
   top: 0;
   width: 100%;
   z-index: 1000;
-  box-shadow: 5px 8px 15px -11px #f0e6e6;
+  box-shadow: 5px 8px 15px -16px #6b6565;
 }
 .section1banner {
   padding-top: 5%;}
@@ -704,23 +704,41 @@ h1{
     padding-top: 10%;
   padding-bottom: 10%;
   }
+  
   /* Apply to all input placeholders */
 input::placeholder {
-  font-size: 13px; /* Adjust the size as needed */
+  font-size: 13px !important; /* Adjust the size as needed */
 }
 /* For the textarea placeholder */
 #validationcustom05::placeholder {
-  font-size: 13px;
+  font-size: 13px !important;
 }
 
 /* Style the first option (as a placeholder) in the select */
-#validationcustom04 {
+#validationcustom05 {
   font-size: 13px !important;
   color: #656363;
 
 }
+#validationcustom-c04{
+  font-size: 13px !important;
+  color: #656363;
+}
+#validationcustom-s04{
+  font-size: 13px !important;
+  color: #656363;
+}
+#validationCustom04{
+  font-size: 13px !important;
+  color: #656363;
+}
+#validationCustom-c06{
+  font-size: 13px !important;
+  color: #656363;
+}
 textarea.form-control {
   height: 10px;
+  font-size: 13px !important;
 }
 
 .phone-link {
@@ -1056,6 +1074,7 @@ h3.caregivertext{
   font-weight: 500;
   font-size: 30px;
   /* margin-top: 30px; */
+  
 }
 .section3city .col-md-6 img {
   /* margin-top: 30px; */

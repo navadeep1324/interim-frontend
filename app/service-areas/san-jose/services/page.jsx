@@ -85,7 +85,7 @@ export default function ServicesComponent() {
                                     <Card.Title className="card-title">Alzheimer’s & Dementia Care</Card.Title>
                                     <div className="divider-line"></div>
                                     <Card.Text className="card-text">
-                                        Comprehensive care that uplifts daily living for seniors with Alzheimer’s.
+                                        Comprehensive Care that uplifts daily living for seniors with Alzheimer’s.
                                     </Card.Text>
                                 </Card.Body>
                             </Card></a>
@@ -146,10 +146,10 @@ export default function ServicesComponent() {
                                     layout="responsive"
                                 />
                                 <Card.Body style={{padding:'25px'}}>
-                                    <Card.Title className="card-title">Respite care</Card.Title>
+                                    <Card.Title className="card-title">Respite Care</Card.Title>
                                     <div className="divider-line"></div>
                                     <Card.Text className="card-text">
-                                    Purposeful care which offers a well-deserved break for family caregivers.                                    </Card.Text>
+                                    Purposeful Care which offers a well-deserved break for family Caregivers.                                    </Card.Text>
                                 </Card.Body>
                             </Card></a>
                         </Col>

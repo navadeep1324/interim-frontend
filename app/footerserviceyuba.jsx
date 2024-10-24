@@ -83,7 +83,7 @@ export default function YubaFooter() {
                         <Col md={4}>
                         <h5 className="footer-services "> Get In Touch</h5>
                             <p className="py-3">508 Forbes Ave Suite B,<br></br>
-                            Yuba City, CA 95991</p>
+                            Yuba City, CA 95991 USA</p>
                             <p className="py-2"><a href="tel:530-673-0300">+1 530-673-0300</a></p>
                             <div className="social-icons">
                                 <a href="https://www.facebook.com/YubaCityCA/" target="_blank" rel="noopener noreferrer" >

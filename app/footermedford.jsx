@@ -71,7 +71,7 @@ export default function MedfordFooter() {
                         <Col md={4}>
                         <h5 className="footer-services "> Get In Touch</h5>
                             <p className="py-3">3553 Arrowhead Dr Suite 103,<br></br>
-                            Medford, OR 97504</p>
+                            Medford, OR 97504 USA</p>
                             <p className="py-2"><a href="tel:541-779-0054">+1 541-779-0054</a></p>
                             <div className="social-icons">
                                 <a href="https://www.facebook.com/IHCofMedfordandGrantsPass/" target="_blank" rel="noopener noreferrer" >
