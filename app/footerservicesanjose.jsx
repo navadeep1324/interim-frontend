@@ -83,7 +83,7 @@ export default function SanJoseFooter() {
                         <Col md={4}>
                         <h5 className="footer-services "> Get In Touch</h5>
                             <p className="py-3">901 Campisi Way Suite 360,<br></br>
-                            Campbell, CA 95008</p>
+                            Campbell, CA 95008, USA</p>
                             <p className="py-2"><a href="tel:408-286-688">+1 408-286-6888</a></p>
                             <div className="social-icons">
                                 <a href="https://www.facebook.com/InterimHealthCareSanJose/" target="_blank" rel="noopener noreferrer" >

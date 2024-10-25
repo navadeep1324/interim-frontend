@@ -87,36 +87,9 @@ export default function MoundHouseComponent() {
     return <div>Error: {error.message}</div>;
   }
 
-  const renderImage = (imageData, alt) => {
-    if (imageData && imageData.attributes) {
-      // Extract formats (medium, large, etc.)
-      const formats = imageData.attributes.formats;
-  
-      // Choose the appropriate format (fallback to original if needed)
-      const selectedImage = formats?.medium || formats?.large || formats?.small || imageData.attributes;
-  
-      const { url, width, height } = selectedImage; // Extract URL, width, and height
-  
-      if (!url || !width || !height) {
-        console.error("Invalid image data:", imageData);
-        return null; // Return null if necessary data is missing
-      }
-  
-      return (
-        <Image
-          src={`https://admin.interimhc.com${url}`} // Full image URL
-          alt={alt} // Alt text
-          width={width} // Extracted width
-          height={height} // Extracted height
-          onError={(e) => console.error("Error loading image:", e)} // Error handling
-        />
-      );
-    }
-  
-    console.error("Image data is missing or invalid:", imageData);
-    return null; // Return null if no image data
-  };
-    
+  const getImageUrl = (imageData) => {
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
+  };     
   
 
   const renderDescription = (description) => {
@@ -126,7 +99,7 @@ export default function MoundHouseComponent() {
       // Handle paragraphs
       if (desc.type === "paragraph") {
         return (
-          <p key={index} className="py-3">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
                 return child.text;
@@ -226,9 +199,15 @@ export default function MoundHouseComponent() {
       <div>
         <Container fluid>
           <Row className="py-5 middlealign">
-            <Col md={6}>
-            {renderImage(data?.[1]?.image?.data?.attributes, "Veteran Home Care")}      
-            </Col>      <Col md={6} className="redding-col2 px-5">
+            <Col md={5}>
+            <Image
+                src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically from the API
+                alt="City Image"
+                width={data[1]?.image?.data?.attributes?.width} 
+                height={data[1]?.image?.data?.attributes?.height} 
+              />             
+              </Col>  
+              <Col md={7} className="redding-col2 px-5">
               <h2 className="heading2">{data[1]?.Heading}</h2>
               <p className="py-2">{renderDescription(data[1]?.description)}</p>
             </Col>
@@ -265,7 +244,12 @@ export default function MoundHouseComponent() {
             </Col>
 
             <Col md={3}>
-              {renderImage(data[2]?.img?.data, "Caregiver Image 1")} {/* Render Strapi image */}
+            <Image
+                src={getImageUrl(data[2]?.img?.data?.attributes)} // Fetch image dynamically from the API
+                alt="City Image"
+                width={data[2]?.img?.data?.attributes?.width} 
+                height={data[2]?.img?.data?.attributes?.height} 
+              /> 
             </Col>
           </Row>
         </Container>
@@ -274,10 +258,14 @@ export default function MoundHouseComponent() {
       <div className="py-5">
         <Container>
           <Row>
-            <Col md={4} style={{ paddingRight: "25px" }}>
-              {renderImage(data[3]?.image?.data, "Quality Care Image")} {/* Render Strapi image */}
-            </Col>
-            <Col md={8}>
+            <Col md={5} style={{ paddingRight: "25px" }}>
+            <Image
+                src={getImageUrl(data[3]?.image?.data?.attributes)} // Fetch image dynamically from the API
+                alt="City Image"
+                width={data[3]?.image?.data?.attributes?.width} 
+                height={data[3]?.image?.data?.attributes?.height} 
+              />             </Col>
+            <Col md={7}>
               <h2 className="heading2">{data[3]?.Heading || "Quality Care from Our Expert Team"}</h2>
               {renderDescription(data[3]?.description)}
             </Col>

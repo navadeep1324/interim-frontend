@@ -70,6 +70,7 @@ export default function carsonComponent() {
         const getImageUrl = (imageData) => {
           return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
         };
+        
         const renderListItems = (list) => {
             return list.map((listItem, index) => (
               <li key={index}>
@@ -116,7 +117,7 @@ export default function carsonComponent() {
                 height={data[1]?.image?.data?.attributes?.height} 
               />
     </Col>
-    <Col md={7} style={{ paddingLeft: '3em', paddingRight: '3em' }}>
+    <Col md={7}>
     <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
     <p className="py-2"> {data[1]?.description[0].children[0].text} </p>
     </Col>
