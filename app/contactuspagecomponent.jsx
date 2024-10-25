@@ -190,7 +190,7 @@ function ContactFormComponent() {
               required
             />
             <Form.Control.Feedback type="invalid">
-              Please provide a message on how we can help you...
+              Please provide a message on how can we help you...
             </Form.Control.Feedback>
           </Form.Group>
         </Row>

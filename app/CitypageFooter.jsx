@@ -46,15 +46,12 @@ export default function CitypageFooter() {
                   <Image
     src={`https://admin.interimhc.com${item.BeginSeniorsJourney.image.data.attributes.url}`}
     alt={item.BeginSeniorsJourney.image.data.attributes.alternativeText || "Image"}
-    width={300} // Fixed width
-    height={220} // Fixed height or dynamically fetched
+    width={3000} // Fixed width
+    height={2200} // Fixed height or dynamically fetched
     unoptimized
     quality={100}
-    style={{ width: "300px", height: "auto" }} // Inline fixed width
     className="fixed-width-image"
 />
-
-
                                 <p className="footerp py-4 mx-3">
                                     {item.BeginSeniorsJourney.description}
                                 </p>
@@ -97,7 +94,7 @@ export default function CitypageFooter() {
                         <Col md={4}>
                         <h5 className="footer-services "> Get In Touch</h5>
                             <p className="py-3">1647 Court St,<br></br>
-                            Redding, CA 96001</p>
+                            Redding, CA 96001, USA</p>
                             <p className="py-2"><a href="tel:530-221-1212">+1 530-221-1212</a></p>
                             <div className="social-icons">
                                 <a href="https://www.facebook.com/InterimHealthCareRedding/" target="_blank" rel="noopener noreferrer" >

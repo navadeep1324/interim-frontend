@@ -70,7 +70,7 @@ export default function RenoFooter() {
                         <Col md={4}>
                         <h5 className="footer-services "> Get In Touch</h5>
                             <p className="py-3">5470 Kietzke Ln #300,<br></br>
-                            Reno, NV 89511 USA</p>
+                            Reno, NV 89511, USA</p>
                             <p className="py-2"><a href="tel:775-335-3155">+1 775-335-3155</a></p>
                             <div className="social-icons">
                                 <a href="https://www.facebook.com/InterimHealthCareRenoNV" target="_blank" rel="noopener noreferrer" >
