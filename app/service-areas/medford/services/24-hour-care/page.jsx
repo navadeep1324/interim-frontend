@@ -114,16 +114,16 @@ export default function HourcareComponent() {
       <MedfordNavbarComponent/>
 
       {/* First Section */}
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="py-5">
-            <Col md="5">
+          <Row className="py-5 middlealign g-5">
+            <Col md="6">
               <h1 className="heading1">{data.maincontent[0]?.Heading || 'Heading not available'}</h1>
               <p className="py-2">{data.maincontent[0]?.subHeading || 'Subheading not available'}</p>
               <p>Contact us today at <a href="tel:	+1 541-779-0054" className="phone-link">+1 541-779-0054</a> and let us offer compassionate and personalized care.</p>
 
             </Col>
-            <Col md="7">
+            <Col md="6">
               {renderImage(data.maincontent[0]?.bannerimg?.data?.attributes, "Pioneers In Personalized 24 Hour Care", 1034, 688)}
             </Col>
           </Row>
@@ -135,7 +135,7 @@ export default function HourcareComponent() {
       {/* Second Section */}
       <div className="section3bg">
         <Container>
-          <Row className="row3bg py-4 px-5 g-5">
+          <Row className="row3bg py-5 middlealign">
             <Col md="4">
               {renderImage(data.maincontent[1]?.img?.data?.attributes, "Enriching Lives with Holistic Care", 595, 780)}
             </Col>
@@ -148,9 +148,9 @@ export default function HourcareComponent() {
       </div>
 
       {/* Third Section */}
-      <div className="sectionbg">
+      <div className="servicessectionbg">
         <Container>
-          <Row className="d-flex align-items-center g-5">
+          <Row className="middlealign g-5 row-reverse-mobile">
             <Col md="6">
               <h2 className="heading2">{data.maincontent[2]?.Heading || 'Heading not available'}</h2><br></br>
               {renderDescription(data.maincontent[2]?.description)}
@@ -163,9 +163,9 @@ export default function HourcareComponent() {
       </div>
 
       {/* Fourth Section */}
-      <div className="section3 px-5 py-5">
+      <div className="section3">
         <Container>
-          <Row className="d-flex align-items-center g-5">
+          <Row className="align-items-center g-5">
             <Col md="6">
               {renderImage(data.maincontent[3]?.img?.data?.attributes, "Access to Top Professionals and Timely Solutions", 635, 735)}
             </Col>
@@ -180,15 +180,15 @@ export default function HourcareComponent() {
       {/* Fifth Section */}
       <div className="section4">
         <Container>
-          <Row className="py-5 px-5 d-flex align-items-center" style={{ background: '#ffff', borderRadius: '20px' }}>
-            <Col md={6} className="px-5">
+          <Row className="section4sub middlealign">
+            <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data.maincontent[4]?.Heading || 'Heading not available'}</h2>
               {renderDescription(data.maincontent[4]?.description)}
               <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
                 Contact Us
               </Button>
             </Col>
-            <Col md={6}>
+            <Col md={6} className="section4sub-sanjose-col2">
               {renderImage(data.maincontent[4]?.image?.data?.attributes, "Contact Us Today", 635, 735)}
             </Col>
           </Row>
