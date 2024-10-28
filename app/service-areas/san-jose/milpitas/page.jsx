@@ -171,7 +171,7 @@ export default function MilpitasPage() {
                 <p>Assistance with Medicare claims for home care services.  </p>
                 </li>
                 </ul>
-                <p>If you’d like to know in-depth information about our care plans and need help to decide a suitable service for your senior loved one, just give us a call at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a>. </p>
+                <p>If you’d like to know in-depth information about our care plans and need help to decide a suitable service for your senior loved one, just give us a call at <a href="tel:4082866888" className="phone-link">+1 408 286-6888</a>. </p>
                             </Col>
                             <Col md={5} className="px-0">
                                 {content[2]?.img?.data && (
