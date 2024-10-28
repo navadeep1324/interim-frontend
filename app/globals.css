@@ -976,15 +976,17 @@ p{
 /* service areas page code */
 /* Section padding */
 .section-padding-top {
-  padding-top: 5%;
+  padding: 8% 0 5% 0;
 }
 
 /* Search column styling */
 .search-col {
   background-color: #d81c3f;
   border-radius: 10px;
-  display: flex;
+  /* display: flex;
   justify-content: center;
+  align-items: center; */
+  display: grid;
   align-items: center;
 }
 
@@ -1315,6 +1317,14 @@ a.page_buttonhome__SB1Lw{
   border-radius: 20px;
   /* padding-bottom: 3%; */
 }
+.city-name {
+  color: #fff; /* White for dark mode */
+  font-size: 20px;
+  font-weight: 500;
+}
+.city-name:hover{
+  color:#c9302c;
+}
 @media only screen and (max-width: 768px) {
 .homebannerimgcol{
   padding-top:8% ;
@@ -1349,6 +1359,8 @@ body > div > div > div.mainfootersection > div.Awardsec > div > div > div:nth-ch
 @media (prefers-color-scheme: dark) {
   .city-name, .city-link {
     color: #fff; /* White for dark mode */
+    font-size: 18px;
+    font-weight: 600;
   }
 }
 .search-col{
