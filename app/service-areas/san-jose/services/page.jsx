@@ -24,13 +24,13 @@ export default function ServicesComponent() {
             <HeaderComponent/>
             <div className="bg-light-peach py-5">
                 <Container>
-                    <Row className="d-flex align-items-center justify-content-center g-5 py-5">
+                    <Row className="middlealign g-5 py-5">
                         <Col md={6} className="d-flex flex-column align-items-start">
                             <h1 className="homeh1">Services</h1>
                             <p className="homep py-3">
                                 Our services are provided by a network of more than 300 independently operated franchise locations throughout the United States.
                             </p>
-                            <Button className="homepagebtn py-3" href="tel:+1 408-286-6888">
+                            <Button className="homepagebtn py-3" href="/contact-us">
                                 Contact Us
                             </Button>
                         </Col>
@@ -45,7 +45,7 @@ export default function ServicesComponent() {
                     <Row className="middlealign g-1">
                         <Col md={10}>
                         <h2 className="job-opportunity-heading">
-                                Looking for a job opportunity? Apply to join the Assured Home Nursing Caregiver team
+                                Unlock Your Potential: Join our team of caregivers today!
                             </h2>
                         </Col>
                         <Col md={2} className="middlealign">

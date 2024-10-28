@@ -6,7 +6,8 @@ import CitypageFooter from "../../../CitypageFooter";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import { Button, Card } from "react-bootstrap"; // Combine Button and Card here
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
 import Image from "next/image";
 import bannerservice from "../../../../public/images/sevices-banner-interim.webp";
 import service1 from "../../../../public/images/AlzheimersandDementiaCarecard.webp"; // Replace with actual images
@@ -24,15 +25,15 @@ export default function ServicesComponent() {
         <div>
             <ChicoNavbarComponent/>
             <HeaderComponent/>
-            <div style={{backgroundColor:'#fef9f5'}} className="py-5">
+            <div className="bg-light-peach py-5">
                 <Container>
-                    <Row className="d-flex align-items-center justify-content-center g-5">
+                    <Row className="middlealign g-5 servicesmainsec">
                         <Col md={6} className="d-flex flex-column align-items-start">
                             <h1 className="homeh1">Services</h1>
                             <p className="homep py-3">
                                 Our services are provided by a network of more than 300 independently operated franchise locations throughout the United States.
                             </p>
-                            <Button className="homepagebtn py-3" href="tel:+1 408-286-6888">
+                            <Button className="homepagebtn py-3" href="/contact-us">
                                 Contact Us
                             </Button>
                         </Col>
@@ -42,16 +43,16 @@ export default function ServicesComponent() {
                     </Row>
                 </Container>
             </div>
-            <div style={{backgroundColor:'#004B66', padding: '40px 0'}}>
+            <div className="servicescaregiver">
                 <Container>
-                    <Row className="d-flex align-items-left justify-content-between">
-                        <Col md={8}>
-                        <h2 style={{ fontFamily: "'Merriweather', Georgia, 'Times New Roman', serif", fontSize: '28px', fontWeight: '500', color: '#ffffff' }}>
-                                Looking for a job opportunity? Apply to join the Assured Home Nursing Caregiver team
+                    <Row className="middlealign g-1">
+                        <Col md={10}>
+                        <h2 className="job-opportunity-heading">
+                                Unlock Your Potential: Join our team of caregivers today!
                             </h2>
                         </Col>
-                        <Col md={4} className="d-flex justify-content-end">
-                            <Button className="py-2 px-8" style={{backgroundColor: '#ffffff', color: '#d60000', fontWeight:'800'}}>
+                        <Col md={2} className="middlealign">
+                            <Button className="apply-button" href="https://www.interimhealthcare.com/careers" target="_blank">
                                 Click Here
                             </Button>
                         </Col>
@@ -60,9 +61,9 @@ export default function ServicesComponent() {
             </div>
             <div>
     <Container>
-        <Row className="d-flex align-items-center justify-content-center">
+        <Row className="middlealign">
             <Col className="d-flex flex-column align-items-center text-center">
-                <h2 className="" style={{ fontFamily: "'Merriweather', Georgia, 'Times New Roman', serif", fontSize: '34px', fontWeight: '700', color: '#004B66', paddingTop: '60px' }}>
+                <h2 className="range-of-services-heading">
                     Our Range of Services in Chico, CA
                 </h2>
                 <p className="homep py-3">
@@ -72,7 +73,7 @@ export default function ServicesComponent() {
         </Row>
     </Container>
 </div>
-<div style={{ backgroundColor: '#fef9f5', padding: '40px 0' }}>
+<div className="bg-light-peach service-section-padding">
                 <Container>
                     <Row>
                         {/* First Card */}
@@ -85,7 +86,7 @@ export default function ServicesComponent() {
                                     className="card-img-top"
                                     layout="responsive"
                                 />
-                                <Card.Body style={{padding:'25px'}}>
+                                <Card.Body className="card-body-padding">
                                     <Card.Title className="card-title">Alzheimer’s & Dementia Care</Card.Title>
                                     <div className="divider-line"></div>
                                     <Card.Text className="card-text">
@@ -106,7 +107,7 @@ export default function ServicesComponent() {
                                     className="card-img-top"
                                     layout="responsive"
                                 />
-                                <Card.Body style={{padding:'25px'}}>
+                                <Card.Body className="card-body-padding">
                                     <Card.Title className="card-title">Companion Care</Card.Title>
                                     <div className="divider-line"></div>
 
@@ -128,7 +129,7 @@ export default function ServicesComponent() {
                                     className="card-img-top"
                                     layout="responsive"
                                 />
-                                <Card.Body style={{padding:'25px'}}>
+                                <Card.Body className="card-body-padding">
                                     <Card.Title className="card-title">Personal Care</Card.Title>
                                     <div className="divider-line"></div>
 
@@ -142,7 +143,7 @@ export default function ServicesComponent() {
                     </Row>
                 </Container>
             </div>
-            <div style={{ backgroundColor: '#fef9f5', padding: '40px 0' }}>
+            <div className="bg-light-peach service-section-padding">
                 <Container>
                     <Row>
                         {/* fourth Card */}
@@ -155,7 +156,7 @@ export default function ServicesComponent() {
                                     className="card-img-top"
                                     layout="responsive"
                                 />
-                                <Card.Body style={{padding:'25px'}}>
+                                <Card.Body className="card-body-padding">
                                     <Card.Title className="card-title">Respite care</Card.Title>
                                     <div className="divider-line"></div>
                                     <Card.Text className="card-text">
@@ -175,7 +176,7 @@ export default function ServicesComponent() {
                                     className="card-img-top"
                                     layout="responsive"
                                 />
-                                <Card.Body style={{padding:'25px'}}>
+                                <Card.Body className="card-body-padding">
                                     <Card.Title className="card-title">Veteran Care</Card.Title>
                                     <div className="divider-line"></div>
 
@@ -196,7 +197,7 @@ export default function ServicesComponent() {
                                     className="card-img-top"
                                     layout="responsive"
                                 />
-                                <Card.Body style={{padding:'25px'}}>
+                                <Card.Body className="card-body-padding">
                                     <Card.Title className="card-title">24 Hour Home Care</Card.Title>
                                     <div className="divider-line"></div>
 
