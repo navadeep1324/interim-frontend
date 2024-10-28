@@ -6,7 +6,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Search from "../searchComponent";
-import ServiceAreasFooter from "../serviceareasFootercomponent";
+import Footer from "../Footer";
 
 export default function ServiceAreasComponent() {
   return (
@@ -390,7 +390,7 @@ export default function ServiceAreasComponent() {
           </Row>
         </Container>
       </div>
-      <ServiceAreasFooter />
+      <Footer />
     </div>
   );
 }
