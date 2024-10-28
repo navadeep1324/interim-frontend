@@ -2,7 +2,6 @@
 import React from "react";
 import YubaNavbarComponent from "../../../yubanavcomponent";
 import HeaderComponent from "../../../../app/headerpageComponent";
-import CitypageFooter from "../../../CitypageFooter";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";

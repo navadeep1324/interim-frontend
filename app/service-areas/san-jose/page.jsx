@@ -275,7 +275,7 @@ export default function SanJoseComponent() {
             <Col md={8}>
               <h2 className="heading2citysub">Interim Health Care Services in Sanjose, CA</h2>
               <p style={{ color: "#ffff", textAlign: "center" }} className="py-2">
-                If planning to look for senior in home care services for your loved ones in Redding, feel free to reach us. We serve in several cities, listed below are few of them:
+                If planning to look for senior in home care services for your loved ones in San Jose, feel free to reach us. We serve in several cities, listed below are few of them:
               </p>
             </Col>
             <Col md={2}></Col>

@@ -3,9 +3,9 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Expect1 from "/public/images/Expect1.png";
-import Expect2 from "/public/images/Expect2.png"
-import Expect3 from "/public/images/Expect3.png";
+import Expect1 from "/public/images/Expect1.webp";
+import Expect2 from "/public/images/Expect2.webp"
+import Expect3 from "/public/images/Expect3.webp";
 import Image from "next/image";
 import contactbgimg from "/public/images/contactbgimg.png";
 import FormComponent from "./homeformcomponent";

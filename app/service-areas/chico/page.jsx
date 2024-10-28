@@ -74,14 +74,93 @@ export default function ChicoComponent() {
         return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
     };
 
-    // Helper function to render paragraph content
     const renderDescription = (description) => {
-        return description?.map((para, index) => (
-            <p key={index}>
-                {para.children?.[0]?.text || ""}
-            </p>
-        ));
-    };
+        if (!description || !Array.isArray(description)) return null;
+      
+        const renderedText = new Set(); // Track rendered text to avoid duplicates
+      
+        return description.map((desc, index) => {
+          // Handle paragraphs, ensuring no duplicates or empty paragraphs
+          if (desc.type === "paragraph") {
+            const paragraphContent = desc?.children
+              ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
+              .join("");
+      
+            if (!paragraphContent || renderedText.has(paragraphContent)) return null; // Skip empty or duplicate paragraphs
+            renderedText.add(paragraphContent); // Track rendered paragraph text
+      
+            return (
+              <p key={index} className="py-2">
+                {desc?.children?.map((child, idx) => {
+                  if (child.type === "text") {
+                    return child.bold ? <b key={idx}>{child.text}</b> : child.text;
+                  }
+                  if (child.type === "link") {
+                    return (
+                      <a key={idx} href={child.url} className="phone-link">
+                        {child.children?.[0]?.text || "Link"}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </p>
+            );
+          }
+      
+          // Handle unordered lists (bullet points)
+          if (desc.type === "list" && desc.format === "unordered") {
+            return (
+              <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+                {desc.children?.map((item, itemIndex) => {
+                  const listItemContent = item?.children
+                    ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
+                    .join("");
+      
+                  if (!listItemContent && !item.children?.some(child => child.type === "link")) return null; // Skip empty list items with no links
+      
+                  return (
+                    <li key={itemIndex}>
+                      {item?.children?.map((child, idx) => {
+                        if (child.type === "text") {
+                          return child.bold ? <b key={idx}>{child.text}</b> : child.text;
+                        }
+                        if (child.type === "link") {
+                          return (
+                            <a key={idx} href={child.url} className="phone-link">
+                              {child.children?.[0]?.text || "Link"}
+                            </a>
+                          );
+                        }
+                        return null;
+                      })}
+                    </li>
+                  );
+                })}
+              </ul>
+            );
+          }
+      
+          // Handle headings, ensuring no duplicates
+          if (desc.type === "heading") {
+            const headingContent = desc?.children?.[0]?.text.trim() || "";
+            if (!headingContent || renderedText.has(headingContent)) return null; // Skip empty or duplicate headings
+            renderedText.add(headingContent); // Track rendered heading text
+      
+            const HeadingTag = `h${desc.level}`;
+            return (
+              <HeadingTag key={index} className="section4-heading">
+                {headingContent}
+              </HeadingTag>
+            );
+          }
+      
+          return null;
+        });
+      };
+      
+      
+         
      const renderListItems = (list) => {
             return list.map((listItem, index) => (
               <li key={index}>
@@ -100,7 +179,7 @@ export default function ChicoComponent() {
             <div className="section1banner">
                 <Container>
                     <Row className="py-3">
-                        <Col md={7} className="py-5" style={{paddingRight:"4%"}}>
+                        <Col md={7} className="py-4" style={{paddingRight:"4%"}}>
                             <h1>{data[0]?.Heading}</h1>
                             <p className="py-3">{data[0]?.subHeading}</p>
                             <p>
@@ -127,7 +206,7 @@ export default function ChicoComponent() {
             </div>
 
 
-            {/* <CaregiverCityComponent/> */}
+            <CaregiverCityComponent/>
 
             {/* Section 2 (Left Image, Right Content) */}
             <div className="section2city">
@@ -201,7 +280,7 @@ export default function ChicoComponent() {
                         <Col md={2}></Col>
                     </Row>
                     <Row className="py-4">
-                        <Col md={6} >
+                        <Col md={5} >
                             <Image
                                 src={getImageUrl(data[4]?.img?.data?.attributes)} // Fetch image dynamically
                                 alt="Service Image"
@@ -209,10 +288,10 @@ export default function ChicoComponent() {
                                 height={data[4]?.img?.data?.attributes?.height}
                             />
                         </Col>
-                        <Col md={6} style={{ paddingLeft: '3em' }}>
+                        <Col md={7} style={{ paddingLeft: '3em' }}>
                            
-                            <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-                            {renderListItems(data[4]?.description?.[0]?.children)} </ul>
+                            {/* <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
+                            {renderListItems(data[4]?.description?.[0]?.children)} </ul> */}
                             {renderDescription(data[4]?.description)}
                         </Col>
                     </Row>
@@ -247,13 +326,35 @@ export default function ChicoComponent() {
                     <Row className="subcitysec py-5 px-5 my-4">
                         {/* Render City Names */}
                         {data[6]?.description.slice(2).map((city, index) => (
-                            <Col md={4} key={index}>
-                                <div className="flex py-2">
-                                    <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
-                                    <div><p style={{ color: '#004b66' }}><b>{city.children?.[0]?.text}</b></p></div>
-                                </div>
-                            </Col>
-                        ))}
+  <Col md={4} key={index}>
+    <div className="flex py-2">
+      <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
+      <div>
+        <p style={{ color: '#004b66' }}>
+          <b>
+            {city.children?.map((child, childIndex) => {
+              if (child.type === "text") {
+                return child.text; // Render plain text if available
+              }
+              if (child.type === "link") {
+                return (
+                  <a 
+                    key={childIndex} 
+                    href={child.url} 
+                    style={{ color: '#004b66', textDecoration: 'none' }}
+                  >
+                    {child.children?.[0]?.text || "Link"}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </b>
+        </p>
+      </div>
+    </div>
+  </Col>
+))}
                     </Row>
                 </Container>
             </div>

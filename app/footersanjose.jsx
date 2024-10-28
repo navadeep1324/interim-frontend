@@ -9,9 +9,9 @@ import { FaFacebook, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 // Import your images correctly
 import Inlogo from '../public/images/Inlogo.png';
-import Expect1 from "/public/images/Expect1.png";
-import Expect2 from "/public/images/Expect2.png";
-import Expect3 from "/public/images/Expect3.png";
+import Expect1 from "/public/images/Expect1.webp";
+import Expect2 from "/public/images/Expect2.webp";
+import Expect3 from "/public/images/Expect3.webp";
 
 export default function SanJoseFooter() {
     return (
