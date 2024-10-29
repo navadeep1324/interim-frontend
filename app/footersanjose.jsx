@@ -9,34 +9,29 @@ import { FaFacebook, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa';
 
 // Import your images correctly
 import Inlogo from '../public/images/Inlogo.png';
-import Expect1 from "/public/images/Expect1.png";
-import Expect2 from "/public/images/Expect2.png";
-import Expect3 from "/public/images/Expect3.png";
+import Expect1 from "/public/images/Expect1.webp";
+import Expect2 from "/public/images/Expect2.webp";
+import Expect3 from "/public/images/Expect3.webp";
 
 export default function SanJoseFooter() {
     return (
         <div>
             {/* First Section */}
-            <div className="footersection1 py-5"> 
+                <div className="footersection1 py-5 Awardsec"> 
                 <Container>
                     <Row>
-                        <Col>
-                            <h2 className="footerh2" style={{ textAlign: 'center' }}>Begin your Senior’s Journey with us!</h2>
-                        </Col>
+                        <Col><h2 className="footerh2 py-3">Begin your Senior’s Journey with us!
+                        </h2></Col>
                     </Row>
-                    <Row style={{ paddingTop: '3em' }}>
-                        <Col md="4">
-                            <Image src={Expect1} alt="Expectation 1" />
-                            <p className="footerp py-4 mx-3">Contact your local Interim Healthcare office to set up a free initial assessment.</p>
-                        </Col>
-                        <Col md="4">
-                            <Image src={Expect2} alt="Expectation 2" />
-                            <p className="footerp py-4 mx-3">Our team shall craft a care plan which is best suited to your loved ones’ needs.</p>
-                        </Col>
-                        <Col md="4">
-                            <Image src={Expect3} alt="Expectation 3" />
-                            <p className="footerp py-4 mx-3">Our compassionate and trained caregivers shall come to your home to provide the selected services.</p>
-                        </Col>
+                    <Row className="footerrow middlealign ">
+                        <Col md="4" className="footercol footer-all"><Image className="award-image" src={Expect1}/>
+                        <p className="footerp py-4 mx-3">Contact your local Interim Healthcare office to set up a free initial assessment.</p></Col>
+                        <Col md="4" className="footercol footer-all"><Image className="award-image" src={Expect2}/>
+                        <p className="footerp py-4 mx-3">Our team shall craft a care plan which is best suited to your loved ones’ needs.
+                        </p></Col>
+                        <Col md="4" className="footercol footer-all"><Image className="award-image" src={Expect3}/>
+                        <p className="footerp py-4 mx-3">Our compassionate and trained caregivers shall come to your home to provide the selected services.
+                        </p></Col>
                     </Row>
                 </Container>
             </div>

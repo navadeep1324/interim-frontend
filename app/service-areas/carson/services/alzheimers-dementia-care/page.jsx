@@ -122,7 +122,7 @@ export default function AlzheimerMainComponent() {
               <h1 className="heading1">{data[0]?.Heading || "Default Heading"}</h1>
               <p className="paragrambold py-2">{data[0]?.subHeading?.split('\n')[0]}</p>
               <p className="py-4">{data[0]?.subHeading?.split('\n')[1]}</p>
-              <p>Reach us today at <a href="tel:408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!</p>
+              <p>Reach us today at <a href="tel:+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!</p>
 
             </Col>
             <Col md="6">

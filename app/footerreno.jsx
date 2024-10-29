@@ -3,9 +3,9 @@ import React from "react";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import Expect1 from "/public/images/Expect1.png";
-import Expect2 from "/public/images/Expect2.png"
-import Expect3 from "/public/images/Expect3.png";
+import Expect1 from "/public/images/Expect1.webp";
+import Expect2 from "/public/images/Expect2.webp"
+import Expect3 from "/public/images/Expect3.webp";
 import Image from "next/image";
 import contactbgimg from "/public/images/contactbgimg.png";
 import FormComponent from "./homeformcomponent";
@@ -17,19 +17,19 @@ export default function RenoFooter() {
     return (
 
         <div>
-            <div className="footersection1 py-5"> 
+               <div className="footersection1 py-5 Awardsec"> 
                 <Container>
                     <Row>
-                        <Col><h2 className="footerh2">Begin your Senior’s Journey with us!
+                        <Col><h2 className="footerh2 py-3">Begin your Senior’s Journey with us!
                         </h2></Col>
                     </Row>
-                    <Row style={{paddingTop:'3em'}}>
-                        <Col md="4"><Image src={Expect1}/>
+                    <Row className="footerrow middlealign ">
+                        <Col md="4" className="footercol footer-all"><Image className="award-image" src={Expect1}/>
                         <p className="footerp py-4 mx-3">Contact your local Interim Healthcare office to set up a free initial assessment.</p></Col>
-                        <Col md="4"><Image src={Expect2}/>
+                        <Col md="4" className="footercol footer-all"><Image className="award-image" src={Expect2}/>
                         <p className="footerp py-4 mx-3">Our team shall craft a care plan which is best suited to your loved ones’ needs.
                         </p></Col>
-                        <Col md="4"><Image src={Expect3}/>
+                        <Col md="4" className="footercol footer-all"><Image className="award-image" src={Expect3}/>
                         <p className="footerp py-4 mx-3">Our compassionate and trained caregivers shall come to your home to provide the selected services.
                         </p></Col>
                     </Row>

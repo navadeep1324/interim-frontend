@@ -260,7 +260,7 @@ export default function SanJoseComponent() {
                 Enhance Your Loved One’s Golden Years with Interim Health Care
               </h2>
               <p style={{ textAlign: "center" }}>
-                Take the first step towards enhancing your loved one’s quality of life with our senior home care services. Call us at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888 </a> to discuss your needs and schedule a consultation with our team. Don’t wait—give your loved ones the quality care they deserve. Contact Interim Health Care in San Jose, California today and let us help you make their golden years truly shine.
+                Take the first step towards enhancing your loved one’s quality of life with our senior home care services. Call us at <a href="tel:4082866888" className="phone-link">+1 408 286-6888 </a> to discuss your needs and schedule a consultation with our team. Don’t wait—give your loved ones the quality care they deserve. Contact Interim Health Care in San Jose, California today and let us help you make their golden years truly shine.
               </p>
             </Col>
           </Row>
@@ -275,7 +275,7 @@ export default function SanJoseComponent() {
             <Col md={8}>
               <h2 className="heading2citysub">Interim Health Care Services in Sanjose, CA</h2>
               <p style={{ color: "#ffff", textAlign: "center" }} className="py-2">
-                If planning to look for senior in home care services for your loved ones in Redding, feel free to reach us. We serve in several cities, listed below are few of them:
+                If planning to look for senior in home care services for your loved ones in San Jose, feel free to reach us. We serve in several cities, listed below are few of them:
               </p>
             </Col>
             <Col md={2}></Col>

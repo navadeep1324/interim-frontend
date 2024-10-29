@@ -9,7 +9,7 @@ import ContactFormComponent from "../contactuspagecomponent";
 import Search from "../searchComponent";
 import CityNavbarComponent from "../citynavcomponent";
 import NavbarComponent from "../navcomponent";
-import ServiceAreasFooter from "../serviceareasFootercomponent"
+import Footer from "../Footer"
 
 export default function ContactusComponent() {
   return (
@@ -49,7 +49,7 @@ export default function ContactusComponent() {
           </Row>
         </Container>
       </div>
-      <ServiceAreasFooter />
+      <Footer />
     </div>
   );
 }

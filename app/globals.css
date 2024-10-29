@@ -562,6 +562,8 @@ h1{
     /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
     letter-spacing:0.2px;
     /* padding-bottom: 2%; */
+    color: #004b66;
+
 }
 .heading2sanjose{
   font-weight: 500;
@@ -636,13 +638,13 @@ h1{
   line-height: 1.6; /* Add line-height for better readability */
   color: #333; /* Choose a color for the text */
   margin-top: 10px; /* Add some space from the title */
-  font-weight: 600;
+  font-weight: 500;
 }
 .card-title{
   /* font-family: 'Merriweather', Georgia, 'Times New Roman', serif; */
    color: #d60000;
    font-weight: 600;
-   font-size:28px;
+   font-size:24px;
 }
 .cardstyle{
   box-shadow: 0px 12px 18px -6px rgba(216, 28, 63, 0.2) !important;
@@ -974,15 +976,17 @@ p{
 /* service areas page code */
 /* Section padding */
 .section-padding-top {
-  padding-top: 5%;
+  padding: 8% 0 5% 0;
 }
 
 /* Search column styling */
 .search-col {
   background-color: #d81c3f;
   border-radius: 10px;
-  display: flex;
+  /* display: flex;
   justify-content: center;
+  align-items: center; */
+  display: grid;
   align-items: center;
 }
 
@@ -1272,7 +1276,7 @@ font-size: 18px;
 }
 .servicescaregiver{
   background-color:#004B66;
-  padding: 30px 30px;
+  padding: 20px 30px;
   width: 100%;
   max-width: 100%;
 }
@@ -1313,6 +1317,14 @@ a.page_buttonhome__SB1Lw{
   border-radius: 20px;
   /* padding-bottom: 3%; */
 }
+.city-name {
+  color: #fff; /* White for dark mode */
+  font-size: 20px;
+  font-weight: 500;
+}
+.city-name:hover{
+  color:#c9302c;
+}
 @media only screen and (max-width: 768px) {
 .homebannerimgcol{
   padding-top:8% ;
@@ -1347,6 +1359,8 @@ body > div > div > div.mainfootersection > div.Awardsec > div > div > div:nth-ch
 @media (prefers-color-scheme: dark) {
   .city-name, .city-link {
     color: #fff; /* White for dark mode */
+    font-size: 18px;
+    font-weight: 600;
   }
 }
 .search-col{
@@ -1428,4 +1442,52 @@ body{
 
 .footer-award {
   padding: 0 10%;
+}
+.footer-all{
+  padding: 0 6%;
+}
+/* General Background and Padding Styles */
+.bg-light-peach {
+  background-color: #fef9f5;
+}
+
+.service-section-padding {
+  padding: 40px 0;
+}
+
+/* Typography for Headings */
+.job-opportunity-heading {
+  /* font-family: 'Merriweather', Georgia, 'Times New Roman', serif; */
+  font-size: 26px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.range-of-services-heading {
+  /* font-family: 'Merriweather', Georgia, 'Times New Roman', serif; */
+  font-size: 34px;
+  font-weight: 700;
+  color: #004B66;
+  padding-top: 60px;
+}
+
+/* Button Styling */
+.apply-button {
+  background-color: #ffffff;
+  color: #d60000;
+  font-weight: 500;
+  padding:15px 40px;
+  font-size: 18px;
+}
+.apply-button:hover{
+  background-color: #d60000;
+  color:#ffffff !important;
+}
+
+/* Card Body Padding */
+.card-body-padding {
+  padding: 25px;
+}
+.servicesmainsec{
+  padding: 5% 0 1% 0;
 }
