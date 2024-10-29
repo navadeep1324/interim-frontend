@@ -1443,6 +1443,9 @@ body{
 .footer-award {
   padding: 0 10%;
 }
+.footer-all{
+  padding: 0 6%;
+}
 /* General Background and Padding Styles */
 .bg-light-peach {
   background-color: #fef9f5;
