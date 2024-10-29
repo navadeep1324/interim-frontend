@@ -96,7 +96,7 @@ export default function Footer() {
                         <Col md={4}>
                             <h5 className="footer-services"> Services</h5>
                             <ul style={{ listStyleType: 'none', padding: 0 }}>
-                                <li><a className="footer-list-services">Alzheimers Dementia Care</a></li>
+                                <li><a className="footer-list-services">Alzheimers & Dementia Care</a></li>
                                 <li><a  className="footer-list-services">Companion Care</a></li>
                                 <li><a  className="footer-list-services">Personal Care</a></li>
                                 <li><a  className="footer-list-services">Respite Care</a></li>

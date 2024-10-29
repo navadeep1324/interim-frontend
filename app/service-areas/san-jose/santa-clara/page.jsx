@@ -244,7 +244,7 @@ export default function SanJoseCupertinoComponent() {
                                     {desc.children[0].text}
                                 </p>
                             ))} */}
-                            <p style={{textAlign:'center'}}>Being a pioneer of home care services in the nation, we pride ourselves on our long and successful journey in home care.  At Interim Healthcare, every team member resonates the values of care, dedication and integrity. We are willing to go above and beyond to ensure their utmost comfort. Do you have a senior requiring home care in Santa Clara? Contact us immediately at <a href="tel:4082866888" className="phone-link">+1 (408) 286-6888</a>. Your loved ones’ happy aging is just a call away.  </p>
+                            <p style={{textAlign:'center'}}>Being a pioneer of home care services in the nation, we pride ourselves on our long and successful journey in home care.  At Interim Healthcare, every team member resonates the values of care, dedication and integrity. We are willing to go above and beyond to ensure their utmost comfort. Do you have a senior requiring home care in Santa Clara? Contact us immediately at <a href="tel:4082866888" className="phone-link">+1 408 286-6888</a>. Your loved ones’ happy aging is just a call away.  </p>
                         </Col>
                     </Row>
                 </Container>

@@ -63,7 +63,7 @@ export default function MilpitasPage() {
     
         return content.map((item, idx) => {
             if (item.type === "link") {
-                const isExternalLink = item.url.startsWith("http") || item.url.startsWith("tel");
+                const isExternalLink = item.url.startsWith("http") ;
                 return (
                     <a
                         key={idx}
