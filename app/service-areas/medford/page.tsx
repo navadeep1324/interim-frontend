@@ -291,7 +291,7 @@ export default function MedfordComponent() {
             <Col md={4}>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -305,7 +305,7 @@ export default function MedfordComponent() {
               </div>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -319,7 +319,7 @@ export default function MedfordComponent() {
               </div>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -333,7 +333,7 @@ export default function MedfordComponent() {
               </div>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -349,7 +349,7 @@ export default function MedfordComponent() {
             <Col md={4}>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -362,7 +362,7 @@ export default function MedfordComponent() {
               </div>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -376,7 +376,7 @@ export default function MedfordComponent() {
               </div>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -390,7 +390,7 @@ export default function MedfordComponent() {
               </div>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -406,7 +406,7 @@ export default function MedfordComponent() {
             <Col md={4}>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -420,7 +420,7 @@ export default function MedfordComponent() {
               </div>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
@@ -434,7 +434,7 @@ export default function MedfordComponent() {
               </div>
               <div className="flex py-2">
                 <div className="iconcity">
-                  <i class="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right"></i>
                 </div>
                 <div>
                   <p style={{ color: "#004b66" }}>
