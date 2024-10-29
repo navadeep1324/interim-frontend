@@ -4,12 +4,12 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReddingNavbarComponent from "../../../chiconavcomponent";
+import ReddingNavbarComponent from "../../../carsonnavcomponent";
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import Button from "react-bootstrap/Button";
-import CitypageFooter from "../../../footerchico";
-import ReddingservicesComponent from "../../../chicoservicecomponent";
+import CitypageFooter from "../../../footercarson";
+import ReddingservicesComponent from "../../../carsonservicecomponent";
 import Accordion from "react-bootstrap/Accordion";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
 import Head from "next/head";
@@ -17,7 +17,7 @@ import Image from "next/image";
 
 const BASE_URL = "https://admin.interimhc.com";
 
-export default function BiggsComponent() {
+export default function MoundHouseComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,7 +25,7 @@ export default function BiggsComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/chico-durhams?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/reno-midens?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -86,23 +86,59 @@ export default function BiggsComponent() {
   if (error) {
     return <div>Error: {error.message}</div>;
   }
-  const getImageUrl = (imageData) => {
-    return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
-  }; 
+
+  const renderImage = (imageData, alt) => {
+    if (imageData && imageData.attributes) {
+      // Extract formats (medium, large, etc.)
+      const formats = imageData.attributes.formats;
+  
+      // Choose the appropriate format (fallback to original if needed)
+      const selectedImage = formats?.medium || formats?.large || formats?.small || imageData.attributes;
+  
+      const { url, width, height } = selectedImage; // Extract URL, width, and height
+  
+      if (!url || !width || !height) {
+        console.error("Invalid image data:", imageData);
+        return null; // Return null if necessary data is missing
+      }
+  
+      return (
+        <Image
+          src={`https://admin.interimhc.com${url}`} // Full image URL
+          alt={alt} // Alt text
+          width={width} // Extracted width
+          height={height} // Extracted height
+          onError={(e) => console.error("Error loading image:", e)} // Error handling
+        />
+      );
+    }
+  
+    console.error("Image data is missing or invalid:", imageData);
+    return null; // Return null if no image data
+  };
     
   
 
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
-
+  
+    const renderedText = new Set(); // Track rendered text to avoid duplicates
+  
     return description.map((desc, index) => {
-      // Handle paragraphs
+      // Handle paragraphs, ensuring no duplicates or empty paragraphs
       if (desc.type === "paragraph") {
+        const paragraphContent = desc?.children
+          ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
+          .join("");
+  
+        if (!paragraphContent || renderedText.has(paragraphContent)) return null; // Skip empty or duplicate paragraphs
+        renderedText.add(paragraphContent); // Track rendered paragraph text
+  
         return (
-          <p key={index} className="py-3">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
-                return child.text;
+                return child.bold ? <b key={idx}>{child.text}</b> : child.text;
               }
               if (child.type === "link") {
                 return (
@@ -116,32 +152,58 @@ export default function BiggsComponent() {
           </p>
         );
       }
-
+  
       // Handle unordered lists (bullet points)
       if (desc.type === "list" && desc.format === "unordered") {
         return (
           <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
-            {desc.children?.map((item, itemIndex) => (
-              <li key={itemIndex}>{item?.children?.[0]?.text || ""}</li>
-            ))}
+            {desc.children?.map((item, itemIndex) => {
+              const listItemContent = item?.children
+                ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
+                .join("");
+  
+              if (!listItemContent && !item.children?.some(child => child.type === "link")) return null; // Skip empty list items with no links
+  
+              return (
+                <li key={itemIndex}>
+                  {item?.children?.map((child, idx) => {
+                    if (child.type === "text") {
+                      return child.bold ? <b key={idx}>{child.text}</b> : child.text;
+                    }
+                    if (child.type === "link") {
+                      return (
+                        <a key={idx} href={child.url} className="phone-link">
+                          {child.children?.[0]?.text || "Link"}
+                        </a>
+                      );
+                    }
+                    return null;
+                  })}
+                </li>
+              );
+            })}
           </ul>
         );
       }
-
-      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+  
+      // Handle headings, ensuring no duplicates
       if (desc.type === "heading") {
-        const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
+        const headingContent = desc?.children?.[0]?.text.trim() || "";
+        if (!headingContent || renderedText.has(headingContent)) return null; // Skip empty or duplicate headings
+        renderedText.add(headingContent); // Track rendered heading text
+  
+        const HeadingTag = `h${desc.level}`;
         return (
           <HeadingTag key={index} className="section4-heading">
-            {desc?.children?.[0]?.text || ""}
+            {headingContent}
           </HeadingTag>
         );
       }
-
+  
       return null;
     });
   };
-
+  
   const renderList = (listData) => {
     if (!listData || !Array.isArray(listData)) return null;
 
@@ -200,12 +262,7 @@ export default function BiggsComponent() {
         <Container fluid>
           <Row className="py-5 middlealign">
             <Col md={6}>
-            <Image
-                src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically from the API
-                alt="City Image"
-                width={data[1]?.image?.data?.attributes?.width} 
-                height={data[1]?.image?.data?.attributes?.height} 
-              />    
+            {renderImage(data?.[1]?.image?.data?.attributes, "Veteran Home Care")}      
             </Col>      <Col md={6} className="redding-col2 px-5">
               <h2 className="heading2">{data[1]?.Heading}</h2>
               <p className="py-2">{renderDescription(data[1]?.description)}</p>
@@ -243,12 +300,8 @@ export default function BiggsComponent() {
             </Col>
 
             <Col md={3}>
-            <Image
-                src={getImageUrl(data[2]?.img?.data?.attributes)} // Fetch image dynamically from the API
-                alt="City Image"
-                width={data[2]?.img?.data?.attributes?.width} 
-                height={data[2]?.img?.data?.attributes?.height} 
-              />            </Col>
+              {renderImage(data[2]?.img?.data, "Caregiver Image 1")} {/* Render Strapi image */}
+            </Col>
           </Row>
         </Container>
       </div>
@@ -257,12 +310,8 @@ export default function BiggsComponent() {
         <Container>
           <Row>
             <Col md={4} style={{ paddingRight: "25px" }}>
-            <Image
-                src={getImageUrl(data[3]?.image?.data?.attributes)} // Fetch image dynamically from the API
-                alt="City Image"
-                width={data[3]?.image?.data?.attributes?.width} 
-                height={data[3]?.image?.data?.attributes?.height} 
-              />            </Col>
+              {renderImage(data[3]?.image?.data, "Quality Care Image")} {/* Render Strapi image */}
+            </Col>
             <Col md={8}>
               <h2 className="heading2">{data[3]?.Heading || "Quality Care from Our Expert Team"}</h2>
               {renderDescription(data[3]?.description)}
@@ -292,24 +341,27 @@ export default function BiggsComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-              My senior has limited mobility and needs assistance with toileting. Can you assist?
+              How do you support families in the caregiving process?
               </Accordion.Header>
               <Accordion.Body>
-              Sure, we can! Our 24-Hour Home Care plan offers support for seniors with mobility challenges. Our caregivers aid with toileting, personal hygiene, and medication assistance throughout the day and overnight.                          </Accordion.Body>
+              We provide resources, training, and respite care options for family members, allowing them to take necessary breaks while ensuring their loved ones receive quality care. 
+              </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-              How can I trust the caregivers assigned by Interim Healthcare to take care of my loved one?               </Accordion.Header>
+              What is the process for starting in home care services? 
+              </Accordion.Header>
               <Accordion.Body>
-              At Interim Healthcare, we prioritize the safety of our clients by conducting background checks of our caregivers’ education, work history, criminal records, and health clearances. 
+              To begin, simply contact us at <a href="tel:+1 775-883-4455" className="phone-link">+1 775-883-4455</a> for a consultation. We’ll discuss your needs, conduct an assessment, and create a personalized care plan that meets your specific requirements. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-              What if my senior only needs care for a short time?
+              What measures do you take to ensure caregiver consistency? 
               </Accordion.Header>
               <Accordion.Body>
-              We offer short-term care services, including respite care, giving families temporary relief while ensuring their loved one receives professional care.                </Accordion.Body>
+              We strive to provide consistency by assigning caregivers who are best suited to each client’s needs. Whenever possible, we aim to keep the same caregiver for each client to foster trust and familiarity. 
+              </Accordion.Body>
             </Accordion.Item>
           </Accordion>
         </Container>

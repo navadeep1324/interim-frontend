@@ -4,77 +4,187 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReddingNavbarComponent from "../../../chiconavcomponent"
+import ReddingNavbarComponent from "../../../chiconavcomponent";
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
-import Cupertinomain from "/public/images/Healthcare-in-Anderson-ca.webp";
-import Image from "next/image";
-import Cupertino1 from "/public/images/In-Homecare-Services-in-Anderson.webp";
-import Cupertino2 from "/public/images/Interim-Healthcare-in-Anderson.webp";
-import Button from 'react-bootstrap/Button';
+import Button from "react-bootstrap/Button";
 import CitypageFooter from "../../../footerchico";
 import ReddingservicesComponent from "../../../chicoservicecomponent";
-import Accordion from 'react-bootstrap/Accordion';
+import Accordion from "react-bootstrap/Accordion";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
 import Head from "next/head";
+import Image from "next/image";
 
 const BASE_URL = "https://admin.interimhc.com";
 
-export default function SanJoseCupertinoComponent() {
+export default function BiggsComponent() {
   const [data, setData] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
   const [seoData, setSeoData] = useState(null);
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await axios.get(
-          `${BASE_URL}/api/redding-anderson?populate[maincontent][populate]=*&populate[seo]=*`
-        );
-        setData(response.data.data?.attributes);
-        // Since `seo` is an array, access the first element of the array
-        if (response.data.data?.attributes.seo && response.data.data?.attributes.seo.length > 0) {
-          setSeoData(response.data.data?.attributes.seo[0]); // Access the first element of the seo array
+    fetch(
+      "https://admin.interimhc.com/api/chico-cohassets?populate[maincontent][populate]=*&populate[seo]=*"
+    )
+      .then((response) => response.json())
+      .then((responseData) => {
+        console.log("API Response:", responseData);
+
+        const isDataArray = Array.isArray(responseData.data);
+        const mainData = isDataArray
+          ? responseData.data[0]?.attributes?.maincontent
+          : responseData.data?.attributes?.maincontent;
+        const seoData = isDataArray
+          ? responseData.data[0]?.attributes?.seo
+          : responseData.data?.attributes?.seo;
+
+        if (mainData) {
+          setData(mainData); // Set main content data
+          setSeoData(seoData); // Set SEO data
+        } else {
+          throw new Error("Invalid data structure received");
         }
-      } catch (error) {
-        console.error("Error fetching data from Strapi", error);
-      }
-    };
-    fetchData();
+
+        setLoading(false);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setError(error);
+        setLoading(false);
+      });
   }, []);
 
-  // Dynamically set the meta title and description once the seoData is fetched
   useEffect(() => {
-    if (seoData) {
-      console.log("SEO Data received:", seoData); // Log seoData for debugging
-      document.title = seoData.metaTitle || "Default Title";
-     
+    if (seoData && Array.isArray(seoData) && seoData.length > 0) {
+      const seo = seoData[0]; // Access the first element of the seoData array
+      console.log("SEO Data received:", seo); // Log seoData for debugging
+      document.title = seo.metaTitle || "Default Title";
+
       // Set meta description
       const metaDescription = document.querySelector('meta[name="description"]');
       if (metaDescription) {
-        metaDescription.setAttribute("content", seoData.metaDescription || "Default Description");
+        metaDescription.setAttribute(
+          "content",
+          seo.metaDescription || "Default Description"
+        );
       } else {
         const newMetaDescription = document.createElement("meta");
         newMetaDescription.name = "description";
-        newMetaDescription.content = seoData.metaDescription || "Default Description";
+        newMetaDescription.content = seo.metaDescription || "Default Description";
         document.head.appendChild(newMetaDescription);
       }
     } else {
-      console.log("No SEO Data received"); // Log if seoData is not available
+      console.log("No SEO Data received");
     }
   }, [seoData]);
+
+  if (loading) {
+    return <div>Loading...</div>;
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+  const getImageUrl = (imageData) => {
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
+  }; 
+    
+  
+
+  const renderDescription = (description) => {
+    if (!description || !Array.isArray(description)) return null;
+
+    return description.map((desc, index) => {
+      // Handle paragraphs
+      if (desc.type === "paragraph") {
+        return (
+          <p key={index} className="py-3">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === "text") {
+                return child.text;
+              }
+              if (child.type === "link") {
+                return (
+                  <a key={idx} href={child.url} className="phone-link">
+                    {child.children?.[0]?.text || "Link"}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+
+      // Handle unordered lists (bullet points)
+      if (desc.type === "list" && desc.format === "unordered") {
+        return (
+          <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>{item?.children?.[0]?.text || ""}</li>
+            ))}
+          </ul>
+        );
+      }
+
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === "heading") {
+        const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+
+      return null;
+    });
+  };
+
+  const renderList = (listData) => {
+    if (!listData || !Array.isArray(listData)) return null;
+
+    return (
+      <ul style={{ listStyleType: "disc", paddingLeft: "20px" }} className="py-4">
+        {listData.map((item, index) => (
+          <li key={index}>
+            {/* Check if the item has a link or a text node */}
+            {item.children?.map((child, childIndex) => {
+              if (child.type === "link") {
+                return (
+                  <a href={child.url} key={childIndex} className="phone-link">
+                    {child.children?.[0]?.text || "Link"}
+                  </a>
+                );
+              }
+              if (child.type === "text") {
+                return <span key={childIndex}>{child.text}</span>;
+              }
+              return null;
+            })}
+          </li>
+        ))}
+      </ul>
+    );
+  };
 
   return (
     <div>
       <ReddingNavbarComponent />
+
       <div className="section1subcity">
-        <Container fluid className="">
+        <Container fluid>
           <Row>
             <Col md={7} className="reddingsubcity-banner">
-              <h2 className="subcityheading">Senior In Home Care in Cohasset, California   </h2>
-              <p className="py-3">
-              At Interim Healthcare we empower seniors to live their best lives through personalized support and care. With our in home care services, elders living in Cohasset, CA can enjoy a higher quality of life in their own homes.  
+              <h2 className="subcityheading">{data[0]?.Heading}</h2>
+              <p className="py-3">{data[0]?.subHeading}</p>
+              <p>
+                To know more about our personalized in-home care plans, Call{" "}
+                <a href="tel: +1 530-899-9777 " className="phone-link">
+                +1 530-899-9777 
+                </a>
               </p>
-              <p>For further details, reach us at <a href="tel:530-899-9777" className="phone-link">+1 530-899-9777</a>  </p>
               <SubcityCaregiversComponent />
             </Col>
             <Col md={4} className="formcoloumcity">
@@ -83,22 +193,22 @@ export default function SanJoseCupertinoComponent() {
           </Row>
         </Container>
       </div>
-      
+
       <ReddingservicesComponent />
-      
+
       <div>
-        {/* <CaregiverCityComponent /> */}
         <Container fluid>
           <Row className="py-5 middlealign">
             <Col md={6}>
-              <Image src={Cupertinomain} />
-            </Col>
-            <Col md={6} className="redding-col2 px-5">
-              <h2 className="heading2">Personalized Support for Cohasset’s Aging Population    </h2>
-              <p className="py-3">
-              Cohasset is a census-designated placed located in Butte County, US. It has a minor population of 392 people out of which 25% are seniors. With 3.6% of residents facing hearing difficulties, it’s important to provide the right support to aging adults. Interim Healthcare is here to make a big difference for seniors in Cohasset by offering personalized care.      
-              </p>
-              <p className="py-3">Our caregivers assist your loved ones with daily activities, such as cooking, cleaning, and personal care, while also ensuring that seniors feel connected and engaged. We believe that social interaction is crucial for their well-being, so we actively promote engaging activities that to stimulate the mind and also cultivate meaningful relationships. Whether it’s sharing stories over a home-cooked meal, participating in fun games, or enjoying hobbies together, we create an enriching environment where seniors can thrive and feel valued.   </p>
+            <Image
+                src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically from the API
+                alt="City Image"
+                width={data[1]?.image?.data?.attributes?.width} 
+                height={data[1]?.image?.data?.attributes?.height} 
+              />    
+            </Col>      <Col md={6} className="redding-col2 px-5">
+              <h2 className="heading2">{data[1]?.Heading}</h2>
+              <p className="py-2">{renderDescription(data[1]?.description)}</p>
             </Col>
           </Row>
         </Container>
@@ -108,30 +218,37 @@ export default function SanJoseCupertinoComponent() {
         <Container>
           <Row>
             <Col>
-              <h2 className="heading2" style={{ color: '#ffff', textAlign: 'center' }}>We Are Here to Make a Meaningful Difference    </h2>
-              <p className="py-3" style={{ color: '#ffff', textAlign: 'center' }}>Interim Healthcare recognizes the challenges that come with aging! Our team is dedicated to delivering premier in home care services for seniors for truly make a meaningful difference in their lives. With our dedicated team by their side, seniors can continue to enjoy life to the fullest.   </p>
+              <h2 className="heading2" style={{ color: "#ffff", textAlign: "center" }}>
+                {data[2]?.Heading || "Fallback Heading"}
+              </h2>
+              <p className="py-3" style={{ color: "#ffff", textAlign: "center" }}>
+                {data[2]?.subHeading || "Fallback Subheading"}
+              </p>
             </Col>
           </Row>
         </Container>
-        
+
         <Container className="section4subcity py-5">
           <Row>
-            <Col md={8} className="px-5">
-              <h5 className="heading5subcity">Our caregivers help seniors in various aspect of living through:    </h5>
-              <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
-                <li className="py-2" >Personal Care </li>
-                <li className="py-2" >Companionship   </li>
-                <li className="py-2" >Meal Preparation  </li>
-                <li className="py-2" >Medication Management   </li>
-                <li className="py-2" >Light Housekeeping   </li>
-                <li className="py-2" >24/7 support   </li>
-              
-              </ul>
-              <p>We strong believe that every senior deserves to feel supported, valued, and connected in their own home. </p>
+            <Col md={9} className="px-5">
+              <h5 className="heading5subcity">
+                {data[2]?.description[0]?.children[0]?.text ||
+                  "Our primary in-home care services include:"}
+              </h5>
+              {renderList(data[2]?.description[1]?.children)}
+              <p>
+                {data[2]?.description[2]?.children?.[0]?.text ||
+                  "Fallback description about care services."}
+              </p>
             </Col>
-            <Col md={4}>
-              <Image src={Cupertino1} alt="Caregiver Image 1" />
-            </Col>
+
+            <Col md={3}>
+            <Image
+                src={getImageUrl(data[2]?.img?.data?.attributes)} // Fetch image dynamically from the API
+                alt="City Image"
+                width={data[2]?.img?.data?.attributes?.width} 
+                height={data[2]?.img?.data?.attributes?.height} 
+              />            </Col>
           </Row>
         </Container>
       </div>
@@ -139,21 +256,16 @@ export default function SanJoseCupertinoComponent() {
       <div className="py-5">
         <Container>
           <Row>
-            <Col md={6} style={{ paddingRight: '25px' }}>
-              <Image src={Cupertino2} />
-            </Col>
-            <Col md={6}>
-              <h2 className="heading2">The Ideal Choice for Senior In Home Care   </h2>
-              <p className="py-3">The senior in home care services of Interim Healthcare is ideal for those who value the comfort of home while receiving expert, compassionate care.    </p>
-              <p><b>Our services cater to: </b> </p>
-              <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-                <li className="py-2" > Seniors Seeking Independence  </li>
-                <li className="py-2" > Families Needing Peace of Mind  </li>
-                <li className="py-2" > Seniors Seeking Daily Living Assistance  </li>
-                <li className="py-2" > Caregivers in Need of Support   </li>
-                <li className="py-2" > Seniors Seeking Social Engagement   </li>
-                
-              </ul>
+            <Col md={4} style={{ paddingRight: "25px" }}>
+            <Image
+                src={getImageUrl(data[3]?.image?.data?.attributes)} // Fetch image dynamically from the API
+                alt="City Image"
+                width={data[3]?.image?.data?.attributes?.width} 
+                height={data[3]?.image?.data?.attributes?.height} 
+              />            </Col>
+            <Col md={8}>
+              <h2 className="heading2">{data[3]?.Heading || "Quality Care from Our Expert Team"}</h2>
+              {renderDescription(data[3]?.description)}
             </Col>
           </Row>
         </Container>
@@ -163,9 +275,10 @@ export default function SanJoseCupertinoComponent() {
         <Container>
           <Row>
             <Col>
-              <h2 className="heading2city py-3">Take the First Step Today!  </h2>
-              <p style={{ textAlign: 'center' }}>At Interim HealthCare, we understand that the right care makes all the difference. Our dedicated team is here to provide compassionate senior care designed to meet your loved one's unique needs.  </p>
-            <p>Don’t navigate this journey alone—let us be your trusted partner in care. Reach out today to discuss how we can create a customized care plan that ensures safety, comfort, and companionship for your loved one. Call us at <a href="tel:530-899-9777" className="phone-link">+1 530-899-9777</a> to embark on this path toward exceptional care! </p>
+              <h2 className="heading2city py-3">
+                {data[4]?.Heading || "Your Comfort is Our Priority!"}
+              </h2>
+              <div style={{ textAlign: "center" }}>{renderDescription(data[4]?.description)}</div>
             </Col>
           </Row>
         </Container>
@@ -173,31 +286,38 @@ export default function SanJoseCupertinoComponent() {
 
       <div className="py-5">
         <Container>
-          <h2 className="heading2" style={{ textAlign: 'center' }}>Frequently Asked Questions</h2>
+          <h2 className="heading2" style={{ textAlign: "center" }}>
+            Frequently Asked Questions
+          </h2>
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
-              <Accordion.Header>What is senior in-home care?  </Accordion.Header>
+              <Accordion.Header>
+              How do you ensure the safety of seniors in their homes?
+               </Accordion.Header>
               <Accordion.Body>
-              Senior in-home care involves providing personalized support and assistance to elderly individuals in the comfort of their own homes.  
+              We perform routine safety evaluations to spot any possible dangers. Our caregivers are trained to promote a safe living environment and to respond quickly to any emergencies. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
-              <Accordion.Header>What is the process for starting in-home care services?</Accordion.Header>
+              <Accordion.Header>
+              Can I customize the care plan for my loved one? 
+              </Accordion.Header>
               <Accordion.Body>
-              To begin, you can contact us to schedule an assessment. Our team will evaluate your loved one's needs and discuss potential care options. 
+              Absolutely! We believe in personalized care, so we work closely with families to create tailored care plans that adapt to changing needs and preferences. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
-              <Accordion.Header> What should I do if I have concerns about the care being provided? </Accordion.Header>
+              <Accordion.Header>
+              What are the costs associated with in-home care services? 
+              </Accordion.Header>
               <Accordion.Body>
-              If you have any concerns, we encourage you to reach out to our team immediately. We value your feedback and are committed to addressing any issues immediately.  
+              Costs vary depending on the level of care required and the specific services chosen. We recommend contacting us directly for a personalized approach based on your loved one's needs. 
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
         </Container>
       </div>
 
-      {/* Correct SEO Data Access */}
       <Head>
         <title>{seoData?.metaTitle || "Default Title"}</title>
         <meta name="description" content={seoData?.metaDescription || "Default Description"} />
