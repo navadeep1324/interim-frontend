@@ -4,12 +4,12 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReddingNavbarComponent from "../../../carsonnavcomponent";
+import ReddingNavbarComponent from "../../../medfordnavcomponent";
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import Button from "react-bootstrap/Button";
-import CitypageFooter from "../../../footercarson";
-import ReddingservicesComponent from "../../../carsonservicecomponent";
+import CitypageFooter from "../../../footermedford";
+import ReddingservicesComponent from "../../../medfordservicecomponent";
 import Accordion from "react-bootstrap/Accordion";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
 import Head from "next/head";
@@ -25,7 +25,7 @@ export default function MoundHouseComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/carson-daytons?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/medford-phoenixes?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -294,34 +294,25 @@ export default function MoundHouseComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-                Can I trust the caregivers who will be looking after my loved one?
-              </Accordion.Header>
+              How does Interim Healthcare manage loneliness in seniors?                </Accordion.Header>
               <Accordion.Body>
-                At Interim Healthcare, we prioritize the safety of your loved ones by hiring only the
-                most qualified caregivers who are screened for education, experience, criminal
-                history and health records.
+              At Interim Healthcare, we offer Companion Care which introduces meaningful companionship to your senior’s life with a compatible caregiver who engages them in friendly conversations and social wellness activities. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-                My elderly loved one struggles with incontinence issues. How can Interim Healthcare
-                manage their condition?
+              My senior suffers with poor mobility and requires help with toileting. Can you help? 
               </Accordion.Header>
               <Accordion.Body>
-                Interim Healthcare offers 24-Hour Home Care, where our caregivers are on hand day and
-                night to provide extra support during nighttime when it is often most needed, helping
-                manage incontinence with dignity and care.
+              Yes, of course! Our 24-Hour Home Care plan helps seniors with long-term challenges such as mobility by assisting them with daily activities such as toileting, managing personal hygiene, meal preparation and more. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-                Can caregivers handle difficult behaviors associated with my senior who has
-                Alzheimer's?
+              How do I know if my senior needs long-term care? 
               </Accordion.Header>
               <Accordion.Body>
-                Yes, our caregivers are specially trained to manage challenging behaviors such as
-                confusion, agitation, and wandering. They are skilled in creating a calm and secure
-                environment to ensure utmost safety.
+              If your loved one is usually alone and needs assistance for housekeeping, meal preparation, personal care and transportation, then it is time that you opt for long-term care to improve their life. 
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
