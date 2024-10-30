@@ -17,7 +17,7 @@ import Image from "next/image";
 
 const BASE_URL = "https://admin.interimhc.com";
 
-export default function MoundHouseComponent() {
+export default function AshlandComponent() {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -25,7 +25,7 @@ export default function MoundHouseComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/carson-daytons?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/medford-ashlands?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -94,7 +94,7 @@ export default function MoundHouseComponent() {
 
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
-
+  
     return description.map((desc, index) => {
       // Handle paragraphs
       if (desc.type === "paragraph") {
@@ -102,7 +102,11 @@ export default function MoundHouseComponent() {
           <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
-                return child.text;
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? "bold" : "normal" }}>
+                    {child.text}
+                  </span>
+                );
               }
               if (child.type === "link") {
                 return (
@@ -116,32 +120,50 @@ export default function MoundHouseComponent() {
           </p>
         );
       }
-
+  
       // Handle unordered lists (bullet points)
       if (desc.type === "list" && desc.format === "unordered") {
         return (
           <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
             {desc.children?.map((item, itemIndex) => (
-              <li key={itemIndex}>{item?.children?.[0]?.text || ""}</li>
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === "text") {
+                    return (
+                      <span key={idx} style={{ fontWeight: child.bold ? "bold" : "normal" }}>
+                        {child.text}
+                      </span>
+                    );
+                  }
+                  if (child.type === "link") {
+                    return (
+                      <a key={idx} href={child.url} className="phone-link">
+                        {child.children?.[0]?.text || "Link"}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </li>
             ))}
           </ul>
         );
       }
-
+  
       // Handle headings (Assuming heading level comes from 'level' property in your JSON)
       if (desc.type === "heading") {
         const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
         return (
-          <h2 key={index} className="section4-heading">
+          <h5 key={index} className="section4-heading">
             {desc?.children?.[0]?.text || ""}
-          </h2>
+          </h5>
         );
       }
-
+  
       return null;
     });
   };
-
+  
   const renderList = (listData) => {
     if (!listData || !Array.isArray(listData)) return null;
 
@@ -294,34 +316,25 @@ export default function MoundHouseComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-                Can I trust the caregivers who will be looking after my loved one?
-              </Accordion.Header>
+              How can I trust the caregivers that are assigned to take care of my loved one?               </Accordion.Header>
               <Accordion.Body>
-                At Interim Healthcare, we prioritize the safety of your loved ones by hiring only the
-                most qualified caregivers who are screened for education, experience, criminal
-                history and health records.
+              We prioritize the safety of your loved ones. While hiring caregivers, we ensure a thorough check of their background such as education, work experience, criminal records, and health records. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-                My elderly loved one struggles with incontinence issues. How can Interim Healthcare
-                manage their condition?
+              My senior has difficulties with toileting, especially during nighttime. How can Interim Healthcare help? 
               </Accordion.Header>
               <Accordion.Body>
-                Interim Healthcare offers 24-Hour Home Care, where our caregivers are on hand day and
-                night to provide extra support during nighttime when it is often most needed, helping
-                manage incontinence with dignity and care.
+              Don’t worry we’ve got your back! Interim Healthcare offers 24-Hour Home Care for seniors who require continuous assistance for basic activities such as toileting, grooming, and medication assistance. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-                Can caregivers handle difficult behaviors associated with my senior who has
-                Alzheimer's?
+              My senior suffers from Alzheimer’s. How can Interim Healthcare help them lead a normal life? 
               </Accordion.Header>
               <Accordion.Body>
-                Yes, our caregivers are specially trained to manage challenging behaviors such as
-                confusion, agitation, and wandering. They are skilled in creating a calm and secure
-                environment to ensure utmost safety.
+              At Interim Healthcare, we offer Alzheimer’s and Dementia Care which assists your seniors with familiar and safe routines. Our caregivers help them with grooming, doing basic house chores and more.
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
