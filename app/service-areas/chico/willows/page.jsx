@@ -25,7 +25,7 @@ export default function BiggsComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/chico-orlands?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/chico-willows?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -292,22 +292,25 @@ export default function BiggsComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-              How does Interim Healthcare support families in the caregiving process?               </Accordion.Header>
+              How does Interim Healthcare create a personalized care plan for my loved one?               </Accordion.Header>
               <Accordion.Body>
-              Interim Healthcare offers Respite Care services for family caregivers, giving them time to recharge while ensuring their loved ones continue to receive the same high level of care.                           </Accordion.Body>
+              Interim Healthcare begins by conducting a thorough assessment of your senior’s health, daily routines, and preferences. We then create a tailored care plan that prioritizes their comfort and well-being. 
+              </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-              What is the process for starting in-home care services? 
+              How do I know if my senior needs long-term care? 
               </Accordion.Header>
               <Accordion.Body>
-              Simply reach out to us at (*****) to schedule a consultation. We’ll evaluate your senior to understand their health and care needs and develop a personalized care plan.               </Accordion.Body>
+              Long-term care may be necessary if your loved one frequently requires assistance with daily activities, impacting their ability to live independently. To improve their quality of life, you can consider reliable support.               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-              Can caregivers manage challenging behaviors related to my senior's Alzheimer's condition?               </Accordion.Header>
+              What are the payment options for home care services? 
+              </Accordion.Header>
               <Accordion.Body>
-              Absolutely! Our caregivers are equipped to handle difficult behaviors like confusion, agitation, and wandering. They are trained to create a calm and secure environment to ensure your loved one's safety.                 </Accordion.Body>
+              We offer flexible payment plans and can assist with navigating Medicare, Medicaid, and 	Veteran benefits to cover care costs. 
+              </Accordion.Body>
             </Accordion.Item>
           </Accordion>
         </Container>

@@ -25,7 +25,7 @@ export default function NevadaComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/yuba-oivehursts?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/yuba-marysvilles?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
