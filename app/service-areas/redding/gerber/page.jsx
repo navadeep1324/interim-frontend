@@ -26,7 +26,7 @@ export default function SanJoseCupertinoComponent() {
 <Container  fluid className="px-5">
 <Row>
     <Col md={7} className="sanjose-banner">
-<h2 className="subcityheading">Senior In-Home Care in Gerber, California  </h2>
+<h2 className="subcityheading">Senior In Home Care in Gerber, California  </h2>
 <p className="py-3">
 Seniors hold a special place in every family, deserving the utmost care to enjoy their golden years with dignity and joy. As a leading home care provider in the nation, Interim Healthcare is well-equipped to support your elderly loved ones in Gerber, CA. 
  </p>

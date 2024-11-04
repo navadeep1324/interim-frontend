@@ -78,7 +78,7 @@ export default function MontgomeryCreekComponent() {
         <Container fluid>
           <Row>
             <Col md={7} className="reddingsubcity-banner">
-              <h2 className="subcityheading">Senior In-Home Care in Montgomery Creek, California</h2>
+              <h2 className="subcityheading">Senior In Home Care in Montgomery Creek, California</h2>
               <p className="py-3">
                 At Interim HealthCare, we offer high-quality home health care services that allow seniors to live comfortably in Montgomery Creek, CA. We understand the importance of maintaining a sense of dignity and independence, and we are here to support your loved ones every step of the way.
               </p>

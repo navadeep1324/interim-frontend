@@ -78,7 +78,7 @@ export default function JohnsonParkComponent() {
         <Container fluid>
           <Row>
             <Col md={7} className="reddingsubcity-banner">
-              <h2 className="subcityheading">Senior In-Home Care in Johnson Park, CA</h2>
+              <h2 className="subcityheading">Senior In Home Care in Johnson Park, CA</h2>
               <p className="py-3">
                 Every progressive society ensures all its members live with utmost safety and comfort. As seniors constitute a significant portion of the living community in Johnson Park, California, Interim Healthcare works passionately to uplift their lives during their golden years.
               </p>

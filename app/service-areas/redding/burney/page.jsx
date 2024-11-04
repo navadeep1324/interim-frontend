@@ -26,7 +26,7 @@ export default function SanJoseCupertinoComponent() {
 <Container  fluid className="px-5">
 <Row>
     <Col md={7} className="sanjose-banner">
-<h2 className="subcityheading">Senior In-Home Care in Burney, CA  </h2>
+<h2 className="subcityheading">Senior In Home Care in Burney, CA  </h2>
 <p className="py-3">
 Gift your seniors the joy of comfortable aging with Interim Healthcare, where we strive to help seniors overcome challenges associated with aging. If you have a senior who requires in-home care in Burney, California, choose us! 
  </p>
