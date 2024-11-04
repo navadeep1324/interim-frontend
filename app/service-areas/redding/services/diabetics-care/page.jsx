@@ -239,7 +239,7 @@ export default function DiabetesCareComponent() {
             <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{diabetesData?.maincontent[4]?.Heading}</h2>
               {renderDescription(diabetesData?.maincontent[4]?.description)}
-              <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
+              <Button className="Contactbtn py-3 my-3" href="tel:/contact-us">
                 Contact Us
               </Button>
             </Col>

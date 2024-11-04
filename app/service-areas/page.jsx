@@ -57,37 +57,27 @@ export default function ServiceAreasComponent() {
             <Col md={9} className="service-description-col">
               <Row>
                 <Col md={4} className="service-item">
-                  <a href="#">Carson City</a>
+                  <a href="/service-areas/carson/sparks">Sparks</a>
                 </Col>
                 <Col md={4} className="service-item">
-                  <a href="#">Dayton</a>
+                  <a href="/service-areas/carson/minden">Minden</a>
                 </Col>
                 <Col md={4} className="service-item">
-                  <a href="#">Gardnerville</a>
+                  <a href="/service-areas/carson/minden">Gardnerville</a>
                 </Col>
               </Row>
               <Row>
                 <Col md={4} className="service-item">
-                  <a href="#">Genoa</a>
+                  <a href="/service-areas/carson/genoa">Genoa </a>
                 </Col>
                 <Col md={4} className="service-item">
-                  <a href="#">Gold Hill</a>
+                  <a href="/service-areas/carson/dayton">Dayton </a>
                 </Col>
                 <Col md={4} className="service-item">
-                  <a href="#">Minden</a>
+                  <a href="/service-areas/carson/dayton"> Mound House</a>
                 </Col>
               </Row>
-              <Row>
-                <Col md={4} className="service-item">
-                  <a href="#">Mound House</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="#">Reno</a>
-                </Col>
-                <Col md={4} className="service-item">
-                  <a href="#">Sparks</a>
-                </Col>
-              </Row>
+              
             </Col>
           </Row>
 

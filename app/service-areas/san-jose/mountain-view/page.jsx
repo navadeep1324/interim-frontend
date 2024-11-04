@@ -297,7 +297,7 @@ export default function MountainViewComponent() {
                 Contact us today at
                 <a href="tel:+14082866888" className="phone-link">
                   {" "}
-                  +1 408-286-6888
+                  +1 408 286-6888
                 </a>{" "}
                 {" to learn more about our home care services and how we can help your seniors. "}
                 Visit our How to Pay page to explore the various payment options available and find

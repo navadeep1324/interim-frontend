@@ -56,7 +56,7 @@ export default function GrantsPassFooter() {
                         <Col md={4}>
                             <h5 className="footer-services"> Services</h5>
                             <ul style={{ listStyleType: 'none', padding: 0 }}>
-                                <li><a href="/service-areas/grants-pass/services/alzheimers-dementia-care"  className="footer-list-services">Alzheimers Dementia Care</a></li>
+                                <li><a href="/service-areas/grants-pass/services/alzheimers-dementia-care"  className="footer-list-services">Alzheimer's & Dementia Care</a></li>
                                 <li><a href="service-areas/grants-pass/services/companion-care" className="footer-list-services">Companion Care</a></li>
                                 <li><a href="/service-areas/grants-pass/services/personal-care" className="footer-list-services">Personal Care</a></li>
                                 <li><a href="/service-areas/grants-pass/services/respite-care" className="footer-list-services">Respite Care</a></li>

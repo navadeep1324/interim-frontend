@@ -55,7 +55,7 @@ const SearchContact = () => {
             setErrorMessage('');
             router.push(`/${foundCity.page}`);
         } else {
-            setErrorMessage('No results found. Please check the city or sub-city name.');
+            setErrorMessage('It seems no locations were found for your search. Please double-check your zip code or city name.');
         }
     };
 

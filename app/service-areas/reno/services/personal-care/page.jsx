@@ -222,7 +222,7 @@ export default function PersonalCareComponent() {
               {data.maincontent[4].description.map((desc, index) => (
                 <p key={index} className="py-3">{desc.children[0].text}</p>
               ))}
-              <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
+              <Button className="Contactbtn py-3 my-3" href="/contact-us">
                 Contact Us
               </Button>
             </Col>

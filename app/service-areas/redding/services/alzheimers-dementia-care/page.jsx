@@ -142,7 +142,7 @@ export default function AlzheimerMainComponent() {
               <h1 className="heading1">{data[0]?.Heading || "Default Heading"}</h1>
               <p className="paragrambold py-2">{data[0]?.subHeading?.split('\n')[0]}</p>
               <p className="py-4">{data[0]?.subHeading?.split('\n')[1]}</p>
-              <p>Reach us today at <a href="tel:408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!</p>
+              <p>Reach us today at <a href="tel:530-221-1212" className="phone-link"> +1 530-221-1212</a> to learn how we can assist your aging adults!</p>
             </Col>
             <Col md="6">
               {data[0]?.bannerimg?.data ? (
@@ -261,7 +261,7 @@ If you notice any of these signs in your beloved elders, then it might be the ri
             <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data[5]?.Heading}</h2>
               {renderDescription(data[5]?.description || [])}
-              <Button className="Contactbtn py-3" href="tel:+1 408-286-6888">
+              <Button className="Contactbtn py-3" href="/contact-us">
                 Contact Us
               </Button>
             </Col>

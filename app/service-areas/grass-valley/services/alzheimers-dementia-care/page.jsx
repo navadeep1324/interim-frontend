@@ -236,7 +236,7 @@ If you notice any of these signs in your beloved elders, then it might be the ri
             <Col md={6}  className="section4sub-sanjose-col1">
               <h2 className="heading2">{data[4]?.Heading}</h2>
               {data[4]?.description ? renderDescription(data[4].description) : <p>No description available</p>}
-              <Button className="Contactbtn py-3" href="tel:+1 530-899-9777">
+              <Button className="Contactbtn py-3" href="/contact-us">
                 Contact Us
               </Button>
             </Col>

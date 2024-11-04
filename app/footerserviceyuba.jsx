@@ -40,7 +40,7 @@ export default function YubaFooter() {
         <Container>
           <Row className="middlealign">
             <Col md={6}>
-              <h2 className="servicefooterh2">Care That’s Focused on What Matters Most
+              <h2 className="servicefooterh2">Care That’s Focused On What Matters Most
               In Every Step, We're By Your Side</h2>
               <p className="py-4">Interim HealthCare is here for you. We’re ready to listen and help find a personalized solution that meets your needs. Give us a call or send us a message today.</p>
             </Col>
@@ -70,7 +70,7 @@ export default function YubaFooter() {
                         <Col md={4}>
                             <h5 className="footer-services"> Services</h5>
                             <ul style={{ listStyleType: 'none', padding: 0 }}>
-                                <li><a href="/service-areas/yuba/services/alzheimers-dementia-care"  className="footer-list-services">Alzheimers Dementia Care</a></li>
+                                <li><a href="/service-areas/yuba/services/alzheimers-dementia-care"  className="footer-list-services">Alzheimer's & Dementia Care</a></li>
                                 <li><a href="service-areas/yuba/services/companion-care" className="footer-list-services">Companion Care</a></li>
                                 <li><a href="/service-areas/yuba/services/personal-care" className="footer-list-services">Personal Care</a></li>
                                 <li><a href="/service-areas/yuba/services/respite-care" className="footer-list-services">Respite Care</a></li>

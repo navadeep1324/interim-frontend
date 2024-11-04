@@ -195,7 +195,7 @@ export default function HospiceCareComponent() {
             <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data?.maincontent?.[4]?.Heading}</h2>
               {renderDescription(data?.maincontent?.[4]?.description)}
-              <Button className="Contactbtn py-3 my-3" href={data?.maincontent?.[4]?.btn?.url || "tel:+1 530-221-1212"}>
+              <Button className="Contactbtn py-3 my-3" href={data?.maincontent?.[4]?.btn?.url || "/contact-us"}>
                 {data?.maincontent?.[4]?.btn?.text || "Contact Us"}
               </Button>
             </Col>
