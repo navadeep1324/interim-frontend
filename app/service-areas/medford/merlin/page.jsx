@@ -25,7 +25,7 @@ export default function MoundHouseComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/carson-daytons?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/medford-merlins?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -294,34 +294,27 @@ export default function MoundHouseComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-                Can I trust the caregivers who will be looking after my loved one?
+              Is there a minimum duration for in-home care services? 
               </Accordion.Header>
               <Accordion.Body>
-                At Interim Healthcare, we prioritize the safety of your loved ones by hiring only the
-                most qualified caregivers who are screened for education, experience, criminal
-                history and health records.
+              We offer flexible service durations based on your loved one's needs. Whether you need care for just a few hours a week or full-time support, we can accommodate your requirements. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-                My elderly loved one struggles with incontinence issues. How can Interim Healthcare
-                manage their condition?
+              How can I get started with Interim Healthcare services? 
               </Accordion.Header>
               <Accordion.Body>
-                Interim Healthcare offers 24-Hour Home Care, where our caregivers are on hand day and
-                night to provide extra support during nighttime when it is often most needed, helping
-                manage incontinence with dignity and care.
+              Getting started is easy! Contact us at <a href="tel:+1 541-779-0054" className="phone-link">+1 541-779-0054</a> to discuss your loved one’s needs, and we will schedule a consultation to assess their situation and create a customized care plan. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-                Can caregivers handle difficult behaviors associated with my senior who has
-                Alzheimer's?
+              What measures do you take to ensure safety for seniors at home? 
+
               </Accordion.Header>
               <Accordion.Body>
-                Yes, our caregivers are specially trained to manage challenging behaviors such as
-                confusion, agitation, and wandering. They are skilled in creating a calm and secure
-                environment to ensure utmost safety.
+              We conduct assessments to identify potential risks and implement safety measures, such as fall prevention strategies and health monitoring. Our caregivers maintain a secure environment while promoting independence. 
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

@@ -26,7 +26,7 @@ export default function SanJoseCupertinoComponent() {
 <Container>
 <Row>
     <Col md={7}>
-<h2 className="subcityheading">Senior In-Home Care in Bella Vista, CA </h2>
+<h2 className="subcityheading">Senior In Home Care in Bella Vista, CA </h2>
 <p className="py-3">
 Seniors are cherished members of any family, deserving of the best care to ensure they age gracefully and happily. As a leading provider of home care in the country, Interim Healthcare is dedicated to meeting the unique needs of your seniors in Bella Vista, CA. 
  </p>

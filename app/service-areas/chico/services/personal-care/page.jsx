@@ -256,7 +256,7 @@ export default function PersonalCareComponent() {
             <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data.maincontent[4].Heading}</h2>
               {renderDescription(data.maincontent[4].description)}
-              <Button className="Contactbtn py-3 my-3" href="tel:+1 530-899-9777">
+              <Button className="Contactbtn py-3 my-3" href="/contact-us">
                 Contact Us
               </Button>
             </Col>

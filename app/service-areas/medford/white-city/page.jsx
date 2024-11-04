@@ -4,12 +4,12 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReddingNavbarComponent from "../../../carsonnavcomponent";
+import ReddingNavbarComponent from "../../../medfordnavcomponent";
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import Button from "react-bootstrap/Button";
-import CitypageFooter from "../../../footercarson";
-import ReddingservicesComponent from "../../../carsonservicecomponent";
+import CitypageFooter from "../../../footermedford";
+import ReddingservicesComponent from "../../../medfordservicecomponent";
 import Accordion from "react-bootstrap/Accordion";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
 import Head from "next/head";
@@ -25,7 +25,7 @@ export default function MoundHouseComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/carson-daytons?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/medford-white-cities?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -94,7 +94,7 @@ export default function MoundHouseComponent() {
 
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
-
+ 
     return description.map((desc, index) => {
       // Handle paragraphs
       if (desc.type === "paragraph") {
@@ -102,7 +102,11 @@ export default function MoundHouseComponent() {
           <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
-                return child.text;
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? "bold" : "normal" }}>
+                    {child.text}
+                  </span>
+                );
               }
               if (child.type === "link") {
                 return (
@@ -116,32 +120,49 @@ export default function MoundHouseComponent() {
           </p>
         );
       }
-
+ 
       // Handle unordered lists (bullet points)
       if (desc.type === "list" && desc.format === "unordered") {
         return (
           <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
             {desc.children?.map((item, itemIndex) => (
-              <li key={itemIndex}>{item?.children?.[0]?.text || ""}</li>
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === "text") {
+                    return (
+                      <span key={idx} style={{ fontWeight: child.bold ? "bold" : "normal" }}>
+                        {child.text}
+                      </span>
+                    );
+                  }
+                  if (child.type === "link") {
+                    return (
+                      <a key={idx} href={child.url} className="phone-link">
+                        {child.children?.[0]?.text || "Link"}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </li>
             ))}
           </ul>
         );
       }
-
+ 
       // Handle headings (Assuming heading level comes from 'level' property in your JSON)
       if (desc.type === "heading") {
         const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
         return (
-          <h2 key={index} className="section4-heading">
+          <HeadingTag key={index} className="section4-heading">
             {desc?.children?.[0]?.text || ""}
-          </h2>
+          </HeadingTag>
         );
       }
-
+ 
       return null;
     });
   };
-
   const renderList = (listData) => {
     if (!listData || !Array.isArray(listData)) return null;
 

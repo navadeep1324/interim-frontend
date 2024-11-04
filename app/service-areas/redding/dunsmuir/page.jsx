@@ -111,7 +111,7 @@ We understand that quality in home care goes beyond basic assistance. Our caregi
     <Container>
         <Row>
             <Col>
-            <h2 className="heading2city py-3">Experience Exceptional Care—Get in Touch Now!  </h2>
+            <h2 className="heading2city py-3">Experience Exceptional Care Get in Touch Now!  </h2>
            <p style={{textAlign:'center'}}>Ready to make a meaningful difference in your loved one’s life? Discover how Interim Healthcare can provide the personalized in home care that your seniors need. We create a nurturing environment that brings joy and comfort to every day. Our goal is to make your seniors feel not just cared for, but genuinely understood and appreciated. Reach out to us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a>  to explore how our team can enhance your elders’ well-being.  </p>
             </Col>
         </Row>

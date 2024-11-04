@@ -163,7 +163,7 @@ export default function CompanionCareComponent() {
                   </p>
                 </>
               )}
-              <p>Reach us today at <a href="tel:408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!</p>
+              <p>Reach us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> to learn how we can assist your aging adults!</p>
             </Col>
             <Col md="6">
               {renderImage(data?.maincontent?.[0]?.bannerimg?.data?.attributes, "Companion care Services", 3102, 2064)}
@@ -222,7 +222,7 @@ export default function CompanionCareComponent() {
             <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{data?.maincontent?.[4]?.Heading}</h2>
               {data?.maincontent?.[4]?.description && renderDescription(data.maincontent[4].description)}
-              <Button className="Contactbtn py-3 my-3" href="tel:+1 408-286-6888">
+              <Button className="Contactbtn py-3 my-3" href="/contact-us">
                 Contact Us
               </Button>
             </Col>

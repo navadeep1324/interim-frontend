@@ -135,7 +135,7 @@ const Search = () => {
             setErrorMessage('');
             router.push(`/${foundCity.page}`);
         } else {
-            setErrorMessage('It seems there were no locations found for your search. For more information, you can reach us at: ');
+            setErrorMessage('It seems no locations were found for your search. Please double-check your zip code or city name. ');
         }
     };
 
@@ -170,9 +170,9 @@ const Search = () => {
                 )}
             </form>
             {errorMessage && (
-                <div className="error-message">
+                <div className="error-message search-h">
                     {errorMessage}
-                    <a href="tel:+1 530-221-1212" className="error-phone">+1 530-221-1212</a>
+                    {/* <a href="tel:+1 530-221-1212" className="error-phone">+1 530-221-1212</a> */}
                 </div>
             )}
         </div>

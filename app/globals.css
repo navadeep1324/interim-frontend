@@ -170,7 +170,7 @@ body {
 .head5evergreen{
   border-bottom-width: 2px;
   border-bottom-color: #d81c3f;
-  font-weight: 600;
+  font-weight: 500;
   font-size: 25px;
   color: #333333 !important;
  padding-bottom: 16px;
@@ -421,7 +421,7 @@ p.formsmalltext {
   background-color: #e6f2f8;
 }
 .footerh2{
-  font-weight: 600;
+  font-weight: 500;
     font-size: 34px;
     text-align: center;
     /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
@@ -471,7 +471,7 @@ html,body{
   color:#004b66;
 }
 .heading1{
-  font-weight: 600;
+  font-weight: 500;
     font-size: 48px;
     color: #d81c3f !important;
     line-height: 1.3em;
@@ -1281,9 +1281,9 @@ font-size: 18px;
   max-width: 100%;
 }
 
-p {
+/* p {
   white-space: pre-wrap;
-}
+} */
 .Contactbtn:hover {
   background-color: #c9302c;
   color: #ffff !important;
@@ -1490,4 +1490,7 @@ body{
 }
 .servicesmainsec{
   padding: 5% 0 1% 0;
+}
+.error-phone:h {
+  color: #fff !important;
 }

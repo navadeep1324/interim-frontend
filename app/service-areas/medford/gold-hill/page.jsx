@@ -4,12 +4,12 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReddingNavbarComponent from "../../../carsonnavcomponent";
+import ReddingNavbarComponent from "../../../medfordnavcomponent";
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import Button from "react-bootstrap/Button";
-import CitypageFooter from "../../../footercarson";
-import ReddingservicesComponent from "../../../carsonservicecomponent";
+import CitypageFooter from "../../../footermedford";
+import ReddingservicesComponent from "../../../medfordservicecomponent";
 import Accordion from "react-bootstrap/Accordion";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
 import Head from "next/head";
@@ -25,7 +25,7 @@ export default function MoundHouseComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/carson-daytons?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/medford-gold-hills?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {

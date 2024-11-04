@@ -26,7 +26,7 @@ export default function SanJoseCupertinoComponent() {
 <Container  fluid className="px-5">
 <Row>
     <Col md={7} className="sanjose-banner">
-<h2 className="subcityheading">Senior In-Home Care in Red Bluff, California  </h2>
+<h2 className="subcityheading">Senior In Home Care in Red Bluff, California  </h2>
 <p className="py-3">
 Seniors have a profound presence in Red Bluff, CA and forecasting the trending city demographics, they will play a significant role in the future as well. To help address the concerns of the senior community, Interim Healthcare operates as a reliable home care partner in the city.  
  </p>

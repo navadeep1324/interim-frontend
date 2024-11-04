@@ -117,7 +117,7 @@ export default function carsonComponent() {
                 height={data[1]?.image?.data?.attributes?.height} 
               />
     </Col>
-    <Col md={7}>
+    <Col md={7} className="px-5">
     <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
     <p className="py-2"> {data[1]?.description[0].children[0].text} </p>
     </Col>
@@ -155,8 +155,8 @@ export default function carsonComponent() {
               />
             </Col>
             <Col md={8}  style={{ paddingLeft: '3em' }}>
-            <h2 className="heading2">{data[3]?.Heading } </h2>
-            <p>{data[3]?.description[0].children[0].text}</p>
+            <h2 className="heading2 py-2">{data[3]?.Heading } </h2>
+            <p className="py-4">{data[3]?.description[0].children[0].text}</p>
            <p><b>{data[3]?.description[2].children[0].text}</b></p>
            <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
                 {renderListItems(data[3]?.description?.[3]?.children)} </ul>

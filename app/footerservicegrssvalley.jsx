@@ -11,7 +11,7 @@ import contactbgimg from "/public/images/contactbgimg.png";
 import FormComponent from "./homeformcomponent";
 import Inlogo from '../public/images/Inlogo.png';
 import { Button } from 'react-bootstrap';
-
+import { FaFacebook, FaLinkedin, FaInstagram, FaTwitter } from 'react-icons/fa'; // Social media icons 
 export default function GrassValleyFooter() {
         
     return (
@@ -40,7 +40,7 @@ export default function GrassValleyFooter() {
         <Container>
           <Row className="middlealign">
             <Col md={6}>
-              <h2 className="servicefooterh2">Care That’s Focused on What Matters Most
+              <h2 className="servicefooterh2">Care That’s Focused On What Matters Most
               In Every Step, We're By Your Side</h2>
               <p className="py-4">Interim HealthCare is here for you. We’re ready to listen and help find a personalized solution that meets your needs. Give us a call or send us a message today.</p>
             </Col>
@@ -50,25 +50,56 @@ export default function GrassValleyFooter() {
           </Row>
         </Container>
       </div>
-            <div className="Footer1 py-5">
+      <div className="Footer1 py-5" style={{ backgroundColor: '#FEF7F2' }}>
                 <Container>
                     <Row>
-                        <Col md={6}>
-                        <Image
-              src={Inlogo}
-              width={161}
-              height={70}
-              alt="Picture of the author"
-            />
-             <Button className="Contactbtn py-3 my-4" href="tel:+1 408-286-6888">Find a Location</Button>
-
-                        </Col>
-                        <Col md={6}>
-                        <p><b><a href="	+1 530-272-0300">	+1 530-272-0300</a></b></p>
-                        <p><b>	406 E Main St Suite A, Grass Valley, CA 95945, USA</b></p>
-                       
+                        {/* First Column: Logo and Buttons */}
+                        <Col md={4}>
+                            <Image
+                                src={Inlogo}
+                                width={161}
+                                height={70}
+                                alt="Company Logo"
+                            />
+                            <Button className="Contactbtn py-3 my-4 Contactbtn-footer " href="/service-areas" >Find a Location</Button>
+                            <Button className="Contactbtn py-3 my-4 Contactbtn-footer" target="_blank" href="https://www.interimhealthcare.com/careers">Careers</Button>
                         </Col>
 
+                        {/* Second Column: Services */}
+                        <Col md={4}>
+                            <h5 className="footer-services"> Services</h5>
+                            <ul style={{ listStyleType: 'none', padding: 0 }}>
+                                <li><a href="/service-areas/grass-valley/services/alzheimers-dementia-care"  className="footer-list-services">Alzheimer's & Dementia Care</a></li>
+                                <li><a href="service-areas/grass-valley/services/companion-care" className="footer-list-services">Companion Care</a></li>
+                                <li><a href="/service-areas/grass-valley/services/personal-care" className="footer-list-services">Personal Care</a></li>
+                                <li><a href="/service-areas/grass-valley/services/respite-care" className="footer-list-services">Respite Care</a></li>
+                                <li><a href="/service-areas/grass-valley/services/veteran-care" className="footer-list-services">Veteran Care</a></li>
+                                <li><a href="/service-areas/grass-valley/services/24-hour-care" className="footer-list-services">24 Hour Care</a></li>
+                            </ul>
+                        </Col>
+
+                        {/* Third Column: Address and Social Media */}
+                        <Col md={4}>
+                        <h5 className="footer-services "> Get In Touch</h5>
+                            <p className="py-3">406 E Main St Suite A,
+                            <br></br>
+                            Grass Valley, CA 95945, USA</p>
+                            <p className="py-2"><a href="tel:530-272-0300">+1 530-272-0300</a></p>
+                            <div className="social-icons">
+                                <a href="https://www.facebook.com/InterimHealthcaregrass-valleyCityNV/" target="_blank" rel="noopener noreferrer" >
+                                    <FaFacebook size={30} />
+                                </a>
+                                <a href="https://www.instagram.com/interim_grass-valley/" target="_blank" rel="noopener noreferrer">
+                                    <FaInstagram size={30} />
+                                </a>
+                                <a href="https://x.com/Interimgrass-valleyNV" target="_blank" rel="noopener noreferrer">
+                                    <FaTwitter size={30} />
+                                </a>
+                                <a href="https://www.linkedin.com/company/interim-health-care-of-grass-valley-city-nv/" target="_blank" rel="noopener noreferrer">
+                                    <FaLinkedin size={30} />
+                                </a>
+                            </div>
+                        </Col>
                     </Row>
                 </Container>
             </div>

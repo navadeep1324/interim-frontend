@@ -146,17 +146,17 @@ useEffect(() => {
                             <h5 className="head5evergreen">{data[2]?.description[0]?.children[0]?.text}</h5>
                             <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
                 <li>
-                <p>Exceptional in-home care tailored to your loved one's unique needs. From round-the-clock 24-hour home care to respite care, our meticulously trained caregivers are devoted to enhancing their quality of life. </p>
+                <p>Exceptional in-home care tailored to your loved one's unique needs. From round-the-clock 24 hour home care to respite care, our meticulously trained caregivers are devoted to enhancing their quality of life. </p>
                 </li>
                 <li>
                 <p>Assistance with <a href="https://www.medicare.gov/" className="phone-link" target="_blank">Medicare</a> insurance coverage to ensure your seniors receive the best and affordable home care plan to help them age with renewed confidence and peace of mind.  </p>
                 </li>
                 <li>
-                <p>Seamless assistance for eligible veterans or surviving spouses to avail  <a href="https://www.benefits.va.gov/" className="phone-link" target="_blank">Veteran Benefits</a>. Our team ensures they receive the best in-home care that befits their noble contributions. </p>
+                <p>Seamless assistance for eligible veterans or surviving spouses to avail  <a href="https://www.benefits.va.gov/" className="phone-link" target="_blank">Veteran Benefits</a>. Our team ensures they receive the best in home care that benefits their noble contributions. </p>
                 </li>
                  </ul>
                             <p>
-                                Contact us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408-286-6888</a> to learn more about our comprehensive senior care services in Evergreen, Ca.
+                                Contact us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408 286-6888</a> to learn more about our comprehensive senior care services in Evergreen, CA.
                             </p>
                         </Col>
                         <Col md={5} className="px-0">
@@ -202,7 +202,7 @@ useEffect(() => {
                         <Col>
                             <h2 className="heading2city py-3">{data[4]?.Heading}</h2>
                             {/* <p style={{ textAlign: 'center' }}>{data[4]?.description[0]?.children[0]?.text}</p> */}
-                            <p style={{ textAlign: 'center' }}>At Interim Healthcare, what sets us apart is the flexibility of our services. Whether your seniors require assistance for a few hours a day or continuous assistance, we can tailor our support to meet their specific needs. As your loved ones' requirements evolve over time, we'll be there to adapt our services, ensuring they receive the right level of care. By choosing our in-home care services, you'll not only alleviate the burden of caregiving but also witness a positive transformation in your loved ones' aging experience. Take the first step towards enhancing your seniors' well-being and independence. Call us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408-286-6888</a> to learn more about our customizable care plans and how we can support your elderly loved ones living in Evergreen, CA. </p>
+                            <p style={{ textAlign: 'center' }}>At Interim Healthcare, what sets us apart is the flexibility of our services. Whether your seniors require assistance for a few hours a day or continuous assistance, we can tailor our support to meet their specific needs. As your loved ones' requirements evolve over time, we'll be there to adapt our services, ensuring they receive the right level of care. By choosing our in-home care services, you'll not only alleviate the burden of caregiving but also witness a positive transformation in your loved ones' aging experience. Take the first step towards enhancing your seniors' well-being and independence. Call us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408 286-6888</a> to learn more about our customizable care plans and how we can support your elderly loved ones living in Evergreen, CA. </p>
                         </Col>
                     </Row>
                 </Container>

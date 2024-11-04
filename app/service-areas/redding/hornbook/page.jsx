@@ -26,7 +26,7 @@ export default function SanJoseCupertinoComponent() {
 <Container  fluid className="px-5">
 <Row>
     <Col md={7} className="sanjose-banner">
-<h2 className="subcityheading">Senior In-Home Care in Hornbook, California   </h2>
+<h2 className="subcityheading">Senior In Home Care in Hornbook, California   </h2>
 <p className="py-3">
 Seniors hold a significant place in any happy family. However, they require care and attention to age healthily. Anticipating this, Interim Healthcare is committed to being a dependable home care provider for the senior community in Hornbook, California.  
  </p>

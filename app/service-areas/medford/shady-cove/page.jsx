@@ -4,12 +4,12 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReddingNavbarComponent from "../../../carsonnavcomponent";
+import ReddingNavbarComponent from "../../../medfordnavcomponent";
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import Button from "react-bootstrap/Button";
-import CitypageFooter from "../../../footercarson";
-import ReddingservicesComponent from "../../../carsonservicecomponent";
+import CitypageFooter from "../../../footermedford";
+import ReddingservicesComponent from "../../../medfordservicecomponent";
 import Accordion from "react-bootstrap/Accordion";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
 import Head from "next/head";
@@ -25,7 +25,7 @@ export default function MoundHouseComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/carson-daytons?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/medford-shady-coves?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -294,34 +294,25 @@ export default function MoundHouseComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-                Can I trust the caregivers who will be looking after my loved one?
-              </Accordion.Header>
+              Can I trust the caregivers that are assigned to take care of my loved one?               </Accordion.Header>
               <Accordion.Body>
-                At Interim Healthcare, we prioritize the safety of your loved ones by hiring only the
-                most qualified caregivers who are screened for education, experience, criminal
-                history and health records.
+              At Interim Healthcare, your loved ones’ safety is our top priority. We hire the best caregivers who pass our thorough background checks of their education, work experience, criminal history, and health records.
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-                My elderly loved one struggles with incontinence issues. How can Interim Healthcare
-                manage their condition?
+              My elderly struggles with incontinence issues. How can Interim Healthcare manage their condition?
               </Accordion.Header>
               <Accordion.Body>
-                Interim Healthcare offers 24-Hour Home Care, where our caregivers are on hand day and
-                night to provide extra support during nighttime when it is often most needed, helping
-                manage incontinence with dignity and care.
+              Interim Healthcare provides 24-Hour Home Care in which our compassionate caregivers are available around the clock to ensure your loved one’s comfort and safety, especially during nighttime when extra help is needed.
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-                Can caregivers handle difficult behaviors associated with my senior who has
-                Alzheimer's?
+              My senior suffers from Alzheimer’s. How can Interim Healthcare help them lead a normal life? 
               </Accordion.Header>
               <Accordion.Body>
-                Yes, our caregivers are specially trained to manage challenging behaviors such as
-                confusion, agitation, and wandering. They are skilled in creating a calm and secure
-                environment to ensure utmost safety.
+              At Interim Healthcare, we provide specialized Alzheimer’s and Dementia Care which assists with essential activities of living such as personal care, housekeeping, meal preparation and medication assistance. 
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

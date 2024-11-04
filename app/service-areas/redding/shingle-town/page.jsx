@@ -26,7 +26,7 @@ export default function SanJoseCupertinoComponent() {
 <Container fluid>
 <Row>
     <Col md={7} className="reddingsubcity-banner">
-<h2 className="subcityheading">Senior In-Home Care in Shingle Town, CA</h2>
+<h2 className="subcityheading">Senior In Home Care in Shingle Town, CA</h2>
 <p className="py-3">
 Seniors are a special part of our lives because of their charming persona and their selfless aspirations for us. To repay them for their efforts, choose Interim Healthcare, which has been serving seniors in Single Town compassionately for over two decades. 
  </p>

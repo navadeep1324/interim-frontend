@@ -4,12 +4,12 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReddingNavbarComponent from "../../../carsonnavcomponent";
+import ReddingNavbarComponent from "../../../medfordnavcomponent";
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import Button from "react-bootstrap/Button";
-import CitypageFooter from "../../../footercarson";
-import ReddingservicesComponent from "../../../carsonservicecomponent";
+import CitypageFooter from "../../../footermedford";
+import ReddingservicesComponent from "../../../medfordservicecomponent";
 import Accordion from "react-bootstrap/Accordion";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
 import Head from "next/head";
@@ -25,7 +25,7 @@ export default function MoundHouseComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/carson-daytons?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/medford-rouge-rivers?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -294,34 +294,26 @@ export default function MoundHouseComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-                Can I trust the caregivers who will be looking after my loved one?
+              How do you create a personalized care plan for my loved one? 
               </Accordion.Header>
               <Accordion.Body>
-                At Interim Healthcare, we prioritize the safety of your loved ones by hiring only the
-                most qualified caregivers who are screened for education, experience, criminal
-                history and health records.
+              We begin with a detailed assessment of your senior’s condition. This helps us understand their specific needs. Our care plans are customizable and evolve as those needs change. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-                My elderly loved one struggles with incontinence issues. How can Interim Healthcare
-                manage their condition?
+              Are your caregivers trained and certified? 
               </Accordion.Header>
               <Accordion.Body>
-                Interim Healthcare offers 24-Hour Home Care, where our caregivers are on hand day and
-                night to provide extra support during nighttime when it is often most needed, helping
-                manage incontinence with dignity and care.
+              Yes, every caregiver on our team completes extensive training and undergoes background checks to ensure they are both qualified and reliable.  
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-                Can caregivers handle difficult behaviors associated with my senior who has
-                Alzheimer's?
+              How do you ensure the quality of care? 
               </Accordion.Header>
               <Accordion.Body>
-                Yes, our caregivers are specially trained to manage challenging behaviors such as
-                confusion, agitation, and wandering. They are skilled in creating a calm and secure
-                environment to ensure utmost safety.
+              Interim HealthCare is committed to excellence. We regularly monitor our care services and maintain open communication with family members to ensure the best quality of care. 
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>

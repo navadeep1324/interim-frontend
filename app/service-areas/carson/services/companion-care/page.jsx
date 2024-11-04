@@ -172,8 +172,8 @@ export default function CompanionCareComponent() {
 
               <p>
                 Reach us today at{" "}
-                <a href="tel:408-286-6888" className="phone-link">
-                  +1 408-286-6888
+                <a href="tel:775-883-4455" className="phone-link">
+                +1 775-883-4455
                 </a>{" "}
                 to learn how we can assist your aging adults!
               </p>
@@ -262,7 +262,7 @@ export default function CompanionCareComponent() {
               {renderDescription(data.maincontent[4]?.description)}
               <Button
                 className="Contactbtn py-3 my-3"
-                href="tel:+1 408-286-6888"
+                href="/contact-us"
               >
                 Contact Us
               </Button>

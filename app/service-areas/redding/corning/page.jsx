@@ -26,7 +26,7 @@ export default function SanJoseCupertinoComponent() {
 <Container  fluid className="px-5">
 <Row>
     <Col md={7} className="sanjose-banner">
-<h2 className="subcityheading">Senior In-Home Care in Corning, California  </h2>
+<h2 className="subcityheading">Senior In Home Care in Corning, California  </h2>
 <p className="py-3">
 Seniors are precious members of any family, and they deserve the best care to ensure they age with dignity and joy. As a leading home care provider nationwide, Interim Healthcare is committed to addressing the unique needs of seniors in Corning, California. 
  </p>

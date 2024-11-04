@@ -4,12 +4,12 @@ import axios from "axios";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import ReddingNavbarComponent from "../../../carsonnavcomponent";
+import ReddingNavbarComponent from "../../../medfordnavcomponent";
 import FormComponent from "../../../homeformcomponent";
 import SubcityCaregiversComponent from "../../../SubCityCaregiversComponent";
 import Button from "react-bootstrap/Button";
-import CitypageFooter from "../../../footercarson";
-import ReddingservicesComponent from "../../../carsonservicecomponent";
+import CitypageFooter from "../../../footermedford";
+import ReddingservicesComponent from "../../../medfordservicecomponent";
 import Accordion from "react-bootstrap/Accordion";
 import CaregiverCityComponent from "../../../caregiversComponentMainCity";
 import Head from "next/head";
@@ -25,7 +25,7 @@ export default function MoundHouseComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/carson-daytons?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/medford-central-points?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -94,7 +94,7 @@ export default function MoundHouseComponent() {
 
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
-
+  
     return description.map((desc, index) => {
       // Handle paragraphs
       if (desc.type === "paragraph") {
@@ -102,7 +102,11 @@ export default function MoundHouseComponent() {
           <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
-                return child.text;
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? "bold" : "normal" }}>
+                    {child.text}
+                  </span>
+                );
               }
               if (child.type === "link") {
                 return (
@@ -116,31 +120,50 @@ export default function MoundHouseComponent() {
           </p>
         );
       }
-
+  
       // Handle unordered lists (bullet points)
       if (desc.type === "list" && desc.format === "unordered") {
         return (
           <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
             {desc.children?.map((item, itemIndex) => (
-              <li key={itemIndex}>{item?.children?.[0]?.text || ""}</li>
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === "text") {
+                    return (
+                      <span key={idx} style={{ fontWeight: child.bold ? "bold" : "normal" }}>
+                        {child.text}
+                      </span>
+                    );
+                  }
+                  if (child.type === "link") {
+                    return (
+                      <a key={idx} href={child.url} className="phone-link">
+                        {child.children?.[0]?.text || "Link"}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </li>
             ))}
           </ul>
         );
       }
-
+  
       // Handle headings (Assuming heading level comes from 'level' property in your JSON)
       if (desc.type === "heading") {
         const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
         return (
-          <h2 key={index} className="section4-heading">
+          <HeadingTag key={index} className="section4-heading">
             {desc?.children?.[0]?.text || ""}
-          </h2>
+          </HeadingTag>
         );
       }
-
+  
       return null;
     });
   };
+  
 
   const renderList = (listData) => {
     if (!listData || !Array.isArray(listData)) return null;
@@ -238,8 +261,7 @@ export default function MoundHouseComponent() {
               </h5>
               {renderList(data[2]?.description[1]?.children)}
               <p>
-                {data[2]?.description[2]?.children?.[0]?.text ||
-                  "Fallback description about care services."}
+                {data[2]?.description[2]?.children?.[0]?.text}
               </p>
             </Col>
 
@@ -294,34 +316,25 @@ export default function MoundHouseComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-                Can I trust the caregivers who will be looking after my loved one?
-              </Accordion.Header>
+              How do you ensure the safety of seniors in their homes?               </Accordion.Header>
               <Accordion.Body>
-                At Interim Healthcare, we prioritize the safety of your loved ones by hiring only the
-                most qualified caregivers who are screened for education, experience, criminal
-                history and health records.
+              Our caregivers provide home safety support by ensuring a safe living environment and aiding with mobility needs. We also conduct regular safety assessments to address any potential hazards. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-                My elderly loved one struggles with incontinence issues. How can Interim Healthcare
-                manage their condition?
+              Can I choose the caregiver who will come to my home? 
               </Accordion.Header>
               <Accordion.Body>
-                Interim Healthcare offers 24-Hour Home Care, where our caregivers are on hand day and
-                night to provide extra support during nighttime when it is often most needed, helping
-                manage incontinence with dignity and care.
+              Yes, we strive to match you with a caregiver who fits your needs and preferences. You can meet potential caregivers beforehand and provide feedback to ensure a good fit. 
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-                Can caregivers handle difficult behaviors associated with my senior who has
-                Alzheimer's?
+              How do you handle changes in care needs or schedules? 
               </Accordion.Header>
               <Accordion.Body>
-                Yes, our caregivers are specially trained to manage challenging behaviors such as
-                confusion, agitation, and wandering. They are skilled in creating a calm and secure
-                environment to ensure utmost safety.
+              We provide adaptable care plans that can be modified to meet your evolving needs. Regular communication with families and caregivers ensures that any necessary changes are addressed effectively. 
               </Accordion.Body>
             </Accordion.Item>
           </Accordion>
