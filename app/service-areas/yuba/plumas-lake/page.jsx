@@ -25,7 +25,7 @@ export default function NevadaComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/yuba-oivehursts?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/yuba-plumas-lakes?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -237,7 +237,7 @@ export default function NevadaComponent() {
               </h5>
               {renderList(data[2]?.description[1]?.children)}
               <p>
-                {data[2]?.description[2]?.children?.[0]?.text}
+                {data[2]?.description[2]?.children?.[0]?.text }
               </p>
             </Col>
 
