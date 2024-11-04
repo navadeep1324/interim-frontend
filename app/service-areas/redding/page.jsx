@@ -126,7 +126,6 @@ const textLinks = {
         "Rancho Tehama": "/service-areas/redding/rancho-tehama",
         "Round Mt": "/service-areas/redding/round-mt",
         "Shasta Lake City": "/service-areas/redding/shastina",
-        "Tehama County": "/service-areas/redding/rancho-tehama",
         "Fall River": "/service-areas/redding/fall-river",
         "Hornbrook": "/service-areas/redding/hornbook",
         "Los Molinos": "/service-areas/redding/molino",
@@ -139,14 +138,13 @@ const textLinks = {
         "Montgomery Creek": "/service-areas/redding/montgomery-creek",
         "Palo Cedro": "/service-areas/redding/palo-cedro",
         "Redding": "/service-areas/redding/",
-        "Shasta County": "#",
-        "Siskiyou County": "#",
         "Yreka": "/service-areas/redding/yreka",
         "Hat creek":"/service-areas/redding/hat-creek",
        "Hornbook":"/service-areas/redding/hornbook",
        "Los Molino’s ":"/service-areas/redding/los-molino",
        "Red bluff":"/service-areas/redding/red-bluff",
-      "Shingle town" : "/service-areas/redding/shingle-town"
+      "Shingle town" : "/service-areas/redding/shingle-town",
+      "Gerber" : "/service-areas/redding/gerber",
     };
 
     return (

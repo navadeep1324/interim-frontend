@@ -25,7 +25,7 @@ export default function BiggsComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/chico-orlands?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/chico-orovilles?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -99,7 +99,7 @@ export default function BiggsComponent() {
       // Handle paragraphs
       if (desc.type === "paragraph") {
         return (
-          <p key={index} className="py-3">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
                 return child.text;
@@ -237,8 +237,7 @@ export default function BiggsComponent() {
               </h5>
               {renderList(data[2]?.description[1]?.children)}
               <p>
-                {data[2]?.description[2]?.children?.[0]?.text ||
-                  "Fallback description about care services."}
+                {data[2]?.description[2]?.children?.[0]?.text}
               </p>
             </Col>
 
@@ -292,25 +291,26 @@ export default function BiggsComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-              My senior has limited mobility and needs assistance with toileting. Can you assist?
-              </Accordion.Header>
+              What is senior in-home care? 
+               </Accordion.Header>
               <Accordion.Body>
-              Sure, we can! Our 24-Hour Home Care plan offers support for seniors with mobility challenges. Our caregivers aid with toileting, personal hygiene, and medication assistance throughout the day and overnight.                          </Accordion.Body>
+              Senior in-home care involves providing personalized support and assistance to elderly individuals in the comfort of their own homes.                </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-              How can I trust the caregivers assigned by Interim Healthcare to take care of my loved one?               </Accordion.Header>
+              What is the process for starting in-home care services? 
+            </Accordion.Header>
               <Accordion.Body>
-              At Interim Healthcare, we prioritize the safety of our clients by conducting background checks of our caregivers’ education, work history, criminal records, and health clearances. 
+              To begin, you can contact us to schedule an assessment. Our team will evaluate your loved one's needs and discuss potential care options.
               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-              What if my senior only needs care for a short time?
-              </Accordion.Header>
+              What should I do if I have concerns about the care being provided? 
+               </Accordion.Header>
               <Accordion.Body>
-              We offer short-term care services, including respite care, giving families temporary relief while ensuring their loved one receives professional care.                </Accordion.Body>
-            </Accordion.Item>
+              If you have any concerns, we encourage you to reach out to our team immediately. We value your feedback and are committed to addressing any issues immediately.                </Accordion.Body>
+              </Accordion.Item>
           </Accordion>
         </Container>
       </div>

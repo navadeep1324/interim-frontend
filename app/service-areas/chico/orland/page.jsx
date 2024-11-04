@@ -292,24 +292,22 @@ export default function BiggsComponent() {
           <Accordion className="py-3">
             <Accordion.Item eventKey="0">
               <Accordion.Header>
-              My senior has limited mobility and needs assistance with toileting. Can you assist?
-              </Accordion.Header>
+              How does Interim Healthcare support families in the caregiving process?               </Accordion.Header>
               <Accordion.Body>
-              Sure, we can! Our 24-Hour Home Care plan offers support for seniors with mobility challenges. Our caregivers aid with toileting, personal hygiene, and medication assistance throughout the day and overnight.                          </Accordion.Body>
+              Interim Healthcare offers Respite Care services for family caregivers, giving them time to recharge while ensuring their loved ones continue to receive the same high level of care.                           </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="1">
               <Accordion.Header>
-              How can I trust the caregivers assigned by Interim Healthcare to take care of my loved one?               </Accordion.Header>
+              What is the process for starting in-home care services? 
+              </Accordion.Header>
               <Accordion.Body>
-              At Interim Healthcare, we prioritize the safety of our clients by conducting background checks of our caregivers’ education, work history, criminal records, and health clearances. 
-              </Accordion.Body>
+              Simply reach out to us at (*****) to schedule a consultation. We’ll evaluate your senior to understand their health and care needs and develop a personalized care plan.               </Accordion.Body>
             </Accordion.Item>
             <Accordion.Item eventKey="2">
               <Accordion.Header>
-              What if my senior only needs care for a short time?
-              </Accordion.Header>
+              Can caregivers manage challenging behaviors related to my senior's Alzheimer's condition?               </Accordion.Header>
               <Accordion.Body>
-              We offer short-term care services, including respite care, giving families temporary relief while ensuring their loved one receives professional care.                </Accordion.Body>
+              Absolutely! Our caregivers are equipped to handle difficult behaviors like confusion, agitation, and wandering. They are trained to create a calm and secure environment to ensure your loved one's safety.                 </Accordion.Body>
             </Accordion.Item>
           </Accordion>
         </Container>
