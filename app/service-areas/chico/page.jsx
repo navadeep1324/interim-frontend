@@ -189,7 +189,7 @@ export default function ChicoComponent() {
                             <div className="flex py-5" style={{paddingRight:"8%"}}>
                                 <div className="iconhome"><i className="bi bi-geo-alt"></i></div>
                                 <div className="icontext px-2"><b>Serving:</b></div>
-                                <div className="citynames">Oroville (and outlying areas) | Paradise | Magalia | Durham | Biggs | Forest Ranch | Cohasset | Willows | Orland | Capay | Corning</div>
+                                <div className="citynames"><a href="/service-areas/chico/oroville">Oroville (and outlying areas)</a> | <a href="/service-areas/chico/paradise">Paradise</a> | <a href="/service-areas/chico/magalia">Magalia</a> | <a href="/service-areas/chico/durham">Durham</a> | <a href="/service-areas/chico/biggs">Biggs</a> | <a href="/service-areas/chico/forest-ranch">Forest Ranch</a> | <a href="/service-areas/chico/cohasset">Cohasset</a> | <a href="/service-areas/chico/willows">Willows</a> | <a href="/service-areas/chico/orland">Orland</a> | <a href="/service-areas/chico/capay">Capay</a> | <a href="/service-areas/chico/corning">Corning</a></div>
                             </div>
                         </Col>
                         <Col md={5} className="formcoloumcity">
