@@ -137,7 +137,7 @@ export default function CompanionCareComponent() {
   };
 
   if (loading) {
-    return <div>Loading...</div>; // Can be customized with a spinner if needed
+    return //<div>Loading...</div>; // Can be customized with a spinner if needed
   }
 
   if (!data) {

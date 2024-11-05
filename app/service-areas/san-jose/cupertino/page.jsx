@@ -53,7 +53,7 @@ useEffect(() => {
   }, [seoData]);
 
     if (!cupertinoData) {
-        return //// <div>Loading...</div>;
+        return //// //<div>Loading...</div>;
     }
 
     const getFullImageUrl = (relativeUrl) => {

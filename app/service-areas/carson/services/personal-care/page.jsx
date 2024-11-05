@@ -68,7 +68,7 @@ export default function PersonalCareComponent() {
   }, [seoData]);
 
   if (loading) {
-    return null; // <div>Loading...</div>;
+    return null; // //<div>Loading...</div>;
   }
 
   if (error) {

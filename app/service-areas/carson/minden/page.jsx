@@ -80,7 +80,7 @@ export default function MoundHouseComponent() {
   }, [seoData]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return //<div>Loading...</div>;
   }
 
   if (error) {
@@ -118,7 +118,9 @@ export default function MoundHouseComponent() {
   };
     
   
-
+  const getImageUrl = (imageData) => {
+    return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
+};
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
   
@@ -260,10 +262,15 @@ export default function MoundHouseComponent() {
 
       <div>
         <Container fluid>
-          <Row className="py-5 middlealign">
-            <Col md={6}>
-            {renderImage(data?.[1]?.image?.data?.attributes, "Veteran Home Care")}      
-            </Col>      <Col md={6} className="redding-col2 px-5">
+          <Row className="py-5 middlealign px-5">
+            <Col md={5}>
+            <Image
+                                src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically
+                                alt="City Image"
+                                width={data[1]?.image?.data?.attributes?.width}
+                                height={data[1]?.image?.data?.attributes?.height}
+                            />     
+            </Col>      <Col md={7} className="redding-col2 px-5">
               <h2 className="heading2">{data[1]?.Heading}</h2>
               <p className="py-2">{renderDescription(data[1]?.description)}</p>
             </Col>
@@ -294,8 +301,7 @@ export default function MoundHouseComponent() {
               </h5>
               {renderList(data[2]?.description[1]?.children)}
               <p>
-                {data[2]?.description[2]?.children?.[0]?.text ||
-                  "Fallback description about care services."}
+                {data[2]?.description[2]?.children?.[0]?.text }
               </p>
             </Col>
 
