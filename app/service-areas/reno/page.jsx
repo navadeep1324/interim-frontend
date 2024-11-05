@@ -1,44 +1,46 @@
 "use client";
 import React, { useEffect, useState } from "react";
+import CityNavbarComponent from "../../citynavcomponent";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import FormComponent from "../../homeformcomponent";
 import Image from "next/image";
-import SanJose1 from "/public/images/SanJose1.png";
-import SanJose2 from "/public/images/SanJose2.png";
-import SanJose3 from "/public/images/Travelling-the-Extra-Mile-for-Seniors.webp";
-import SanJose4 from "/public/images/ElderlyCare-Services-in-Gerber.webp";
 import Button from 'react-bootstrap/Button';
-import RenoservicesComponent from "../../renoservicecomponent";
+import ChicoFooter from "../../footerreno";
+import SanJoseservicesComponent from "../../sanjoseservicecomponent";
+import ChicoNavbarComponent from "../../renonavcomponent";
 import CaregiverCityComponent from "../../caregiversComponentMainCity";
-import RenoFooter from "../../footerreno";
-import RenoNavbarComponent from "../../renonavcomponent";
+import ChicoserviceComponent from "../../renoservicecomponent";
 import Head from "next/head";
 
-export default function RenoComponent() {
-  const [mainContent, setMainContent] = useState(null);
-  const [seoData, setSeoData] = useState(null);
+export default function YubaComponent() {
+    const [data, setData] = useState(null); // State for API data
+    const [loading, setLoading] = useState(true); // Loading state
+    const [error, setError] = useState(null); // Error state
+    const [seoData, setSeoData] = useState(null);
 
-  useEffect(() => {
-    async function fetchData() {
-      try {
-        const response = await fetch(
-          'https://admin.interimhc.com/api/renos?populate[maincontent][populate]=*&populate[seo]=*'
-        );
-        const data = await response.json();
-        setMainContent(data.data[0]?.attributes?.maincontent);
-        setSeoData(data.data[0].attributes.seo); 
-      } catch (error) {
-        console.error('Error fetching Strapi data:', error);
-      }
-    }
-    fetchData();
-  }, []);
-
-  // Dynamically set the meta title and description once the seoData is fetched
-  useEffect(() => {
+    useEffect(() => {
+        fetch("https://admin.interimhc.com/api/renos?populate[maincontent][populate]=*&populate[seo]=*")
+            .then((response) => response.json())
+            .then((responseData) => {
+                if (responseData?.data?.[0]?.attributes?.maincontent) {
+                    setData(responseData.data[0].attributes.maincontent);
+                    setSeoData(responseData.data[0].attributes.seo);
+                } else {
+                    throw new Error("Invalid data structure received");
+                }
+                setLoading(false);
+            })
+            .catch((error) => {
+                console.error("Error fetching data:", error);
+                setError(error.message);
+                setLoading(false);
+            });
+    }, []);
+    // Dynamically set the meta title and description once the seoData is fetched
+   useEffect(() => {
     if (seoData && Array.isArray(seoData) && seoData.length > 0) {
       const seo = seoData[0]; // Access the first element of the seoData array
       console.log("SEO Data received:", seo); // Log seoData for debugging
@@ -59,192 +61,308 @@ export default function RenoComponent() {
     }
   }, [seoData]);
 
+    if (loading) {
+        return // <div>Loading...</div>;
+    }
 
-  if (!mainContent) return // <div>Loading...</div>;
-  // Safely find the component related to the cities section
-  const citiesComponent = mainContent?.find(
-    (section) => section.__component === "components.middle-hed-dec" && section.id === 41
-  );
+    if (error) {
+        return <div>Error: {error}</div>;
+    }
 
-  return (
-    <div>
-      <RenoNavbarComponent/>
-      {/* Section 1 - Banner */}
-      <div className="section1banner">
-        <Container>
-          <Row className="py-3" >
-            <Col md={7} className="py-5" style={{paddingRight:"4%"}}>
-              <h1>{mainContent[0]?.Heading || "Senior In Home Care in Reno, Nevada"}</h1>
-              <p className="py-5">{mainContent[0]?.subHeading || "Leaving seniors alone at home is never easy. Choose Interim Healthcare, Reno, to provide the care and companionship they need. With us by their side, they can lead a quality life with uncompromised care."}</p>
-              <p>Call us today at <a href="tel:775-335-3155" className="phone-link">+1 775-335-3155</a> to learn about our caregiving services.</p>
-              {/* <div className="flex py-3">
-                <div className="iconhome"><i className="bi bi-geo-alt"></i></div>
-                <div className="icontext px-2"><b>Serving:</b></div>
-                <div className="citynames">Sparks | Minden | Gardnerville | Genoa | Dayton | Mound House</div>
-              </div> */}
-            </Col>
-            <Col md={5} className="formcoloumcity">
-              <FormComponent />
-            </Col>
-          </Row>
-        </Container>
-      </div>
+    // Helper function to get image URL (if images are available)
+    const getImageUrl = (imageData) => {
+        return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
+    };
+
+    const renderDescription = (description) => {
+        if (!description || !Array.isArray(description)) return null;
       
-      {/* <div style={{ backgroundColor: '#015979', height: '145px' }}></div> */}
+        const renderedText = new Set(); // Track rendered text to avoid duplicates
+      
+        return description.map((desc, index) => {
+          // Handle paragraphs, ensuring no duplicates or empty paragraphs
+          if (desc.type === "paragraph") {
+            const paragraphContent = desc?.children
+              ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
+              .join("");
+      
+            if (!paragraphContent || renderedText.has(paragraphContent)) return null; // Skip empty or duplicate paragraphs
+            renderedText.add(paragraphContent); // Track rendered paragraph text
+      
+            return (
+              <p key={index} className="py-2">
+                {desc?.children?.map((child, idx) => {
+                  if (child.type === "text") {
+                    return child.bold ? <b key={idx}>{child.text}</b> : child.text;
+                  }
+                  if (child.type === "link") {
+                    return (
+                      <a key={idx} href={child.url} className="phone-link">
+                        {child.children?.[0]?.text || "Link"}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </p>
+            );
+          }
+      
+          // Handle unordered lists (bullet points)
+          if (desc.type === "list" && desc.format === "unordered") {
+            return (
+              <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+                {desc.children?.map((item, itemIndex) => {
+                  const listItemContent = item?.children
+                    ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
+                    .join("");
+      
+                  if (!listItemContent && !item.children?.some(child => child.type === "link")) return null; // Skip empty list items with no links
+      
+                  return (
+                    <li key={itemIndex}>
+                      {item?.children?.map((child, idx) => {
+                        if (child.type === "text") {
+                          return child.bold ? <b key={idx}>{child.text}</b> : child.text;
+                        }
+                        if (child.type === "link") {
+                          return (
+                            <a key={idx} href={child.url} className="phone-link">
+                              {child.children?.[0]?.text || "Link"}
+                            </a>
+                          );
+                        }
+                        return null;
+                      })}
+                    </li>
+                  );
+                })}
+              </ul>
+            );
+          }
+      
+          // Handle headings, ensuring no duplicates
+          if (desc.type === "heading") {
+            const headingContent = desc?.children?.[0]?.text.trim() || "";
+            if (!headingContent || renderedText.has(headingContent)) return null; // Skip empty or duplicate headings
+            renderedText.add(headingContent); // Track rendered heading text
+      
+            const HeadingTag = `h${desc.level}`;
+            return (
+              <h5 key={index} className="section4-heading">
+                {headingContent}
+              </h5>
+            );
+          }
+      
+          return null;
+        });
+      };
+      
+      
+         
+     const renderListItems = (list) => {
+            return list.map((listItem, index) => (
+              <li key={index}>
+                {listItem.children?.[0]?.text}
+              </li>
+            ));
+          };
+          
+          
 
-      {/* Section 2 - Services */}
+    return (
+        <div>
+            <ChicoNavbarComponent />
+            
+            {/* Banner Section */}
+            <div className="section1banner ">
+                <Container>
+                    <Row className="py-3 middlealign">
+                        <Col md={7} className="py-4" style={{paddingRight:"4%"}}>
+                            <h1>{data[0]?.Heading}</h1>
+                            <p className="py-3">{data[0]?.subHeading}</p>
+                            <p>
+                            To schedule your care appointment, call us <a href="tel:+1 775-335-3155" className="phone-link">+1 775-335-3155</a> and let us help you with the right care plan!
+
+              </p>
+                            {/* <div className="flex py-5" style={{paddingRight:"8%"}}>
+                                <div className="iconhome"><i className="bi bi-geo-alt"></i></div>
+                                <div className="icontext px-2"><b>Serving:</b></div>
+                                <div className="citynames">Oroville (and outlying areas) | Paradise | Magalia | Durham | Biggs | Forest Ranch | Cohasset | Willows | Orland | Capay | Corning</div>
+                            </div> */}
+                        </Col>
+                        <Col md={5} className="formcoloumcity">
+                            <FormComponent />
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+
+            {/* <div style={{ backgroundColor: '#015979', height: '145px' }}></div> */}
+
+            <div>
+                <ChicoserviceComponent />
+            </div>
+
+
+            <CaregiverCityComponent/>
+
+            {/* Section 2 (Left Image, Right Content) */}
+            <div className="section2city">
+                <Container fluid>
+                    <Row className="py-4">
+                        <Col md={6} className="px-5">
+                            <Image
+                                src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically
+                                alt="City Image"
+                                width={data[1]?.image?.data?.attributes?.width}
+                                height={data[1]?.image?.data?.attributes?.height}
+                            />
+                        </Col>
+                        <Col md={6} style={{ paddingLeft: '3em', paddingRight: '3em' }}>
+                            <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
+                            <p className="py-2">{renderDescription(data[1]?.description)}</p>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+
+            {/* Section 3 (Right Image, Left Content) */}
+            <div className="section3city py-5">
+                <Container fluid>
+                    <Row>
+                        <Col md={6} style={{ paddingRight: '3em', paddingLeft: '3em' }}>
+                            <h2 className="heading2 py-4">{data[2]?.Heading}</h2>
+                            <p>{renderDescription(data[2]?.description)}</p>
+                        </Col>
+                        <Col md={6} className="px-5">
+                            <Image
+                                src={getImageUrl(data[2]?.image?.data?.attributes)} // Fetch image dynamically
+                                alt="City Image"
+                                width={data[2]?.image?.data?.attributes?.width}
+                                height={data[2]?.image?.data?.attributes?.height}
+                            />
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+
+            {/* Section 4 */}
+            <div className="py-5">
+                <Container>
+                    <Row>
+                        <Col md={4}>
+                            <Image
+                                src={getImageUrl(data[3]?.image?.data?.attributes)} // Fetch image dynamically
+                                alt="City Image"
+                                width={data[3]?.image?.data?.attributes?.width}
+                                height={data[3]?.image?.data?.attributes?.height}
+                            />
+                        </Col>
+                        <Col md={8} style={{ paddingLeft: '3em' }}>
+                            <h2 className="heading2">{data[3]?.Heading}</h2>
+                            <p>{renderDescription(data[3]?.description)}</p>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+
+            {/* Section 5 */}
+            <div className="section4city py-5">
+                <Container>
+                    <Row className="py-3">
+                        <Col md={2}></Col>
+                        <Col md={8}>
+                            <h2 className="heading2" style={{ textAlign: 'center' }}>{data[4]?.Heading}</h2>
+                            <p style={{ textAlign: 'center' }} className="py-2">{data[4]?.subHeading}</p>
+                        </Col>
+                        <Col md={2}></Col>
+                    </Row>
+                    <Row className="py-4">
+                        <Col md={5} >
+                            <Image
+                                src={getImageUrl(data[4]?.img?.data?.attributes)} // Fetch image dynamically
+                                alt="Service Image"
+                                width={data[4]?.img?.data?.attributes?.width}
+                                height={data[4]?.img?.data?.attributes?.height}
+                            />
+                        </Col>
+                        <Col md={7} style={{ paddingLeft: '3em' }}>
+                           
+                            {/* <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
+                            {renderListItems(data[4]?.description?.[0]?.children)} </ul> */}
+                            {renderDescription(data[4]?.description)}
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+
+            {/* Section 6 */}
+            <div className="section5city py-5">
+                <Container>
+                    <Row>
+                        <Col>
+                            <h2 className="heading2city py-3">{data[5]?.Heading}</h2>
+                            <p style={{ textAlign: 'center' }}>{renderDescription(data[5]?.description)}</p>
+                        </Col>
+                    </Row>
+                </Container>
+            </div>
+
+            {/* Final Section
+            <div className="section6city py-5">
+                <Container>
+                    <Row>
+                        <Col md={2}></Col>
+                        <Col md={8}>
+                            <h2 className="heading2citysub">{data[6]?.Heading}</h2>
+                            <p style={{ color: '#ffff', textAlign: 'center' }} className="py-2">
+                                {data[6]?.description?.[0]?.children?.[0]?.text}
+                            </p>
+                        </Col>
+                        <Col md={2}></Col>
+                    </Row>
+                    <Row className="subcitysec py-5 px-5 my-4">
+                        {/* Render City Names */}
+                        {/* {data[6]?.description.slice(2).map((city, index) => (
+  <Col md={4} key={index}>
+    <div className="flex py-2">
+      <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
       <div>
-        <RenoservicesComponent />
-      </div>
-
-      {/* Section 3 - Caregivers */}
-      <div className="sectioncaregiversbg">
-        {/* <CaregiverCityComponent /> */}
-      </div>
-
-      {/* Section 4 - Left Image, Right Content */}
-      <div className="section2city">
-        <Container fluid>
-          <Row className="py-4">
-            <Col md={6} className="px-0">
-              <Image src={SanJose1} alt="SanJose1" />
-            </Col>
-            <Col md={6} style={{ paddingLeft: '3em', paddingRight: '3em' }}>
-              <h2 className="heading2 py-4">{mainContent[1]?.Heading || "Bringing Compassionate In-Home Care to Reno’s Seniors"}</h2>
-              {mainContent[1]?.description.map((desc, i) => (
-                <p key={i} className="py-2">{desc.children[0].text}</p>
-              )) || (
-                <p className="py-2">Renowned as one of the best cities to retire in America, Reno draws many seniors who are looking to enjoy their golden years in a vibrant community. With 16.7% of its residents aged 65 and older, the need for senior in-home care is growing rapidly. As the population ages, ensuring access to quality care becomes vital in supporting the health and well-being of Reno’s older adults.</p>
-              )}
-            </Col>
-          </Row>
-        </Container>
-      </div>
-
-      {/* Section 5 - Right Image, Left Content */}
-      <div className="section3city py-5">
-        <Container fluid>
-          <Row>
-            <Col md={6} style={{ paddingRight: '3em', paddingLeft: '3em' }}>
-              <h2 className="heading2 py-4">{mainContent[2]?.Heading || "Elevating Senior Care with Compassion and Excellence"}</h2>
-              {mainContent[2]?.description.map((desc, i) => (
-                <p key={i}>{desc.children[0].text}</p>
-              )) || (
-                <p>At Interim HealthCare, we recognize that providing care for seniors goes beyond just meeting physical needs—it’s about enhancing their overall well-being and quality of life. Our approach is rooted in compassion, respect, and a deep commitment to making a difference in the lives of the elderly. With years of experience, we truly understand what caring means when families are unable to be there. As a compassionate helping hand, we provide the support and expertise needed to ensure your loved ones receive the care and attention they deserve, every step of the way.</p>
-              )}
-            </Col>
-            <Col md={6}>
-              <Image src={SanJose2} alt="SanJose2" />
-            </Col>
-          </Row>
-        </Container>
-      </div>
-
-      {/* Section 6 - Our Innovative Care */}
-      <div className="py-5">
-        <Container>
-          <Row>
-            <Col md={4}>
-              <Image src={SanJose3} alt="SanJose3" />
-            </Col>
-            <Col md={8} style={{ paddingLeft: '3em' }}>
-              <h2 className="heading2 py-3">{mainContent[3]?.Heading || "Our Innovative Care That Enriches Lives"}</h2>
-              {/* {mainContent[3]?.description.map((desc, i) => (
-                <p key={i}>{desc.children[0].text}</p>
-              )) || (
-                <>
-                  <p>Our HomeLife Enrichment (HLE) model redefines home care with personalized, holistic support that nurtures emotional, social, and physical health. Our approach ensures exceptional care, bringing comfort and peace of mind to seniors and their families.</p>
-                  <p className="py-2"><b>Comprehensive and Personalized Care</b></p>
-                  <p>The HLE model integrates the mind, body, spirit, and family, providing tailored, high-quality care that adapts to each person's needs and supports their overall well-being.</p>
-                  <p className="py-2"><b>Commitment to Clinical Excellence</b></p>
-                  <p>We combine clinical excellence with personalized attention, ensuring that every client receives thoughtful, effective support and the highest standard of care at every stage.</p>
-                </>
-              )} */}
-               <p>Our HomeLife Enrichment (HLE) model redefines home care with personalized, holistic support that nurtures emotional, social, and physical health. Our approach ensures exceptional care, bringing comfort and peace of mind to seniors and their families.</p>
-                  <p className="py-2"><b>Comprehensive and Personalized Care</b></p>
-                  <p>The HLE model integrates the mind, body, spirit, and family, providing tailored, high-quality care that adapts to each person's needs and supports their overall well-being.</p>
-                  <p className="py-2"><b>Commitment to Clinical Excellence</b></p>
-                  <p>We combine clinical excellence with personalized attention, ensuring that every client receives thoughtful, effective support and the highest standard of care at every stage.</p>
-            </Col>
-          </Row>
-        </Container>
-      </div>
-
-      <div className="section4city py-5">
-  <Container>
-    <Row className="py-3">
-      <Col md={2}></Col>
-      <Col md={8}>
-        {/* Fetch the heading dynamically from Strapi */}
-        <h2 className="heading2" style={{ textAlign: 'center' }}>
-          {mainContent[4]?.Heading || "Care Crafted to Fit Your Unique Needs"}
-        </h2>
-        {/* Fetch the subHeading dynamically */}
-        <p style={{ textAlign: 'center' }} className="py-2">
-          {mainContent[4]?.subHeading || "At Interim HealthCare, we understand that each individual has unique needs and preferences. That’s why our care programs are meticulously personalized to fit the specific requirements of every client."}
+        <p style={{ color: '#004b66' }}>
+          <b>
+            {city.children?.map((child, childIndex) => {
+              if (child.type === "text") {
+                return child.text; // Render plain text if available
+              }
+              if (child.type === "link") {
+                return (
+                  <a 
+                    key={childIndex} 
+                    href={child.url} 
+                    style={{ color: '#004b66', textDecoration: 'none' }}
+                  >
+                    {child.children?.[0]?.text || "Link"}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </b>
         </p>
-      </Col>
-      <Col md={2}></Col>
-    </Row>
-    <Row className="py-4">
-      <Col md={6}>
-        {/* Fetch and display the image dynamically */}
-        {mainContent[4]?.img?.data?.attributes?.url ? (
-          <Image
-            src={`https://admin.interimhc.com${mainContent[4].img.data.attributes.url}`}
-            alt="Dynamic Image"
-            width={1706}
-            height={1052}
-          />
-        ) : (
-          <Image src={SanJose4} alt="SanJose4" width={500} height={300} />
-        )}
-      </Col>
-      <Col md={6} style={{ paddingLeft: '3em' }}>
-        {/* Check if Strapi description is available and map through it */}
-        {mainContent[4]?.description ? (
-          mainContent[4].description.map((desc, i) => (
-            <p key={i}>
-              {desc.children?.map((child, index) => (
-                <span key={index}>
-                  {child.bold ? <b>{child.text}</b> : child.text}
-                </span>
-              ))}
-            </p>
-          ))
-        ) : (
-          // If the description from Strapi is not available, don't show fallback content
-          <>
-            <p><b>Customizable Services</b> Our care programs are flexible and can be customized to address a wide range of needs. Whether it's daily personal care, specialized medical support, or companionship, we work closely with clients and their families to design a care plan that meets their exact needs. This customization ensures that care is both effective and comfortable.</p>
-            <p className="py-2"><b>Adaptive and Responsive Care</b> We recognize that needs can change over time. Our team is dedicated to providing adaptive care that evolves with the client's requirements. Regular evaluations and open communication allow us to make timely adjustments to care plans, ensuring continuous support and the highest quality of life.</p>
-          </>
-        )}
-      </Col>
-    </Row>
-  </Container>
-</div>
-
-
-
-      {/* Section 8 - Footer */}
-      <div className="section5city py-5">
-        <Container>
-          <Row>
-            <Col>
-              <h2 className="heading2city py-3">{mainContent[5]?.Heading || "Choose Interim HealthCare for a Better and Happier Life"}</h2>
-              <p style={{ textAlign: 'center' }}>{mainContent[5]?.description.map(desc => desc.children[0].text).join(" ") || "Provide the care your loved ones need for a happier, more independent life with Interim HealthCare. Our dedicated team offers compassionate support and personalized care, ensuring they live with dignity and comfort. Call us at +1 775-335-3155 to discover how we can help."}</p>
-            </Col>
-          </Row>
-        </Container>
       </div>
-
-      {/* Section 9 - Footer Cities */}
-    
-      <Head>
+    </div>
+  </Col>
+))}
+                    </Row>
+                </Container>
+            </div> */}
+            <Head>
         <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
         <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
-      </Head>
-      <RenoFooter/>
-    </div>
-  );
+      </Head>        
+            < ChicoFooter/>
+        </div>
+    );
 }

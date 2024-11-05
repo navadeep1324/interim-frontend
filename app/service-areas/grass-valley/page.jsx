@@ -7,13 +7,15 @@ import Col from "react-bootstrap/Col";
 import "bootstrap-icons/font/bootstrap-icons.css";
 import FormComponent from "../../homeformcomponent";
 import Image from "next/image";
-import GrassValleyserviceComponent from "../../grassvallyservicecomponent";
+import Button from 'react-bootstrap/Button';
+import ChicoFooter from "../../footergrassvalley";
+import SanJoseservicesComponent from "../../sanjoseservicecomponent";
+import ChicoNavbarComponent from "../../grassvalleynavcomponent";
 import CaregiverCityComponent from "../../caregiversComponentMainCity";
-import GrassValleyNavComponent from "../../grassvalleynavcomponent";
-import GrassValleyFooterComponent from "../../footergrassvalley";
+import ChicoserviceComponent from "../../grassvallyservicecomponent";
 import Head from "next/head";
 
-export default function GrassValleyComponent() {
+export default function ChicoComponent() {
     const [data, setData] = useState(null); // State for API data
     const [loading, setLoading] = useState(true); // Loading state
     const [error, setError] = useState(null); // Error state
@@ -24,9 +26,8 @@ export default function GrassValleyComponent() {
             .then((response) => response.json())
             .then((responseData) => {
                 if (responseData?.data?.[0]?.attributes?.maincontent) {
-                    console.log(responseData.data[0].attributes.maincontent); // Log the data to inspect the structure
                     setData(responseData.data[0].attributes.maincontent);
-                    setSeoData(responseData.data[0].attributes.seo); 
+                    setSeoData(responseData.data[0].attributes.seo);
                 } else {
                     throw new Error("Invalid data structure received");
                 }
@@ -68,73 +69,127 @@ export default function GrassValleyComponent() {
         return <div>Error: {error}</div>;
     }
 
-// Add this console log to check the full structure of data[4]
-console.log("Data[4] object: ", data[4]);
+    // Helper function to get image URL (if images are available)
+    const getImageUrl = (imageData) => {
+        return imageData ? `https://admin.interimhc.com${imageData.url}` : "";
+    };
 
-// Modify the getImageUrl function to provide a fallback message
-const getImageUrl = (imageData) => {
-    if (imageData && imageData.url) {
-        return `https://admin.interimhc.com${imageData.url}`; // Ensure this matches your Strapi instance URL
-    }
-    return ""; // Return an empty string if there's no image
-};
-
-
-
-
-    // Helper function to render paragraph content with links and bold text
-    const renderTextWithLinksAndBold = (description) => {
-        return description?.map((para, index) => {
+    const renderDescription = (description) => {
+        if (!description || !Array.isArray(description)) return null;
+      
+        const renderedText = new Set(); // Track rendered text to avoid duplicates
+      
+        return description.map((desc, index) => {
+          // Handle paragraphs, ensuring no duplicates or empty paragraphs
+          if (desc.type === "paragraph") {
+            const paragraphContent = desc?.children
+              ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
+              .join("");
+      
+            if (!paragraphContent || renderedText.has(paragraphContent)) return null; // Skip empty or duplicate paragraphs
+            renderedText.add(paragraphContent); // Track rendered paragraph text
+      
             return (
-                <p key={index}>
-                    {para.children?.map((child, childIndex) => {
-                        if (child.type === "link") {
-                            return (
-                                <a key={childIndex} href={child.url} target="_blank" rel="noopener noreferrer">
-                                    {child.children?.[0]?.text}
-                                </a>
-                            );
-                        }
-                        if (child.bold) {
-                            return <strong key={childIndex}>{child.text}</strong>;
-                        }
-                        return child.text;
-                    })}
-                </p>
+              <p key={index} className="py-2">
+                {desc?.children?.map((child, idx) => {
+                  if (child.type === "text") {
+                    return child.bold ? <b key={idx}>{child.text}</b> : child.text;
+                  }
+                  if (child.type === "link") {
+                    return (
+                      <a key={idx} href={child.url} className="phone-link">
+                        {child.children?.[0]?.text || "Link"}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </p>
             );
+          }
+      
+          // Handle unordered lists (bullet points)
+          if (desc.type === "list" && desc.format === "unordered") {
+            return (
+              <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
+                {desc.children?.map((item, itemIndex) => {
+                  const listItemContent = item?.children
+                    ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
+                    .join("");
+      
+                  if (!listItemContent && !item.children?.some(child => child.type === "link")) return null; // Skip empty list items with no links
+      
+                  return (
+                    <li key={itemIndex}>
+                      {item?.children?.map((child, idx) => {
+                        if (child.type === "text") {
+                          return child.bold ? <b key={idx}>{child.text}</b> : child.text;
+                        }
+                        if (child.type === "link") {
+                          return (
+                            <a key={idx} href={child.url} className="phone-link">
+                              {child.children?.[0]?.text || "Link"}
+                            </a>
+                          );
+                        }
+                        return null;
+                      })}
+                    </li>
+                  );
+                })}
+              </ul>
+            );
+          }
+      
+          // Handle headings, ensuring no duplicates
+          if (desc.type === "heading") {
+            const headingContent = desc?.children?.[0]?.text.trim() || "";
+            if (!headingContent || renderedText.has(headingContent)) return null; // Skip empty or duplicate headings
+            renderedText.add(headingContent); // Track rendered heading text
+      
+            const HeadingTag = `h${desc.level}`;
+            return (
+              <HeadingTag key={index} className="section4-heading">
+                {headingContent}
+              </HeadingTag>
+            );
+          }
+      
+          return null;
         });
-    };
-
-    // Helper function to render list items and avoid empty bullets
-    const renderListItems = (list) => {
-        return list?.map((listItem, index) => {
-            const text = listItem.children?.[0]?.text;
-            // Ensure only non-empty text is rendered
-            if (text && text.trim()) {
-                return <li key={index}>{text}</li>;
-            }
-            return null; // Skip empty list items
-        });
-    };
+      };
+      
+      
+         
+     const renderListItems = (list) => {
+            return list.map((listItem, index) => (
+              <li key={index}>
+                {listItem.children?.[0]?.text}
+              </li>
+            ));
+          };
+          
+          
 
     return (
         <div>
-            <GrassValleyNavComponent />
-
+            <ChicoNavbarComponent />
+            
             {/* Banner Section */}
             <div className="section1banner">
                 <Container>
                     <Row className="py-3">
-                        <Col md={7} className="py-5" style={{ paddingRight: "4%" }}>
+                        <Col md={7} className="py-4" style={{paddingRight:"4%"}}>
                             <h1>{data[0]?.Heading}</h1>
                             <p className="py-3">{data[0]?.subHeading}</p>
                             <p>
-                                Choose us and let them thrive. Call us at <a href="tel:530-272-0300" className="phone-link">+1 530-272-0300</a>
-                            </p>
-                            <div className="flex py-5" style={{ paddingRight: "8%" }}>
+                            To schedule your care appointment, call us <a href="tel:+1 530-272-0300" className="phone-link">+1 530-272-0300</a> and let us help you with the right care plan!
+
+              </p>
+                            <div className="flex py-4" style={{paddingRight:"8%"}}>
                                 <div className="iconhome"><i className="bi bi-geo-alt"></i></div>
                                 <div className="icontext px-2"><b>Serving:</b></div>
-                                <div className="citynames">Nevada County | Grass Valley | Nevada City</div>
+                                <div className="citynames"><a href="/service-areas/grass-valley/nevada-city">Nevada City</a></div>
                             </div>
                         </Col>
                         <Col md={5} className="formcoloumcity">
@@ -146,14 +201,18 @@ const getImageUrl = (imageData) => {
 
             {/* <div style={{ backgroundColor: '#015979', height: '145px' }}></div> */}
 
-            <GrassValleyserviceComponent />
-            {/* <CaregiverCityComponent /> */}
+            <div>
+                <ChicoserviceComponent />
+            </div>
+
+
+            <CaregiverCityComponent/>
 
             {/* Section 2 (Left Image, Right Content) */}
             <div className="section2city">
                 <Container fluid>
                     <Row className="py-4">
-                        <Col md={5} className="px-5">
+                        <Col md={6} className="px-5">
                             <Image
                                 src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically
                                 alt="City Image"
@@ -163,7 +222,7 @@ const getImageUrl = (imageData) => {
                         </Col>
                         <Col md={6} style={{ paddingLeft: '3em', paddingRight: '3em' }}>
                             <h2 className="heading2 py-4">{data[1]?.Heading}</h2>
-                            <div className="py-2">{renderTextWithLinksAndBold(data[1]?.description)}</div>
+                            <p className="py-2">{renderDescription(data[1]?.description)}</p>
                         </Col>
                     </Row>
                 </Container>
@@ -175,9 +234,9 @@ const getImageUrl = (imageData) => {
                     <Row>
                         <Col md={6} style={{ paddingRight: '3em', paddingLeft: '3em' }}>
                             <h2 className="heading2 py-4">{data[2]?.Heading}</h2>
-                            <div>{renderTextWithLinksAndBold(data[2]?.description)}</div>
+                            <p>{renderDescription(data[2]?.description)}</p>
                         </Col>
-                        <Col md={6}>
+                        <Col md={6} className="px-5">
                             <Image
                                 src={getImageUrl(data[2]?.image?.data?.attributes)} // Fetch image dynamically
                                 alt="City Image"
@@ -203,7 +262,7 @@ const getImageUrl = (imageData) => {
                         </Col>
                         <Col md={8} style={{ paddingLeft: '3em' }}>
                             <h2 className="heading2">{data[3]?.Heading}</h2>
-                            <div>{renderTextWithLinksAndBold(data[3]?.description)}</div>
+                            <p>{renderDescription(data[3]?.description)}</p>
                         </Col>
                     </Row>
                 </Container>
@@ -213,27 +272,27 @@ const getImageUrl = (imageData) => {
             <div className="section4city py-5">
                 <Container>
                     <Row className="py-3">
-                        <Col md={2}></Col>
-                        <Col md={8}>
+                        {/* <Col md={0}></Col> */}
+                        <Col md={12}>
                             <h2 className="heading2" style={{ textAlign: 'center' }}>{data[4]?.Heading}</h2>
                             <p style={{ textAlign: 'center' }} className="py-2">{data[4]?.subHeading}</p>
                         </Col>
                         <Col md={2}></Col>
                     </Row>
                     <Row className="py-4">
-                    <Col md={6} className="px-5">
-    <Image
-        src={getImageUrl(data[4]?.img?.data?.attributes)} // Corrected image access path
-        alt="Service Image"
-        width={data[4]?.img?.data?.attributes?.width}
-        height={data[4]?.img?.data?.attributes?.height}
-    />
-</Col>
-                        <Col md={6} style={{ paddingLeft: '3em' }}>
-                            <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-                                {renderListItems(data[4]?.description?.[0]?.children)}
-                            </ul>
-                            {renderTextWithLinksAndBold(data[4]?.description)}
+                        <Col md={5} >
+                            <Image
+                                src={getImageUrl(data[4]?.img?.data?.attributes)} // Fetch image dynamically
+                                alt="Service Image"
+                                width={data[4]?.img?.data?.attributes?.width}
+                                height={data[4]?.img?.data?.attributes?.height}
+                            />
+                        </Col>
+                        <Col md={7} style={{ paddingLeft: '3em' }}>
+                           
+                            {/* <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
+                            {renderListItems(data[4]?.description?.[0]?.children)} </ul> */}
+                            {renderDescription(data[4]?.description)}
                         </Col>
                     </Row>
                 </Container>
@@ -245,19 +304,65 @@ const getImageUrl = (imageData) => {
                     <Row>
                         <Col>
                             <h2 className="heading2city py-3">{data[5]?.Heading}</h2>
-                            <div style={{ textAlign: 'center' }}>{renderTextWithLinksAndBold(data[5]?.description)}</div>
+                            <p style={{ textAlign: 'center' }}>{renderDescription(data[5]?.description)}</p>
                         </Col>
                     </Row>
                 </Container>
             </div>
 
-            {/* Final Section */}
-         
+            {/* Final Section
+            <div className="section6city py-5">
+                <Container>
+                    <Row>
+                        <Col md={2}></Col>
+                        <Col md={8}>
+                            <h2 className="heading2citysub">{data[6]?.Heading}</h2>
+                            <p style={{ color: '#ffff', textAlign: 'center' }} className="py-2">
+                                {data[6]?.description?.[0]?.children?.[0]?.text}
+                            </p>
+                        </Col>
+                        <Col md={2}></Col>
+                    </Row>
+                    <Row className="subcitysec py-5 px-5 my-4"> */}
+                        {/* Render City Names */}
+                        {/* {data[6]?.description.slice(2).map((city, index) => (
+  <Col md={4} key={index}>
+    <div className="flex py-2">
+      <div className="iconcity"><i className="bi bi-chevron-right"></i></div>
+      <div>
+        <p style={{ color: '#004b66' }}>
+          <b>
+            {city.children?.map((child, childIndex) => {
+              if (child.type === "text") {
+                return child.text; // Render plain text if available
+              }
+              if (child.type === "link") {
+                return (
+                  <a 
+                    key={childIndex} 
+                    href={child.url} 
+                    style={{ color: '#004b66', textDecoration: 'none' }}
+                  >
+                    {child.children?.[0]?.text || "Link"}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </b>
+        </p>
+      </div>
+    </div>
+  </Col>
+))}
+                    </Row>
+                </Container>
+            </div> */}
             <Head>
         <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
         <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
-      </Head>
-            <GrassValleyFooterComponent />
+      </Head>        
+            < ChicoFooter/>
         </div>
     );
 }
