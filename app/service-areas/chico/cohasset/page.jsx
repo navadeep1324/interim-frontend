@@ -99,7 +99,7 @@ export default function BiggsComponent() {
       // Handle paragraphs
       if (desc.type === "paragraph") {
         return (
-          <p key={index} className="py-3">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
                 return child.text;
@@ -181,8 +181,8 @@ export default function BiggsComponent() {
               <p className="py-3">{data[0]?.subHeading}</p>
               <p>
                 To know more about our personalized in-home care plans, Call{" "}
-                <a href="tel: +1 530-899-9777 " className="phone-link">
-                +1 530-899-9777 
+                <a href="tel:+1 530-899-9777" className="phone-link">
+                +1 530-899-9777
                 </a>
               </p>
               <SubcityCaregiversComponent />

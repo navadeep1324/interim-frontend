@@ -99,7 +99,7 @@ export default function NevadaComponent() {
       // Handle paragraphs
       if (desc.type === "paragraph") {
         return (
-          <p key={index} className="py-3">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
                 return child.text;
@@ -199,14 +199,14 @@ export default function NevadaComponent() {
       <div>
         <Container fluid>
           <Row className="py-5 middlealign">
-            <Col md={6}>
+            <Col md={4}>
             <Image
                 src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"
                 width={data[1]?.image?.data?.attributes?.width} 
                 height={data[1]?.image?.data?.attributes?.height} 
               />    
-            </Col>      <Col md={6} className="redding-col2 px-5">
+            </Col>      <Col md={8} className="redding-col2 px-5">
               <h2 className="heading2">{data[1]?.Heading}</h2>
               <p className="py-2">{renderDescription(data[1]?.description)}</p>
             </Col>
@@ -230,7 +230,7 @@ export default function NevadaComponent() {
 
         <Container className="section4subcity py-5">
           <Row>
-            <Col md={9} className="px-5">
+            <Col md={8} className="px-5">
               <h5 className="heading5subcity">
                 {data[2]?.description[0]?.children[0]?.text ||
                   "Our primary in-home care services include:"}
@@ -242,7 +242,7 @@ export default function NevadaComponent() {
               </p>
             </Col>
 
-            <Col md={3}>
+            <Col md={4}>
             <Image
                 src={getImageUrl(data[2]?.img?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"

@@ -25,7 +25,7 @@ export default function BiggsComponent() {
 
   useEffect(() => {
     fetch(
-      "https://admin.interimhc.com/api/chico-durhams?populate[maincontent][populate]=*&populate[seo]=*"
+      "https://admin.interimhc.com/api/chico-forest-ranches?populate[maincontent][populate]=*&populate[seo]=*"
     )
       .then((response) => response.json())
       .then((responseData) => {
@@ -99,7 +99,7 @@ export default function BiggsComponent() {
       // Handle paragraphs
       if (desc.type === "paragraph") {
         return (
-          <p key={index} className="py-3">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
                 return child.text;
@@ -181,8 +181,8 @@ export default function BiggsComponent() {
               <p className="py-3">{data[0]?.subHeading}</p>
               <p>
                 To know more about our personalized in-home care plans, Call{" "}
-                <a href="tel:+1 775-883-4455" className="phone-link">
-                  +1 775-883-4455
+                <a href="tel:+1 530-899-9777" className="phone-link">
+                +1 530-899-9777
                 </a>
               </p>
               <SubcityCaregiversComponent />
@@ -199,14 +199,14 @@ export default function BiggsComponent() {
       <div>
         <Container fluid>
           <Row className="py-5 middlealign">
-            <Col md={6}>
+            <Col md={5}>
             <Image
                 src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"
                 width={data[1]?.image?.data?.attributes?.width} 
                 height={data[1]?.image?.data?.attributes?.height} 
               />    
-            </Col>      <Col md={6} className="redding-col2 px-5">
+            </Col>      <Col md={7} className="redding-col2 px-5">
               <h2 className="heading2">{data[1]?.Heading}</h2>
               <p className="py-2">{renderDescription(data[1]?.description)}</p>
             </Col>
@@ -237,8 +237,7 @@ export default function BiggsComponent() {
               </h5>
               {renderList(data[2]?.description[1]?.children)}
               <p>
-                {data[2]?.description[2]?.children?.[0]?.text ||
-                  "Fallback description about care services."}
+                {data[2]?.description[2]?.children?.[0]?.text}
               </p>
             </Col>
 
@@ -256,14 +255,14 @@ export default function BiggsComponent() {
       <div className="py-5">
         <Container>
           <Row>
-            <Col md={4} style={{ paddingRight: "25px" }}>
+            <Col md={3} style={{ paddingRight: "25px" }}>
             <Image
                 src={getImageUrl(data[3]?.image?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"
                 width={data[3]?.image?.data?.attributes?.width} 
                 height={data[3]?.image?.data?.attributes?.height} 
               />            </Col>
-            <Col md={8}>
+            <Col md={9}>
               <h2 className="heading2">{data[3]?.Heading || "Quality Care from Our Expert Team"}</h2>
               {renderDescription(data[3]?.description)}
             </Col>
