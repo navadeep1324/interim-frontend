@@ -14,11 +14,11 @@ export default function ThankyouComponent() {
 <NavbarComponent/>
 <div className="thankpagesec1">
 <Container>
-    <Row className="py-5">
+    <Row className="">
         <Col>
         <p style={{textAlign:'center',color:'#ffff',fontSize:'30px',fontWeight:'600'}}>Thank you for submitting the form</p>
         <p style={{textAlign:'center',fontSize:'20px',color:'#ffff'}}>Our team will be in touch with you shortly.<br></br>
-        To know more about us, please visit here.</p>
+        To know more about us, please visit <a href="/" className="thankyou">here.</a></p>
         </Col>
     </Row>
 </Container>

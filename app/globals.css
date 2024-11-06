@@ -54,6 +54,7 @@ a:hover {
     --background-end-rgb: 0, 0, 0;
   }
 }
+
 .heading-font {
   font-family: 'Merriweather', serif !important;
 }
@@ -698,15 +699,17 @@ h1{
   }
   .thankpagesec1{
     background-color: rgb(216, 28, 66);
-    height: 200px;
-    /* vertical-align: middle; */
     display: flex;
     justify-content: center;
     align-items: center;
-    padding-top: 10%;
-  padding-bottom: 10%;
+   padding: 12% 0 10% 0
   }
-  
+  .thankyou{
+    text-decoration: underline;
+  }
+  .thankyou:hover{
+    color: #ffffff !important;
+  }
   /* Apply to all input placeholders */
 input::placeholder {
   font-size: 13px !important; /* Adjust the size as needed */
@@ -1328,6 +1331,13 @@ a.page_buttonhome__SB1Lw{
 @media only screen and (max-width: 768px) {
 .homebannerimgcol{
   padding-top:8% ;
+}
+.thankpagesec1{
+  background-color: rgb(216, 28, 66);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+ padding: 40% 5% 20% 5%;
 }
 .redding-col2{
   padding: 0 5%;

@@ -262,7 +262,7 @@ export default function MoundHouseComponent() {
 
       <div>
         <Container fluid>
-          <Row className="py-5 middlealign px-5">
+          <Row className="py-5 middlealign">
             <Col md={5}>
             <Image
                                 src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically
@@ -306,7 +306,12 @@ export default function MoundHouseComponent() {
             </Col>
 
             <Col md={3}>
-              {renderImage(data[2]?.img?.data, "Caregiver Image 1")} {/* Render Strapi image */}
+            <Image
+                                src={getImageUrl(data[2]?.image?.data?.attributes)} // Fetch image dynamically
+                                alt="City Image"
+                                width={data[2]?.image?.data?.attributes?.width}
+                                height={data[2]?.image?.data?.attributes?.height}
+                            /> 
             </Col>
           </Row>
         </Container>
@@ -315,10 +320,15 @@ export default function MoundHouseComponent() {
       <div className="py-5">
         <Container>
           <Row>
-            <Col md={4} style={{ paddingRight: "25px" }}>
-              {renderImage(data[3]?.image?.data, "Quality Care Image")} {/* Render Strapi image */}
+            <Col md={5} style={{ paddingRight: "25px" }}>
+            <Image
+                                src={getImageUrl(data[3]?.image?.data?.attributes)} // Fetch image dynamically
+                                alt="City Image"
+                                width={data[3]?.image?.data?.attributes?.width}
+                                height={data[3]?.image?.data?.attributes?.height}
+                            /> 
             </Col>
-            <Col md={8}>
+            <Col md={7}>
               <h2 className="heading2">{data[3]?.Heading || "Quality Care from Our Expert Team"}</h2>
               {renderDescription(data[3]?.description)}
             </Col>
