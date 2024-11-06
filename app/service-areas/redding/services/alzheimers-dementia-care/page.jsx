@@ -69,7 +69,7 @@ export default function AlzheimerMainComponent() {
   }, [seoData]);
 
   if (loading) {
-    return <div>Loading...</div>;
+    return //<div>Loading...</div>;
   }
 
   if (error) {

@@ -57,7 +57,7 @@ export default function AlzheimerMainComponent() {
   }, [seoData]);
   // If data is not yet available, show a loading state
   if (!data) {
-    return // <div>Loading...</div>;
+    return // //<div>Loading...</div>;
   }
 
   // Helper function to build the image URL from Strapi

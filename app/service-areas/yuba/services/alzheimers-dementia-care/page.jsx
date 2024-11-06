@@ -48,7 +48,7 @@ useEffect(() => {
   }
 }, [seoData]);
   if (!data) {
-    return // <div>Loading...</div>;
+    return // //<div>Loading...</div>;
   }
 
   const getImageUrl = (imageData) => {

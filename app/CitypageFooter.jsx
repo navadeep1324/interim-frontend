@@ -24,7 +24,7 @@ export default function CitypageFooter() {
         fetchData();
     }, []);
 
-    if (!footerData) return // <div>Loading...</div>;
+    if (!footerData) return // //<div>Loading...</div>;
 
     // Find the relevant components in footerData
     const footerMain = footerData.find(item => item.__component === "components.footer-main");

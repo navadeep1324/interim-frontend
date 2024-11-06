@@ -60,7 +60,7 @@ export default function HourcareComponent() {
   }, [seoData]);
 
   if (loading) {
-    return; // <div>Loading...</div>;
+    return; // //<div>Loading...</div>;
   }
 
   if (error) {

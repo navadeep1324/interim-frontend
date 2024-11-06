@@ -57,7 +57,7 @@ export default function AlzheimerMainComponent() {
   }, [seoData]);
 
   if (loading) {
-    return <div>Loading...</div>; // Can be customized with a spinner if needed
+    return //<div>Loading...</div>; // Can be customized with a spinner if needed
   }
 
   if (error) {
