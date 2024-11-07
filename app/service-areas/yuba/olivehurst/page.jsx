@@ -255,14 +255,14 @@ export default function NevadaComponent() {
       <div className="py-5">
         <Container>
           <Row>
-            <Col md={4} style={{ paddingRight: "25px" }}>
+            <Col md={6} style={{ paddingRight: "25px" }}>
             <Image
                 src={getImageUrl(data[3]?.image?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"
                 width={data[3]?.image?.data?.attributes?.width} 
                 height={data[3]?.image?.data?.attributes?.height} 
               />            </Col>
-            <Col md={8}>
+            <Col md={6}>
               <h2 className="heading2">{data[3]?.Heading || "Quality Care from Our Expert Team"}</h2>
               {renderDescription(data[3]?.description)}
             </Col>
