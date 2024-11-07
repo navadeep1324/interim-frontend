@@ -259,8 +259,7 @@ export default function MoundHouseComponent() {
               </h5>
               {renderList(data[2]?.description[1]?.children)}
               <p>
-                {data[2]?.description[2]?.children?.[0]?.text ||
-                  "Fallback description about care services."}
+                {data[2]?.description[2]?.children?.[0]?.text}
               </p>
             </Col>
 
