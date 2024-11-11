@@ -231,19 +231,18 @@ export default function MoundHouseComponent() {
 
         <Container className="section4subcity py-5">
           <Row>
-            <Col md={9} className="px-5">
+            <Col md={8} className="px-5">
               <h5 className="heading5subcity">
                 {data[2]?.description[0]?.children[0]?.text ||
                   "Our primary in-home care services include:"}
               </h5>
               {renderList(data[2]?.description[1]?.children)}
               <p>
-                {data[2]?.description[2]?.children?.[0]?.text ||
-                  "Fallback description about care services."}
+                {data[2]?.description[2]?.children?.[0]?.text}
               </p>
             </Col>
 
-            <Col md={3}>
+            <Col md={4}>
             <Image
                 src={getImageUrl(data[2]?.img?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"
@@ -258,14 +257,14 @@ export default function MoundHouseComponent() {
       <div className="py-5">
         <Container>
           <Row>
-            <Col md={5} style={{ paddingRight: "25px" }}>
+            <Col md={4} style={{ paddingRight: "25px" }}>
             <Image
                 src={getImageUrl(data[3]?.image?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"
                 width={data[3]?.image?.data?.attributes?.width} 
                 height={data[3]?.image?.data?.attributes?.height} 
               />             </Col>
-            <Col md={7}>
+            <Col md={8}>
               <h2 className="heading2">{data[3]?.Heading || "Quality Care from Our Expert Team"}</h2>
               {renderDescription(data[3]?.description)}
             </Col>

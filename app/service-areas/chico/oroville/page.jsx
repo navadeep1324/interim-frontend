@@ -181,8 +181,8 @@ export default function BiggsComponent() {
               <p className="py-3">{data[0]?.subHeading}</p>
               <p>
                 To know more about our personalized in-home care plans, Call{" "}
-                <a href="tel:+1 775-883-4455" className="phone-link">
-                  +1 775-883-4455
+                <a href="tel:+1 530-899-9777" className="phone-link">
+                +1 530-899-9777
                 </a>
               </p>
               <SubcityCaregiversComponent />
@@ -199,14 +199,14 @@ export default function BiggsComponent() {
       <div>
         <Container fluid>
           <Row className="py-5 middlealign">
-            <Col md={6}>
+            <Col md={4}>
             <Image
                 src={getImageUrl(data[1]?.image?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"
                 width={data[1]?.image?.data?.attributes?.width} 
                 height={data[1]?.image?.data?.attributes?.height} 
               />    
-            </Col>      <Col md={6} className="redding-col2 px-5">
+            </Col>      <Col md={8} className="redding-col2 px-5">
               <h2 className="heading2">{data[1]?.Heading}</h2>
               <p className="py-2">{renderDescription(data[1]?.description)}</p>
             </Col>
@@ -230,7 +230,7 @@ export default function BiggsComponent() {
 
         <Container className="section4subcity py-5">
           <Row>
-            <Col md={9} className="px-5">
+            <Col md={8} className="px-5">
               <h5 className="heading5subcity">
                 {data[2]?.description[0]?.children[0]?.text ||
                   "Our primary in-home care services include:"}
@@ -241,7 +241,7 @@ export default function BiggsComponent() {
               </p>
             </Col>
 
-            <Col md={3}>
+            <Col md={4}>
             <Image
                 src={getImageUrl(data[2]?.img?.data?.attributes)} // Fetch image dynamically from the API
                 alt="City Image"

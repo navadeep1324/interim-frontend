@@ -32,6 +32,7 @@ export default function Home() {
         setSeoData(response.data.data[0].attributes.seo); // Assuming seoData is in response.data.data[0].attributes.seo
       } catch (err) {
         console.error("Error fetching data:", err);
+        
         setError(err);
       } finally {
         setLoading(false);
@@ -60,20 +61,19 @@ export default function Home() {
         document.head.appendChild(newMetaDescription);
       }
   
-      // Set meta image (OpenGraph image)
-      if (seo.metaImage?.data?.attributes?.url) {
-        const metaImageUrl = `${BASE_URL}${seo.metaImage.data.attributes.url}`;
-        const ogImageMeta = document.querySelector('meta[property="og:image"]');
-        if (ogImageMeta) {
-          ogImageMeta.setAttribute("content", metaImageUrl);
-        } else {
-          const newOgImageMeta = document.createElement("meta");
-          newOgImageMeta.setAttribute("property", "og:image");
-          newOgImageMeta.setAttribute("content", metaImageUrl);
-          document.head.appendChild(newOgImageMeta);
-        }
-      }
-  
+    // Set meta image (OpenGraph image)
+if (seo.metaImage?.data?.attributes?.url) {
+  const metaImageUrl = `${BASE_URL}${seo.metaImage.data.attributes.url}`;
+  let ogImageMeta = document.querySelector('meta[property="og:image"]');
+  if (!ogImageMeta) {
+    ogImageMeta = document.createElement("meta");
+    ogImageMeta.setAttribute("property", "og:image");
+    document.head.appendChild(ogImageMeta);
+  }
+  ogImageMeta.setAttribute("content", metaImageUrl);
+  console.log("Featured Image URL:", metaImageUrl);
+}
+
       // Set meta social (Facebook, Twitter) information
       seo.metaSocial?.forEach(social => {
         const socialImageUrl = `${BASE_URL}${social.image.data.attributes.url}`;

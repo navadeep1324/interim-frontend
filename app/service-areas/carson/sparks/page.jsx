@@ -99,7 +99,7 @@ export default function MoundHouseComponent() {
       // Handle paragraphs
       if (desc.type === "paragraph") {
         return (
-          <p key={index} className="py-3">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === "text") {
                 return child.text;
