@@ -20,7 +20,7 @@ export default function SanJoseservicesComponent() {
 
         >
           <Col md={2} className="servicecoloumcity mx-1">
-            <Link href="/service-areas/grass-valley/services/services/companion-care/" passHref>
+            <Link href="/service-areas/grass-valley/services/companion-care/" passHref>
               <div style={{ textAlign: "center" }}>
                 <h4 className="titleservice py-2">Companion Care</h4>
                 <Image
@@ -32,7 +32,7 @@ export default function SanJoseservicesComponent() {
             </Link>
           </Col>
           <Col md={2} className="servicecoloumcity mx-1">
-            <Link href="/service-areas/grass-valley/services/services/personal-care/" passHref>
+            <Link href="/service-areas/grass-valley/services/personal-care/" passHref>
               <div style={{ textAlign: "center" }}>
                 <h4 className="titleservice py-2">Personal Care</h4>
                 <Image
@@ -44,7 +44,7 @@ export default function SanJoseservicesComponent() {
             </Link>
           </Col>
           <Col md={2} className="servicecoloumcity mx-1">
-            <Link href="/service-areas/grass-valley/services/services/24-hour-care/" passHref>
+            <Link href="/service-areas/grass-valley/services/24-hour-care/" passHref>
               <div style={{ textAlign: "center" }}>
                 <h4 className="titleservice py-2">24 Hour Home Care</h4>
                 <Image
@@ -56,7 +56,7 @@ export default function SanJoseservicesComponent() {
             </Link>
           </Col>
           <Col md={2} className="servicecoloumcity mx-1">
-            <Link href="/service-areas/grass-valley/services/services/veteran-care/" passHref>
+            <Link href="/service-areas/grass-valley/services/veteran-care/" passHref>
               <div style={{ textAlign: "center" }}>
                 <h4 className="titleservice py-2">Veteran Care</h4>
                 <Image
@@ -68,7 +68,7 @@ export default function SanJoseservicesComponent() {
             </Link>
           </Col>
           <Col md={2} className="servicecoloumcity mx-1">
-            <Link href="/service-areas/grass-valley/services/services/respite-care/" passHref>
+            <Link href="/service-areas/grass-valley/services/respite-care/" passHref>
               <div style={{ textAlign: "center" }}>
                 <h4 className="titleservice py-2">Respite Care</h4>
                 <Image
