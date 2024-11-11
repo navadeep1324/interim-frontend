@@ -54,23 +54,26 @@ export default function VeteranCareComponent() {
     }
     return null;
   };
-
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
-    
+  
     return description.map((desc, index) => {
       // Handle paragraphs
-      if (desc.type === 'paragraph') {
+      if (desc.type === "paragraph") {
         return (
-          <p key={index} className="py-3">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
-              if (child.type === 'text') {
-                return child.text;
+              if (child.type === "text") {
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                    {child.text}
+                  </span>
+                );
               }
-              if (child.type === 'link') {
+              if (child.type === "link") {
                 return (
                   <a key={idx} href={child.url} className="phone-link">
-                    {child.children?.[0]?.text || 'Link'}
+                    {child.children?.[0]?.text || "Link"}
                   </a>
                 );
               }
@@ -81,12 +84,16 @@ export default function VeteranCareComponent() {
       }
   
       // Handle unordered lists (bullet points)
-      if (desc.type === 'list' && desc.format === 'unordered') {
+      if (desc.type === "list" && desc.format === "unordered") {
         return (
-          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+          <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
             {desc.children?.map((item, itemIndex) => (
               <li key={itemIndex}>
-                {item?.children?.[0]?.text || ""}
+                {item?.children?.map((child, idx) => (
+                  <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                    {child.text || ""}
+                  </span>
+                ))}
               </li>
             ))}
           </ul>
@@ -94,11 +101,15 @@ export default function VeteranCareComponent() {
       }
   
       // Handle headings (Assuming heading level comes from 'level' property in your JSON)
-      if (desc.type === 'heading') {
+      if (desc.type === "heading") {
         const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
         return (
           <HeadingTag key={index} className="section4-heading">
-            {desc?.children?.[0]?.text || ""}
+            {desc?.children?.map((child, idx) => (
+              <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                {child.text || ""}
+              </span>
+            ))}
           </HeadingTag>
         );
       }
@@ -106,6 +117,7 @@ export default function VeteranCareComponent() {
       return null;
     });
   };
+  
 
   return (
     <div>
@@ -127,10 +139,10 @@ export default function VeteranCareComponent() {
       <div className="section3bg">
         <Container>
           <Row className="row3bg py-5 middlealign">
-            <Col md="4">
+            <Col md="3">
               {renderImage(data.maincontent[1].img.data.attributes, "Veteran Care Service", 595, 780)}
             </Col>
-            <Col md="8">
+            <Col md="9">
               <h2 className="heading2">{data.maincontent[1].Heading}</h2>
               {renderDescription(data.maincontent[1].description)}
             </Col>

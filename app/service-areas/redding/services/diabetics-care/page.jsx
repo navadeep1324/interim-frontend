@@ -104,20 +104,24 @@ export default function DiabetesCareComponent() {
 
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
-    
+  
     return description.map((desc, index) => {
       // Handle paragraphs
-      if (desc.type === 'paragraph') {
+      if (desc.type === "paragraph") {
         return (
-          <p key={index} className="py-1">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
-              if (child.type === 'text') {
-                return child.text;
+              if (child.type === "text") {
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? '400' : 'normal' }}>
+                    {child.text}
+                  </span>
+                );
               }
-              if (child.type === 'link') {
+              if (child.type === "link") {
                 return (
                   <a key={idx} href={child.url} className="phone-link">
-                    {child.children?.[0]?.text || 'Link'}
+                    {child.children?.[0]?.text || "Link"}
                   </a>
                 );
               }
@@ -128,12 +132,16 @@ export default function DiabetesCareComponent() {
       }
   
       // Handle unordered lists (bullet points)
-      if (desc.type === 'list' && desc.format === 'unordered') {
+      if (desc.type === "list" && desc.format === "unordered") {
         return (
-          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+          <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
             {desc.children?.map((item, itemIndex) => (
               <li key={itemIndex}>
-                {item?.children?.[0]?.text || ""}
+                {item?.children?.map((child, idx) => (
+                  <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                    {child.text || ""}
+                  </span>
+                ))}
               </li>
             ))}
           </ul>
@@ -141,11 +149,15 @@ export default function DiabetesCareComponent() {
       }
   
       // Handle headings (Assuming heading level comes from 'level' property in your JSON)
-      if (desc.type === 'heading') {
+      if (desc.type === "heading") {
         const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
         return (
           <HeadingTag key={index} className="section4-heading">
-            {desc?.children?.[0]?.text || ""}
+            {desc?.children?.map((child, idx) => (
+              <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                {child.text || ""}
+              </span>
+            ))}
           </HeadingTag>
         );
       }
@@ -153,6 +165,7 @@ export default function DiabetesCareComponent() {
       return null;
     });
   };
+  
 
   return (
     <div>
@@ -175,7 +188,7 @@ export default function DiabetesCareComponent() {
                   <span key={index}>{str}<br /></span>
                   
                 ))}
-               <br></br> Contact us today at <a href="tel:(530) 221-1212" className="phone-link">(530) 221-1212 </a>to give your loved ones a happier and healthier life! 
+               <br></br> Contact us today at <a href="tel:(530) 221-1212" className="phone-link">+1 530-221-1212 </a>to give your loved ones a happier and healthier life! 
               </p>
             </Col>
             <Col md="6">
@@ -239,7 +252,7 @@ export default function DiabetesCareComponent() {
             <Col md={6} className="section4sub-sanjose-col1">
               <h2 className="heading2">{diabetesData?.maincontent[4]?.Heading}</h2>
               {renderDescription(diabetesData?.maincontent[4]?.description)}
-              <Button className="Contactbtn py-3 my-3" href="tel:/contact-us">
+              <Button className="Contactbtn py-3 my-3" href="/contact-us">
                 Contact Us
               </Button>
             </Col>

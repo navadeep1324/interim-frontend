@@ -100,20 +100,30 @@ export default function VeteranCareComponent() {
   };
 
   const renderDescription = (description) => {
-    if (!description || !Array.isArray(description)) return null;
-    
-    return description.map((desc, index) => {
-      // Handle paragraphs
-      if (desc.type === 'paragraph') {
+    return description?.map((desc, index) => {
+      // Check if the paragraph contains any text before rendering
+      if (desc.type === 'paragraph' && desc?.children?.some(child => child.type === 'text' && child.text.trim() !== "")) {
         return (
-          <p key={index} className="py-3">
+          <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === 'text') {
-                return child.text;
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                    {child.text}
+                  </span>
+                );
               }
               if (child.type === 'link') {
+                const isExternalLink = child.url.startsWith('http');
                 return (
-                  <a key={idx} href={child.url} className="phone-link">
+                  <a
+                    key={idx}
+                    href={child.url}
+                    className="phone-link"
+                    target={isExternalLink ? "_blank" : "_self"}
+                    rel={isExternalLink ? "noopener noreferrer" : ""}
+                    style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                  >
                     {child.children?.[0]?.text || 'Link'}
                   </a>
                 );
@@ -123,26 +133,53 @@ export default function VeteranCareComponent() {
           </p>
         );
       }
-  
-      // Handle unordered lists (bullet points)
-      if (desc.type === 'list' && desc.format === 'unordered') {
+      
+      // Check if list contains text before rendering
+      if (desc.type === 'list' && desc.format === 'unordered' && desc.children?.length > 0) {
         return (
           <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
             {desc.children?.map((item, itemIndex) => (
               <li key={itemIndex}>
-                {item?.children?.[0]?.text || ""}
+                {item?.children?.map((child, idx) => {
+                  if (child.type === 'text' && child.text.trim() !== "") {
+                    return (
+                      <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                        {child.text}
+                      </span>
+                    );
+                  }
+                  if (child.type === 'link') {
+                    const isExternalLink = child.url.startsWith('http');
+                    return (
+                      <a
+                        key={idx}
+                        href={child.url}
+                        className="phone-link"
+                        target={isExternalLink ? "_blank" : "_self"}
+                        rel={isExternalLink ? "noopener noreferrer" : ""}
+                        style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                      >
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
               </li>
             ))}
           </ul>
         );
       }
   
-      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
       if (desc.type === 'heading') {
-        const HeadingTag = `h${desc.level}`; // Dynamically select heading tag (h2, h3, etc.)
+        const HeadingTag = `h${desc.level}`;
         return (
           <HeadingTag key={index} className="section4-heading">
-            {desc?.children?.[0]?.text || ""}
+            {desc?.children?.map((child, idx) => (
+              <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                {child.text}
+              </span>
+            ))}
           </HeadingTag>
         );
       }
@@ -150,6 +187,7 @@ export default function VeteranCareComponent() {
       return null;
     });
   };
+  
   
   return (
     <div>
@@ -160,7 +198,7 @@ export default function VeteranCareComponent() {
             <Col md="6">
               <h1 className="heading1">{data?.[0]?.Heading || ""}</h1>
               <p className="paragrambold py-2">{data?.[0]?.subHeading?.split("\n\n")[0] || ""}</p>
-              <p className="py-4">
+              <p className="py-2">
                 {data?.[0]?.subHeading?.split("\n\n")[1] || ""}
                 <br></br>
                 Reach us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408-286-6888</a> to learn how we can assist your aging adults!
@@ -177,10 +215,10 @@ export default function VeteranCareComponent() {
       <div className="section3bg">
         <Container>
           <Row className="row3bg py-5 middlealign ">
-            <Col md="4">
+            <Col md="3">
               {renderImage(data?.[1]?.img?.data?.attributes, "Veteran Care Service", 1785, 2340)}
             </Col>
-            <Col md="8">
+            <Col md="9">
               <h2 className="heading2">{data?.[1]?.Heading || ""}</h2>
               {renderDescription(data?.[1]?.description)}
             </Col>
