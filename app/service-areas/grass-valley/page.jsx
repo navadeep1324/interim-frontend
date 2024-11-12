@@ -75,90 +75,105 @@ export default function ChicoComponent() {
     };
 
     const renderDescription = (description) => {
-        if (!description || !Array.isArray(description)) return null;
-      
-        const renderedText = new Set(); // Track rendered text to avoid duplicates
-      
-        return description.map((desc, index) => {
-          // Handle paragraphs, ensuring no duplicates or empty paragraphs
-          if (desc.type === "paragraph") {
-            const paragraphContent = desc?.children
-              ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
-              .join("");
-      
-            if (!paragraphContent || renderedText.has(paragraphContent)) return null; // Skip empty or duplicate paragraphs
-            renderedText.add(paragraphContent); // Track rendered paragraph text
-      
-            return (
-              <p key={index} className="py-2">
-                {desc?.children?.map((child, idx) => {
-                  if (child.type === "text") {
-                    return child.bold ? <b key={idx}>{child.text}</b> : child.text;
-                  }
-                  if (child.type === "link") {
-                    return (
-                      <a key={idx} href={child.url} className="phone-link">
-                        {child.children?.[0]?.text || "Link"}
-                      </a>
-                    );
-                  }
-                  return null;
-                })}
-              </p>
-            );
-          }
-      
-          // Handle unordered lists (bullet points)
-          if (desc.type === "list" && desc.format === "unordered") {
-            return (
-              <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
-                {desc.children?.map((item, itemIndex) => {
-                  const listItemContent = item?.children
-                    ?.map((child) => (child.type === "text" ? child.text.trim() : ""))
-                    .join("");
-      
-                  if (!listItemContent && !item.children?.some(child => child.type === "link")) return null; // Skip empty list items with no links
-      
+      if (!description || !Array.isArray(description)) return null;
+    
+      return description.map((desc, index) => {
+        // Handle paragraphs
+        if (desc.type === 'paragraph') {
+          const hasValidContent = desc?.children?.some((child) => {
+            if (child.type === 'text' && child.text.trim() !== '') return true;
+            if (child.type === 'link' && child.url) return true;
+            return false;
+          });
+    
+          if (!hasValidContent) return null;
+    
+          return (
+            <p key={index} className="py-2">
+              {desc?.children?.map((child, idx) => {
+                if (child.type === 'text') {
                   return (
-                    <li key={itemIndex}>
-                      {item?.children?.map((child, idx) => {
-                        if (child.type === "text") {
-                          return child.bold ? <b key={idx}>{child.text}</b> : child.text;
-                        }
-                        if (child.type === "link") {
-                          return (
-                            <a key={idx} href={child.url} className="phone-link">
-                              {child.children?.[0]?.text || "Link"}
-                            </a>
-                          );
-                        }
-                        return null;
-                      })}
-                    </li>
+                    <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                      {child.text}
+                    </span>
                   );
-                })}
-              </ul>
-            );
-          }
-      
-          // Handle headings, ensuring no duplicates
-          if (desc.type === "heading") {
-            const headingContent = desc?.children?.[0]?.text.trim() || "";
-            if (!headingContent || renderedText.has(headingContent)) return null; // Skip empty or duplicate headings
-            renderedText.add(headingContent); // Track rendered heading text
-      
-            const HeadingTag = `h${desc.level}`;
-            return (
-              <HeadingTag key={index} className="section4-heading">
-                {headingContent}
-              </HeadingTag>
-            );
-          }
-      
-          return null;
-        });
-      };
-      
+                }
+                if (child.type === 'link') {
+                  const isExternalLink = child.url.startsWith('http');
+                  return (
+                    <a
+                      key={idx}
+                      href={child.url}
+                      className="phone-link"
+                      target={isExternalLink ? "_blank" : "_self"}
+                      rel={isExternalLink ? "noopener noreferrer" : ""}
+                      style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                    >
+                      {child.children?.[0]?.text || 'Link'}
+                    </a>
+                  );
+                }
+                return null;
+              })}
+            </p>
+          );
+        }
+    
+        // Handle unordered lists (bullet points)
+        if (desc.type === 'list' && desc.format === 'unordered') {
+          return (
+            <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+              {desc.children?.map((item, itemIndex) => (
+                <li key={itemIndex}>
+                  {item?.children?.map((child, idx) => {
+                    if (child.type === 'text') {
+                      return (
+                        <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                          {child.text}
+                        </span>
+                      );
+                    }
+                    if (child.type === 'link') {
+                      const isExternalLink = child.url.startsWith('http');
+                      return (
+                        <a
+                          key={idx}
+                          href={child.url}
+                          className="phone-link"
+                          target={isExternalLink ? "_blank" : "_self"}
+                          rel={isExternalLink ? "noopener noreferrer" : ""}
+                          style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                        >
+                          {child.children?.[0]?.text || 'Link'}
+                        </a>
+                      );
+                    }
+                    return null;
+                  })}
+                </li>
+              ))}
+            </ul>
+          );
+        }
+    
+        // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+        if (desc.type === 'heading') {
+          const HeadingTag = `h${desc.level}`;
+          return (
+            <HeadingTag key={index} className="section4-heading">
+              {desc?.children?.map((child, idx) => (
+                <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                  {child.text || ""}
+                </span>
+              ))}
+            </HeadingTag>
+          );
+        }
+    
+        return null;
+      });
+    };
+        
       
          
      const renderListItems = (list) => {

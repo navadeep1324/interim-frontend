@@ -10,10 +10,6 @@ import Cupertinomain from "/public/images/Senior-Home-Care-in-Montague.webp";
 import Image from "next/image";
 import Cupertino1 from "/public/images/Senior-In-HomeCare-in-Hat-Creek-ca.webp";
 import Cupertino2 from "/public/images/Home-Care-services.webp";
-import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
-import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
-import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
-import Button from 'react-bootstrap/Button';
 import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
 import Accordion from 'react-bootstrap/Accordion';
@@ -30,7 +26,7 @@ export default function SanJoseCupertinoComponent() {
 <p className="py-3">
 Seniors are a special part of our lives because of their charming persona and their selfless aspirations for us. To repay them for their efforts, choose Interim Healthcare, which has been serving seniors in Single Town compassionately for over two decades. 
  </p>
-<p>Reach out to us at  +1 530-221-1212 for more info!</p>
+<p>Reach out to us at  <a href="tel:+1 530-221-1212" className="phone-link">+1 530-221-1212</a> for more info!</p>
 <SubcityCaregiversComponent/>
     </Col>
     <Col md={4} className="formcoloumcity">

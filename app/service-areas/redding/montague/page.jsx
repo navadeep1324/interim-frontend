@@ -10,10 +10,6 @@ import Cupertinomain from "/public/images/Senior-Home-Care-in-Montague.webp";
 import Image from "next/image";
 import Cupertino1 from "/public/images/Our-Family.webp";
 import Cupertino2 from "/public/images/Home-Care-services.webp";
-import Sanjoseservice1 from "/public/images/Sanjoseservice1.png";
-import Sanjoseservice2 from "/public/images/Sanjoseservice2.png";
-import Sanjoseservice3 from "/public/images/Sanjoseservice3.png";
-import Button from 'react-bootstrap/Button';
 import CitypageFooter from "../../../CitypageFooter";
 import ReddingservicesComponent from "../../../reddingservicesComponent";
 import Accordion from 'react-bootstrap/Accordion';
@@ -108,20 +104,20 @@ At Interim Healthcare, we’re redefining in home care with a focus on comfort, 
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={5}>
+                <Col md={4}>
 <Image src={Cupertino2} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px'}}>
+                <Col md={7} style={{paddingLeft:'25px'}}>
 <h2 className="heading2">Our Family-Centric Approach   </h2>
-<p className="py-3">We recognize that caregiving extends beyond physical assistance—it’s about overall support. Our family-centric approach ensures that everyone involved in a loved one’s care feels supported, informed, and included in the care process. Here’s how we make this possible:  </p>
-<ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}  >
+<p className="py-2">We recognize that caregiving extends beyond physical assistance—it’s about overall support. Our family-centric approach ensures that everyone involved in a loved one’s care feels supported, informed, and included in the care process. Here’s how we make this possible:  </p>
+<ul style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
                 <li> Personalized Family Engagement  </li>
                 <li> Transparent and Ongoing Communication  </li>
                 <li> Collaborative Care Planning  </li>
                 <li> Emotional and Practical Support   </li>
                 <li>Building Strong Relationships   </li>
                 </ul>
-                <br></br>
+                
                 <p>We involve families in the in home care process to create a more holistic and supportive environment. This personalized senior care approach ensures that the care provided aligns with the family's vision and supports their goals for their loved one’s well-being. </p>
                </Col>
             </Row>

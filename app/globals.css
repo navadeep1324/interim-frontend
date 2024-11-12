@@ -678,11 +678,11 @@ h1{
     
   }
   .contactush2{
-    font-family: 'Merriweather', Georgia, "Times New Roman", serif;
+    /* font-family: 'Merriweather', Georgia, "Times New Roman", serif; */
     font-weight: 700;
     font-size: 38px;
     color:#333333;
-    ;
+    letter-spacing: 0.5px;
   }
   .maincontact{
     padding: 20px;
@@ -1248,7 +1248,7 @@ body > div > div > div.section1subcity.py-5 > div {
 ul {
   list-style-type: disc; 
   /* margin-top: -5%; */
-  padding: 2%;
+  padding: 1%;
 }
 li {
 font-size: 18px;
@@ -1268,7 +1268,7 @@ font-size: 18px;
   font-size: 1.3rem; /* Adjust based on the level (e.g., 2rem for h2) */
   font-weight: 500;
   color: #004b66;
-  margin-bottom: 5px;
+  padding: 8px 0;
 }
 
 .section4-subheading {

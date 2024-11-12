@@ -74,19 +74,19 @@ As your loved ones age, they may hesitate to ask for extra help and support. At 
         <div>
             <Container className="section4subcity py-5">
                 <Row>
-                    <Col md={8} className="px-5">
+                    <Col md={7} className="px-5">
                     <h5 className="heading5subcity">Our wide array of in home care services include:   </h5>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
-                <li><p><b>Personal Care and Support </b></p>
+                <li className="py-2"><p><b>Personal Care and Support </b></p>
                 <p>We’re here to assist aging adults with everyday tasks like bathing, dressing, and meal preparation. This helps them to relax while we handle everything. </p>
                 </li>
-                <li><p><b>Companion care </b>  </p>
+                <li className="py-2"><p><b>Companion care </b>  </p>
                 <p>The services of Interim healthcare are designed to bring joy and comfort in seniors’ lives. Our friendly caregivers are here to brighten their day. </p>
                 </li>
-                <li><p><b>Respite Care</b> </p>
+                <li className="py-2"><p><b>Respite Care</b> </p>
                 <p>Caring for a loved one can be rewarding but also overwhelming. We offer family caregivers a well-deserved break to recharge themselves. </p>
                 </li>
-                <li><p><b>Alzheimer’s and Dementia Care  </b></p>
+                <li className="py-2"><p><b>Alzheimer’s and Dementia Care  </b></p>
                 <p>We focus on creating a safe and nurturing environment while helping to manage the challenges that come with memory loss. </p>
 
 <p>Our team delivers exceptional senior care that enhances the well-being of your elders. We’re here to listen, support, and make a positive difference in their lives every day. </p>
@@ -95,7 +95,7 @@ As your loved ones age, they may hesitate to ask for extra help and support. At 
                </ul>
 
                </Col>
-                    <Col md={4}>
+                    <Col md={5}>
 <Image src={Cupertino1} alt=""/>
                     </Col>
                 </Row>
@@ -105,10 +105,10 @@ As your loved ones age, they may hesitate to ask for extra help and support. At 
     <div className="py-5">
         <Container>
             <Row>
-                <Col md={5} style={{paddingRight:'25px'}}>
+                <Col md={4} style={{paddingRight:'25px'}}>
 <Image src={Cupertino2} />
                 </Col>
-                <Col md={6} style={{paddingLeft:'25px'}}>
+                <Col md={8} style={{paddingLeft:'25px'}}>
 <h2 className="heading2">Start Your Senior’s Care Journey with Us!   </h2>
 <p className="py-3">We understand how important it is to find the right support for your aging adults. Our goal is to make the process simple and comforting. From the first step to ongoing support, we're here to guide you every step of the way.   </p>
 <h5 className="heading5subcity">Here are the steps in which we assist you:   </h5>
@@ -116,7 +116,7 @@ As your loved ones age, they may hesitate to ask for extra help and support. At 
                 <li><p><b>Complimentary Initial Assessment </b> </p>
                 <p>Reach out to Interim Healthcare office at Lake Shastina to schedule a free assessment for your loved one for analysing their needs. </p>
                 </li>
-                <li className="py-4"><p><b>Tailored Care Plan </b>  </p>
+                <li className="py-3"><p><b>Tailored Care Plan </b>  </p>
                 <p>Our team will create a personalized in home care plan designed specifically to address your aging adult’s homecare needs. </p>
                 </li>
                 <li><p><b>In-Home Support from Caring Professionals  </b> </p>

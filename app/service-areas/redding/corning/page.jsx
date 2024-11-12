@@ -53,7 +53,7 @@ Seniors are precious members of any family, and they deserve the best care to en
                 <Col md={6} className="px-3 " >
                 <h2 className="heading2 ">Why Home Care Is Essential in Corning, CA  </h2>
                 <p className="py-3">
-               <a href="https://en.wikipedia.org/wiki/Corning,_California" target="_blank" className="phone-link"> Corning</a>, nestled in the heart of Tehama County, is a small, close-knit community that provides a serene and welcoming environment for retirees. <a href="https://data.census.gov/profile/Corning_CCD,_Tehama_County,_California?g=060XX00US0610390580" className="phone-link">With a growing senior population of around 18%</a>, these areas are becoming popular destinations for those seeking a peaceful retirement. However, as seniors age, many face challenges with daily activities and mobility, making quality in-home care services essential. 
+               <a href="https://en.wikipedia.org/wiki/Corning,_California" target="_blank" className="phone-link"> Corning</a>, nestled in the heart of Tehama County, is a small, close-knit community that provides a serene and welcoming environment for retirees. <a href="https://data.census.gov/profile/Corning_CCD,_Tehama_County,_California?g=060XX00US0610390580" className="phone-link" target="_blank">With a growing senior population of around 18%</a>, these areas are becoming popular destinations for those seeking a peaceful retirement. However, as seniors age, many face challenges with daily activities and mobility, making quality in-home care services essential. 
 <br></br>
 Interim Healthcare has proudly served the Corning community for over two decades. As pioneers in the home care industry, we deeply understand the unique concerns of aging individuals. Our HomeLife Enrichment holistic model of care sets us apart, ensuring the well-being of your senior loved ones by focusing on their mind, body, spirit, and family. Call us at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> for more information on home healthcare and in-home care in Corning. 
                 </p>
@@ -80,9 +80,9 @@ Interim Healthcare has proudly served the Corning community for over two decades
                     <h5 className="heading5subcity">Some of our specialized in-home care plans include:   </h5>
                     <p className="py-3" >At Interim Healthcare, we offer a variety of personalized care plans tailored to meet the unique needs of your seniors. Whether you need skilled nursing for chronic illnesses or compassionate assistance with daily living, our team is here to provide the support your loved ones deserve.  </p>
                     <ul style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-4">
-                <li><p className="py-2"><b>24-Hour Home Care</b>for seniors who need continuous monitoring and assistance.   </p></li>
-                <li><p className="py-2"><b>Palliative Care</b> for effective pain management, ensuring comfort and improved quality of life.  </p></li>
-                <li><p className="py-2"> <b>Hospice Care</b> to provide compassionate support during the end-of-life journey.  </p></li>
+                <li><p className="py-2"><b>24-Hour Home Care:</b> for seniors who need continuous monitoring and assistance.   </p></li>
+                <li><p className="py-2"><b>Palliative Care:</b> for effective pain management, ensuring comfort and improved quality of life.  </p></li>
+                <li><p className="py-2"> <b>Hospice Care:</b> to provide compassionate support during the end-of-life journey.  </p></li>
                </ul>
                <p>Choose our customized services to create a comprehensive care plan for your loved one.   </p>
                </Col>

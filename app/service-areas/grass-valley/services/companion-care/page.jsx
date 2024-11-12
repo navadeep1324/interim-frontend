@@ -72,61 +72,102 @@ export default function CompanionCareComponent() {
     return null;
   };
   const renderDescription = (description) => {
-    return description.map((block, index) => {
-      switch (block.type) {
-        case "paragraph":
-          return (
-            <p key={index}>
-              {block.children.map((child, idx) => {
-                if (child.type === "link") {
-                  return (
-                    <a
-                      key={idx}
-                      href={child.url}
-                      className="phone-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {child.children[0]?.text}
-                    </a>
-                  );
-                } else {
-                  return <span key={idx}>{child.text}</span>;
-                }
-              })}
-            </p>
-          );
+    if (!description || !Array.isArray(description)) return null;
   
-        case "list":
-          return (
-            <ul key={index} style={{ listStyleType: block.format === "unordered" ? "disc" : "decimal", paddingLeft: "20px" }}>
-              {block.children.map((listItem, idx) => (
-                <li key={idx}>
-                  {listItem.children.map((child, childIdx) => {
-                    if (child.type === "link") {
-                      return (
-                        <a
-                          key={childIdx}
-                          href={child.url}
-                          className="phone-link"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {child.children[0]?.text}
-                        </a>
-                      );
-                    } else {
-                      return <span key={childIdx}>{child.text}</span>;
-                    }
-                  })}
-                </li>
-              ))}
-            </ul>
-          );
+    return description.map((desc, index) => {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
+        const hasValidContent = desc?.children?.some((child) => {
+          if (child.type === 'text' && child.text.trim() !== '') return true;
+          if (child.type === 'link' && child.url) return true;
+          return false;
+        });
   
-        default:
-          return null;
+        if (!hasValidContent) return null;
+  
+        return (
+          <p key={index} className="py-2">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                    {child.text}
+                  </span>
+                );
+              }
+              if (child.type === 'link') {
+                const isExternalLink = child.url.startsWith('http');
+                return (
+                  <a
+                    key={idx}
+                    href={child.url}
+                    className="phone-link"
+                    target={isExternalLink ? "_blank" : "_self"}
+                    rel={isExternalLink ? "noopener noreferrer" : ""}
+                    style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                  >
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
       }
+  
+      // Handle unordered lists (bullet points)
+      if (desc.type === 'list' && desc.format === 'unordered') {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === 'text') {
+                    return (
+                      <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                        {child.text}
+                      </span>
+                    );
+                  }
+                  if (child.type === 'link') {
+                    const isExternalLink = child.url.startsWith('http');
+                    return (
+                      <a
+                        key={idx}
+                        href={child.url}
+                        className="phone-link"
+                        target={isExternalLink ? "_blank" : "_self"}
+                        rel={isExternalLink ? "noopener noreferrer" : ""}
+                        style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                      >
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </li>
+            ))}
+          </ul>
+        );
+      }
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`;
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.map((child, idx) => (
+              <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                {child.text || ""}
+              </span>
+            ))}
+          </HeadingTag>
+        );
+      }
+  
+      return null;
     });
   };
   

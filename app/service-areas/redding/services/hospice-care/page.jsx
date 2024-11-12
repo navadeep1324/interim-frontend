@@ -63,19 +63,27 @@ export default function HospiceCareComponent() {
     );
   };
 
-  // Enhanced function to render content (paragraphs, lists, and headings)
   const renderDescription = (description) => {
     return description?.map((desc, index) => {
-      if (desc.type === "paragraph") {
+      // Check if the paragraph contains any text before rendering
+      if (desc.type === 'paragraph' && desc?.children?.some(child => child.type === 'text' && child.text.trim() !== "")) {
         return (
-          <p key={index} className="py-3">
-            {desc.children.map((child, idx) => {
-              if (child.type === "text") {
+          <p key={index} className="py-2">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
                 return child.text;
-              } else if (child.type === "link") {
+              }
+              if (child.type === 'link') {
+                const isExternalLink = child.url.startsWith('http');
                 return (
-                  <a key={idx} href={child.url} className="phone-link">
-                    {child.children[0]?.text || "Link"}
+                  <a
+                    key={idx}
+                    href={child.url}
+                    className="phone-link"
+                    target={isExternalLink ? "_blank" : "_self"}
+                    rel={isExternalLink ? "noopener noreferrer" : ""}
+                  >
+                    {child.children?.[0]?.text || 'Link'}
                   </a>
                 );
               }
@@ -83,14 +91,31 @@ export default function HospiceCareComponent() {
             })}
           </p>
         );
-      } else if (desc.type === "list") {
+      }
+      
+      // Check if list contains text before rendering
+      if (desc.type === 'list' && desc.format === 'unordered' && desc.children?.length > 0) {
         return (
-          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
-            {desc.children.map((item, idx) => (
-              <li key={idx}>
-                {item.children.map((child, childIdx) => {
-                  if (child.type === "text") {
-                    return child.bold ? <strong key={childIdx}>{child.text}</strong> : child.text;
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === 'text' && child.text.trim() !== "") {
+                    return child.text;
+                  }
+                  if (child.type === 'link') {
+                    const isExternalLink = child.url.startsWith('http');
+                    return (
+                      <a
+                        key={idx}
+                        href={child.url}
+                        className="phone-link"
+                        target={isExternalLink ? "_blank" : "_self"}
+                        rel={isExternalLink ? "noopener noreferrer" : ""}
+                      >
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
                   }
                   return null;
                 })}
@@ -98,10 +123,17 @@ export default function HospiceCareComponent() {
             ))}
           </ul>
         );
-      } else if (desc.type === "heading") {
-        const HeadingTag = `h${desc.level || 2}`;
-        return <HeadingTag key={index} className="heading2">{desc.children[0]?.text}</HeadingTag>;
       }
+  
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`;
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
       return null;
     });
   };

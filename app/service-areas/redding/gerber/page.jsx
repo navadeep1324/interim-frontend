@@ -113,7 +113,7 @@ Seniors hold a special place in every family, deserving the utmost care to enjoy
         <Row>
             <Col>
             <h2 className="heading2city py-3">Compassionate In-Home Care Solutions for Seniors   </h2>
-           <p style={{textAlign:'center'}}>At Interim Healthcare, our mission is simple yet crucial—providing support to seniors who wish to age in place. Whether it’s offering companionship during meals or assisting with medication management for chronic conditions, we are dedicated to making life easier for them. Don't hesitate to take the next step </p>
+           <p style={{textAlign:'center'}}>At Interim Healthcare, our mission is simple yet crucial—providing support to seniors who wish to age in place. Whether it’s offering companionship during meals or assisting with medication management for chronic conditions, we are dedicated to making life easier for them. Don't hesitate to take the next step. </p>
            <p style={{textAlign:'center'}}>Call us today at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> and make a meaningful difference in your senior's life today. </p>
             </Col>
         </Row>
