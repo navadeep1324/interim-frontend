@@ -82,7 +82,6 @@ export default function CottonwoodComponent() {
               <p className="py-3">
                 Seniors are amongst the most precious members of a family. They require exceptional care to age with grace and happiness. Being pioneers of home care in the country, Interim Healthcare knows how to cater to your seniors in Cottonwood, CA.
               </p>
-              <br />
               <p>
                 Simply call us at <a href="tel:530-221-1212" className="phone-link">+1 530-221-1212</a> to schedule a free assessment for your aging loved ones.
               </p>
@@ -137,9 +136,9 @@ export default function CottonwoodComponent() {
           <Row>
             <Col md={8} className="px-5">
               <h5 className="heading5subcity">The home health care services we offer include:</h5>
-              <p className="py-3"><b>24-Hour Home Care</b> for continuous monitoring and assistance of seniors with chronic illnesses.</p>
-              <p><b>Palliative Care</b> for pain management of seniors with serious conditions such as cancer and COPD.</p>
-              <p className="py-3"><b>Personal Care</b> for seniors who need assistance with personal hygiene, toileting, and grooming.</p>
+              <p className="py-3"><b>24-Hour Home Care:</b> for continuous monitoring and assistance of seniors with chronic illnesses.</p>
+              <p><b>Palliative Care:</b> for pain management of seniors with serious conditions such as cancer and COPD.</p>
+              <p className="py-3"><b>Personal Care:</b> for seniors who need assistance with personal hygiene, toileting, and grooming.</p>
               <p>
                 Whether your elderly need a helping hand with daily living activities, or specialized medical assistance to manage their symptoms, we are here to serve them with compassion.
               </p>

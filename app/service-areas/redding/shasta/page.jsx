@@ -30,7 +30,7 @@ export default function SanJoseCupertinoComponent() {
 <h2 className="subcityheading">Senior in Home Care in Shasta, California</h2>
 <p className="py-3">
 Every senior deserves to enjoy their golden years with respect and dignity. Interim Healthcare offers personalized care to help your loved ones live their life to the fullest in Shasta city. Because every smile, every memory, and every moment matters!!  </p>
-<p> Contact us today at +1 530-221-1212  to learn how we can assist your beloved elders.</p>
+<p> Contact us today at <a href="tel:+1 530-221-1212" className="phone-link">+1 530-221-1212</a>  to learn how we can assist your beloved elders.</p>
 <SubcityCaregiversComponent/>
     </Col>
     <Col md={4} className="formcoloumcity">

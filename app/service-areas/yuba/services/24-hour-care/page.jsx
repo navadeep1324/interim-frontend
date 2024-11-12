@@ -120,7 +120,7 @@ useEffect(() => {
             <Col md="5">
               <h1 className="heading1">{data.maincontent[0]?.Heading || 'Default Heading'}</h1>
               <p className="py-2">{data.maincontent[0]?.subHeading || 'Default Subheading'}</p>
-              <p>Contact us today at <a href="tel:+1 408-286-6888" className="phone-link">+1 408-286-6888</a> and let us offer compassionate and personalized care.</p>
+              <p>Contact us today at <a href="tel:+1 530-673-0300" className="phone-link">+1 530-673-0300</a> and let us offer compassionate and personalized care.</p>
 
             </Col>
             <Col md="7" className="d-flex justify-content-center">

@@ -231,7 +231,7 @@ const textLinks = {
                 <li><p><b>Comfort for Families:  </b>Providing peace of mind through reliable care.</p>  </li>
                 <li><p><b>Veterans Support: </b>Dedicated services for our veterans. </p>  </li>
                 <li><p><b>Ease of Payments: </b>Flexible payment options to fit your needs. </p>  </li>
-                <li><p><b>End-of-Life Care: </b>Compassionate support during life's final stages</p>  </li>
+                <li><p><b>End-of-Life Care: </b>Compassionate support during life's final stages.</p>  </li>
                 
              </ul>
 

@@ -83,7 +83,7 @@ At Interim Healthcare, we believe that every senior deserves to feel supported, 
                 </li>
                 <li><p><b>Hospice care:  </b> Offers constant support to nurture each moment with comfort and respect during life's final journey.  </p> 
                 </li>
-                <li><p><b>Veteran care-:  </b> Honors and recognizes the unique needs and experiences of those who served our nation.  </p> 
+                <li><p><b>Veteran care:  </b> Honors and recognizes the unique needs and experiences of those who served our nation.  </p> 
                 </li>
                 </ul>
                 <h2 className="heading2">Our Empathetic Senior Care Services   </h2>

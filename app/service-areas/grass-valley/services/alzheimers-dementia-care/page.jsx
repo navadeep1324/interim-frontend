@@ -92,14 +92,106 @@ export default function AlzheimerMainComponent() {
     return null; // Return null if image data is missing
   };
   // Render descriptions with safety checks
-  const renderDescription = (descriptions) => {
-    return descriptions.map((para, index) => (
-      <p className="py-4" key={index}>
-        {para?.children[0]?.text || ""}
-      </p>
-    ));
+  const renderDescription = (description) => {
+    if (!description || !Array.isArray(description)) return null;
+  
+    return description.map((desc, index) => {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
+        const hasValidContent = desc?.children?.some((child) => {
+          if (child.type === 'text' && child.text.trim() !== '') return true;
+          if (child.type === 'link' && child.url) return true;
+          return false;
+        });
+  
+        if (!hasValidContent) return null;
+  
+        return (
+          <p key={index} className="py-2">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                    {child.text}
+                  </span>
+                );
+              }
+              if (child.type === 'link') {
+                const isExternalLink = child.url.startsWith('http');
+                return (
+                  <a
+                    key={idx}
+                    href={child.url}
+                    className="phone-link"
+                    target={isExternalLink ? "_blank" : "_self"}
+                    rel={isExternalLink ? "noopener noreferrer" : ""}
+                    style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                  >
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+  
+      // Handle unordered lists (bullet points)
+      if (desc.type === 'list' && desc.format === 'unordered') {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === 'text') {
+                    return (
+                      <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                        {child.text}
+                      </span>
+                    );
+                  }
+                  if (child.type === 'link') {
+                    const isExternalLink = child.url.startsWith('http');
+                    return (
+                      <a
+                        key={idx}
+                        href={child.url}
+                        className="phone-link"
+                        target={isExternalLink ? "_blank" : "_self"}
+                        rel={isExternalLink ? "noopener noreferrer" : ""}
+                        style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                      >
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </li>
+            ))}
+          </ul>
+        );
+      }
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`;
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.map((child, idx) => (
+              <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                {child.text || ""}
+              </span>
+            ))}
+          </HeadingTag>
+        );
+      }
+  
+      return null;
+    });
   };
-
+  
   return (
     <div>
       <GrassValleyNavbarComponent />
@@ -111,7 +203,7 @@ export default function AlzheimerMainComponent() {
             <Col md="6">
               <h1 className="heading1">{data[0]?.Heading || "Default Heading"}</h1>
               <p className="paragrambold py-2">{data[0]?.subHeading?.split("\n")[0]}</p>
-              <p className="py-4">{data[0]?.subHeading?.split("\n")[1]}</p>
+              <p className="py-2">{data[0]?.subHeading?.split("\n")[1]}</p>
               {/* Commented out button as per user request */}
               {/* <Button className={styles.buttonhome} href="tel:+1 530-899-9777"> */}
               {/* +1 530-899-9777 */}

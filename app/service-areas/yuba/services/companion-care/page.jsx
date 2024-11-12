@@ -97,7 +97,8 @@ useEffect(() => {
             <Col md="5">
               <h1 className="heading1">{data.maincontent[0]?.Heading}</h1>
               <p className="paragram py-2">{data.maincontent[0]?.subHeading}</p>
-              <p>Reach us today at <a href="tel:+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!</p>
+              <p>Reach us today at <a href="tel:+1 530-673-0300" className="phone-link">+1 530-673-0300
+                </a> to learn how we can assist your aging adults!</p>
 
             </Col>
             <Col md="7">

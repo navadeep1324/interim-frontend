@@ -98,61 +98,105 @@ export default function PersonalCareComponent() {
 
   // Render Description Function (handling links, lists, bold text)
   const renderDescription = (description) => {
-    return description.map((block, index) => {
-      if (!block || !block.children || block.children.length === 0) return null; // Skip empty blocks
+    if (!description || !Array.isArray(description)) return null;
   
-      switch (block.type) {
-        case "paragraph":
-          return (
-            <p key={index}>
-              {block.children.map((child, idx) => {
-                if (child.type === "link") {
-                  return (
-                    <a
-                      key={idx}
-                      href={child.url}
-                      className="phone-link"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {child.children[0]?.text}
-                    </a>
-                  );
-                } else {
-                  return <span key={idx}>{child.text || ""}</span>;
-                }
-              })}
-            </p>
-          );
+    return description.map((desc, index) => {
+      // Handle paragraphs
+      if (desc.type === 'paragraph') {
+        const hasValidContent = desc?.children?.some((child) => {
+          if (child.type === 'text' && child.text.trim() !== '') return true;
+          if (child.type === 'link' && child.url) return true;
+          return false;
+        });
   
-        case "list":
-          return block.format === "unordered" ? (
-            <ul key={index} style={{ listStyleType: "disc", paddingLeft: "20px" }}>
-              {block.children.map((listItem, listIdx) => (
-                <li key={listIdx}>
-                  {listItem.children.map((child, childIdx) => (
-                    <span key={childIdx}>{child.text || ""}</span>
-                  ))}
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <ol key={index} style={{ listStyleType: "decimal", paddingLeft: "20px" }}>
-              {block.children.map((listItem, listIdx) => (
-                <li key={listIdx}>
-                  {listItem.children.map((child, childIdx) => (
-                    <span key={childIdx}>{child.text || ""}</span>
-                  ))}
-                </li>
-              ))}
-            </ol>
-          );
+        if (!hasValidContent) return null;
   
-        default:
-          return null;
+        return (
+          <p key={index} className="py-2">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                    {child.text}
+                  </span>
+                );
+              }
+              if (child.type === 'link') {
+                const isExternalLink = child.url.startsWith('http');
+                return (
+                  <a
+                    key={idx}
+                    href={child.url}
+                    className="phone-link"
+                    target={isExternalLink ? "_blank" : "_self"}
+                    rel={isExternalLink ? "noopener noreferrer" : ""}
+                    style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                  >
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
       }
+  
+      // Handle unordered lists (bullet points)
+      if (desc.type === 'list' && desc.format === 'unordered') {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === 'text') {
+                    return (
+                      <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                        {child.text}
+                      </span>
+                    );
+                  }
+                  if (child.type === 'link') {
+                    const isExternalLink = child.url.startsWith('http');
+                    return (
+                      <a
+                        key={idx}
+                        href={child.url}
+                        className="phone-link"
+                        target={isExternalLink ? "_blank" : "_self"}
+                        rel={isExternalLink ? "noopener noreferrer" : ""}
+                        style={{ fontWeight: child.bold ? 'bold' : 'normal' }}
+                      >
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </li>
+            ))}
+          </ul>
+        );
+      }
+  
+      // Handle headings (Assuming heading level comes from 'level' property in your JSON)
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`;
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.map((child, idx) => (
+              <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                {child.text || ""}
+              </span>
+            ))}
+          </HeadingTag>
+        );
+      }
+  
+      return null;
     });
   };
+  
  
   return (
     <div>
@@ -163,7 +207,7 @@ export default function PersonalCareComponent() {
             <Col md="6">
               <h1 className="heading1">{data.maincontent[0].Heading}</h1>
               <p className="paragrambold py-2">{data.maincontent[0].subHeading.split("\n\n")[0]}</p>
-              <p className="py-4">
+              <p className="py-2">
                 {data.maincontent[0].subHeading.split("\n\n")[1]}
                 <br />
                 Reach us today at <a href="tel:+1 530-272-0300" className="phone-link">+1 530-272-0300</a> to learn how we can assist your aging adults!
