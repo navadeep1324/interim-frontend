@@ -7,7 +7,6 @@ import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
 import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
-import CarsonFooter from "../../../../footercarson";
 import FooterServiceCarsonComponent from "../../../../footerservicescarson";
 import CarsonNavbarComponent from "../../../../carsonnavcomponent";
 import Head from "next/head";

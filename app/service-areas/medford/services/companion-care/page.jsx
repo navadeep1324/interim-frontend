@@ -1,19 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import NavbarComponent from "../../../../navcomponent";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
 import CaregivertodayComponent from "../../../../caregiverstodayComponent";
-import CarsonFooter from "../../../../footercarson";
-import FooterServiceCarsonComponent from "../../../../footerservicescarson";
-import CarsonNavbarComponent from "../../../../carsonnavcomponent";
-import GrantspassNavbarComponent from "../../../../grantspassnavcomponent";
-import GrantsPassFooter from "../../../../footerservicegreantspass";
-import GrassValleyNavbarComponent from "../../../../grassvalleynavcomponent";
-import GrassValleyFooter from "../../../../footerservicegrssvalley";
 import MedfordNavbarComponent from "../../../../medfordnavcomponent";
 import MedfordFooter from "../../../../footerservicemedford";
 import Head from "next/head";
@@ -92,12 +84,13 @@ useEffect(() => {
   return (
     <div>
       <MedfordNavbarComponent/>
-      <div className="sectionbg">
+      <div className="section1banner">
         <Container>
-          <Row className="py-5">
+          <Row className="py-5 middlealign g-5">
             <Col md="5">
               <h1 className="heading1">{data.maincontent[0]?.Heading}</h1>
-              <p className="paragram py-2">{data.maincontent[0]?.subHeading}</p>
+              <p className="paragrambold py-2">{data[0]?.subHeading?.split('\n')[0]}</p>
+              <p className="py-4">{data[0]?.subHeading?.split('\n')[1]}</p>
               <p>Reach us today at <a href="tel:+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!</p>
 
             </Col>

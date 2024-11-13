@@ -102,12 +102,79 @@ export default function AlzheimerMainComponent() {
   };
 
   // Render descriptions with safety checks
-  const renderDescription = (descriptions) => {
-    return descriptions.map((para, index) => (
-      <p className="py-4" key={index}>
-        {para?.children[0]?.text || ""}
-      </p>
-    ));
+  const renderDescription = (description) => {
+    return description?.map((desc, index) => {
+      // Check if the paragraph contains any text before rendering
+      if (desc.type === 'paragraph' && desc?.children?.some(child => child.type === 'text' && child.text.trim() !== "")) {
+        return (
+          <p key={index} className="py-3">
+            {desc?.children?.map((child, idx) => {
+              if (child.type === 'text') {
+                return child.text;
+              }
+              if (child.type === 'link') {
+                const isExternalLink = child.url.startsWith('http');
+                return (
+                  <a
+                    key={idx}
+                    href={child.url}
+                    className="phone-link"
+                    target={isExternalLink ? "_blank" : "_self"}
+                    rel={isExternalLink ? "noopener noreferrer" : ""}
+                  >
+                    {child.children?.[0]?.text || 'Link'}
+                  </a>
+                );
+              }
+              return null;
+            })}
+          </p>
+        );
+      }
+      
+      // Check if list contains text before rendering
+      if (desc.type === 'list' && desc.format === 'unordered' && desc.children?.length > 0) {
+        return (
+          <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }}>
+            {desc.children?.map((item, itemIndex) => (
+              <li key={itemIndex}>
+                {item?.children?.map((child, idx) => {
+                  if (child.type === 'text' && child.text.trim() !== "") {
+                    return child.text;
+                  }
+                  if (child.type === 'link') {
+                    const isExternalLink = child.url.startsWith('http');
+                    return (
+                      <a
+                        key={idx}
+                        href={child.url}
+                        className="phone-link"
+                        target={isExternalLink ? "_blank" : "_self"}
+                        rel={isExternalLink ? "noopener noreferrer" : ""}
+                      >
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </li>
+            ))}
+          </ul>
+        );
+      }
+  
+      if (desc.type === 'heading') {
+        const HeadingTag = `h${desc.level}`;
+        return (
+          <HeadingTag key={index} className="section4-heading">
+            {desc?.children?.[0]?.text || ""}
+          </HeadingTag>
+        );
+      }
+  
+      return null;
+    });
   };
 
   return (
