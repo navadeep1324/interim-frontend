@@ -1,4 +1,5 @@
-"use client";
+'use client'; // Add this line at the top of your file to mark it as a Client Component
+
 import { useState, useEffect } from "react";
 import axios from "axios";
 import HeaderComponent from "./headerpageComponent";
@@ -17,29 +18,27 @@ import Head from "next/head";
 const BASE_URL = "https://admin.interimhc.com";
 
 export default function Home() {
-  const [homeData, setHomeData] = useState(null);
-  const [seoData, setSeoData] = useState(null); // SEO state
+  const [homeData, setHomeData] = useState([]);
+  const [seoData, setSeoData] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    const fetchHomeData = async () => {
+    async function fetchData() {
       try {
-        const response = await axios.get(
-          `${BASE_URL}/api/homes?populate[maincontent][populate]=*&populate[seo][populate]=metaImage,metaSocial.image`);
-        console.log("Full Response Data:", response.data); // Log the full response for debugging
-        setHomeData(response.data.data[0].attributes.maincontent);
-        setSeoData(response.data.data[0].attributes.seo); // Assuming seoData is in response.data.data[0].attributes.seo
-      } catch (err) {
-        console.error("Error fetching data:", err);
-        
-        setError(err);
+        const resHomeData = await axios.get(`${BASE_URL}/api/home-page?populate=*`);
+        setHomeData(resHomeData.data.data);
+
+        const resSeoData = await axios.get(`${BASE_URL}/api/seo?populate=*`);
+        setSeoData(resSeoData.data.data);
+      } catch (error) {
+        setError(error);
       } finally {
         setLoading(false);
       }
-    };
+    }
 
-    fetchHomeData();
+    fetchData();
   }, []);
 
   // Dynamically set the meta title, description, and images once the seoData is fetched
@@ -61,18 +60,18 @@ export default function Home() {
         document.head.appendChild(newMetaDescription);
       }
   
-    // Set meta image (OpenGraph image)
-if (seo.metaImage?.data?.attributes?.url) {
-  const metaImageUrl = `${BASE_URL}${seo.metaImage.data.attributes.url}`;
-  let ogImageMeta = document.querySelector('meta[property="og:image"]');
-  if (!ogImageMeta) {
-    ogImageMeta = document.createElement("meta");
-    ogImageMeta.setAttribute("property", "og:image");
-    document.head.appendChild(ogImageMeta);
-  }
-  ogImageMeta.setAttribute("content", metaImageUrl);
-  console.log("Featured Image URL:", metaImageUrl);
-}
+      // Set meta image (OpenGraph image)
+      if (seo.metaImage?.data?.attributes?.url) {
+        const metaImageUrl = `${BASE_URL}${seo.metaImage.data.attributes.url}`;
+        let ogImageMeta = document.querySelector('meta[property="og:image"]');
+        if (!ogImageMeta) {
+          ogImageMeta = document.createElement("meta");
+          ogImageMeta.setAttribute("property", "og:image");
+          document.head.appendChild(ogImageMeta);
+        }
+        ogImageMeta.setAttribute("content", metaImageUrl);
+        console.log("Featured Image URL:", metaImageUrl);
+      }
 
       // Set meta social (Facebook, Twitter) information
       seo.metaSocial?.forEach(social => {
@@ -132,7 +131,7 @@ if (seo.metaImage?.data?.attributes?.url) {
           twImage.setAttribute("content", socialImageUrl);
         }
       });
-  
+
       return () => {
         // Clean up meta tags when component unmounts (preventing the removeChild issue)
         document.title = "Default Title"; // Reset title
@@ -158,29 +157,6 @@ if (seo.metaImage?.data?.attributes?.url) {
       };
     }
   }, [seoData]);
-  
-
-
-  if (loading) {
-    return (
-      <div className="d-flex justify-content-center align-items-center vh-100">
-        <Spinner animation="border" variant="primary" />
-      </div>
-    );
-  }
-
-  if (error) {
-    return (
-      <div className="text-center mt-5">
-        <h2>Error Loading Data</h2>
-        <p>{error.message}</p>
-      </div>
-    );
-  }
-
-  if (!homeData) {
-    return null;
-  }
 
   const renderBanner = () => {
     const banner = homeData.find((item) => item.__component === "components.banner-hero");
@@ -234,42 +210,29 @@ if (seo.metaImage?.data?.attributes?.url) {
               <p className="homecitiesp py-3">{cities.description}</p>
             </Col>
           </Row>
-          <Row className="g-4">
-            {cities.cardiconbox.map((card, index) => (
-              <Col md={6} lg={4} key={card.id} className="d-flex align-items-stretch px-5">
-                <Card className="flex-fill text-center card-container" style={{ border: "none" }}>
-                  <Card.Header style={{ backgroundColor: "#d81c3f" }} className="py-3">
-                    <p className="text2city">{card.card_hed}</p>
-                  </Card.Header>
-                  <Card.Body className="d-flex flex-column justify-content-between">
-                    <div className="d-flex align-items-center justify-content-start">
-                      <div style={{ color: "#d81c3f", fontSize: "20px" }}>
-                        <i className="bi bi-geo-alt-fill"></i>
+          <Row>
+            {cities.card?.map((card, index) => (
+              <Col md={4} key={index}>
+                <Card className="custom-card">
+                  <Card.Body>
+                    <div className="row">
+                      <div
+                        className="col-3 d-flex justify-content-center align-items-center"
+                        style={{ paddingLeft: "10px", textAlign: "left" }}
+                      >
+                        <i className={`bi ${card.icon}`} style={{ fontSize: "30px", color: "#9c8c3f" }}></i>
                       </div>
-                      <div style={{ paddingLeft: "10px", textAlign: "left" }}>
-                        <p
-                          style={{ fontWeight: "500", fontSize: "16px", whiteSpace: "pre-line" }}
-                          dangerouslySetInnerHTML={{ __html: card.cardaddress.replace(",", ",<br />") }}
-                        />
+                      <div className="col-9" style={{ paddingLeft: "10px", textAlign: "left" }}>
+                        <h5 style={{ fontWeight: "600", fontSize: "18px" }}>{card.city}</h5>
+                        <p style={{ fontWeight: "500", fontSize: "16px" }}>{card.phoneno}</p>
                       </div>
                     </div>
-                    <div className="d-flex align-items-center justify-content-start py-3">
-                      <div style={{ color: "#d81c3f", fontSize: "20px" }}>
-                        <i className="bi bi-telephone-fill"></i>
-                      </div>
-                      <div style={{ paddingLeft: "10px", textAlign: "left" }}>
-                        <p style={{ fontWeight: "500", fontSize: "16px" }}>{card.cardphone}</p>
-                      </div>
+                    <div className="py-3">
+                      <a href={knowMoreLinks[index]} className="knowmorelink">
+                        <u>Know More</u>
+                      </a>
                     </div>
                   </Card.Body>
-                  <Card.Footer className="text-muted" style={{ background: "#cae4f9", borderTop: "0px" }}>
-                    <a href={knowMoreLinks[index] || "#"} style={{ fontWeight: "500", color: "#004b66" }}>
-                      {card.button?.text || "Know More"}{" "}
-                      <span style={{ color: "#d81c3f", fontWeight: "500" }}>
-                        <i className="bi bi-chevron-right"></i>
-                      </span>
-                    </a>
-                  </Card.Footer>
                 </Card>
               </Col>
             ))}
@@ -279,64 +242,28 @@ if (seo.metaImage?.data?.attributes?.url) {
     );
   };
 
-  const renderServices = () => {
-    const services = homeData.filter((item) => item.__component === "components.services-home-list-all");
-    if (!services.length) return null;
-
+  if (loading) {
     return (
-      <div style={{ background: "#fef8f3" }}>
-        <Container>
-          <Row className="py-5">
-            <Col md={12}>
-              <h2 className="heading2" style={{ color: "#003c52", textAlign: "center" }}>
-                Care Plans for your Senior’s Regular and Future Needs
-              </h2>
-              <p className="py-3" style={{ textAlign: "center" }}>
-                At Interim Healthcare, in-home care plans are tailored to meet both the immediate and long-term needs of
-                your seniors. Choose from the range of our home care services.
-              </p>
-            </Col>
-          </Row>
-          <Row>
-            {services.map((service, index) => {
-              const serviceImageUrl = service.image?.data?.attributes?.url
-                ? `${BASE_URL}${service.image.data.attributes.url}`
-                : "";
-              return (
-                <Col md={4} key={index}>
-                  {serviceImageUrl && (
-                    <Image
-                      src={serviceImageUrl}
-                      alt={service.Heading}
-                      width={service.image.data.attributes.width}
-                      height={service.image.data.attributes.height}
-                    />
-                  )}
-                  <p style={{ textAlign: "center", fontWeight: "500", color: "#d81c3f" }} className="py-3">
-                    {service.Heading}
-                  </p>
-                </Col>
-              );
-            })}
-          </Row>
-        </Container>
+      <div style={{ minHeight: "100vh" }} className="d-flex justify-content-center align-items-center">
+        <Spinner animation="border" variant="danger" />
       </div>
     );
-  };
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
 
   return (
-    <div>
+    <>
       <Head>
-        <title>{seoData?.[0]?.metaTitle || "Default Title"}</title>
-        <meta name="description" content={seoData?.[0]?.metaDescription || "Default Description"} />
-
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
       </Head>
-      <NavbarComponent />
       <HeaderComponent />
+      <NavbarComponent />
       {renderBanner()}
       {renderCities()}
-      {renderServices()}
       <Footer />
-    </div>
+    </>
   );
 }
