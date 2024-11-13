@@ -6,8 +6,6 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
-import CarsonFooter from "../../../../footercarson";
 import FooterServiceCarsonComponent from "../../../../footerservicescarson";
 import CarsonNavbarComponent from "../../../../carsonnavcomponent";
 import CaregiverCityComponent from "../../../../caregiversComponentMainCity";
@@ -160,9 +158,9 @@ export default function RespiteCareComponent() {
             <Col md="6">
               <h1 className="heading1">{data?.maincontent?.[0]?.Heading || ""}</h1>
               <p className="paragrambold py-2">{data?.maincontent?.[0]?.subHeading?.split("\n")[0] || ""}</p>
-              <p className="py-4">
-                {data?.maincontent?.[0]?.subHeading?.split("\n")[1] || ""}
-                <br></br>
+              <p className="py-2">
+                {data?.maincontent?.[0]?.subHeading?.split("\n")[1] || ""}</p>
+                <p>
                 Reach us today at <a href="+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!
               </p>
             </Col>

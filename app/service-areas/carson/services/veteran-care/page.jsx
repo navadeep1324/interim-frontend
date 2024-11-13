@@ -1,13 +1,11 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import NavbarComponent from "../../../../navcomponent";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
 import Image from "next/image";
-import CaregivertodayComponent from "../../../../caregiverstodayComponent";
-import CarsonFooter from "../../../../footercarson";
+import CaregivertodayComponent from "../../../../caregiversComponentMainCity";
 import FooterServiceCarsonComponent from "../../../../footerservicescarson";
 import CarsonNavbarComponent from "../../../../carsonnavcomponent";
 import Head from "next/head";
@@ -103,17 +101,22 @@ export default function VeteranCareComponent() {
   // Rendering the description with paragraphs, headings, and lists
   const renderDescription = (description) => {
     if (!description || !Array.isArray(description)) return null;
+  
     return description.map((desc, index) => {
       if (desc.type === "paragraph") {
         return (
           <p key={index} className="py-2">
             {desc?.children?.map((child, idx) => {
               if (child.type === 'text') {
-                return child.text;
+                return (
+                  <span key={idx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                    {child.text}
+                  </span>
+                );
               }
               if (child.type === 'link') {
                 return (
-                  <a key={idx} href={child.url} className="phone-link">
+                  <a key={idx} href={child.url} className="phone-link" style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
                     {child.children?.[0]?.text || 'Link'}
                   </a>
                 );
@@ -126,7 +129,25 @@ export default function VeteranCareComponent() {
         return (
           <ul key={index} style={{ listStyleType: 'disc', paddingLeft: '20px' }} className="py-2">
             {desc.children?.map((item, idx) => (
-              <li key={idx}>{item.children?.[0]?.text}</li>
+              <li key={idx}>
+                {item.children?.map((child, childIdx) => {
+                  if (child.type === 'text') {
+                    return (
+                      <span key={childIdx} style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                        {child.text}
+                      </span>
+                    );
+                  }
+                  if (child.type === 'link') {
+                    return (
+                      <a key={childIdx} href={child.url} className="phone-link" style={{ fontWeight: child.bold ? 'bold' : 'normal' }}>
+                        {child.children?.[0]?.text || 'Link'}
+                      </a>
+                    );
+                  }
+                  return null;
+                })}
+              </li>
             ))}
           </ul>
         );
@@ -134,7 +155,7 @@ export default function VeteranCareComponent() {
       return null;
     });
   };
-
+  
   return (
     <div>
       <CarsonNavbarComponent />
@@ -148,10 +169,10 @@ export default function VeteranCareComponent() {
               <p className="paragrambold py-2">
                 {data?.maincontent?.[0]?.subHeading?.split("\n")[0] || ""}
               </p>
-              <p className="py-4">
-                {data?.maincontent?.[0]?.subHeading?.split("\n")[1] || ""}
-                <br />
-                Reach us today at <a href="+1 775-883-4455" className="phone-link">+1 775-883-4455</a> to learn how we can assist your aging adults!
+              <p className="py-2">
+                {data?.maincontent?.[0]?.subHeading?.split("\n")[1] || ""}</p>
+           
+               <p> Reach us today at <a href="+1 541-779-0054" className="phone-link">+1 541-779-0054</a> to learn how we can assist your aging adults!
               </p>
             </Col>
             <Col md="6">
