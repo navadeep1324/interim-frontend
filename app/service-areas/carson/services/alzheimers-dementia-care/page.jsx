@@ -1,21 +1,12 @@
 "use client";
 import React, { useEffect, useState } from "react";
-import NavbarComponent from "../../../../navcomponent";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import { Button } from "react-bootstrap";
-import styles from "../../../../page.module.css";
 import Image from "next/image";
 import CaregiverCityComponent from "../../../../caregiversComponentMainCity";
-import SanJoseserviceFooter from "../../../../footerservicesanjose";
 import CarsonFooter from "../../../../footerservicescarson";
-
-// Default Images for fallback
-import Alzheimersimg from "/public/images/Alzheimersimg.png";
-import Happier from "/public/images/Happier.png";
-import Services5img from "/public/images/Services5img.png";
-import servicesimg from "/public/images/servicesimg.png";
 import CarsonNavbarComponent from "../../../../carsonnavcomponent";
 import Head from "next/head";
 
