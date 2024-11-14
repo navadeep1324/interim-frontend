@@ -47,7 +47,7 @@ export default function SanjoseNavbarDesktopComponent() {
               onMouseEnter={handleMouseEnter} // Hover to open dropdown
               onMouseLeave={handleMouseLeave} // Leave to close dropdown
             >
-              <NavDropdown.Item href="/service-areas/san-jose/services/alzheimers-dementia-care" className='navLinkTitles'>Alzheimers Dementia Care</NavDropdown.Item>
+              <NavDropdown.Item href="/service-areas/san-jose/services/alzheimers-dementia-care" className='navLinkTitles'>Alzheimer's & Dementia Care</NavDropdown.Item>
               <NavDropdown.Item href="/service-areas/san-jose/services/companion-care" className='navLinkTitles'>Companion Care</NavDropdown.Item>
               <NavDropdown.Item href="/service-areas/san-jose/services/personal-care" className='navLinkTitles'>Personal Care</NavDropdown.Item>
               <NavDropdown.Item href="/service-areas/san-jose/services/respite-care" className='navLinkTitles'>Respite Care</NavDropdown.Item>

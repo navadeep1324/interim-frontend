@@ -58,7 +58,7 @@ export default function GrantspassNavbarComponent() {
               onClick={handleToggleClick} // Toggle dropdown on click
               ref={dropdownRef}
             >
-              <NavDropdown.Item href="/service-areas/grants-pass/services/alzheimers-dementia-care" className='navLinkTitles'>Alzheimers Dementia Care</NavDropdown.Item>
+              <NavDropdown.Item href="/service-areas/grants-pass/services/alzheimers-dementia-care" className='navLinkTitles'>Alzheimer's & Dementia Care</NavDropdown.Item>
               <NavDropdown.Item href="/service-areas/grants-pass/services/companion-care" className='navLinkTitles'>Companion Care</NavDropdown.Item>
               <NavDropdown.Item href="/service-areas/grants-pass/services/personal-care" className='navLinkTitles'>Personal Care</NavDropdown.Item>
               <NavDropdown.Item href="/service-areas/grants-pass/services/respite-care" className='navLinkTitles'>Respite Care</NavDropdown.Item>

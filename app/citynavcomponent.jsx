@@ -24,7 +24,7 @@ export default function CityNavbarComponent() {
             <Nav.Link href="#home" className="navLinkTitles px-3">Service Areas</Nav.Link>
             <Nav.Link href="#" className="navLinkTitles px-3">About Us</Nav.Link>
             <NavDropdown title="Services" id="navbarScrollingDropdown" className='navLinkTitles'>
-              <NavDropdown.Item href="/Alzheimers-Dementia-Care" className='navLinkTitles'> Alzheimers Dementia Care</NavDropdown.Item>
+              <NavDropdown.Item href="/Alzheimers-Dementia-Care" className='navLinkTitles'> Alzheimer's & Dementia Care</NavDropdown.Item>
               <NavDropdown.Item href="/CompanionCare" className='navLinkTitles'>Companion Care</NavDropdown.Item>
               <NavDropdown.Item href="/Personal-Care" className='navLinkTitles'>Personal Care</NavDropdown.Item>
               <NavDropdown.Item href="/Respite-Care" className='navLinkTitles'>Respite Care</NavDropdown.Item>
